@@ -1,6 +1,7 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
 var Pervasives=require("./pervasives.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var

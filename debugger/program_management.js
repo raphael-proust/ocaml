@@ -31,8 +31,7 @@ var
             ?Time_travel["forget_process"](fd,pid)
             :(Pervasives["prerr_string"]("Garbage data from process "),
               Pervasives["prerr_int"](pid),
-              Pervasives["prerr_endline"](""));
-    };
+              Pervasives["prerr_endline"](""))};
 
 var
  accept_connection=
@@ -48,13 +47,11 @@ var
       
       Time_travel["new_checkpoint"](pid$prime,io_chan);
       Input_handling["add_file"](io_chan,control_connection(pid$prime));
-      return $$continue(/* () */0);
-      }
+      return $$continue(/* () */0)}
     else
      {return Time_travel["set_file_descriptor"](pid,io_chan)
               ?Input_handling["add_file"](io_chan,control_connection(pid))
-              :0;
-      }
+              :0}
     };
 
 var
@@ -67,7 +64,9 @@ var
       
       var $js;
       switch(sock_address[0])
-       {case 0:$js=/* Some */[0,sock_address[1]];case 1:$js=/* None */0;}
+       {case 0:$js=/* Some */[0,sock_address[1]];break;
+        case 1:$js=/* None */0;break
+        }
       file_name[1]=$js;
       var sock=Unix["socket"](match[1],/* SOCK_STREAM */0,0);
       
@@ -79,18 +78,17 @@ var
         Primitives["io_channel_of_descr"](sock);
         Input_handling["add_file"]
          (Program_loading["connection"][1],accept_connection($$continue));
-        return Program_loading["connection_opened"][1]=/* true */1,0;
-        }
-      catch(x){Unix["close"](sock);throw x;}
+        return Program_loading["connection_opened"][1]=/* true */1,0}
+      catch(x){Unix["close"](sock);throw x}
       }
     catch(err)
      {if(err[1]===CamlPrimitive["caml_global_data"]["Failure"])
-       {throw Debugger_config["Toplevel"];}
+       {throw Debugger_config["Toplevel"]}
       else
        {if(err[1]===Unix["Unix_error"])
-         {Unix_tools["report_error"](err);throw Debugger_config["Toplevel"];}
+         {Unix_tools["report_error"](err);throw Debugger_config["Toplevel"]}
         else
-         {throw err;}
+         {throw err}
         }
       }
     };
@@ -104,10 +102,9 @@ var
       Primitives["close_io"](Program_loading["connection"][1]);
       var match=file_name[1];
       
-      return match?Unix["unlink"](match[1]):/* () */0;
-      }
+      return match?Unix["unlink"](match[1]):/* () */0}
     else
-     {return 0;}
+     {return 0}
     };
 
 var loaded=[0,/* false */0];
@@ -119,14 +116,13 @@ var
     History["empty_history"](/* () */0);
     Time_travel["kill_all_checkpoints"](/* () */0);
     loaded[1]=/* false */0;
-    return close_connection(/* () */0);
-    };
+    return close_connection(/* () */0)};
 
 var
  ask_kill_program=
   function(param)
    {if(!loaded[1])
-     {return /* true */1;}
+     {return /* true */1}
     else
      {var
        answer=
@@ -134,8 +130,7 @@ var
       
       if(answer){kill_program(/* () */0)}
       
-      return answer;
-      }
+      return answer}
     };
 
 var
@@ -160,10 +155,9 @@ var
     catch(exn)
      {if(exn[1]===Unix["Unix_error"])
        {Pervasives["prerr_endline"]("Program not found.");
-        throw Debugger_config["Toplevel"];
-        }
+        throw Debugger_config["Toplevel"]}
       else
-       {throw exn;}
+       {throw exn}
       }
     
     Symbols["read_symbols"](Parameters["program_name"][1]);
@@ -178,9 +172,7 @@ var
              function(param$1)
               {Time_travel["go_to"](Int64ops["_0"]);
                Symbols["set_all_events"](/* () */0);
-               return Input_handling["exit_main_loop"](/* () */0);
-               });
-    };
+               return Input_handling["exit_main_loop"](/* () */0)})};
 
 var
  ensure_loaded=
@@ -190,10 +182,7 @@ var
       Pervasives["flush"](Pervasives["stdout"]);
       if(CamlPrimitive["caml_string_equal"](Parameters["program_name"][1],""))
        {Pervasives["prerr_endline"]("No program specified.");
-        throw Debugger_config["Toplevel"];
-        }
-      else
-       {}
+        throw Debugger_config["Toplevel"]}
       
       try
        {initialize_loading(/* () */0);
@@ -203,12 +192,11 @@ var
         
         Input_handling["main_loop"](/* () */0);
         loaded[1]=/* true */1;
-        return Pervasives["prerr_endline"]("done.");
-        }
-      catch(x){kill_program(/* () */0);throw x;}
+        return Pervasives["prerr_endline"]("done.")}
+      catch(x){kill_program(/* () */0);throw x}
       }
     else
-     {return 0;}
+     {return 0}
     };
 
 module["exports"]=

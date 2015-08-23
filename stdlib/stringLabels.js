@@ -1,58 +1,57 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
+var $$String=require("./string.js");
 
 
-var include=$$String;
+var make=$$String["make"];
 
-var make=include[1];
+var init=$$String["init"];
 
-var init=include[2];
+var copy=$$String["copy"];
 
-var copy=include[3];
+var sub=$$String["sub"];
 
-var sub=include[4];
+var fill=$$String["fill"];
 
-var fill=include[5];
+var blit=$$String["blit"];
 
-var blit=include[6];
+var concat=$$String["concat"];
 
-var concat=include[7];
+var iter=$$String["iter"];
 
-var iter=include[8];
+var iteri=$$String["iteri"];
 
-var iteri=include[9];
+var map=$$String["map"];
 
-var map=include[10];
+var mapi=$$String["mapi"];
 
-var mapi=include[11];
+var trim=$$String["trim"];
 
-var trim=include[12];
+var escaped=$$String["escaped"];
 
-var escaped=include[13];
+var index=$$String["index"];
 
-var index=include[14];
+var rindex=$$String["rindex"];
 
-var rindex=include[15];
+var index_from=$$String["index_from"];
 
-var index_from=include[16];
+var rindex_from=$$String["rindex_from"];
 
-var rindex_from=include[17];
+var contains=$$String["contains"];
 
-var contains=include[18];
+var contains_from=$$String["contains_from"];
 
-var contains_from=include[19];
+var rcontains_from=$$String["rcontains_from"];
 
-var rcontains_from=include[20];
+var uppercase=$$String["uppercase"];
 
-var uppercase=include[21];
+var lowercase=$$String["lowercase"];
 
-var lowercase=include[22];
+var capitalize=$$String["capitalize"];
 
-var capitalize=include[23];
+var uncapitalize=$$String["uncapitalize"];
 
-var uncapitalize=include[24];
-
-var compare=include[25];
+var compare=$$String["compare"];
 
 module["exports"]=
 {"make":make,

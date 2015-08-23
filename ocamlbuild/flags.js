@@ -8,9 +8,9 @@ var Log=require("./log.js");
 var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var flags_of_decl=function(param){return param[2];};
+var flags_of_decl=function(param){return param[2]};
 
-var tags_of_decl=function(param){return param[1];};
+var tags_of_decl=function(param){return param[1]};
 
 var all_decls=[0,/* [] */0];
 
@@ -22,19 +22,17 @@ var
              (function(acc,param)
                {return Tags["does_match"](matched_tags,param[1])
                         ?/* :: */[0,param[2],acc]
-                        :acc;
-                },
+                        :acc},
               /* [] */0,
-              all_decls[1])];
-    };
+              all_decls[1])]};
 
 var match=(Command["tag_handler"][1]=of_tags,0);
 
-var of_tag_list=function(x){return of_tags(Tags["of_list"](x));};
+var of_tag_list=function(x){return of_tags(Tags["of_list"](x))};
 
 var
  add_decl=
-  function(decl){return all_decls[1]=/* :: */[0,decl,all_decls[1]],0;};
+  function(decl){return all_decls[1]=/* :: */[0,decl,all_decls[1]],0};
 
 var
  flag=
@@ -43,8 +41,7 @@ var
     
     var tags$1=Tags["of_list"](tags);
     
-    return add_decl(/* record */[0,tags$1,flags,deprecated]);
-    };
+    return add_decl(/* record */[0,tags$1,flags,deprecated])};
 
 var
  pflag=
@@ -55,18 +52,15 @@ var
               {return flag
                        (/* None */0,
                         /* :: */[0,Param_tags["make"](ptag,param),tags],
-                        flags(param));
-               });
-    };
+                        flags(param))})};
 
-var add=function(x,xs){return /* :: */[0,x,xs];};
+var add=function(x,xs){return /* :: */[0,x,xs]};
 
 var
  remove=
   function(me)
    {return List["filter"]
-            (function(x){return CamlPrimitive["caml_notequal"](me,x);});
-    };
+            (function(x){return CamlPrimitive["caml_notequal"](me,x)})};
 
 var
  pretty_print=
@@ -75,7 +69,7 @@ var
     
     var header=param[3]?"deprecated flag":"flag";
     
-    var pp=function(fmt){return Log["raw_dprintf"](-1,fmt);};
+    var pp=function(fmt){return Log["raw_dprintf"](-1,fmt)};
     
     return pp
             ([/* Format */0,
@@ -108,40 +102,37 @@ var
              header,
              Tags["print"],
              param[1],
-             sflag);
-    };
+             sflag)};
 
 var
  show_documentation=
   function(param)
    {List["iter"]
-     (function(decl){return !decl[3]?pretty_print(decl):0;},all_decls[1]);
+     (function(decl){return !decl[3]?pretty_print(decl):0},all_decls[1]);
     List["iter"]
-     (function(decl){return decl[3]?pretty_print(decl):0;},all_decls[1]);
-    var pp=function(fmt){return Log["raw_dprintf"](-1,fmt);};
+     (function(decl){return decl[3]?pretty_print(decl):0},all_decls[1]);
+    var pp=function(fmt){return Log["raw_dprintf"](-1,fmt)};
     
     return pp
             ([/* Format */0,
               [/* Formatting_lit */17,
                /* Flush_newline */4,
                /* End_of_format */0],
-              "@."]);
-    };
+              "@."])};
 
 var used_tags=[0,Tags["empty"]];
 
 var
  mark_tag_used=
-  function(tag){return used_tags[1]=Tags["add"](tag,used_tags[1]),0;};
+  function(tag){return used_tags[1]=Tags["add"](tag,used_tags[1]),0};
 
 var
  get_used_tags=
   function(param)
    {return List["fold_left"]
-            (function(acc,decl){return Tags["union"](acc,decl[1]);},
+            (function(acc,decl){return Tags["union"](acc,decl[1])},
              used_tags[1],
-             all_decls[1]);
-    };
+             all_decls[1])};
 
 module["exports"]=
 {"of_tags":of_tags,

@@ -5,9 +5,9 @@ var Int64=require("./int64.js");
 var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var $plus$plus=function(prim,prim$1){return prim+prim$1;};
+var $plus$plus=function(prim,prim$1){return prim+prim$1};
 
-var $neg$neg=function(prim,prim$1){return prim-prim$1;};
+var $neg$neg=function(prim,prim$1){return prim-prim$1};
 
 var suc64=Int64["succ"];
 
@@ -21,11 +21,11 @@ var _minus1=Int64["minus_one"];
 
 var
  $unknown$unknown=
-  function(prim){return CamlPrimitive["caml_int64_of_string"](prim);};
+  function(prim){return CamlPrimitive["caml_int64_of_string"](prim)};
 
 var max_small_int=Pervasives["max_int"];
 
-var to_int=function(prim){return prim;};
+var to_int=function(prim){return prim};
 
 module["exports"]=
 {"++":$plus$plus,

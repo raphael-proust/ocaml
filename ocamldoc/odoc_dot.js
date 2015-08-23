@@ -83,20 +83,18 @@ var
                      ('  ratio="fill";\n',
                       Pervasives["^"]
                        ("  rotate=90;\n",
-                        Pervasives["^"]('  fontsize="12pt";\n',"  rankdir = TB ;\n")))));
-         },
+                        Pervasives["^"]('  fontsize="12pt";\n',"  rankdir = TB ;\n")))))},
        get_one_color,
        function(self$neg1)
         {var match=self$neg1[colors+1];
          
          return match
                  ?(self$neg1[colors+1]=match[2],/* Some */[0,match[1]])
-                 :/* None */0;
-         },
+                 :/* None */0},
        node_color,
        function(self$neg1,s)
         {try
-          {return /* Some */[0,List["assoc"](s,self$neg1[loc_colors+1])];}
+          {return /* Some */[0,List["assoc"](s,self$neg1[loc_colors+1])]}
          catch(exn)
           {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
             {/* unknown */"(sendself self-1/1165 get_one_color/1148)";
@@ -106,13 +104,12 @@ var
                
                self$neg1[loc_colors+1]=
                /* :: */[0,/* tuple */[0,s,c],self$neg1[loc_colors+1]];
-               return /* Some */[0,c];
-               }
+               return /* Some */[0,c]}
              else
-              {return /* None */0;}
+              {return /* None */0}
              }
            else
-            {throw exn;}
+            {throw exn}
            }
          },
        print_module_atts,
@@ -135,8 +132,7 @@ var
                      '"%s" [style=filled, color=%s];\n'],
                     m[1],
                     match[1])
-                 :/* () */0;
-         },
+                 :/* () */0},
        print_type_atts,
        function(self$neg1,fmt,t)
         {/* unknown */"(sendself self-1/1174 node_color/1149\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 t/1176)))";
@@ -157,8 +153,7 @@ var
                      '"%s" [style=filled, color=%s];\n'],
                     t[1],
                     match[1])
-                 :/* () */0;
-         },
+                 :/* () */0},
        print_one_dep,
        function(self$neg1,fmt,src,dest)
         {return Format["fprintf"]
@@ -175,8 +170,7 @@ var
                        [/* String_literal */11,'";\n',/* End_of_format */0]]]]],
                    '"%s" -> "%s";\n'],
                   src,
-                  dest);
-         },
+                  dest)},
        generate_for_module,
        function(self$neg1,fmt,m)
         {var
@@ -186,16 +180,14 @@ var
               {return dot_include_all[1]||
                       List["exists"]
                        (function(m)
-                         {return CamlPrimitive["caml_string_equal"](m[1],n);},
-                        self$neg1[modules+1]);
-               },
+                         {return CamlPrimitive["caml_string_equal"](m[1],n)},
+                        self$neg1[modules+1])},
              m[8]);
          
          /* unknown */"(sendself self-1/1184 print_module_atts/1150 fmt/1185 m/1186)";
          
          /* unknown */"(sendself self-1/1184 print_one_dep/1152 fmt/1185 (field 0 m/1186))";
-         return List["iter"](0,l);
-         },
+         return List["iter"](0,l)},
        generate_for_type,
        function(self$neg1,fmt,param)
         {var t=param[1];
@@ -203,8 +195,7 @@ var
          /* unknown */"(sendself self-1/1191 print_type_atts/1151 fmt/1192 t/1193)";
          
          /* unknown */"(sendself self-1/1191 print_one_dep/1152 fmt/1192 (field 0 t/1193))";
-         return List["iter"](0,param[2]);
-         },
+         return List["iter"](0,param[2])},
        generate_types,
        function(self$neg1,types)
         {try
@@ -229,13 +220,12 @@ var
               [/* String_literal */11,"}\n",/* End_of_format */0],
               "}\n"]);
            Format["pp_print_flush"](fmt,/* () */0);
-           return Pervasives["close_out"](oc);
-           }
+           return Pervasives["close_out"](oc)}
          catch(exn)
           {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
-            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]];}
+            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]]}
            else
-            {throw exn;}
+            {throw exn}
            }
          },
        generate_modules,
@@ -263,13 +253,12 @@ var
               [/* String_literal */11,"}\n",/* End_of_format */0],
               "}\n"]);
            Format["pp_print_flush"](fmt,/* () */0);
-           return Pervasives["close_out"](oc);
-           }
+           return Pervasives["close_out"](oc)}
          catch(exn)
           {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
-            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]];}
+            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]]}
            else
-            {throw exn;}
+            {throw exn}
            }
          },
        generate,
@@ -291,9 +280,7 @@ var
       /* [] */0,
       $$self$1[colors+1]=
       dot_colors[1];
-      return $$self$1;
-      };
-    };
+      return $$self$1}};
 
 var
  dot=

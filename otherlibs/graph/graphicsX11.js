@@ -14,25 +14,22 @@ var
    {var wid=CamlPrimitive["caml_gr_open_subwindow"](x,y,width,height);
     
     Hashtbl["add"](subwindows,wid,/* () */0);
-    return wid;
-    };
+    return wid};
 
 var
  close_subwindow=
   function(wid)
    {if(Hashtbl["mem"](subwindows,wid))
      {CamlPrimitive["caml_gr_close_subwindow"](wid);
-      return Hashtbl["remove"](subwindows,wid);
-      }
+      return Hashtbl["remove"](subwindows,wid)}
     else
      {throw [0,
              Graphics["Graphic_failure"],
-             Pervasives["^"]("close_subwindow: no such subwindow: ",wid)];
-      }
+             Pervasives["^"]("close_subwindow: no such subwindow: ",wid)]}
     };
 
 module["exports"]=
-{"window_id":function(prim){return CamlPrimitive["caml_gr_window_id"](prim);},
+{"window_id":function(prim){return CamlPrimitive["caml_gr_window_id"](prim)},
  "open_subwindow":open_subwindow,
  "close_subwindow":close_subwindow};
 

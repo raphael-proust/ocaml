@@ -26,10 +26,8 @@ var
       
       throw [0,
              CamlPrimitive["caml_global_data"]["Assert_failure"],
-             [0,"my_unix.ml",59,51]];
-      }
-    return /* record */[0,$js,f];
-    };
+             [0,"my_unix.ml",59,51]]}
+    return /* record */[0,$js,f]};
 
 var
  run_and_open=
@@ -65,9 +63,7 @@ var
                       "Error while running: %s"],
                      s$1))}
                
-               return My_std["with_input_file"](/* None */0,tmp,kont);
-               });
-    };
+               return My_std["with_input_file"](/* None */0,tmp,kont)})};
 
 var Not_a_link=CamlPrimitive["caml_set_oo_id"]([248,"My_unix.Not_a_link",0]);
 
@@ -86,7 +82,7 @@ var
  readlinkcmd=
   function(x)
    {try
-     {return Hashtbl["find"](cache,x);}
+     {return Hashtbl["find"](cache,x)}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {return run_and_open
@@ -101,11 +97,9 @@ var
                   {var y=My_std["String"][2](Pervasives["input_line"](ic));
                    
                    Hashtbl["replace"](cache,x,y);
-                   return y;
-                   });
-        }
+                   return y})}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -123,41 +117,41 @@ var
            :y;
         
         if(lstat(y$1)[1]===/* FK_dir */0)
-         {throw Link_to_directories_not_supported;}
+         {throw Link_to_directories_not_supported}
         else
-         {return y$1;}
+         {return y$1}
         }
       catch(exn)
        {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
-         {throw Not_a_link;}
+         {throw Not_a_link}
         else
-         {throw exn;}
+         {throw exn}
         }
       }
     else
-     {throw No_such_file;}
+     {throw No_such_file}
     };
 
 var
  is_link=
   function(x)
    {try
-     {readlink(x);return /* true */1;}
+     {readlink(x);return /* true */1}
     catch(exn)
      {var exit;
       
       if(exn===No_such_file)
        {exit=22;}
       else
-       {if(exn===Not_a_link){exit=22;}else{throw exn;}}
+       {if(exn===Not_a_link){exit=22;}else{throw exn}}
       
-      switch(exit){case 22:return /* false */0;}
+      switch(exit){case 22:return /* false */0}
       }
     };
 
 var
  lstat=
-  function(x){return is_link(x)?/* record */[0,/* FK_link */2,x]:stat(x);};
+  function(x){return is_link(x)?/* record */[0,/* FK_link */2,x]:stat(x)};
 
 var
  implem=
@@ -169,40 +163,38 @@ var
    function(param,param$1,param$2,param$3,param$4)
     {throw [0,
             CamlPrimitive["caml_global_data"]["Assert_failure"],
-            [0,"my_unix.ml",119,80]];
-     },
-   function(param){return function(prim){throw prim;};},
+            [0,"my_unix.ml",119,80]]},
+   function(param){return function(prim){throw prim}},
    Pervasives["at_exit"],
    function(param)
     {throw [0,
             CamlPrimitive["caml_global_data"]["Assert_failure"],
-            [0,"my_unix.ml",117,30]];
-     },
-   function(param){return /* false */0;},
+            [0,"my_unix.ml",117,30]]},
+   function(param){return /* false */0},
    stat,
    lstat];
 
-var is_degraded$1=[246,function(param){return implem[1];}];
+var is_degraded$1=[246,function(param){return implem[1]}];
 
-var stat$1=function(x){return implem[10](x);};
+var stat$1=function(x){return implem[10](x)};
 
-var lstat$1=function(x){return implem[11](x);};
+var lstat$1=function(x){return implem[11](x)};
 
-var readlink$1=function(x){return implem[4](x);};
+var readlink$1=function(x){return implem[4](x)};
 
-var is_link$1=function(x){return implem[2](x);};
+var is_link$1=function(x){return implem[2](x)};
 
-var run_and_open$1=function(x){return implem[3](x);};
+var run_and_open$1=function(x){return implem[3](x)};
 
-var at_exit_once=function(x){return implem[7](x);};
+var at_exit_once=function(x){return implem[7](x)};
 
-var report_error=function(x){return implem[6](x);};
+var report_error=function(x){return implem[6](x)};
 
-var gettimeofday=function(x){return implem[8](x);};
+var gettimeofday=function(x){return implem[8](x)};
 
-var stdout_isatty=function(x){return implem[9](x);};
+var stdout_isatty=function(x){return implem[9](x)};
 
-var execute_many=function(max_jobs){return implem[5](max_jobs);};
+var execute_many=function(max_jobs){return implem[5](max_jobs)};
 
 var
  run_and_read=
@@ -223,13 +215,10 @@ var
                    
                    return len>0
                            ?(Buffer["add_subbytes"](totalbuf,buf,0,len),loop(pos+len))
-                           :0;
-                   };
+                           :0};
                
                loop(0);
-               return Buffer["contents"](totalbuf);
-               });
-    };
+               return Buffer["contents"](totalbuf)})};
 
 module["exports"]=
 {"is_degraded":is_degraded$1,

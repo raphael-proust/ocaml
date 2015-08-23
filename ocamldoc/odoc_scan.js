@@ -110,13 +110,13 @@ var
      ($$class,
       [0,
        scan_value,
-       function(self$neg1,v){return /* () */0;},
+       function(self$neg1,v){return /* () */0},
        scan_type_pre,
-       function(self$neg1,t){return /* true */1;},
+       function(self$neg1,t){return /* true */1},
        scan_type_recfield,
-       function(self$neg1,t,f){return /* () */0;},
+       function(self$neg1,t,f){return /* () */0},
        scan_type_const,
-       function(self$neg1,t,f){return /* () */0;},
+       function(self$neg1,t,f){return /* () */0},
        scan_type,
        function(self$neg1,t)
         {/* unknown */"(sendself self-1/1060 scan_type_pre/1016 t/1061)";
@@ -126,41 +126,38 @@ var
            var exit;
            
            if(typeof match==="number")
-            {switch(match){case 0:exit=1;case 1:exit=1;}}
+            {switch(match){case 0:exit=1;break;case 1:exit=1;break}}
            else
             {switch(match[0])
               {case 0:
                 /* unknown */"(sendself self-1/1060 scan_type_const/1018 t/1061)";
                 return List["iter"](0,match[1]);
-                
                case 1:
                 /* unknown */"(sendself self-1/1060 scan_type_recfield/1017 t/1061)";
-                return List["iter"](0,match[1]);
-                
+                return List["iter"](0,match[1])
                }}
            
-           switch(exit){case 1:return /* () */0;}
+           switch(exit){case 1:return /* () */0}
            }
          else
-          {return 0;}
+          {return 0}
          },
        scan_extension_constructor,
-       function(self$neg1,e){return /* () */0;},
+       function(self$neg1,e){return /* () */0},
        scan_exception,
-       function(self$neg1,e){return /* () */0;},
+       function(self$neg1,e){return /* () */0},
        scan_attribute,
-       function(self$neg1,a){return /* () */0;},
+       function(self$neg1,a){return /* () */0},
        scan_method,
-       function(self$neg1,m){return /* () */0;},
+       function(self$neg1,m){return /* () */0},
        scan_included_module,
-       function(self$neg1,im){return /* () */0;},
+       function(self$neg1,im){return /* () */0},
        scan_type_extension_pre,
-       function(self$neg1,x){return /* true */1;},
+       function(self$neg1,x){return /* true */1},
        scan_type_extension_constructors,
        function(self$neg1,x)
         {/* unknown */"(sendself self-1/1083 scan_extension_constructor/1020)";
-         return List["iter"](0,Odoc_extension["extension_constructors"](x));
-         },
+         return List["iter"](0,Odoc_extension["extension_constructors"](x))},
        scan_type_extension,
        function(self$neg1,x)
         {/* unknown */"(sendself self-1/1086 scan_type_extension_pre/1025 x/1087)";
@@ -168,12 +165,12 @@ var
           {/* unknown */"(sendself self-1/1086 scan_type_extension_constructors/1026 x/1087)";
            }
          else
-          {return 0;}
+          {return 0}
          },
        scan_class_comment,
-       function(self$neg1,t){return /* () */0;},
+       function(self$neg1,t){return /* () */0},
        scan_class_pre,
-       function(self$neg1,c){return /* true */1;},
+       function(self$neg1,c){return /* true */1},
        scan_class_elements,
        function(self$neg1,c)
         {return List["iter"]
@@ -182,16 +179,18 @@ var
                      {case 0:
                        /* unknown */"(sendself self-1/1095 scan_attribute/1022 (field 0 ele/1097))";
                        
+                       break;
                       case 1:
                        /* unknown */"(sendself self-1/1095 scan_method/1023 (field 0 ele/1097))";
                        
+                       break;
                       case 2:
                        /* unknown */"(sendself self-1/1095 scan_class_comment/1028 (field 0 ele/1097))";
                        
+                       break
                       }
                     },
-                  Odoc_class["class_elements"](/* None */0,c));
-         },
+                  Odoc_class["class_elements"](/* None */0,c))},
        scan_class,
        function(self$neg1,c)
         {/* unknown */"(sendself self-1/1102 scan_class_pre/1029 c/1103)";
@@ -199,12 +198,12 @@ var
           {/* unknown */"(sendself self-1/1102 scan_class_elements/1030 c/1103)";
            }
          else
-          {return 0;}
+          {return 0}
          },
        scan_class_type_comment,
-       function(self$neg1,t){return /* () */0;},
+       function(self$neg1,t){return /* () */0},
        scan_class_type_pre,
-       function(self$neg1,ct){return /* true */1;},
+       function(self$neg1,ct){return /* true */1},
        scan_class_type_elements,
        function(self$neg1,ct)
         {return List["iter"]
@@ -213,16 +212,18 @@ var
                      {case 0:
                        /* unknown */"(sendself self-1/1111 scan_attribute/1022 (field 0 ele/1113))";
                        
+                       break;
                       case 1:
                        /* unknown */"(sendself self-1/1111 scan_method/1023 (field 0 ele/1113))";
                        
+                       break;
                       case 2:
                        /* unknown */"(sendself self-1/1111 scan_class_type_comment/1032 (field 0 ele/1113))";
                        
+                       break
                       }
                     },
-                  Odoc_class["class_type_elements"](/* None */0,ct));
-         },
+                  Odoc_class["class_type_elements"](/* None */0,ct))},
        scan_class_type,
        function(self$neg1,ct)
         {/* unknown */"(sendself self-1/1118 scan_class_type_pre/1033 ct/1119)";
@@ -230,12 +231,12 @@ var
           {/* unknown */"(sendself self-1/1118 scan_class_type_elements/1034 ct/1119)";
            }
          else
-          {return 0;}
+          {return 0}
          },
        scan_module_comment,
-       function(self$neg1,t){return /* () */0;},
+       function(self$neg1,t){return /* () */0},
        scan_module_pre,
-       function(self$neg1,m){return /* true */1;},
+       function(self$neg1,m){return /* true */1},
        scan_module_elements,
        function(self$neg1,m)
         {return List["iter"]
@@ -244,37 +245,46 @@ var
                      {case 0:
                        /* unknown */"(sendself self-1/1127 scan_module/1039 (field 0 ele/1129))";
                        
+                       break;
                       case 1:
                        /* unknown */"(sendself self-1/1127 scan_module_type/1043 (field 0 ele/1129))";
                        
+                       break;
                       case 2:
                        /* unknown */"(sendself self-1/1127 scan_included_module/1024 (field 0 ele/1129))";
                        
+                       break;
                       case 3:
                        /* unknown */"(sendself self-1/1127 scan_class/1031 (field 0 ele/1129))";
                        
+                       break;
                       case 4:
                        /* unknown */"(sendself self-1/1127 scan_class_type/1035 (field 0 ele/1129))";
                        
+                       break;
                       case 5:
                        /* unknown */"(sendself self-1/1127 scan_value/1015 (field 0 ele/1129))";
                        
+                       break;
                       case 6:
                        /* unknown */"(sendself self-1/1127 scan_type_extension/1027 (field 0 ele/1129))";
                        
+                       break;
                       case 7:
                        /* unknown */"(sendself self-1/1127 scan_exception/1021 (field 0 ele/1129))";
                        
+                       break;
                       case 8:
                        /* unknown */"(sendself self-1/1127 scan_type/1019 (field 0 ele/1129))";
                        
+                       break;
                       case 9:
                        /* unknown */"(sendself self-1/1127 scan_module_comment/1036 (field 0 ele/1129))";
                        
+                       break
                       }
                     },
-                  Odoc_module["module_elements"](/* None */0,m));
-         },
+                  Odoc_module["module_elements"](/* None */0,m))},
        scan_module,
        function(self$neg1,m)
         {/* unknown */"(sendself self-1/1141 scan_module_pre/1037 m/1142)";
@@ -282,12 +292,12 @@ var
           {/* unknown */"(sendself self-1/1141 scan_module_elements/1038 m/1142)";
            }
          else
-          {return 0;}
+          {return 0}
          },
        scan_module_type_comment,
-       function(self$neg1,t){return /* () */0;},
+       function(self$neg1,t){return /* () */0},
        scan_module_type_pre,
-       function(self$neg1,mt){return /* true */1;},
+       function(self$neg1,mt){return /* true */1},
        scan_module_type_elements,
        function(self$neg1,mt)
         {return List["iter"]
@@ -296,37 +306,46 @@ var
                      {case 0:
                        /* unknown */"(sendself self-1/1150 scan_module/1039 (field 0 ele/1152))";
                        
+                       break;
                       case 1:
                        /* unknown */"(sendself self-1/1150 scan_module_type/1043 (field 0 ele/1152))";
                        
+                       break;
                       case 2:
                        /* unknown */"(sendself self-1/1150 scan_included_module/1024 (field 0 ele/1152))";
                        
+                       break;
                       case 3:
                        /* unknown */"(sendself self-1/1150 scan_class/1031 (field 0 ele/1152))";
                        
+                       break;
                       case 4:
                        /* unknown */"(sendself self-1/1150 scan_class_type/1035 (field 0 ele/1152))";
                        
+                       break;
                       case 5:
                        /* unknown */"(sendself self-1/1150 scan_value/1015 (field 0 ele/1152))";
                        
+                       break;
                       case 6:
                        /* unknown */"(sendself self-1/1150 scan_type_extension/1027 (field 0 ele/1152))";
                        
+                       break;
                       case 7:
                        /* unknown */"(sendself self-1/1150 scan_exception/1021 (field 0 ele/1152))";
                        
+                       break;
                       case 8:
                        /* unknown */"(sendself self-1/1150 scan_type/1019 (field 0 ele/1152))";
                        
+                       break;
                       case 9:
                        /* unknown */"(sendself self-1/1150 scan_module_comment/1036 (field 0 ele/1152))";
                        
+                       break
                       }
                     },
-                  Odoc_module["module_type_elements"](/* None */0,mt));
-         },
+                  Odoc_module["module_type_elements"](/* None */0,mt))},
        scan_module_type,
        function(self$neg1,mt)
         {/* unknown */"(sendself self-1/1164 scan_module_type_pre/1041 mt/1165)";
@@ -334,16 +353,14 @@ var
           {/* unknown */"(sendself self-1/1164 scan_module_type_elements/1042 mt/1165)";
            }
          else
-          {return 0;}
+          {return 0}
          },
        scan_module_list,
        function(self$neg1,l)
         {/* unknown */"(sendself self-1/1167 scan_module/1039)";
-         return List["iter"](0,l);
-         }]);
+         return List["iter"](0,l)}]);
     return function(env,$$self)
-     {return CamlinternalOO["create_object_opt"]($$self,$$class);};
-    };
+     {return CamlinternalOO["create_object_opt"]($$self,$$class)}};
 
 var
  scanner=

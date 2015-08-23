@@ -22,11 +22,9 @@ var
         var s=Buffer["contents"](buf);
         
         Buffer["reset"](buf);
-        return s;
-        };
+        return s};
     
-    return /* tuple */[0,fmt,flush];
-    };
+    return /* tuple */[0,fmt,flush]};
 
 var match=new_fmt(/* () */0);
 
@@ -41,7 +39,7 @@ Format["pp_set_formatter_out_functions"]
   /* record */[0,
    outfuns[1],
    outfuns[2],
-   function(param){return outfuns[1]("\n  ",0,3);},
+   function(param){return outfuns[1]("\n  ",0,3)},
    outfuns[4]]);
 var match$1=new_fmt(/* () */0);
 
@@ -54,8 +52,7 @@ var
   function(t)
    {Printtyp["mark_loops"](t);
     Printtyp["type_scheme_max"]([/* Some */0,/* false */0],type_fmt,t);
-    return flush_type_fmt(/* () */0);
-    };
+    return flush_type_fmt(/* () */0)};
 
 var Use_code=CamlPrimitive["caml_set_oo_id"]([248,"Odoc_print.Use_code",0]);
 
@@ -68,27 +65,25 @@ var
        {var exit;
         
         switch(t[0])
-         {case 0:exit=11;
+         {case 0:exit=11;break;
           case 1:
            if(code)
-            {throw [0,Use_code,code[1]];}
+            {throw [0,Use_code,code[1]]}
            else
-            {return [/* Mty_signature */1,/* [] */0];}
-           
+            {return [/* Mty_signature */1,/* [] */0]}
+           break;
           case 2:
            return /* Mty_functor */[2,
                    t[1],
                    Misc["may_map"](iter,t[2]),
                    iter(t[3])];
-           
-          case 3:exit=11;
+          case 3:exit=11;break
           }
         
-        switch(exit){case 11:return t;}
+        switch(exit){case 11:return t}
         };
     
-    return iter(t);
-    };
+    return iter(t)};
 
 var
  string_of_module_type=
@@ -99,9 +94,8 @@ var
      {var t2=complete?t:simpl_module_type(code,t);
       
       Printtyp["modtype"](modtype_fmt,t2);
-      return flush_modtype_fmt(/* () */0);
-      }
-    catch(exn){if(exn[1]===Use_code){return exn[2];}else{throw exn;}}
+      return flush_modtype_fmt(/* () */0)}
+    catch(exn){if(exn[1]===Use_code){return exn[2]}else{throw exn}}
     };
 
 var
@@ -126,14 +120,12 @@ var
                     Types["Vars"][1],
                     Types["Concr"][1],
                     /* [] */0]];
-           
           case 2:
-           var new_ct=iter(t[3]);return /* Cty_arrow */[2,t[1],t[2],new_ct];
+           var new_ct=iter(t[3]);return /* Cty_arrow */[2,t[1],t[2],new_ct]
           }
         };
     
-    return iter(t);
-    };
+    return iter(t)};
 
 var
  string_of_class_type=
@@ -143,8 +135,7 @@ var
     var t2=complete?t:simpl_class_type(t);
     
     Printtyp["class_type"](modtype_fmt,t2);
-    return flush_modtype_fmt(/* () */0);
-    };
+    return flush_modtype_fmt(/* () */0)};
 
 module["exports"]=
 {"string_of_type_expr":string_of_type_expr,

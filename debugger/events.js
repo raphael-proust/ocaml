@@ -7,8 +7,7 @@ var
   function(ev)
    {var match=ev[4];
     
-    return typeof match==="number"?match!==0?ev[3][1]:ev[3][1]:ev[3][2];
-    };
+    return typeof match==="number"?match!==0?ev[3][1]:ev[3][1]:ev[3][2]};
 
 var current_event=[0,/* None */0];
 
@@ -18,9 +17,9 @@ var
    {var match=current_event[1];
     
     if(match)
-     {return match[1];}
+     {return match[1]}
     else
-     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"]}
     };
 
 var
@@ -34,14 +33,14 @@ var
      {var match$1=match[1][4];
       
       if(typeof match$1==="number")
-       {if(match$1!==0){exit=1;}else{return /* true */1;}}
+       {if(match$1!==0){exit=1;}else{return /* true */1}}
       else
        {exit=1;}
       }
     else
-     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"]}
     
-    switch(exit){case 1:return /* false */0;}
+    switch(exit){case 1:return /* false */0}
     };
 
 module["exports"]=

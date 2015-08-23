@@ -16,7 +16,7 @@ var yytransl_block=CamlPrimitive["caml_obj_dup"]([0,257,258,259,260,261,0]);
 
 var
  yylhs=
-  "ÿÿ\x01\0\x01\0\x02\0\x03\0\x03\0\x04\0\x05\0\x06\0\x07\0\x07\0\x16\0\x16\0\b\0\b\0\t\0\t\0\x17\0\x17\0\x17\0\x17\0\x17\0\x18\0\x18\0\x13\0\x14\0\x14\0\x14\0\x14\0\x15\0\n\0\n\0\x0b\0\f\0\f\0\r\0\r\0\x0e\0\x19\0\x19\0\x19\0\x19\0\x19\0\x19\0\x19\0\x19\0\x19\0\x0f\0\x0f\0\x10\0\x10\0\x10\0\x10\0\x10\0\x11\0\x11\0\x12\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
+  "\xff\xff\x01\0\x01\0\x02\0\x03\0\x03\0\x04\0\x05\0\x06\0\x07\0\x07\0\x16\0\x16\0\b\0\b\0\t\0\t\0\x17\0\x17\0\x17\0\x17\0\x17\0\x18\0\x18\0\x13\0\x14\0\x14\0\x14\0\x14\0\x15\0\n\0\n\0\x0b\0\f\0\f\0\r\0\r\0\x0e\0\x19\0\x19\0\x19\0\x19\0\x19\0\x19\0\x19\0\x19\0\x19\0\x0f\0\x0f\0\x10\0\x10\0\x10\0\x10\0\x10\0\x11\0\x11\0\x12\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
 
 var
  yylen=
@@ -32,25 +32,25 @@ var
 
 var
  yysindex=
-  "r\0\bÿ\x04ÿ\x19ÿ\x07ÿ-ÿ0ÿ#ÿ\x13ÿ\x18ÿ:ÿ:ÿ\x10ÿ:ÿ:ÿ†ÿDÿ]ÿ4ÿfÿ]ÿ]ÿ\0\0\bÿ\0\0\0\0\0\x004ÿ\0\0\x19ÿ\0\0\0\x004ÿ\0\x004ÿ\0\0\0\0\0\x004ÿ\0\0\0\0\x07ÿ\0\0\0\x004ÿ-ÿ\0\0\0\0\0\0\0\0\0\0\0\x004ÿ\0\0\0\0\0\0\0\0\0\0\0\x004ÿ\0\0\0\0\0\0\0\0\0\0Fÿ’ÿ’ÿ\0\0\0\0\0\0LÿVÿ]ÿ\0\0\0\0\0\0\x05ÿ\0\0\0\0\0\0'ÿ\0\0\ÿ\0\0\0\x004ÿ\0\x004ÿ\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0%ÿ?ÿ!ÿ\0\x005ÿ\0\0#ÿ\0\0cÿ\0\0\0\0\0\0\0\0\0\0gÿ\0\0\0\0lÿˆÿ#ÿ\x07ÿ\0\0\0\0^ÿ}ÿ~ÿ\0\0\0\0\0\0\0\0\0\0";
+  "r\0\b\xff\x04\xff\x19\xff\x07\xff-\xff0\xff#\xff\x13\xff\x18\xff:\xff:\xff\x10\xff:\xff:\xff\x86\xffD\xff]\xff4\xfff\xff]\xff]\xff\0\0\b\xff\0\0\0\0\0\x004\xff\0\0\x19\xff\0\0\0\x004\xff\0\x004\xff\0\0\0\0\0\x004\xff\0\0\0\0\x07\xff\0\0\0\x004\xff-\xff\0\0\0\0\0\0\0\0\0\0\0\x004\xff\0\0\0\0\0\0\0\0\0\0\0\x004\xff\0\0\0\0\0\0\0\0\0\0F\xff\x92\xff\x92\xff\0\0\0\0\0\0L\xffV\xff]\xff\0\0\0\0\0\0\x05\xff\0\0\0\0\0\0'\xff\0\0\\\xff\0\0\0\x004\xff\0\x004\xff\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0%\xff?\xff!\xff\0\x005\xff\0\0#\xff\0\0c\xff\0\0\0\0\0\0\0\0\0\0g\xff\0\0\0\0l\xff\x88\xff#\xff\x07\xff\0\0\0\0^\xff}\xff~\xff\0\0\0\0\0\0\0\0\0\0";
 
 var
  yyrindex=
-  "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x7fÿ\0\0\0\0*ÿ\0\0\0\0™\0‰ÿ\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0Nÿ\0\0\0\0\0\0\0\0\0\0\x01\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x03\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
+  "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x8f\0\x7f\xff\0\0\0\0*\xff\0\0\0\0\x99\0\x89\xff\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0N\xff\0\0\0\0\0\0\0\0\0\0\x01\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x03\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
 
 var
  yygindex=
-  "\0\0„\0\0\0\x7f\0òÿs\0P\0øÿ\0\0\0\0d\0\0\0\0\0”\0\0\0[\0\0\0\0\0\x05\0\0\0ûÿ\0\0\0‘\0öÿôÿ";
+  "\0\0\x84\0\0\0\x7f\0\xf2\xffs\0P\0\xf8\xff\0\0\0\0d\0\0\0\0\0\x94\0\0\0[\0\0\0\0\0\x05\0\0\0\xfb\xff\x90\0\0\0\x91\0\xf6\xff\xf4\xff";
 
 var yytablesize=276;
 
 var
  yytable=
-  '*\0\x19\0J\0\x1b\0M\0\x1b\0\x1a\0S\0\x1f\0\x17\0S\0S\0 \0i\0/\0W\0X\x008\x001\x002\0E\0L\0\x18\0T\0&\0\x18\0)\0`\0\x1a\0,\0\x1d\0-\0[\0\x18\0\x1f\0v\0\x18\0]\0w\0^\0&\0\x18\0\x18\0_\0$\0i\0x\0\x1c\0y\0a\0"\0q\0\x18\0$\0f\0g\0\x18\0c\0z\0\x1c\x001\x002\0{\0S\0d\0r\0s\0t\0k\0\x18\0=\0>\0?\0 \0@\0e\0u\0E\0I\0A\0B\0C\0l\0\x1c\0h\0\x18\0n\0\x1c\0=\0>\0?\0p\0@\0n\0i\0N\0O\0A\0B\0C\0o\0|\0}\0\x18\0=\0>\0?\0~\0ƒ\0‚\x003\x004\x006\0\x7f\0\0\x01\0\x02\0\x03\0\x04\0\x05\0\x06\0\x07\0\b\0\t\0\n\0\x0b\0\f\0\r\0\x0e\0\x0f\0\x10\0\x11\0\x12\0\x13\0\x14\0\x15\0=\0>\0?\0„\0@\0€\0…\0$\0$\0A\0B\0C\0=\0>\0?\0\x18\0@\0\x1c\0\x1c\0Z\0\\0A\0B\0C\0b\0m\0;\0j\0V\0Y\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x19\0\0\0\x1b\0\x16\0\x19\0\x17\0\x1b\0\0\0\0\0\0\0\0\0\0\0\x19\0\0\0\x1b\0';
+  '*\0\x19\0J\0\x1b\0M\0\x1b\0\x1a\0S\0\x1f\0\x17\0S\0S\0 \0i\0/\0W\0X\x008\x001\x002\0E\0L\0\x18\0T\0&\0\x18\0)\0`\0\x1a\0,\0\x1d\0-\0[\0\x18\0\x1f\0v\0\x18\0]\0w\0^\0&\0\x18\0\x18\0_\0$\0i\0x\0\x1c\0y\0a\0"\0q\0\x18\0$\0f\0g\0\x18\0c\0z\0\x1c\x001\x002\0{\0S\0d\0r\0s\0t\0k\0\x18\0=\0>\0?\0 \0@\0e\0u\0E\0I\0A\0B\0C\0l\0\x1c\0h\0\x18\0n\0\x1c\0=\0>\0?\0p\0@\0n\0i\0N\0O\0A\0B\0C\0o\0|\0}\0\x18\0=\0>\0?\0~\0\x83\0\x82\x003\x004\x006\0\x7f\0\x81\0\x01\0\x02\0\x03\0\x04\0\x05\0\x06\0\x07\0\b\0\t\0\n\0\x0b\0\f\0\r\0\x0e\0\x0f\0\x10\0\x11\0\x12\0\x13\0\x14\0\x15\0=\0>\0?\0\x84\0@\0\x80\0\x85\0$\0$\0A\0B\0C\0=\0>\0?\0\x18\0@\0\x1c\0\x1c\0Z\0\\\0A\0B\0C\0b\0m\0;\0j\0V\0Y\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x19\0\0\0\x1b\0\x16\0\x19\0\x17\0\x1b\0\0\0\0\0\0\0\0\0\0\0\x19\0\0\0\x1b\0';
 
 var
  yycheck=
-  '\b\0\0\0\x10\0\0\0\x10\0\x01\x01\x01\0\x11\0\x03\0\x01\x01\x14\0\x15\0\x05\x01\b\x01\t\0\x14\0\x15\0\f\0\x02\x01\x03\x01\x0f\0\x10\0\x11\x01\x12\0\x05\x01\x11\x01\x07\x01)\0\x17\0\x05\x01\x05\x01\x07\x01\x1b\0\x11\x01\x1d\0\x02\x01\x11\x01 \0\x05\x01"\0\x05\x01\x11\x01\x11\x01&\0\x05\x01\b\x01\r\x01\x05\x01\x0f\x01,\0\x05\x01\x0e\x01\x11\x01\x05\x01B\0C\0\x11\x014\0\x05\x01\x11\x01\x02\x01\x03\x01\t\x01I\0;\0\x02\x01\x03\x01\x04\x01I\0\x11\x01\x02\x01\x03\x01\x04\x01\x05\x01\x06\x01\x05\x01\r\x01H\0\n\x01\x0b\x01\f\x01\r\x01M\0\x05\x01\b\x01\x11\x01Q\0\t\x01\x02\x01\x03\x01\x04\x01V\0\x06\x01X\0\b\x01\x02\x01\x03\x01\x0b\x01\f\x01\r\x01\b\x01m\0\x03\x01\x11\x01\x02\x01\x03\x01\x04\x01\x04\x01\x0e\x01{\0\n\0\x0b\0\f\0\x05\x01z\0\x01\0\x02\0\x03\0\x04\0\x05\0\x06\0\x07\0\b\0\t\0\n\0\x0b\0\f\0\r\0\x0e\0\x0f\0\x10\0\x11\0\x12\0\x13\0\x14\0\x15\0\x02\x01\x03\x01\x04\x01\x0e\x01\x06\x01\x05\x01\x10\x01\0\0\x11\x01\x0b\x01\f\x01\r\x01\x02\x01\x03\x01\x04\x01\x11\x01\x06\x01\0\0\x11\x01\x17\0\x1d\0\x0b\x01\f\x01\r\x01-\0Q\0\x0e\0H\0\x13\0\x15\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\x05\x01ÿÿ\x05\x01\b\x01\t\x01\b\x01\t\x01ÿÿÿÿÿÿÿÿÿÿ\x11\x01ÿÿ\x11\x01';
+  '\b\0\0\0\x10\0\0\0\x10\0\x01\x01\x01\0\x11\0\x03\0\x01\x01\x14\0\x15\0\x05\x01\b\x01\t\0\x14\0\x15\0\f\0\x02\x01\x03\x01\x0f\0\x10\0\x11\x01\x12\0\x05\x01\x11\x01\x07\x01)\0\x17\0\x05\x01\x05\x01\x07\x01\x1b\0\x11\x01\x1d\0\x02\x01\x11\x01 \0\x05\x01"\0\x05\x01\x11\x01\x11\x01&\0\x05\x01\b\x01\r\x01\x05\x01\x0f\x01,\0\x05\x01\x0e\x01\x11\x01\x05\x01B\0C\0\x11\x014\0\x05\x01\x11\x01\x02\x01\x03\x01\t\x01I\0;\0\x02\x01\x03\x01\x04\x01I\0\x11\x01\x02\x01\x03\x01\x04\x01\x05\x01\x06\x01\x05\x01\r\x01H\0\n\x01\x0b\x01\f\x01\r\x01M\0\x05\x01\b\x01\x11\x01Q\0\t\x01\x02\x01\x03\x01\x04\x01V\0\x06\x01X\0\b\x01\x02\x01\x03\x01\x0b\x01\f\x01\r\x01\b\x01m\0\x03\x01\x11\x01\x02\x01\x03\x01\x04\x01\x04\x01\x0e\x01{\0\n\0\x0b\0\f\0\x05\x01z\0\x01\0\x02\0\x03\0\x04\0\x05\0\x06\0\x07\0\b\0\t\0\n\0\x0b\0\f\0\r\0\x0e\0\x0f\0\x10\0\x11\0\x12\0\x13\0\x14\0\x15\0\x02\x01\x03\x01\x04\x01\x0e\x01\x06\x01\x05\x01\x10\x01\0\0\x11\x01\x0b\x01\f\x01\r\x01\x02\x01\x03\x01\x04\x01\x11\x01\x06\x01\0\0\x11\x01\x17\0\x1d\0\x0b\x01\f\x01\r\x01-\0Q\0\x0e\0H\0\x13\0\x15\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\x05\x01\xff\xff\x05\x01\b\x01\t\x01\b\x01\t\x01\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\x11\x01\xff\xff\x11\x01';
 
 var
  yynames_const=
@@ -61,252 +61,212 @@ var yynames_block="ARGUMENT\0LIDENT\0UIDENT\0OPERATOR\0INTEGER\0";
 var
  yyact=
   [/* array */0,
-   function(param){return Pervasives["failwith"]("parser");},
+   function(param){return Pervasives["failwith"]("parser")},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
      var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* :: */[0,_1,_2];
-     },
+     return /* :: */[0,_1,_2]},
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* [] */0;},
-   function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,1);
-     
-     var _2=Parsing["peek_val"](__caml_parser_env,0);
-     
-     return _1;
-     },
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* [] */0},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
      var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* :: */[0,Int64ops["to_int"](_1),_2];
-     },
-   function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* [] */0;},
+     return _1},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
      var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return Int64ops["to_int"](_1);
-     },
+     return /* :: */[0,Int64ops["to_int"](_1),_2]},
+   function(__caml_parser_env)
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* [] */0},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
      var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return _1;
-     },
+     return Int64ops["to_int"](_1)},
+   function(__caml_parser_env)
+    {var _1=Parsing["peek_val"](__caml_parser_env,1);
+     
+     var _2=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return _1},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return Int64ops["to_int"](_1);
-     },
+     return Int64ops["to_int"](_1)},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
      var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* Some */[0,Int64ops["to_int"](_1)];
-     },
+     return /* Some */[0,Int64ops["to_int"](_1)]},
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* None */0;},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* None */0},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
      var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* Some */[0,_1];
-     },
+     return /* Some */[0,_1]},
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* None */0;},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* None */0},
    function(__caml_parser_env)
-    {var _2=Parsing["peek_val"](__caml_parser_env,0);
-     
-     return /* Some */[0,-_2];
-     },
+    {var _2=Parsing["peek_val"](__caml_parser_env,0);return /* Some */[0,-_2]},
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return _1;},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return _1},
    function(__caml_parser_env)
-    {var _2=Parsing["peek_val"](__caml_parser_env,0);
-     
-     return /* Some */[0,-_2];
-     },
+    {var _2=Parsing["peek_val"](__caml_parser_env,0);return /* Some */[0,-_2]},
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return _1;},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return _1},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* Lident */[0,_1];
-     },
+     return /* Lident */[0,_1]},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
      var _3=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* Ldot */[1,_1,_3];
-     },
+     return /* Ldot */[1,_1,_3]},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* Lident */[0,_1];
-     },
+     return /* Lident */[0,_1]},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
      var _3=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* Ldot */[1,_1,_3];
-     },
+     return /* Ldot */[1,_1,_3]},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,4);
      
      var _4=Parsing["peek_val"](__caml_parser_env,1);
      
-     return /* Ldot */[1,_1,_4];
-     },
+     return /* Ldot */[1,_1,_4]},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* Lident */[0,_1];
-     },
+     return /* Lident */[0,_1]},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
      var _3=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* Ldot */[1,_1,_3];
-     },
+     return /* Ldot */[1,_1,_3]},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
      var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return _1;
-     },
+     return _1},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* Some */[0,/* Lident */[0,_1]];
-     },
+     return /* Some */[0,/* Lident */[0,_1]]},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* Some */[0,/* Lident */[0,_1]];
-     },
+     return /* Some */[0,/* Lident */[0,_1]]},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
      var _3=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* Some */[0,/* Ldot */[1,_1,_3]];
-     },
-   function(__caml_parser_env){return /* None */0;},
+     return /* Some */[0,/* Ldot */[1,_1,_3]]},
+   function(__caml_parser_env){return /* None */0},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
      var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return _1;
-     },
+     return _1},
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return _1;},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return _1},
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return _1;},
-   function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,1);
-     
-     var _2=Parsing["peek_val"](__caml_parser_env,0);
-     
-     return _1;
-     },
-   function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* Some */[0,_1];},
-   function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* None */0;},
-   function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* Some */[0,_1];},
-   function(__caml_parser_env){return /* None */0;},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return _1},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
      var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return _1;
-     },
+     return _1},
+   function(__caml_parser_env)
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* Some */[0,_1]},
+   function(__caml_parser_env)
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* None */0},
+   function(__caml_parser_env)
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* Some */[0,_1]},
+   function(__caml_parser_env){return /* None */0},
+   function(__caml_parser_env)
+    {var _1=Parsing["peek_val"](__caml_parser_env,1);
+     
+     var _2=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return _1},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* E_ident */[0,_1];
-     },
-   function(__caml_parser_env){return /* E_result */0;},
+     return /* E_ident */[0,_1]},
+   function(__caml_parser_env){return /* E_result */0},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* E_name */[1,Int64ops["to_int"](_2)];
-     },
+     return /* E_name */[1,Int64ops["to_int"](_2)]},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
      var _3=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* E_item */[2,_1,Int64ops["to_int"](_3)];
-     },
+     return /* E_item */[2,_1,Int64ops["to_int"](_3)]},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,4);
      
      var _4=Parsing["peek_val"](__caml_parser_env,1);
      
-     return /* E_item */[2,_1,Int64ops["to_int"](_4)];
-     },
+     return /* E_item */[2,_1,Int64ops["to_int"](_4)]},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,4);
      
      var _4=Parsing["peek_val"](__caml_parser_env,1);
      
-     return /* E_item */[2,_1,Int64ops["to_int"](_4)];
-     },
+     return /* E_item */[2,_1,Int64ops["to_int"](_4)]},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
      var _3=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* E_field */[3,_1,_3];
-     },
+     return /* E_field */[3,_1,_3]},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* E_field */[3,_2,"contents"];
-     },
+     return /* E_field */[3,_2,"contents"]},
    function(__caml_parser_env)
-    {var _2=Parsing["peek_val"](__caml_parser_env,1);return _2;},
-   function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,1);
-     
-     var _2=Parsing["peek_val"](__caml_parser_env,0);
-     
-     return /* :: */[0,_1,_2];
-     },
-   function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* [] */0;},
-   function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* BA_none */0;},
-   function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);
-     
-     return /* BA_pc */[0,_1];
-     },
+    {var _2=Parsing["peek_val"](__caml_parser_env,1);return _2},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
      var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* BA_function */[1,_1];
-     },
+     return /* :: */[0,_1,_2]},
+   function(__caml_parser_env)
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* [] */0},
+   function(__caml_parser_env)
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* BA_none */0},
+   function(__caml_parser_env)
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* BA_pc */[0,_1]},
+   function(__caml_parser_env)
+    {var _1=Parsing["peek_val"](__caml_parser_env,1);
+     
+     var _2=Parsing["peek_val"](__caml_parser_env,0);
+     
+     return /* BA_function */[1,_1]},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,2);
      
@@ -314,15 +274,13 @@ var
      
      var _4=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* BA_pos1 */[2,_2,Int64ops["to_int"](_3),_4];
-     },
+     return /* BA_pos1 */[2,_2,Int64ops["to_int"](_3),_4]},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,2);
      
      var _4=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* BA_pos2 */[3,_2,_4];
-     },
+     return /* BA_pos2 */[3,_2,_4]},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,2);
      
@@ -330,57 +288,55 @@ var
      
      var _3=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* tuple */[0,_1,/* Some */[0,_2],_3];
-     },
+     return /* tuple */[0,_1,/* Some */[0,_2],_3]},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* tuple */[0,_1,/* None */0,/* None */0];
-     },
+     return /* tuple */[0,_1,/* None */0,/* None */0]},
    function(__caml_parser_env)
-    {return Input_handling["stop_user_input"](/* () */0);},
+    {return Input_handling["stop_user_input"](/* () */0)},
    function(__caml_parser_env)
-    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)];},
+    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)]},
    function(__caml_parser_env)
-    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)];},
+    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)]},
    function(__caml_parser_env)
-    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)];},
+    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)]},
    function(__caml_parser_env)
-    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)];},
+    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)]},
    function(__caml_parser_env)
-    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)];},
+    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)]},
    function(__caml_parser_env)
-    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)];},
+    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)]},
    function(__caml_parser_env)
-    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)];},
+    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)]},
    function(__caml_parser_env)
-    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)];},
+    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)]},
    function(__caml_parser_env)
-    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)];},
+    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)]},
    function(__caml_parser_env)
-    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)];},
+    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)]},
    function(__caml_parser_env)
-    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)];},
+    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)]},
    function(__caml_parser_env)
-    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)];},
+    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)]},
    function(__caml_parser_env)
-    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)];},
+    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)]},
    function(__caml_parser_env)
-    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)];},
+    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)]},
    function(__caml_parser_env)
-    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)];},
+    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)]},
    function(__caml_parser_env)
-    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)];},
+    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)]},
    function(__caml_parser_env)
-    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)];},
+    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)]},
    function(__caml_parser_env)
-    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)];},
+    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)]},
    function(__caml_parser_env)
-    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)];},
+    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)]},
    function(__caml_parser_env)
-    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)];},
+    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)]},
    function(__caml_parser_env)
-    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)];}];
+    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)]}];
 
 var
  yytables=
@@ -404,108 +360,99 @@ var
 
 var
  argument_list_eol=
-  function(lexfun,lexbuf)
-   {return Parsing["yyparse"](yytables,1,lexfun,lexbuf);};
+  function(lexfun,lexbuf){return Parsing["yyparse"](yytables,1,lexfun,lexbuf)};
 
 var
  argument_eol=
-  function(lexfun,lexbuf)
-   {return Parsing["yyparse"](yytables,2,lexfun,lexbuf);};
+  function(lexfun,lexbuf){return Parsing["yyparse"](yytables,2,lexfun,lexbuf)};
 
 var
  integer_list_eol=
-  function(lexfun,lexbuf)
-   {return Parsing["yyparse"](yytables,3,lexfun,lexbuf);};
+  function(lexfun,lexbuf){return Parsing["yyparse"](yytables,3,lexfun,lexbuf)};
 
 var
  integer_eol=
-  function(lexfun,lexbuf)
-   {return Parsing["yyparse"](yytables,4,lexfun,lexbuf);};
+  function(lexfun,lexbuf){return Parsing["yyparse"](yytables,4,lexfun,lexbuf)};
 
 var
  int64_eol=
-  function(lexfun,lexbuf)
-   {return Parsing["yyparse"](yytables,5,lexfun,lexbuf);};
+  function(lexfun,lexbuf){return Parsing["yyparse"](yytables,5,lexfun,lexbuf)};
 
 var
  integer=
-  function(lexfun,lexbuf)
-   {return Parsing["yyparse"](yytables,6,lexfun,lexbuf);};
+  function(lexfun,lexbuf){return Parsing["yyparse"](yytables,6,lexfun,lexbuf)};
 
 var
  opt_integer_eol=
-  function(lexfun,lexbuf)
-   {return Parsing["yyparse"](yytables,7,lexfun,lexbuf);};
+  function(lexfun,lexbuf){return Parsing["yyparse"](yytables,7,lexfun,lexbuf)};
 
 var
  opt_signed_integer_eol=
-  function(lexfun,lexbuf)
-   {return Parsing["yyparse"](yytables,8,lexfun,lexbuf);};
+  function(lexfun,lexbuf){return Parsing["yyparse"](yytables,8,lexfun,lexbuf)};
 
 var
  opt_signed_int64_eol=
-  function(lexfun,lexbuf)
-   {return Parsing["yyparse"](yytables,9,lexfun,lexbuf);};
+  function(lexfun,lexbuf){return Parsing["yyparse"](yytables,9,lexfun,lexbuf)};
 
 var
  identifier=
   function(lexfun,lexbuf)
-   {return Parsing["yyparse"](yytables,10,lexfun,lexbuf);};
+   {return Parsing["yyparse"](yytables,10,lexfun,lexbuf)};
 
 var
  identifier_eol=
   function(lexfun,lexbuf)
-   {return Parsing["yyparse"](yytables,11,lexfun,lexbuf);};
+   {return Parsing["yyparse"](yytables,11,lexfun,lexbuf)};
 
 var
  identifier_or_eol=
   function(lexfun,lexbuf)
-   {return Parsing["yyparse"](yytables,12,lexfun,lexbuf);};
+   {return Parsing["yyparse"](yytables,12,lexfun,lexbuf)};
 
 var
  opt_identifier=
   function(lexfun,lexbuf)
-   {return Parsing["yyparse"](yytables,13,lexfun,lexbuf);};
+   {return Parsing["yyparse"](yytables,13,lexfun,lexbuf)};
 
 var
  opt_identifier_eol=
   function(lexfun,lexbuf)
-   {return Parsing["yyparse"](yytables,14,lexfun,lexbuf);};
+   {return Parsing["yyparse"](yytables,14,lexfun,lexbuf)};
 
 var
  expression_list_eol=
   function(lexfun,lexbuf)
-   {return Parsing["yyparse"](yytables,15,lexfun,lexbuf);};
+   {return Parsing["yyparse"](yytables,15,lexfun,lexbuf)};
 
 var
  break_argument_eol=
   function(lexfun,lexbuf)
-   {return Parsing["yyparse"](yytables,16,lexfun,lexbuf);};
+   {return Parsing["yyparse"](yytables,16,lexfun,lexbuf)};
 
 var
  list_arguments_eol=
   function(lexfun,lexbuf)
-   {return Parsing["yyparse"](yytables,17,lexfun,lexbuf);};
+   {return Parsing["yyparse"](yytables,17,lexfun,lexbuf)};
 
 var
  end_of_line=
   function(lexfun,lexbuf)
-   {return Parsing["yyparse"](yytables,18,lexfun,lexbuf);};
+   {return Parsing["yyparse"](yytables,18,lexfun,lexbuf)};
 
 var
  longident_eol=
   function(lexfun,lexbuf)
-   {return Parsing["yyparse"](yytables,19,lexfun,lexbuf);};
+   {return Parsing["yyparse"](yytables,19,lexfun,lexbuf)};
 
 var
  opt_longident=
   function(lexfun,lexbuf)
-   {return Parsing["yyparse"](yytables,20,lexfun,lexbuf);};
+   {return Parsing["yyparse"](yytables,20,lexfun,lexbuf)};
 
 var
  opt_longident_eol=
   function(lexfun,lexbuf)
-   {return Parsing["yyparse"](yytables,21,lexfun,lexbuf);};
+   {return Parsing["yyparse"](yytables,21,lexfun,lexbuf)};
 
 module["exports"]=
 {"argument_list_eol":argument_list_eol,

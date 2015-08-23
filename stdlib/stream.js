@@ -33,7 +33,12 @@ var
          var match=get_data(count,d[1]);
          
          if(typeof match==="number")
-          {switch(match){case 0:return get_data(count,d2)}}
+          {switch(match)
+            {case 0:return get_data(count,d2);
+             default:
+              throw [0,
+                     CamlPrimitive["caml_global_data"]["Assert_failure"],
+                     [0,"stream.ml",53,12]]}}
          else
           {switch(match[0])
             {case 0:return /* Scons */[0,match[1],/* Sapp */[1,match[2],d2]];
@@ -99,7 +104,12 @@ var
          var d=get_data(s[1],s[2]);
          
          if(typeof d==="number")
-          {switch(d){case 0:return /* None */0}}
+          {switch(d)
+            {case 0:return /* None */0;
+             default:
+              throw [0,
+                     CamlPrimitive["caml_global_data"]["Assert_failure"],
+                     [0,"stream.ml",82,12]]}}
          else
           {switch(d[0])
             {case 0:set_data(s,d);return /* Some */[0,d[1]];
@@ -146,7 +156,7 @@ var
     var exit;
     
     if(typeof match==="number")
-     {switch(match){}}
+     {switch(match){default:exit=24;}}
     else
      {switch(match[0])
        {case 0:s[1]=1+s[1];return set_data(s,match[2]);

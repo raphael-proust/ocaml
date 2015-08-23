@@ -1,48 +1,47 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
+var $$Array=require("./array.js");
 
 
-var include=$$Array;
+var init=$$Array["init"];
 
-var init=include[1];
+var make_matrix=$$Array["make_matrix"];
 
-var make_matrix=include[2];
+var create_matrix=$$Array["create_matrix"];
 
-var create_matrix=include[3];
+var append=$$Array["append"];
 
-var append=include[4];
+var concat=$$Array["concat"];
 
-var concat=include[5];
+var sub=$$Array["sub"];
 
-var sub=include[6];
+var copy=$$Array["copy"];
 
-var copy=include[7];
+var fill=$$Array["fill"];
 
-var fill=include[8];
+var blit=$$Array["blit"];
 
-var blit=include[9];
+var to_list=$$Array["to_list"];
 
-var to_list=include[10];
+var of_list=$$Array["of_list"];
 
-var of_list=include[11];
+var iter=$$Array["iter"];
 
-var iter=include[12];
+var map=$$Array["map"];
 
-var map=include[13];
+var iteri=$$Array["iteri"];
 
-var iteri=include[14];
+var mapi=$$Array["mapi"];
 
-var mapi=include[15];
+var fold_left=$$Array["fold_left"];
 
-var fold_left=include[16];
+var fold_right=$$Array["fold_right"];
 
-var fold_right=include[17];
+var sort=$$Array["sort"];
 
-var sort=include[18];
+var stable_sort=$$Array["stable_sort"];
 
-var stable_sort=include[19];
-
-var fast_sort=include[20];
+var fast_sort=$$Array["fast_sort"];
 
 module["exports"]=
 {"init":init,

@@ -8,9 +8,9 @@ var Str=require("./str.js");
 var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var uppercase="[A-ZÀ-ÖØ-Þ]";
+var uppercase="[A-Z\xc0-\xd6\xd8-\xde]";
 
-var identchar="[A-Za-z_À-ÖØ-öø-ÿ'0-9]";
+var identchar="[A-Za-z_\xc0-\xd6\xd8-\xf6\xf8-\xff'0-9]";
 
 var blank="[ \n\r\t\f]";
 
@@ -24,7 +24,7 @@ var
 
 var
  yylhs=
-  "ÿÿ\x03\0\x04\0\x04\0\x04\0\x01\0\x01\0\x02\0\x05\0\x05\0\x06\0\x06\0\x06\0\x06\0\x06\0\x06\0\x06\0\x06\0\x06\0\x06\0\x07\0\b\0\t\0\n\0\x0b\0\f\0\r\0\x0e\0\x0f\0\x10\0\0\0\0\0\0\0";
+  "\xff\xff\x03\0\x04\0\x04\0\x04\0\x01\0\x01\0\x02\0\x05\0\x05\0\x06\0\x06\0\x06\0\x06\0\x06\0\x06\0\x06\0\x06\0\x06\0\x06\0\x07\0\b\0\t\0\n\0\x0b\0\f\0\r\0\x0e\0\x0f\0\x10\0\0\0\0\0\0\0";
 
 var
  yylen=
@@ -40,7 +40,7 @@ var
 
 var
  yysindex=
-  "\x0b\0\x01\0ýþ\rÿ\0\0\0\0\0\0\0\0ñþ\x03ÿ\x04ÿ\x05ÿ\x06ÿ\x07ÿ\bÿ\tÿ\nÿ\x0bÿ\0\0\x1b\0ýþ\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x0eÿ\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
+  "\x0b\0\x01\0\xfd\xfe\r\xff\0\0\0\0\0\0\0\0\xf1\xfe\x03\xff\x04\xff\x05\xff\x06\xff\x07\xff\b\xff\t\xff\n\xff\x0b\xff\0\0\x1b\0\xfd\xfe\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x0e\xff\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
 
 var
  yyrindex=
@@ -58,7 +58,7 @@ var
 
 var
  yycheck=
-  "\x0f\x01\0\0\x05\x01\x06\x01\x07\x01\b\x01\t\x01\n\x01\x0b\x01\f\x01\r\x01\x0e\x01\x01\0\x02\0\x03\0\x02\x01\x03\x01\x04\x01\x0f\x01\x0f\x01\x0f\x01\x0f\x01\x0f\x01\x0f\x01\x0f\x01\x0f\x01\x0f\x01\0\0\0\0\x0f\x01\x14\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\x01\x01";
+  "\x0f\x01\0\0\x05\x01\x06\x01\x07\x01\b\x01\t\x01\n\x01\x0b\x01\f\x01\r\x01\x0e\x01\x01\0\x02\0\x03\0\x02\x01\x03\x01\x04\x01\x0f\x01\x0f\x01\x0f\x01\x0f\x01\x0f\x01\x0f\x01\x0f\x01\x0f\x01\x0f\x01\0\0\0\0\x0f\x01\x14\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\x01\x01";
 
 var
  yynames_const=
@@ -69,63 +69,58 @@ var yynames_block="Description\0See_url\0See_file\0See_doc\0T_CUSTOM\0Desc\0";
 var
  yyact=
   [/* array */0,
-   function(param){return Pervasives["failwith"]("parser");},
+   function(param){return Pervasives["failwith"]("parser")},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
      var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* tuple */[0,_1,_2];
-     },
+     return /* tuple */[0,_1,_2]},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* See_url */[0,_1];
-     },
+     return /* See_url */[0,_1]},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* See_file */[1,_1];
-     },
+     return /* See_file */[1,_1]},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* See_doc */[2,_1];
-     },
+     return /* See_doc */[2,_1]},
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* Some */[0,_1];},
-   function(__caml_parser_env){return /* None */0;},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* Some */[0,_1]},
+   function(__caml_parser_env){return /* None */0},
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,1);return /* () */0;},
+    {var _1=Parsing["peek_val"](__caml_parser_env,1);return /* () */0},
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* () */0;},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* () */0},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
      var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return /* () */0;
-     },
+     return /* () */0},
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* () */0;},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* () */0},
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* () */0;},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* () */0},
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* () */0;},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* () */0},
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* () */0;},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* () */0},
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* () */0;},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* () */0},
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* () */0;},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* () */0},
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* () */0;},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* () */0},
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* () */0;},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* () */0},
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* () */0;},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* () */0},
    function(__caml_parser_env)
-    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* () */0;},
+    {var _1=Parsing["peek_val"](__caml_parser_env,0);return /* () */0},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
@@ -166,8 +161,7 @@ var
                    (id,
                     Pervasives["^"]
                      (' is not a valid parameter identificator in "@param ',
-                      Pervasives["^"](_2,'"')))];
-           }
+                      Pervasives["^"](_2,'"')))]}
          }
        else
         {exit=28;}
@@ -180,37 +174,31 @@ var
       {case 28:
         throw [0,
                CamlPrimitive["caml_global_data"]["Failure"],
-               "usage: @param id description"];
-        
+               "usage: @param id description"]
        }
-     return $js$1;
-     },
+     return $js$1},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
      return Odoc_comments_global["authors"][1]=
             Pervasives["@"]
              (Odoc_comments_global["authors"][1],/* :: */[0,_2,/* [] */0]),
-            0;
-     },
+            0},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return Odoc_comments_global["version"][1]=/* Some */[0,_2],0;
-     },
+     return Odoc_comments_global["version"][1]=/* Some */[0,_2],0},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
      return Odoc_comments_global["sees"][1]=
             Pervasives["@"]
              (Odoc_comments_global["sees"][1],/* :: */[0,_2,/* [] */0]),
-            0;
-     },
+            0},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return Odoc_comments_global["since"][1]=/* Some */[0,_2],0;
-     },
+     return Odoc_comments_global["since"][1]=/* Some */[0,_2],0},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
@@ -252,16 +240,13 @@ var
       {case 38:
         throw [0,
                CamlPrimitive["caml_global_data"]["Failure"],
-               "usage: @before version description"];
-        
+               "usage: @before version description"]
        }
-     return $js$1;
-     },
+     return $js$1},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return Odoc_comments_global["deprecated"][1]=/* Some */[0,_2],0;
-     },
+     return Odoc_comments_global["deprecated"][1]=/* Some */[0,_2],0},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
@@ -283,8 +268,9 @@ var
                Pervasives["^"]
                 ("*",
                  Pervasives["^"]
-                  ("\(\.",
-                   Pervasives["^"](uppercase,Pervasives["^"](identchar,"*\)*"))))));
+                  ("\\(\\.",
+                   Pervasives["^"]
+                    (uppercase,Pervasives["^"](identchar,"*\\)*"))))));
          
          if(Str["string_match"](Str["regexp"](reg),id,0))
           {var
@@ -312,8 +298,7 @@ var
                    (id,
                     Pervasives["^"]
                      (' is not a valid exception constructor in "@raise ',
-                      Pervasives["^"](_2,'"')))];
-           }
+                      Pervasives["^"](_2,'"')))]}
          }
        else
         {exit=46;}
@@ -326,16 +311,13 @@ var
       {case 46:
         throw [0,
                CamlPrimitive["caml_global_data"]["Failure"],
-               "usage: @raise Exception description"];
-        
+               "usage: @raise Exception description"]
        }
-     return $js$1;
-     },
+     return $js$1},
    function(__caml_parser_env)
     {var _2=Parsing["peek_val"](__caml_parser_env,0);
      
-     return Odoc_comments_global["return_value"][1]=/* Some */[0,_2],0;
-     },
+     return Odoc_comments_global["return_value"][1]=/* Some */[0,_2],0},
    function(__caml_parser_env)
     {var _1=Parsing["peek_val"](__caml_parser_env,1);
      
@@ -345,14 +327,13 @@ var
             Pervasives["@"]
              (Odoc_comments_global["customs"][1],
               /* :: */[0,/* tuple */[0,_1,_2],/* [] */0]),
-            0;
-     },
+            0},
    function(__caml_parser_env)
-    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)];},
+    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)]},
    function(__caml_parser_env)
-    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)];},
+    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)]},
    function(__caml_parser_env)
-    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)];}];
+    {throw [0,Parsing["YYexit"],Parsing["peek_val"](__caml_parser_env,0)]}];
 
 var
  yytables=
@@ -376,18 +357,15 @@ var
 
 var
  main=
-  function(lexfun,lexbuf)
-   {return Parsing["yyparse"](yytables,1,lexfun,lexbuf);};
+  function(lexfun,lexbuf){return Parsing["yyparse"](yytables,1,lexfun,lexbuf)};
 
 var
  info_part2=
-  function(lexfun,lexbuf)
-   {return Parsing["yyparse"](yytables,2,lexfun,lexbuf);};
+  function(lexfun,lexbuf){return Parsing["yyparse"](yytables,2,lexfun,lexbuf)};
 
 var
  see_info=
-  function(lexfun,lexbuf)
-   {return Parsing["yyparse"](yytables,3,lexfun,lexbuf);};
+  function(lexfun,lexbuf){return Parsing["yyparse"](yytables,3,lexfun,lexbuf)};
 
 module["exports"]={"main":main,"info_part2":info_part2,"see_info":see_info};
 

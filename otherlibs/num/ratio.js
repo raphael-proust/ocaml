@@ -16,14 +16,13 @@ var
    {var s="infinite or undefined rational number";
     
     return Pervasives["failwith"]
-            (name["length"]===0?s:Pervasives["^"](name,Pervasives["^"](" ",s)));
-    };
+            (name["length"]===0?s:Pervasives["^"](name,Pervasives["^"](" ",s)))};
 
-var numerator_ratio=function(r){return r[1];};
+var numerator_ratio=function(r){return r[1]};
 
-var denominator_ratio=function(r){return r[2];};
+var denominator_ratio=function(r){return r[2]};
 
-var null_denominator=function(r){return Big_int["sign_big_int"](r[2])===0;};
+var null_denominator=function(r){return Big_int["sign_big_int"](r[2])===0};
 
 var
  verify_null_denominator=
@@ -32,22 +31,20 @@ var
             ?Arith_flags["error_when_null_denominator_flag"][1]
               ?failwith_zero("")
               :/* true */1
-            :/* false */0;
-    };
+            :/* false */0};
 
-var sign_ratio=function(r){return Big_int["sign_big_int"](r[1]);};
+var sign_ratio=function(r){return Big_int["sign_big_int"](r[1])};
 
 var
  normalize_ratio=
   function(r)
    {if(r[3])
-     {return r;}
+     {return r}
     else
      {if(verify_null_denominator(r))
        {r[1]=Big_int["big_int_of_int"](Big_int["sign_big_int"](r[1]));
         r[3]=/* true */1;
-        return r;
-        }
+        return r}
       else
        {var p=Big_int["gcd_big_int"](r[1],r[2]);
         
@@ -59,23 +56,21 @@ var
                   Big_int["div_big_int"](r[2],p),
                   r[3]=
                   /* true */1,
-                  r);
-        }
+                  r)}
       }
     };
 
 var
  cautious_normalize_ratio=
   function(r)
-   {return Arith_flags["normalize_ratio_flag"][1]?normalize_ratio(r):r;};
+   {return Arith_flags["normalize_ratio_flag"][1]?normalize_ratio(r):r};
 
 var
  cautious_normalize_ratio_when_printing=
   function(r)
    {return Arith_flags["normalize_ratio_when_printing_flag"][1]
             ?normalize_ratio(r)
-            :r;
-    };
+            :r};
 
 var
  create_ratio=
@@ -93,8 +88,7 @@ var
               (/* record */[0,
                 Big_int["minus_big_int"](bi1),
                 Big_int["minus_big_int"](bi2),
-                /* false */0]);
-    };
+                /* false */0])};
 
 var
  create_normalized_ratio=
@@ -110,25 +104,23 @@ var
             :/* record */[0,
               Big_int["minus_big_int"](bi1),
               Big_int["minus_big_int"](bi2),
-              /* true */1];
-    };
+              /* true */1]};
 
-var is_normalized_ratio=function(r){return r[3];};
+var is_normalized_ratio=function(r){return r[3]};
 
 var
  report_sign_ratio=
-  function(r,bi){return sign_ratio(r)===-1?Big_int["minus_big_int"](bi):bi;};
+  function(r,bi){return sign_ratio(r)===-1?Big_int["minus_big_int"](bi):bi};
 
 var
  abs_ratio=
-  function(r){return /* record */[0,Big_int["abs_big_int"](r[1]),r[2],r[3]];};
+  function(r){return /* record */[0,Big_int["abs_big_int"](r[1]),r[2],r[3]]};
 
 var
  is_integer_ratio=
   function(r)
    {return Big_int["eq_big_int"]
-            (normalize_ratio(r)[2],Big_int["unit_big_int"]);
-    };
+            (normalize_ratio(r)[2],Big_int["unit_big_int"])};
 
 var
  add_ratio=
@@ -144,8 +136,7 @@ var
                  (Big_int["mult_big_int"](r1[1],r2[2]),
                   Big_int["mult_big_int"](r2[1],r1[2])),
                 Big_int["mult_big_int"](r1[2],r2[2]),
-                /* true */1];
-        }
+                /* true */1]}
       else
        {var d1=Big_int["div_big_int"](r1[2],p);
         
@@ -163,8 +154,7 @@ var
                 Big_int["div_big_int"](n,p$prime),
                 Big_int["mult_big_int"]
                  (d1,Big_int["div_big_int"](r2[2],p$prime)),
-                /* true */1];
-        }
+                /* true */1]}
       }
     else
      {return /* record */[0,
@@ -172,14 +162,12 @@ var
                (Big_int["mult_big_int"](r1[1],r2[2]),
                 Big_int["mult_big_int"](r1[2],r2[1])),
               Big_int["mult_big_int"](r1[2],r2[2]),
-              /* false */0];
-      }
+              /* false */0]}
     };
 
 var
  minus_ratio=
-  function(r)
-   {return /* record */[0,Big_int["minus_big_int"](r[1]),r[2],r[3]];};
+  function(r){return /* record */[0,Big_int["minus_big_int"](r[1]),r[2],r[3]]};
 
 var
  add_int_ratio=
@@ -188,8 +176,7 @@ var
     return /* record */[0,
             Big_int["add_big_int"](Big_int["mult_int_big_int"](i,r[2]),r[1]),
             r[2],
-            r[3]];
-    };
+            r[3]]};
 
 var
  add_big_int_ratio=
@@ -198,10 +185,9 @@ var
     return /* record */[0,
             Big_int["add_big_int"](Big_int["mult_big_int"](bi,r[2]),r[1]),
             r[2],
-            r[3]];
-    };
+            r[3]]};
 
-var sub_ratio=function(r1,r2){return add_ratio(r1,minus_ratio(r2));};
+var sub_ratio=function(r1,r2){return add_ratio(r1,minus_ratio(r2))};
 
 var
  mult_ratio=
@@ -232,14 +218,12 @@ var
       return /* record */[0,
               Big_int["mult_big_int"](match[1],match$1[1]),
               Big_int["mult_big_int"](match$1[2],match[2]),
-              /* true */1];
-      }
+              /* true */1]}
     else
      {return /* record */[0,
               Big_int["mult_big_int"](r1[1],r2[1]),
               Big_int["mult_big_int"](r1[2],r2[2]),
-              /* false */0];
-      }
+              /* false */0]}
     };
 
 var
@@ -260,14 +244,12 @@ var
                 Big_int["mult_big_int"]
                  (Big_int["div_big_int"](Big_int["big_int_of_int"](i),p),r[1]),
                 Big_int["div_big_int"](r[2],p),
-                /* true */1];
-      }
+                /* true */1]}
     else
      {return /* record */[0,
               Big_int["mult_int_big_int"](i,r[1]),
               r[2],
-              /* false */0];
-      }
+              /* false */0]}
     };
 
 var
@@ -284,14 +266,12 @@ var
               :/* record */[0,
                 Big_int["mult_big_int"](Big_int["div_big_int"](bi,p),r[1]),
                 Big_int["div_big_int"](r[2],p),
-                /* true */1];
-      }
+                /* true */1]}
     else
      {return /* record */[0,
               Big_int["mult_big_int"](bi,r[1]),
               r[2],
-              /* false */0];
-      }
+              /* false */0]}
     };
 
 var
@@ -301,8 +281,7 @@ var
     return /* record */[0,
             Big_int["square_big_int"](r[1]),
             Big_int["square_big_int"](r[2]),
-            r[3]];
-    };
+            r[3]]};
 
 var
  inverse_ratio=
@@ -314,10 +293,9 @@ var
             :/* record */[0,
               report_sign_ratio(r,r[2]),
               Big_int["abs_big_int"](r[1]),
-              r[3]];
-    };
+              r[3]]};
 
-var div_ratio=function(r1,r2){return mult_ratio(r1,inverse_ratio(r2));};
+var div_ratio=function(r1,r2){return mult_ratio(r1,inverse_ratio(r2))};
 
 var
  integer_ratio=
@@ -329,13 +307,12 @@ var
               :report_sign_ratio
                 (r,
                  Big_int["div_big_int"]
-                  (Big_int["abs_big_int"](r[1]),Big_int["abs_big_int"](r[2])));
-    };
+                  (Big_int["abs_big_int"](r[1]),Big_int["abs_big_int"](r[2])))};
 
 var
  floor_ratio=
   function(r)
-   {verify_null_denominator(r);return Big_int["div_big_int"](r[1],r[2]);};
+   {verify_null_denominator(r);return Big_int["div_big_int"](r[1],r[2])};
 
 var
  round_ratio=
@@ -356,13 +333,12 @@ var
                   r[2]))===
               -1
               ?bi
-              :Big_int["succ_big_int"](bi));
-    };
+              :Big_int["succ_big_int"](bi))};
 
 var
  ceiling_ratio=
   function(r)
-   {return is_integer_ratio(r)?r[1]:Big_int["succ_big_int"](floor_ratio(r));};
+   {return is_integer_ratio(r)?r[1]:Big_int["succ_big_int"](floor_ratio(r))};
 
 var
  eq_ratio=
@@ -370,8 +346,7 @@ var
    {normalize_ratio(r1);
     normalize_ratio(r2);
     return Big_int["eq_big_int"](r1[1],r2[1])&&
-           Big_int["eq_big_int"](r1[2],r2[2]);
-    };
+           Big_int["eq_big_int"](r1[2],r2[2])};
 
 var
  compare_ratio=
@@ -384,14 +359,13 @@ var
         
         return sign_num_r1===1&&sign_num_r2===-1
                 ?1
-                :sign_num_r1===-1&&sign_num_r2===1?-1:0;
-        }
+                :sign_num_r1===-1&&sign_num_r2===1?-1:0}
       else
-       {return sign_num_r1;}
+       {return sign_num_r1}
       }
     else
      {if(verify_null_denominator(r2))
-       {return -Big_int["sign_big_int"](r2[1]);}
+       {return -Big_int["sign_big_int"](r2[1])}
       else
        {var
          match=
@@ -405,7 +379,9 @@ var
         if(2<switcher>>>0)
          {exit=67;}
         else
-         {switch(switcher){case 0:return -1;case 1:exit=67;case 2:return 1;}}
+         {switch(switcher)
+           {case 0:return -1;case 1:exit=67;break;case 2:return 1}
+          }
         
         switch(exit)
          {case 67:
@@ -413,28 +389,27 @@ var
                    ?Big_int["compare_big_int"](r1[1],r2[1])
                    :Big_int["compare_big_int"]
                      (Big_int["mult_big_int"](r1[1],r2[2]),
-                      Big_int["mult_big_int"](r1[2],r2[1]));
-           
+                      Big_int["mult_big_int"](r1[2],r2[1]))
           }
         }
       }
     };
 
-var lt_ratio=function(r1,r2){return compare_ratio(r1,r2)<0;};
+var lt_ratio=function(r1,r2){return compare_ratio(r1,r2)<0};
 
-var le_ratio=function(r1,r2){return compare_ratio(r1,r2)<=0;};
+var le_ratio=function(r1,r2){return compare_ratio(r1,r2)<=0};
 
-var gt_ratio=function(r1,r2){return compare_ratio(r1,r2)>0;};
+var gt_ratio=function(r1,r2){return compare_ratio(r1,r2)>0};
 
-var ge_ratio=function(r1,r2){return compare_ratio(r1,r2)>=0;};
+var ge_ratio=function(r1,r2){return compare_ratio(r1,r2)>=0};
 
-var max_ratio=function(r1,r2){return lt_ratio(r1,r2)?r2:r1;};
+var max_ratio=function(r1,r2){return lt_ratio(r1,r2)?r2:r1};
 
-var min_ratio=function(r1,r2){return gt_ratio(r1,r2)?r2:r1;};
+var min_ratio=function(r1,r2){return gt_ratio(r1,r2)?r2:r1};
 
 var
  eq_big_int_ratio=
-  function(bi,r){return is_integer_ratio(r)&&Big_int["eq_big_int"](bi,r[1]);};
+  function(bi,r){return is_integer_ratio(r)&&Big_int["eq_big_int"](bi,r[1])};
 
 var
  compare_big_int_ratio=
@@ -442,24 +417,22 @@ var
    {normalize_ratio(r);
     return verify_null_denominator(r)
             ?-Big_int["sign_big_int"](r[1])
-            :Big_int["compare_big_int"](Big_int["mult_big_int"](bi,r[2]),r[1]);
-    };
+            :Big_int["compare_big_int"](Big_int["mult_big_int"](bi,r[2]),r[1])};
 
-var lt_big_int_ratio=function(bi,r){return compare_big_int_ratio(bi,r)<0;};
+var lt_big_int_ratio=function(bi,r){return compare_big_int_ratio(bi,r)<0};
 
-var le_big_int_ratio=function(bi,r){return compare_big_int_ratio(bi,r)<=0;};
+var le_big_int_ratio=function(bi,r){return compare_big_int_ratio(bi,r)<=0};
 
-var gt_big_int_ratio=function(bi,r){return compare_big_int_ratio(bi,r)>0;};
+var gt_big_int_ratio=function(bi,r){return compare_big_int_ratio(bi,r)>0};
 
-var ge_big_int_ratio=function(bi,r){return compare_big_int_ratio(bi,r)>=0;};
+var ge_big_int_ratio=function(bi,r){return compare_big_int_ratio(bi,r)>=0};
 
 var
  int_of_ratio=
   function(r)
    {return is_integer_ratio(r)&&Big_int["is_int_big_int"](r[1])
             ?Big_int["int_of_big_int"](r[1])
-            :Pervasives["failwith"]("integer argument required");
-    };
+            :Pervasives["failwith"]("integer argument required")};
 
 var
  ratio_of_int=
@@ -467,8 +440,7 @@ var
    {return /* record */[0,
             Big_int["big_int_of_int"](i),
             Big_int["unit_big_int"],
-            /* true */1];
-    };
+            /* true */1]};
 
 var
  ratio_of_nat=
@@ -476,8 +448,7 @@ var
    {return /* record */[0,
             Big_int["big_int_of_nat"](nat),
             Big_int["unit_big_int"],
-            /* true */1];
-    };
+            /* true */1]};
 
 var
  nat_of_ratio=
@@ -487,43 +458,39 @@ var
             ?Pervasives["failwith"]("nat_of_ratio")
             :Big_int["sign_big_int"](r[1])>-1
               ?Big_int["nat_of_big_int"](r[1])
-              :Pervasives["failwith"]("nat_of_ratio");
-    };
+              :Pervasives["failwith"]("nat_of_ratio")};
 
 var
  ratio_of_big_int=
-  function(bi){return /* record */[0,bi,Big_int["unit_big_int"],/* true */1];};
+  function(bi){return /* record */[0,bi,Big_int["unit_big_int"],/* true */1]};
 
 var
  big_int_of_ratio=
   function(r)
    {normalize_ratio(r);
-    return is_integer_ratio(r)?r[1]:Pervasives["failwith"]("big_int_of_ratio");
-    };
+    return is_integer_ratio(r)?r[1]:Pervasives["failwith"]("big_int_of_ratio")};
 
 var
  div_int_ratio=
   function(i,r)
-   {verify_null_denominator(r);return mult_int_ratio(i,inverse_ratio(r));};
+   {verify_null_denominator(r);return mult_int_ratio(i,inverse_ratio(r))};
 
-var div_ratio_int=function(r,i){return div_ratio(r,ratio_of_int(i));};
+var div_ratio_int=function(r,i){return div_ratio(r,ratio_of_int(i))};
 
 var
  div_big_int_ratio=
   function(bi,r)
-   {verify_null_denominator(r);
-    return mult_big_int_ratio(bi,inverse_ratio(r));
-    };
+   {verify_null_denominator(r);return mult_big_int_ratio(bi,inverse_ratio(r))};
 
 var
  div_ratio_big_int=
-  function(r,bi){return div_ratio(r,ratio_of_big_int(bi));};
+  function(r,bi){return div_ratio(r,ratio_of_big_int(bi))};
 
 var
  compare_num_string=
   function(s1,s2,i,len)
    {if(i>=len)
-     {return 0;}
+     {return 0}
     else
      {var c1=s1["charCodeAt"](i);
       
@@ -531,24 +498,23 @@ var
       
       var c=Int_misc["compare_int"](c1,c2);
       
-      return c!==0?c:compare_num_string(s1,s2,1+i,len);
-      }
+      return c!==0?c:compare_num_string(s1,s2,1+i,len)}
     };
 
 var
  only_zeros=
   function(s,i,lim)
-   {return i>=lim||s["charCodeAt"](i)===48&&only_zeros(s,1+i,lim);};
+   {return i>=lim||s["charCodeAt"](i)===48&&only_zeros(s,1+i,lim)};
 
 var
  msd_ratio=
   function(r)
    {cautious_normalize_ratio(r);
     if(null_denominator(r))
-     {return failwith_zero("msd_ratio");}
+     {return failwith_zero("msd_ratio")}
     else
      {if(Big_int["sign_big_int"](r[1])===0)
-       {return 0;}
+       {return 0}
       else
        {var str_num=Big_int["string_of_big_int"](r[1]);
         
@@ -571,11 +537,12 @@ var
         if(2<switcher>>>0)
          {exit=33;}
         else
-         {switch(switcher){case 0:return -1+m;case 1:exit=33;case 2:return m;}
+         {switch(switcher)
+           {case 0:return -1+m;case 1:exit=33;break;case 2:return m}
           }
         
         switch(exit)
-         {case 33:return m>=0?m:only_zeros(str_den,size_min,size_den)?m:-1+m;}
+         {case 33:return m>=0?m:only_zeros(str_den,size_min,size_den)?m:-1+m}
         }
       }
     };
@@ -584,12 +551,12 @@ var
  approx_ratio_fix=
   function(n,r)
    {if(null_denominator(r))
-     {return failwith_zero("approx_ratio_fix");}
+     {return failwith_zero("approx_ratio_fix")}
     else
      {var sign_r=sign_ratio(r);
       
       if(sign_r===0)
-       {return "+0";}
+       {return "+0"}
       else
        {if(n>=0)
          {var
@@ -617,16 +584,14 @@ var
             $$String["blit"](s2,0,s,1,l2-n);
             s[l2-n+1]=46;
             $$String["blit"](s2,l2-n,s,l2-n+2,n);
-            return Bytes["unsafe_to_string"](s);
-            }
+            return Bytes["unsafe_to_string"](s)}
           else
            {var s$1=Bytes["make"](n+3,48);
             
             s$1[0]=sign_r===-1?45:43;
             s$1[2]=46;
             $$String["blit"](s2,0,s$1,n+3-l2,l2);
-            return Bytes["unsafe_to_string"](s$1);
-            }
+            return Bytes["unsafe_to_string"](s$1)}
           }
         else
          {var
@@ -642,24 +607,23 @@ var
           
           s$prime[0]=sign_r===-1?45:43;
           $$String["blit"](s$2,0,s$prime,1,-1+len);
-          return Bytes["unsafe_to_string"](s$prime);
-          }
+          return Bytes["unsafe_to_string"](s$prime)}
         }
       }
     };
 
 var
  num_decimal_digits_int=
-  function(n){return Pervasives["string_of_int"](n)["length"];};
+  function(n){return Pervasives["string_of_int"](n)["length"]};
 
 var
  approx_ratio_exp=
   function(n,r)
    {if(null_denominator(r))
-     {return failwith_zero("approx_ratio_exp");}
+     {return failwith_zero("approx_ratio_exp")}
     else
      {if(n<=0)
-       {return Pervasives["invalid_arg"]("approx_ratio_exp");}
+       {return Pervasives["invalid_arg"]("approx_ratio_exp")}
       else
        {var sign_r=sign_ratio(r);
         
@@ -672,8 +636,7 @@ var
                     "+0.",
                     /* :: */[0,
                      $$String["make"](n,48),
-                     [/* :: */0,"e0",/* [] */0]]]);
-          }
+                     [/* :: */0,"e0",/* [] */0]]])}
         else
          {var msd=msd_ratio(abs_ratio(r));
           
@@ -708,8 +671,7 @@ var
              ?(str[i]=48,0)
              :$$String["blit"](Pervasives["string_of_int"](1+msd),0,str,i,m);
             
-            return Bytes["unsafe_to_string"](str);
-            }
+            return Bytes["unsafe_to_string"](str)}
           else
            {var m$1=num_decimal_digits_int(1+msd);
             
@@ -725,8 +687,7 @@ var
              :$$String["blit"]
                (Pervasives["string_of_int"](1+msd),0,str$1,1+p,m$1);
             
-            return Bytes["unsafe_to_string"](str$1);
-            }
+            return Bytes["unsafe_to_string"](str$1)}
           }
         }
       }
@@ -737,8 +698,7 @@ var
   function(r)
    {var s=approx_ratio_exp(Arith_flags["floating_precision"][1],r);
     
-    return s["charCodeAt"](0)===43?$$String["sub"](s,1,-1+s["length"]):s;
-    };
+    return s["charCodeAt"](0)===43?$$String["sub"](s,1,-1+s["length"]):s};
 
 var
  string_of_ratio=
@@ -748,8 +708,7 @@ var
             ?float_of_rational_string(r)
             :Pervasives["^"]
               (Big_int["string_of_big_int"](r[1]),
-               Pervasives["^"]("/",Big_int["string_of_big_int"](r[2])));
-    };
+               Pervasives["^"]("/",Big_int["string_of_big_int"](r[2])))};
 
 var
  ratio_of_string=
@@ -759,41 +718,36 @@ var
       
       return create_ratio
               (Big_int["sys_big_int_of_string"](s,0,n),
-               Big_int["sys_big_int_of_string"](s,n+1,s["length"]-n-1));
-      }
+               Big_int["sys_big_int_of_string"](s,n+1,s["length"]-n-1))}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {return /* record */[0,
                 Big_int["big_int_of_string"](s),
                 Big_int["unit_big_int"],
-                /* true */1];
-        }
+                /* true */1]}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
 var
  float_of_ratio=
   function(r)
-   {return CamlPrimitive["caml_float_of_string"](float_of_rational_string(r));
-    };
+   {return CamlPrimitive["caml_float_of_string"](float_of_rational_string(r))};
 
 var
  power_ratio_positive_int=
   function(r,n)
    {return create_ratio
             (Big_int["power_big_int_positive_int"](r[1],n),
-             Big_int["power_big_int_positive_int"](r[2],n));
-    };
+             Big_int["power_big_int_positive_int"](r[2],n))};
 
 var
  power_ratio_positive_big_int=
   function(r,bi)
    {return create_ratio
             (Big_int["power_big_int_positive_big_int"](r[1],bi),
-             Big_int["power_big_int_positive_big_int"](r[2],bi));
-    };
+             Big_int["power_big_int_positive_big_int"](r[2],bi))};
 
 module["exports"]=
 {"null_denominator":null_denominator,

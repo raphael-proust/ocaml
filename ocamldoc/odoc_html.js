@@ -343,7 +343,7 @@ var
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {qual="";}
       else
-       {throw exn;}
+       {throw exn}
       }
     
     var prefix=Pervasives["^"](name,qual);
@@ -352,12 +352,11 @@ var
     
     var html_frame_file=Pervasives["^"](prefix,"-frame.html");
     
-    return /* tuple */[0,html_file,html_frame_file];
-    };
+    return /* tuple */[0,html_file,html_frame_file]};
 
 var
  target=
-  function(pref,simple_name){return Pervasives["^"](pref,simple_name);};
+  function(pref,simple_name){return Pervasives["^"](pref,simple_name)};
 
 var
  complete_target=
@@ -371,12 +370,11 @@ var
     var match=html_files(module_name);
     
     return Pervasives["^"]
-            (match[1],Pervasives["^"]("#",target(pref,simple_name)));
-    };
+            (match[1],Pervasives["^"]("#",target(pref,simple_name)))};
 
 var
  type_target=
-  function(t){return target(mark_type,Odoc_info["Name"][1](t[1]));};
+  function(t){return target(mark_type,Odoc_info["Name"][1](t[1]))};
 
 var
  const_target=
@@ -394,8 +392,7 @@ var
         Odoc_info["Name"][1](t[1]),
         f[1]);
     
-    return target(mark_type_elt,name);
-    };
+    return target(mark_type_elt,name)};
 
 var
  recfield_target=
@@ -411,8 +408,7 @@ var
                   [/* String */2,/* No_padding */0,/* End_of_format */0]]],
                 "%s.%s"],
                Odoc_info["Name"][1](t[1]),
-               f[1]));
-    };
+               f[1]))};
 
 var
  objfield_target=
@@ -428,10 +424,9 @@ var
                   [/* String */2,/* No_padding */0,/* End_of_format */0]]],
                 "%s.%s"],
                Odoc_info["Name"][1](t[1]),
-               f[1]));
-    };
+               f[1]))};
 
-var complete_type_target=function(t){return complete_target(mark_type,t[1]);};
+var complete_type_target=function(t){return complete_target(mark_type,t[1])};
 
 var
  complete_recfield_target=
@@ -449,28 +444,27 @@ var
                 [/* String */2,/* No_padding */0,/* End_of_format */0]]],
               "%s.%s"],
              complete_target(mark_type_elt,typ),
-             field);
-    };
+             field)};
 
 var
  extension_target=
-  function(x){return target(mark_extension,Odoc_info["Name"][1](x[1]));};
+  function(x){return target(mark_extension,Odoc_info["Name"][1](x[1]))};
 
 var
  complete_extension_target=
-  function(x){return complete_target(mark_extension,x[1]);};
+  function(x){return complete_target(mark_extension,x[1])};
 
 var
  exception_target=
-  function(e){return target(mark_exception,Odoc_info["Name"][1](e[1]));};
+  function(e){return target(mark_exception,Odoc_info["Name"][1](e[1]))};
 
 var
  complete_exception_target=
-  function(e){return complete_target(mark_exception,e[1]);};
+  function(e){return complete_target(mark_exception,e[1])};
 
 var
  value_target=
-  function(v){return target(mark_value,Odoc_info["Name"][1](v[1]));};
+  function(v){return target(mark_value,Odoc_info["Name"][1](v[1]))};
 
 var
  subst_infix_symbols=
@@ -479,9 +473,9 @@ var
     
     var buf=Buffer["create"](len);
     
-    var ch=function(c){return Buffer["add_char"](buf,c);};
+    var ch=function(c){return Buffer["add_char"](buf,c)};
     
-    var st=function(s){return Buffer["add_string"](buf,s);};
+    var st=function(s){return Buffer["add_string"](buf,s)};
     
     for(var i=0;i<=len-1;i++)
      {var c=name["charCodeAt"](i);
@@ -495,89 +489,91 @@ var
          {exit=264;}
         else
          {switch(switcher)
-           {case 0:st("_pipe_");case 1:exit=264;case 2:st("_tilde_")}
+           {case 0:st("_pipe_");break;
+            case 1:exit=264;break;
+            case 2:st("_tilde_");break
+            }
           }
         }
       else
        {if(c>=33)
          {switch(-33+c)
-           {case 0:st("_bang_");
-            case 1:exit=264;
-            case 2:exit=264;
-            case 3:st("_dollar_");
-            case 4:st("_percent_");
-            case 5:st("_amp_");
-            case 6:exit=264;
-            case 7:exit=264;
-            case 8:exit=264;
-            case 9:st("_star_");
-            case 10:st("_plus_");
-            case 11:exit=264;
-            case 12:st("_minus_");
-            case 13:exit=264;
-            case 14:st("_slash_");
-            case 15:exit=264;
-            case 16:exit=264;
-            case 17:exit=264;
-            case 18:exit=264;
-            case 19:exit=264;
-            case 20:exit=264;
-            case 21:exit=264;
-            case 22:exit=264;
-            case 23:exit=264;
-            case 24:exit=264;
-            case 25:st("_column_");
-            case 26:exit=264;
-            case 27:st("_lt_");
-            case 28:st("_equal_");
-            case 29:st("_gt_");
-            case 30:st("_questionmark_");
-            case 31:st("_at_");
-            case 32:exit=264;
-            case 33:exit=264;
-            case 34:exit=264;
-            case 35:exit=264;
-            case 36:exit=264;
-            case 37:exit=264;
-            case 38:exit=264;
-            case 39:exit=264;
-            case 40:exit=264;
-            case 41:exit=264;
-            case 42:exit=264;
-            case 43:exit=264;
-            case 44:exit=264;
-            case 45:exit=264;
-            case 46:exit=264;
-            case 47:exit=264;
-            case 48:exit=264;
-            case 49:exit=264;
-            case 50:exit=264;
-            case 51:exit=264;
-            case 52:exit=264;
-            case 53:exit=264;
-            case 54:exit=264;
-            case 55:exit=264;
-            case 56:exit=264;
-            case 57:exit=264;
-            case 58:exit=264;
-            case 59:exit=264;
-            case 60:exit=264;
-            case 61:st("_exp_")
+           {case 0:st("_bang_");break;
+            case 1:exit=264;break;
+            case 2:exit=264;break;
+            case 3:st("_dollar_");break;
+            case 4:st("_percent_");break;
+            case 5:st("_amp_");break;
+            case 6:exit=264;break;
+            case 7:exit=264;break;
+            case 8:exit=264;break;
+            case 9:st("_star_");break;
+            case 10:st("_plus_");break;
+            case 11:exit=264;break;
+            case 12:st("_minus_");break;
+            case 13:exit=264;break;
+            case 14:st("_slash_");break;
+            case 15:exit=264;break;
+            case 16:exit=264;break;
+            case 17:exit=264;break;
+            case 18:exit=264;break;
+            case 19:exit=264;break;
+            case 20:exit=264;break;
+            case 21:exit=264;break;
+            case 22:exit=264;break;
+            case 23:exit=264;break;
+            case 24:exit=264;break;
+            case 25:st("_column_");break;
+            case 26:exit=264;break;
+            case 27:st("_lt_");break;
+            case 28:st("_equal_");break;
+            case 29:st("_gt_");break;
+            case 30:st("_questionmark_");break;
+            case 31:st("_at_");break;
+            case 32:exit=264;break;
+            case 33:exit=264;break;
+            case 34:exit=264;break;
+            case 35:exit=264;break;
+            case 36:exit=264;break;
+            case 37:exit=264;break;
+            case 38:exit=264;break;
+            case 39:exit=264;break;
+            case 40:exit=264;break;
+            case 41:exit=264;break;
+            case 42:exit=264;break;
+            case 43:exit=264;break;
+            case 44:exit=264;break;
+            case 45:exit=264;break;
+            case 46:exit=264;break;
+            case 47:exit=264;break;
+            case 48:exit=264;break;
+            case 49:exit=264;break;
+            case 50:exit=264;break;
+            case 51:exit=264;break;
+            case 52:exit=264;break;
+            case 53:exit=264;break;
+            case 54:exit=264;break;
+            case 55:exit=264;break;
+            case 56:exit=264;break;
+            case 57:exit=264;break;
+            case 58:exit=264;break;
+            case 59:exit=264;break;
+            case 60:exit=264;break;
+            case 61:st("_exp_");break
             }
           }
         else
          {exit=264;}
         }
       
-      switch(exit){case 264:ch(c)}
+      switch(exit){case 264:ch(c);break}
       }
     
-    return Buffer["contents"](buf);
-    };
+    return Buffer["contents"](buf)};
 
 var
  complete_value_target=
-  function(v){return complete_target(mark_value,v[1]);};
+  function(v){return complete_target(mark_value,v[1])};
 
 var
  file_code_value_complete_target=
@@ -585,59 +581,56 @@ var
    {return Pervasives["^"]
             (code_prefix,
              Pervasives["^"]
-              (mark_value,Pervasives["^"](subst_infix_symbols(v[1]),".html")));
-    };
+              (mark_value,Pervasives["^"](subst_infix_symbols(v[1]),".html")))};
 
 var
  attribute_target=
-  function(a){return target(mark_attribute,Odoc_info["Name"][1](a[1][1]));};
+  function(a){return target(mark_attribute,Odoc_info["Name"][1](a[1][1]))};
 
 var
  complete_attribute_target=
-  function(a){return complete_target(mark_attribute,a[1][1]);};
+  function(a){return complete_target(mark_attribute,a[1][1])};
 
 var
  file_code_attribute_complete_target=
   function(a)
    {return Pervasives["^"]
             (code_prefix,
-             Pervasives["^"](mark_attribute,Pervasives["^"](a[1][1],".html")));
-    };
+             Pervasives["^"](mark_attribute,Pervasives["^"](a[1][1],".html")))};
 
 var
  method_target=
-  function(m){return target(mark_method,Odoc_info["Name"][1](m[1][1]));};
+  function(m){return target(mark_method,Odoc_info["Name"][1](m[1][1]))};
 
 var
  complete_method_target=
-  function(m){return complete_target(mark_method,m[1][1]);};
+  function(m){return complete_target(mark_method,m[1][1])};
 
 var
  file_code_method_complete_target=
   function(m)
    {return Pervasives["^"]
             (code_prefix,
-             Pervasives["^"](mark_method,Pervasives["^"](m[1][1],".html")));
-    };
+             Pervasives["^"](mark_method,Pervasives["^"](m[1][1],".html")))};
 
-var label_target=function(l){return target("",l);};
+var label_target=function(l){return target("",l)};
 
-var complete_label_target=function(l){return complete_target("",l);};
+var complete_label_target=function(l){return complete_target("",l)};
 
 var
  file_type_module_complete_target=
   function(name)
-   {return Pervasives["^"](type_prefix,Pervasives["^"](name,".html"));};
+   {return Pervasives["^"](type_prefix,Pervasives["^"](name,".html"))};
 
 var
  file_code_module_complete_target=
   function(name)
-   {return Pervasives["^"](code_prefix,Pervasives["^"](name,".html"));};
+   {return Pervasives["^"](code_prefix,Pervasives["^"](name,".html"))};
 
 var
  file_type_class_complete_target=
   function(name)
-   {return Pervasives["^"](type_prefix,Pervasives["^"](name,".html"));};
+   {return Pervasives["^"](type_prefix,Pervasives["^"](name,".html"))};
 
 var
  Naming=
@@ -682,7 +675,7 @@ var
    file_code_module_complete_target,
    file_type_class_complete_target];
 
-var compare=function(x,y){return CamlPrimitive["caml_string_compare"](x,y);};
+var compare=function(x,y){return CamlPrimitive["caml_string_compare"](x,y)};
 
 var StringSet=Set["Make"]([0,compare]);
 
@@ -699,15 +692,13 @@ var
       function(self$neg1,b,$staropt$star,code)
        {var with_pre=$staropt$star?$staropt$star[1]:/* true */1;
         
-        return Odoc_ocamlhtml["html_of_code"](b,/* Some */[0,with_pre],code);
-        });
+        return Odoc_ocamlhtml["html_of_code"](b,/* Some */[0,with_pre],code)});
     return function(env,$$self)
-     {return CamlinternalOO["create_object_opt"]($$self,$$class);};
-    };
+     {return CamlinternalOO["create_object_opt"]($$self,$$class)}};
 
 var ocaml_code=CamlinternalOO["make_class"](shared$2,ocaml_code_init);
 
-var new_buf=function(param){return Buffer["create"](1024);};
+var new_buf=function(param){return Buffer["create"](1024)};
 
 var bp=Printf["bprintf"];
 
@@ -832,7 +823,7 @@ var
       ($$class,
        [0,
         $$escape,
-        function(self$neg2,s){return Odoc_ocamlhtml["escape_base"](s);},
+        function(self$neg2,s){return Odoc_ocamlhtml["escape_base"](s)},
         keep_alpha_num,
         function(self$neg2,s)
          {var len=s["length"];
@@ -852,11 +843,12 @@ var
              {if(6<-10+switcher>>>0){exit=236;}else{exit=237;}}
             
             switch(exit)
-             {case 237:case 236:Buffer["add_char"](buf,s["charCodeAt"](i))}
+             {case 237:break;
+              case 236:Buffer["add_char"](buf,s["charCodeAt"](i));break
+              }
             }
           
-          return Buffer["contents"](buf);
-          },
+          return Buffer["contents"](buf)},
         label_of_text,
         function(self$neg2,t)
          {var t2=Odoc_info["first_sentence_of_text"](t);
@@ -870,7 +862,7 @@ var
          {var label_opt=param[2];
           
           if(label_opt)
-           {return label_opt[1];}
+           {return label_opt[1]}
           else
            {/* unknown */"(sendself self-2/1482 label_of_text/1417 (field 2 param/3318))";
             return Printf["sprintf"]
@@ -884,14 +876,12 @@ var
                         [/* String */2,/* No_padding */0,/* End_of_format */0]]],
                       "%d_%s"],
                      param[1],
-                     0);
-            }
+                     0)}
           },
         html_of_text,
         function(self$neg2,b,t)
          {/* unknown */"(sendself self-2/1488 html_of_text_element/1420 b/1489)";
-          return List["iter"](0,t);
-          },
+          return List["iter"](0,t)},
         html_of_text_element,
         function(self$neg2,b,txt)
          {if(typeof txt==="number")
@@ -899,94 +889,116 @@ var
              {case 0:
                /* unknown */"(sendself self-2/1492 html_of_Newline/1435 b/1493)";
                
+               break;
               case 1:
                /* unknown */"(sendself self-2/1492 html_of_Index_list/1445 b/1493)";
                
+               break
               }}
           else
            {switch(txt[0])
              {case 0:
                /* unknown */"(sendself self-2/1492 html_of_Raw/1423 b/1493 (field 0 txt/1494))";
                
+               break;
               case 1:
                /* unknown */"(sendself self-2/1492 html_of_Code/1424 b/1493 (field 0 txt/1494))";
                
+               break;
               case 2:
                /* unknown */"(sendself self-2/1492 html_of_CodePre/1425 b/1493 (field 0 txt/1494))";
                
+               break;
               case 3:
                /* unknown */"(sendself self-2/1492 html_of_Verbatim/1426 b/1493 (field 0 txt/1494))";
                
+               break;
               case 4:
                /* unknown */"(sendself self-2/1492 html_of_Bold/1427 b/1493 (field 0 txt/1494))";
                
+               break;
               case 5:
                /* unknown */"(sendself self-2/1492 html_of_Italic/1428 b/1493 (field 0 txt/1494))";
                
+               break;
               case 6:
                /* unknown */"(sendself self-2/1492 html_of_Emphasize/1429 b/1493 (field 0 txt/1494))";
                
+               break;
               case 7:
                /* unknown */"(sendself self-2/1492 html_of_Center/1430 b/1493 (field 0 txt/1494))";
                
+               break;
               case 8:
                /* unknown */"(sendself self-2/1492 html_of_Left/1431 b/1493 (field 0 txt/1494))";
                
+               break;
               case 9:
                /* unknown */"(sendself self-2/1492 html_of_Right/1432 b/1493 (field 0 txt/1494))";
                
+               break;
               case 10:
                /* unknown */"(sendself self-2/1492 html_of_List/1433 b/1493 (field 0 txt/1494))";
                
+               break;
               case 11:
                /* unknown */"(sendself self-2/1492 html_of_Enum/1434 b/1493 (field 0 txt/1494))";
                
+               break;
               case 12:
                /* unknown */"(sendself self-2/1492 html_of_Block/1436 b/1493 (field 0 txt/1494))";
                
+               break;
               case 13:
                /* unknown */"(sendself self-2/1492 html_of_Title/1437 b/1493 (field 0 txt/1494)\n  (field 1 txt/1494) (field 2 txt/1494))";
                
+               break;
               case 14:
                /* unknown */"(sendself self-2/1492 html_of_Latex/1438 b/1493 (field 0 txt/1494))";
                
+               break;
               case 15:
                /* unknown */"(sendself self-2/1492 html_of_Link/1439 b/1493 (field 0 txt/1494)\n  (field 1 txt/1494))";
                
+               break;
               case 16:
                /* unknown */"(sendself self-2/1492 html_of_Ref/1440 b/1493 (field 0 txt/1494)\n  (field 1 txt/1494) (field 2 txt/1494))";
                
+               break;
               case 17:
                /* unknown */"(sendself self-2/1492 html_of_Superscript/1441 b/1493 (field 0 txt/1494))";
                
+               break;
               case 18:
                /* unknown */"(sendself self-2/1492 html_of_Subscript/1442 b/1493 (field 0 txt/1494))";
                
+               break;
               case 19:
                /* unknown */"(sendself self-2/1492 html_of_Module_list/1444 b/1493 (field 0 txt/1494))";
                
+               break;
               case 20:
                /* unknown */"(sendself self-2/1492 html_of_custom_text/1421 b/1493 (field 0 txt/1494)\n  (field 1 txt/1494))";
                
+               break;
               case 21:
                /* unknown */"(sendself self-2/1492 html_of_Target/1422 b/1493 (field 0 txt/1494)\n  (field 1 txt/1494))";
                
+               break
               }}
           },
         html_of_custom_text,
-        function(self$neg2,b,s,t){return /* () */0;},
+        function(self$neg2,b,s,t){return /* () */0},
         html_of_Target,
         function(self$neg2,b,target,code)
          {return CamlPrimitive["caml_string_equal"]
                    ($$String["lowercase"](target),"html")
                   ?bs(b,code)
-                  :/* () */0;
-          },
+                  :/* () */0},
         html_of_Raw,
         function(self$neg2,b,s)
          {/* unknown */"(sendself self-2/1535 escape/1415 s/1537)";
-          return bs(b,0);
-          },
+          return bs(b,0)},
         html_of_Code,
         function(self$neg2,b,s)
          {if(colorize_code[1])
@@ -998,8 +1010,7 @@ var
             bs(b,'">');
             /* unknown */"(sendself self-2/1539 escape/1415 s/1541)";
             bs(b,0);
-            return bs(b,"</code>");
-            }
+            return bs(b,"</code>")}
           },
         html_of_CodePre,
         function(self$neg2)
@@ -1012,12 +1023,11 @@ var
                iter_first=
                 function(n)
                  {if(n>=len)
-                   {return /* None */0;}
+                   {return /* None */0}
                   else
                    {var match=s["charCodeAt"](n);
                     
-                    return match!==10?/* Some */[0,n]:iter_first(n+1);
-                    }
+                    return match!==10?/* Some */[0,n]:iter_first(n+1)}
                   };
               
               var match=iter_first(0);
@@ -1029,22 +1039,20 @@ var
                  iter_last=
                   function(n)
                    {if(n<=first)
-                     {return /* None */0;}
+                     {return /* None */0}
                     else
                      {var match$1=s["charCodeAt"](n);
                       
-                      return match$1!==9?/* Some */[0,n]:iter_last(n-1);
-                      }
+                      return match$1!==9?/* Some */[0,n]:iter_last(n-1)}
                     };
                 
                 var match$1=iter_last(len-1);
                 
                 return match$1
                         ?$$String["sub"](s,first,match$1[1]-first+1)
-                        :$$String["sub"](s,first,1);
-                }
+                        :$$String["sub"](s,first,1)}
               else
-               {return "";}
+               {return ""}
               };
           
           return function(b,s)
@@ -1052,67 +1060,57 @@ var
              {bs(b,'<pre class="codepre">');
               /* unknown */"(sendself self-2/1544 html_of_code/1542 b/1554 0a\n  (apply remove_useless_newlines/1545 s/1555))";
               
-              return bs(b,"</pre>");
-              }
+              return bs(b,"</pre>")}
             else
              {bs(b,'<pre class="codepre"><code class="');
               bs(b,Odoc_ocamlhtml["code_class"]);
               bs(b,'">');
               /* unknown */"(sendself self-2/1544 escape/1415\n  (apply remove_useless_newlines/1545 s/1555))";
               bs(b,0);
-              return bs(b,"</code></pre>");
-              }
-            };
-          },
+              return bs(b,"</code></pre>")}
+            }},
         html_of_Verbatim,
         function(self$neg2,b,s)
          {bs(b,'<pre class="verbatim">');
           /* unknown */"(sendself self-2/1557 escape/1415 s/1559)";
           bs(b,0);
-          return bs(b,"</pre>");
-          },
+          return bs(b,"</pre>")},
         html_of_Bold,
         function(self$neg2,b,t)
          {bs(b,"<b>");
           /* unknown */"(sendself self-2/1561 html_of_text/1419 b/1562 t/1563)";
           
-          return bs(b,"</b>");
-          },
+          return bs(b,"</b>")},
         html_of_Italic,
         function(self$neg2,b,t)
          {bs(b,"<i>");
           /* unknown */"(sendself self-2/1565 html_of_text/1419 b/1566 t/1567)";
           
-          return bs(b,"</i>");
-          },
+          return bs(b,"</i>")},
         html_of_Emphasize,
         function(self$neg2,b,t)
          {bs(b,"<em>");
           /* unknown */"(sendself self-2/1569 html_of_text/1419 b/1570 t/1571)";
           
-          return bs(b,"</em>");
-          },
+          return bs(b,"</em>")},
         html_of_Center,
         function(self$neg2,b,t)
          {bs(b,"<center>");
           /* unknown */"(sendself self-2/1573 html_of_text/1419 b/1574 t/1575)";
           
-          return bs(b,"</center>");
-          },
+          return bs(b,"</center>")},
         html_of_Left,
         function(self$neg2,b,t)
          {bs(b,"<div align=left>");
           /* unknown */"(sendself self-2/1577 html_of_text/1419 b/1578 t/1579)";
           
-          return bs(b,"</div>");
-          },
+          return bs(b,"</div>")},
         html_of_Right,
         function(self$neg2,b,t)
          {bs(b,"<div align=right>");
           /* unknown */"(sendself self-2/1581 html_of_text/1419 b/1582 t/1583)";
           
-          return bs(b,"</div>");
-          },
+          return bs(b,"</div>")},
         html_of_List,
         function(self$neg2,b,tl)
          {bs(b,"<ul>\n");
@@ -1121,11 +1119,9 @@ var
              {bs(b,"<li>");
               /* unknown */"(sendself self-2/1585 html_of_text/1419 b/1586 t/1588)";
               
-              return bs(b,"</li>\n");
-              },
+              return bs(b,"</li>\n")},
             tl);
-          return bs(b,"</ul>\n");
-          },
+          return bs(b,"</ul>\n")},
         html_of_Enum,
         function(self$neg2,b,tl)
          {bs(b,"<OL>\n");
@@ -1134,20 +1130,17 @@ var
              {bs(b,"<li>");
               /* unknown */"(sendself self-2/1590 html_of_text/1419 b/1591 t/1593)";
               
-              return bs(b,"</li>\n");
-              },
+              return bs(b,"</li>\n")},
             tl);
-          return bs(b,"</OL>\n");
-          },
+          return bs(b,"</OL>\n")},
         html_of_Newline,
-        function(self$neg2,b){return bs(b,"\n<p>\n");},
+        function(self$neg2,b){return bs(b,"\n<p>\n")},
         html_of_Block,
         function(self$neg2,b,t)
          {bs(b,"<blockquote>\n");
           /* unknown */"(sendself self-2/1598 html_of_text/1419 b/1599 t/1600)";
           
-          return bs(b,"</blockquote>\n");
-          },
+          return bs(b,"</blockquote>\n")},
         html_of_Title,
         function(self$neg2,b,n,label_opt,t)
          {/* unknown */"(sendself self-2/1602 create_title_label/1418\n  (makeblock 0 n/1604 label_opt/1605 t/1606))";
@@ -1206,10 +1199,9 @@ var
           
           bs(b,"</");
           bs(b,match[2]);
-          return bs(b,">");
-          },
+          return bs(b,">")},
         html_of_Latex,
-        function(self$neg2,b,param){return /* () */0;},
+        function(self$neg2,b,param){return /* () */0},
         html_of_Link,
         function(self$neg2,b,s,t)
          {bs(b,'<a href="');
@@ -1217,8 +1209,7 @@ var
           bs(b,'">');
           /* unknown */"(sendself self-2/1615 html_of_text/1419 b/1616 t/1618)";
           
-          return bs(b,"</a>");
-          },
+          return bs(b,"</a>")},
         html_of_Ref,
         function(self$neg2,b,name,ref_opt,text_opt)
          {if(ref_opt)
@@ -1227,31 +1218,37 @@ var
             var
              h=
               function(name)
-               {return /* Code */[1,Odoc_info["use_hidden_modules"](name)];};
+               {return /* Code */[1,Odoc_info["use_hidden_modules"](name)]};
             
             var exit;
             
             var match;
             if(typeof kind==="number")
              {switch(kind)
-               {case 0:exit=223;
-                case 1:exit=223;
-                case 2:exit=223;
-                case 3:exit=223;
+               {case 0:exit=223;break;
+                case 1:exit=223;break;
+                case 2:exit=223;break;
+                case 3:exit=223;break;
                 case 4:
                  match=/* tuple */[0,Naming[13](Naming[6],name),h(name)];
+                 break;
                 case 5:
                  match=/* tuple */[0,Naming[13](Naming[1],name),h(name)];
+                 break;
                 case 6:
                  match=/* tuple */[0,Naming[13](Naming[4],name),h(name)];
+                 break;
                 case 7:
                  match=/* tuple */[0,Naming[13](Naming[5],name),h(name)];
+                 break;
                 case 8:
                  match=/* tuple */[0,Naming[13](Naming[7],name),h(name)];
+                 break;
                 case 9:
                  match=/* tuple */[0,Naming[13](Naming[8],name),h(name)];
-                case 10:match=/* tuple */[0,Naming[19](name),h(name)];
-                case 11:match=/* tuple */[0,Naming[20](name),h(name)];
+                 break;
+                case 10:match=/* tuple */[0,Naming[19](name),h(name)];break;
+                case 11:match=/* tuple */[0,Naming[20](name),h(name)];break
                 }
               }
             else
@@ -1269,7 +1266,7 @@ var
                var match$1=Naming[11](name);
                
                var match=/* tuple */[0,match$1[1],h(name)];
-               
+               break
               }
             
             var text$1=text_opt?text_opt[1]:/* :: */[0,match[2],/* [] */0];
@@ -1277,8 +1274,7 @@ var
             bs(b,Pervasives["^"]('<a href="',Pervasives["^"](match[1],'">')));
             /* unknown */"(sendself self-2/1620 html_of_text/1419 b/1621 text/1634)";
             
-            return bs(b,"</a>");
-            }
+            return bs(b,"</a>")}
           else
            {var
              text$2=
@@ -1292,15 +1288,13 @@ var
          {bs(b,'<sup class="superscript">');
           /* unknown */"(sendself self-2/1637 html_of_text/1419 b/1638 t/1639)";
           
-          return bs(b,"</sup>");
-          },
+          return bs(b,"</sup>")},
         html_of_Subscript,
         function(self$neg2,b,t)
          {bs(b,'<sub class="subscript">');
           /* unknown */"(sendself self-2/1641 html_of_text/1419 b/1642 t/1643)";
           
-          return bs(b,"</sub>");
-          },
+          return bs(b,"</sub>")},
         html_of_Module_list,
         function(self$neg2,b,l)
          {bs(b,'<br>\n<table class="indextable">\n');
@@ -1313,7 +1307,7 @@ var
                  m=
                   List["find"]
                    (function(m)
-                     {return CamlPrimitive["caml_string_equal"](m[1],name);},
+                     {return CamlPrimitive["caml_string_equal"](m[1],name)},
                     0);
                 
                 var match=Naming[11](m[1]);
@@ -1349,14 +1343,12 @@ var
                      "%s</td><td>"],
                     name)}
                 else
-                 {throw exn;}
+                 {throw exn}
                 }
               
-              return bs(b,"</td></tr>\n");
-              },
+              return bs(b,"</td></tr>\n")},
             l);
-          return bs(b,"</table>\n");
-          },
+          return bs(b,"</table>\n")},
         html_of_Index_list,
         function(self$neg2,b)
          {var
@@ -1378,8 +1370,7 @@ var
                           '<li><a href="%s">%s</a></li>\n'],
                          url,
                          m)
-                      :/* () */0;
-              };
+                      :/* () */0};
           
           bp
            (b,
@@ -1422,15 +1413,12 @@ var
                   (b,
                    [/* Format */0,
                     [/* String_literal */11,"</ul>\n",/* End_of_format */0],
-                    "</ul>\n"]);
-          }]);
+                    "</ul>\n"])}]);
      return function(env,$$self)
       {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);
        
        obj_init($$self$1);
-       return CamlinternalOO["run_initializers_opt"]($$self,$$self$1,$$class);
-       };
-     },
+       return CamlinternalOO["run_initializers_opt"]($$self,$$self$1,$$class)}},
    0,
    0];
 
@@ -1487,10 +1475,9 @@ var
               Odoc_messages["authors"]);
             /* unknown */'(sendself self-3/1680 html_of_text/1667 b/1681\n  (makeblock 0 (makeblock 0 (apply (field 6 (global String!)) ", " l/1682))\n    0a))';
             
-            return bs(b,"<br>\n");
-            }
+            return bs(b,"<br>\n")}
           else
-           {return /* () */0;}
+           {return /* () */0}
           },
         html_of_version_opt,
         function(self$neg3,b,v_opt)
@@ -1507,10 +1494,9 @@ var
               Odoc_messages["version"]);
             /* unknown */"(sendself self-3/1684 html_of_text/1667 b/1685\n  (makeblock 0 (makeblock 0 (field 0 v_opt/1686)) 0a))";
             
-            return bs(b,"<br>\n");
-            }
+            return bs(b,"<br>\n")}
           else
-           {return /* () */0;}
+           {return /* () */0}
           },
         html_of_since_opt,
         function(self$neg3,b,s_opt)
@@ -1527,10 +1513,9 @@ var
               Odoc_messages["since"]);
             /* unknown */"(sendself self-3/1689 html_of_text/1667 b/1690\n  (makeblock 0 (makeblock 0 (field 0 s_opt/1691)) 0a))";
             
-            return bs(b,"<br>\n");
-            }
+            return bs(b,"<br>\n")}
           else
-           {return /* () */0;}
+           {return /* () */0}
           },
         html_of_before,
         function(self$neg3,b,l)
@@ -1552,11 +1537,9 @@ var
               bs(b," </b> ");
               /* unknown */"(sendself self-3/1694 html_of_text/1667 b/1695 (field 1 param/3245))";
               
-              return bs(b,"<br>\n");
-              };
+              return bs(b,"<br>\n")};
           
-          return List["iter"](f,l);
-          },
+          return List["iter"](f,l)},
         html_of_raised_exceptions,
         function(self$neg3,b,l)
          {if(l)
@@ -1585,11 +1568,9 @@ var
                     param[1]);
                   /* unknown */"(sendself self-3/1701 html_of_text/1667 b/1702 (field 1 param/3241))";
                   
-                  return bs(b,"</li>\n");
-                  },
+                  return bs(b,"</li>\n")},
                 l);
-              return bs(b,"</ul>\n");
-              }
+              return bs(b,"</ul>\n")}
             else
              {var match=l[1];
               
@@ -1610,11 +1591,10 @@ var
                 match[1]);
               /* unknown */"(sendself self-3/1701 html_of_text/1667 b/1702 (field 1 match/3242))";
               
-              return bs(b,"<br>\n");
-              }
+              return bs(b,"<br>\n")}
             }
           else
-           {return /* () */0;}
+           {return /* () */0}
           },
         html_of_see,
         function(self$neg3,b,param)
@@ -1625,20 +1605,21 @@ var
           switch(see_ref[0])
            {case 0:
              var t_ref=/* :: */[0,/* Link */[15,see_ref[1],t],/* [] */0];
+             break;
             case 1:
              var
               t_ref=
                /* :: */[0,
                 /* Code */[1,see_ref[1]],
                 /* :: */[0,[/* Raw */0," "],t]];
-             
+             break;
             case 2:
              var
               t_ref=
                /* :: */[0,
                 /* Italic */[5,/* :: */[0,/* Raw */[0,see_ref[1]],/* [] */0]],
                 /* :: */[0,[/* Raw */0," "],t]];
-             
+             break
             }
           
           /* unknown */"(sendself self-3/1709 html_of_text/1667 b/1710 t_ref/1713)";
@@ -1662,11 +1643,9 @@ var
                  {bs(b,"<li>");
                   /* unknown */"(sendself self-3/1718 html_of_see/1673 b/1719 see/1722)";
                   
-                  return bs(b,"</li>\n");
-                  },
+                  return bs(b,"</li>\n")},
                 l);
-              return bs(b,"</ul>\n");
-              }
+              return bs(b,"</ul>\n")}
             else
              {bp
                (b,
@@ -1680,11 +1659,10 @@ var
                 Odoc_messages["see_also"]);
               /* unknown */"(sendself self-3/1718 html_of_see/1673 b/1719 (field 0 l/1720))";
               
-              return bs(b,"<br>\n");
-              }
+              return bs(b,"<br>\n")}
             }
           else
-           {return /* () */0;}
+           {return /* () */0}
           },
         html_of_return_opt,
         function(self$neg3,b,return_opt)
@@ -1701,10 +1679,9 @@ var
               Odoc_messages["returns"]);
             /* unknown */"(sendself self-3/1724 html_of_text/1667 b/1725 (field 0 return_opt/1726))";
             
-            return bs(b,"<br>\n");
-            }
+            return bs(b,"<br>\n")}
           else
-           {return /* () */0;}
+           {return /* () */0}
           },
         html_of_custom,
         function(self$neg3,b,l)
@@ -1715,19 +1692,16 @@ var
                      try
                       {var f=List["assoc"](tag,self$neg3[tag_functions+1]);
                        
-                       return Buffer["add_string"](b,f(param[2]));
-                       }
+                       return Buffer["add_string"](b,f(param[2]))}
                      catch(exn)
                       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                         {return Odoc_info["warning"]
-                                 (Odoc_messages["tag_not_handled"](tag));
-                         }
+                                 (Odoc_messages["tag_not_handled"](tag))}
                        else
-                        {throw exn;}
+                        {throw exn}
                        }
                      },
-                   l);
-          },
+                   l)},
         html_of_info,
         function(self$neg3,$staropt$star,$staropt$star,b,info_opt)
          {var cls=$staropt$star$1?$staropt$star$1[1]:"";
@@ -1754,8 +1728,6 @@ var
               /* unknown */"(sendself self-3/1736 html_of_text/1667 b/1743 (field 0 match/3225))";
               
               bs(b,"<br>\n")}
-            else
-             {}
             
             var match$1=info$1[1];
             
@@ -1763,16 +1735,12 @@ var
              {var d=match$1[1];
               
               if
-               (CamlPrimitive["caml_equal"]
+               (!CamlPrimitive["caml_equal"]
                  (d,[/* :: */0,[/* Raw */0,""],/* [] */0]))
-               {}
-              else
                {/* unknown */"(sendself self-3/1736 html_of_text/1667 b/1743 d/1748)";
                 
                 bs(b,"<br>\n")}
               }
-            else
-             {}
             
             /* unknown */"(sendself self-3/1736 html_of_author_list/1668 b/1743 (field 1 info/1745))";
             
@@ -1790,10 +1758,9 @@ var
             
             /* unknown */"(sendself self-3/1736 html_of_custom/1676 b/1743 (field 10 info/1745))";
             
-            return indent?bs(b,"</div>\n"):0;
-            }
+            return indent?bs(b,"</div>\n"):0}
           else
-           {return /* () */0;}
+           {return /* () */0}
           },
         html_of_info_first_sentence,
         function(self$neg3,b,info_opt)
@@ -1813,31 +1780,24 @@ var
              {var d=match[1];
               
               if
-               (CamlPrimitive["caml_equal"]
+               (!CamlPrimitive["caml_equal"]
                  (d,[/* :: */0,[/* Raw */0,""],/* [] */0]))
-               {}
-              else
                {/* unknown */"(sendself self-3/1751 html_of_text/1667 b/1752\n  (apply (field 30 (global Odoc_info!))\n    (apply (field 28 (global Odoc_info!)) d/1757)))";
                 
                 bs(b,"\n")}
               }
-            else
-             {}
             
             if(dep){bs(b,"</span>")}
             
-            return bs(b,"</div>\n");
-            }
+            return bs(b,"</div>\n")}
           else
-           {return /* () */0;}
+           {return /* () */0}
           }]);
      return function(env,$$self)
       {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);
        
        $$self$1[tag_functions+1]=/* [] */0;
-       return $$self$1;
-       };
-     },
+       return $$self$1}},
    0,
    0];
 
@@ -1854,14 +1814,12 @@ var
           
           var c=param[1];
           
-          return q?(f(c),bs(b,sep),iter(q)):f(c);
-          }
+          return q?(f(c),bs(b,sep),iter(q)):f(c)}
         else
-         {return /* () */0;}
+         {return /* () */0}
         };
     
-    return iter;
-    };
+    return iter};
 
 var
  newline_to_indented_br=
@@ -1876,8 +1834,7 @@ var
       c!==10?Buffer["add_char"](b,c):Buffer["add_string"](b,"<br>     ");
       }
     
-    return Buffer["contents"](b);
-    };
+    return Buffer["contents"](b)};
 
 var
  html_init=
@@ -2143,16 +2100,14 @@ var
                       '" http-equiv="Content-Type">\n',
                       /* End_of_format */0]]],
                    '<meta content="text/html; charset=%s" http-equiv="Content-Type">\n'],
-                  charset[1]);
-         },
+                  charset[1])},
        index_prefix,
        function(self$neg4)
         {return CamlPrimitive["caml_string_equal"]
                   (Odoc_global["out_file"][1],
                    Odoc_messages["default_out_file"])
                  ?"index"
-                 :Filename["basename"](Odoc_global["out_file"][1]);
-         },
+                 :Filename["basename"](Odoc_global["out_file"][1])},
        index,
        function(self$neg4)
         {/* unknown */"(sendself self-4/1944 index_prefix/1832)";
@@ -2163,8 +2118,7 @@ var
                     /* No_padding */0,
                     [/* String_literal */11,".html",/* End_of_format */0]],
                    "%s.html"],
-                  p);
-         },
+                  p)},
        index_values,
        12,
        Printf["sprintf"],
@@ -2317,7 +2271,7 @@ var
             {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
               {Pervasives["prerr_endline"](exn[2]),Odoc_info["errors"][0]++}
              else
-              {throw exn;}
+              {throw exn}
              }
            }
          
@@ -2326,8 +2280,7 @@ var
                  ('<link rel="stylesheet" href="',
                   Pervasives["^"]
                    (self$neg4[style_file+1],'" type="text/css">\n')),
-                0;
-         },
+                0},
        title,
        function(self$neg4)
         {var match=Odoc_info["Global"][6][1];
@@ -2336,20 +2289,19 @@ var
           {/* unknown */"(sendself self-4/1994 escape/1996 (field 0 match/3159))";
            }
          else
-          {return "";}
+          {return ""}
          },
        inner_title,
        function(self$neg4,s)
         {/* unknown */"(sendself self-4/1998 title/1873)";
          
          switch(t)
-          {case "":var $js="";default:var $js=Pervasives["^"](t," : ");}
+          {case "":var $js="";break;default:var $js=Pervasives["^"](t," : ");}
          /* unknown */"(sendself self-4/1998 escape/1996 s/1999)";
-         return Pervasives["^"]($js,0);
-         },
+         return Pervasives["^"]($js,0)},
        print_header,
        function(self$neg4,b,nav,comments,title)
-        {return self$neg4[header+1](b,nav,comments,title);},
+        {return self$neg4[header+1](b,nav,comments,title)},
        prepare_header,
        function(self$neg4,module_list)
         {var
@@ -2378,8 +2330,7 @@ var
                              '<link title="%s" rel=Appendix href="%s">\n'],
                             m,
                             url)
-                         :/* () */0;
-                 };
+                         :/* () */0};
              
              bs(b,"<head>\n");
              bs(b,self$neg4[style+1]);
@@ -2438,8 +2389,6 @@ var
                     [/* String_literal */11,'">\n',/* End_of_format */0]]],
                   '<link rel="Up" href="%s">\n'],
                  href)}
-             else
-              {}
              
              /* unknown */"(sendself self-4/2008 list_types/1855)";
              /* unknown */"(sendself self-4/2008 index_types/1835)";
@@ -2490,19 +2439,16 @@ var
                                [/* String_literal */11,'">',/* End_of_format */0]]]]],
                            '<link title="%s" rel="Chapter" href="%s">'],
                           m[1],
-                          html_file);
-                 };
+                          html_file)};
              
              print_concat(b,"\n",print_one,module_list);
              /* unknown */"(sendself self-4/2008 html_sections_links/1877 b/2011 comments/2016)";
              
              bs(b,"<title>");
              bs(b,t);
-             return bs(b,"</title>\n</head>\n");
-             };
+             return bs(b,"</title>\n</head>\n")};
          
-         return self$neg4[header+1]=f,0;
-         },
+         return self$neg4[header+1]=f,0},
        html_sections_links,
        function(self$neg4,b,comments)
         {var
@@ -2518,10 +2464,9 @@ var
                
                var n=l[1][1];
                
-               return List["mem"](n,acc)?iter(acc,q):iter(/* :: */[0,n,acc],q);
-               }
+               return List["mem"](n,acc)?iter(acc,q):iter(/* :: */[0,n,acc],q)}
              else
-              {return acc;}
+              {return acc}
              };
          
          var levels=iter(/* [] */0,titles);
@@ -2530,7 +2475,7 @@ var
           sorted_levels=
            List["sort"]
             (function(prim,prim$1)
-              {return CamlPrimitive["caml_compare"](prim,prim$1);},
+              {return CamlPrimitive["caml_compare"](prim,prim$1)},
              levels);
          
          var match;
@@ -2554,10 +2499,9 @@ var
               {var n$1=level_opt[1];
                
                return List["filter"]
-                       (function(param){return param[1]===n$1;},titles);
-               }
+                       (function(param){return param[1]===n$1},titles)}
              else
-              {return /* [] */0;}
+              {return /* [] */0}
              };
          
          var section_titles=titles_per_level(match[1]);
@@ -2594,14 +2538,11 @@ var
                                   '<link title="%s" rel="%s" href="#%s">\n'],
                                  s,
                                  s_rel,
-                                 label);
-                        },
-                      titles);
-             };
+                                 label)},
+                      titles)};
          
          print_lines("Section",section_titles);
-         return print_lines("Subsection",subsection_titles);
-         },
+         return print_lines("Subsection",subsection_titles)},
        print_navbar,
        function(self$neg4,b,pre,post,name)
         {bs(b,'<div class="navbar">');
@@ -2628,8 +2569,6 @@ var
              Naming[11](name$1)[1],
              name$1,
              Odoc_messages["previous"])}
-         else
-          {}
          
          bs(b,"&nbsp;");
          var father=Odoc_info["Name"][5](name);
@@ -2688,21 +2627,16 @@ var
              Naming[11](name$2)[1],
              name$2,
              Odoc_messages["next"])}
-         else
-          {}
          
-         return bs(b,"</div>\n");
-         },
+         return bs(b,"</div>\n")},
        keyword,
        function(self$neg4,s)
         {return Pervasives["^"]
-                 ('<span class="keyword">',Pervasives["^"](s,"</span>"));
-         },
+                 ('<span class="keyword">',Pervasives["^"](s,"</span>"))},
        constructor,
        function(self$neg4,s)
         {return Pervasives["^"]
-                 ('<span class="constructor">',Pervasives["^"](s,"</span>"));
-         },
+                 ('<span class="constructor">',Pervasives["^"](s,"</span>"))},
        output_code,
        function(self$neg4,in_title,file,code)
         {try
@@ -2718,15 +2652,13 @@ var
            
            bs(b,"</body></html>");
            Buffer["output_buffer"](chanout,b);
-           return Pervasives["close_out"](chanout);
-           }
+           return Pervasives["close_out"](chanout)}
          catch(exn)
           {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
             {Odoc_info["errors"][0]++;
-             return Pervasives["prerr_endline"](exn[2]);
-             }
+             return Pervasives["prerr_endline"](exn[2])}
            else
-            {throw exn;}
+            {throw exn}
            }
          },
        create_fully_qualified_idents_links,
@@ -2748,8 +2680,7 @@ var
                        ('<a href="',
                         Pervasives["^"]
                          (Naming[13](Naming[1],match_s),
-                          Pervasives["^"]('">',Pervasives["^"](s_final,"</a>"))));
-               }
+                          Pervasives["^"]('">',Pervasives["^"](s_final,"</a>"))))}
              else
               {if(StringSet[3](match_s,self$neg4[known_classes_names+1]))
                 {var match=Naming[11](match_s);
@@ -2758,19 +2689,17 @@ var
                          ('<a href="',
                           Pervasives["^"]
                            (match[1],
-                            Pervasives["^"]('">',Pervasives["^"](s_final,"</a>"))));
-                 }
+                            Pervasives["^"]('">',Pervasives["^"](s_final,"</a>"))))}
                else
-                {return s_final;}
+                {return s_final}
                }
              };
          
          return Str["global_substitute"]
                  (Str["regexp"]
-                   ("\([A-Z]\([a-zA-Z_'0-9]\)*\.\)+\([a-z][a-zA-Z_'0-9]*\)"),
+                   ("\\([A-Z]\\([a-zA-Z_'0-9]\\)*\\.\\)+\\([a-z][a-zA-Z_'0-9]*\\)"),
                   f,
-                  s);
-         },
+                  s)},
        create_fully_qualified_module_idents_links,
        function(self$neg4,m_name,s)
         {var
@@ -2792,18 +2721,16 @@ var
                        ('<a href="',
                         Pervasives["^"]
                          (match[1],
-                          Pervasives["^"]('">',Pervasives["^"](s_final,"</a>"))));
-               }
+                          Pervasives["^"]('">',Pervasives["^"](s_final,"</a>"))))}
              else
-              {return s_final;}
+              {return s_final}
              };
          
          return Str["global_substitute"]
                  (Str["regexp"]
-                   ("\([A-Z]\([a-zA-Z_'0-9]\)*\)\(\.[A-Z][a-zA-Z_'0-9]*\)*"),
+                   ("\\([A-Z]\\([a-zA-Z_'0-9]\\)*\\)\\(\\.[A-Z][a-zA-Z_'0-9]*\\)*"),
                   f,
-                  s);
-         },
+                  s)},
        html_of_type_expr,
        function(self$neg4,b,m_name,t)
         {var
@@ -2816,8 +2743,7 @@ var
          bs(b,'<code class="type">');
          /* unknown */"(sendself self-4/2114 create_fully_qualified_idents_links/1882 m_name/2116\n  s2/2119)";
          bs(b,0);
-         return bs(b,"</code>");
-         },
+         return bs(b,"</code>")},
        html_of_type_expr_list,
        function(self$neg4,par,b,m_name,sep,l)
         {var s=Odoc_info["string_of_type_list"](par,sep,l);
@@ -2827,8 +2753,7 @@ var
          bs(b,'<code class="type">');
          /* unknown */"(sendself self-4/2121 create_fully_qualified_idents_links/1882 m_name/2124\n  s2/2128)";
          bs(b,0);
-         return bs(b,"</code>");
-         },
+         return bs(b,"</code>")},
        html_of_class_type_param_expr_list,
        function(self$neg4,b,m_name,l)
         {var s=Odoc_info["string_of_class_type_param_list"](l);
@@ -2838,8 +2763,7 @@ var
          bs(b,'<code class="type">[');
          /* unknown */"(sendself self-4/2130 create_fully_qualified_idents_links/1882 m_name/2132\n  s2/2135)";
          bs(b,0);
-         return bs(b,"]</code>");
-         },
+         return bs(b,"]</code>")},
        html_of_class_parameter_list,
        function(self$neg4,b,father,c)
         {var s=Odoc_info["string_of_class_params"](c);
@@ -2851,8 +2775,7 @@ var
          bs(b,'<code class="type">');
          /* unknown */"(sendself self-4/2137 create_fully_qualified_idents_links/1882 father/2139\n  s2/2143)";
          bs(b,0);
-         return bs(b,"</code>");
-         },
+         return bs(b,"</code>")},
        html_of_type_expr_param_list,
        function(self$neg4,b,m_name,t)
         {var s=Odoc_info["string_of_type_param_list"](t);
@@ -2862,8 +2785,7 @@ var
          bs(b,'<code class="type">');
          /* unknown */"(sendself self-4/2145 create_fully_qualified_idents_links/1882 m_name/2147\n  s2/2150)";
          bs(b,0);
-         return bs(b,"</code>");
-         },
+         return bs(b,"</code>")},
        html_of_module_type,
        function(self$neg4,b,code,m_name,t)
         {var
@@ -2874,8 +2796,7 @@ var
          bs(b,'<code class="type">');
          /* unknown */"(sendself self-4/2152 create_fully_qualified_module_idents_links/1883\n  m_name/2155 s/2157)";
          bs(b,0);
-         return bs(b,"</code>");
-         },
+         return bs(b,"</code>")},
        html_of_module_kind,
        function(self$neg4,b,father,modu,kind)
         {switch(kind[0])
@@ -2903,12 +2824,12 @@ var
             
             /* unknown */'(sendself self-4/2159 html_of_text/2177 b/2160 [0: [1: "end"] 0a])';
             
+            break;
            case 1:
             bs(b,'<code class="type">');
             /* unknown */"(sendself self-4/2159 create_fully_qualified_module_idents_links/1883\n  father/2161 (field 0 (field 0 kind/2163)))";
             bs(b,0);
             return bs(b,"</code>");
-            
            case 2:
             var k=kind[2];
             
@@ -2917,12 +2838,11 @@ var
             /* unknown */"(sendself self-4/2159 html_of_module_parameter/1891 b/2160 father/2161\n  (field 0 kind/2163))";
             
             switch(k[0])
-             {case 2:default:if(html_short_functors[1]){bs(b,": ")}}
+             {case 2:break;default:if(html_short_functors[1]){bs(b,": ")}}
             
             /* unknown */"(sendself self-4/2159 html_of_module_kind/1890 b/2160 father/2161 modu/2162\n  k/2167)";
             
             return !html_short_functors[1]?bs(b,"</div>"):0;
-            
            case 3:
             /* unknown */"(sendself self-4/2159 html_of_module_kind/1890 b/2160 father/2161 0a\n  (field 0 kind/2163))";
             
@@ -2932,6 +2852,7 @@ var
             
             /* unknown */'(sendself self-4/2159 html_of_text/2177 b/2160 [0: [1: ")"] 0a])';
             
+            break;
            case 4:
             /* unknown */"(sendself self-4/2159 html_of_module_type_kind/1893 b/2160 father/2161\n  modu/2162 0a (field 0 kind/2163))";
             
@@ -2939,16 +2860,15 @@ var
             /* unknown */"(sendself self-4/2159 create_fully_qualified_module_idents_links/1883\n  father/2161 (field 1 kind/2163))";
             bs(b,0);
             return bs(b,"</code>");
-            
            case 5:
             /* unknown */"(sendself self-4/2159 html_of_module_kind/1890 b/2160 father/2161 modu/2162\n  (field 0 kind/2163))";
             
+            break;
            case 6:
             bs(b,'<code class="type">module type of ');
             /* unknown */"(sendself self-4/2159 create_fully_qualified_module_idents_links/1883\n  father/2161 (field 0 kind/2163))";
             bs(b,0);
             return bs(b,"</code>");
-            
            case 7:
             var code=kind[1];
             
@@ -2978,8 +2898,7 @@ var
              {/* unknown */"(sendself self-4/2159 create_fully_qualified_module_idents_links/1883\n  father/2161 (sendself self-4/2159 escape/1996 code/2175))";
               bs(b,0)}
             
-            return bs(b,"</code>");
-            
+            return bs(b,"</code>")
            }
          },
        html_of_module_parameter,
@@ -3002,33 +2921,43 @@ var
           {case 0:
             /* unknown */"(sendself self-4/2190 html_of_module/1907 b/2191 0a [0: 0a] 0a\n  (field 0 ele/2193))";
             
+            break;
            case 1:
             /* unknown */"(sendself self-4/2190 html_of_modtype/1908 b/2191 0a [0: 0a] 0a\n  (field 0 ele/2193))";
             
+            break;
            case 2:
             /* unknown */"(sendself self-4/2190 html_of_included_module/1909 b/2191 (field 0 ele/2193))";
             
+            break;
            case 3:
             /* unknown */"(sendself self-4/2190 html_of_class/1913 b/2191 [0: 0a] 0a\n  (field 0 ele/2193))";
             
+            break;
            case 4:
             /* unknown */"(sendself self-4/2190 html_of_class_type/1914 b/2191 [0: 0a] 0a\n  (field 0 ele/2193))";
             
+            break;
            case 5:
             /* unknown */"(sendself self-4/2190 html_of_value/1897 b/2191 (field 0 ele/2193))";
             
+            break;
            case 6:
             /* unknown */"(sendself self-4/2190 html_of_type_extension/1898 b/2191 m_name/2192\n  (field 0 ele/2193))";
             
+            break;
            case 7:
             /* unknown */"(sendself self-4/2190 html_of_exception/1899 b/2191 (field 0 ele/2193))";
             
+            break;
            case 8:
             /* unknown */"(sendself self-4/2190 html_of_type/1900 b/2191 (field 0 ele/2193))";
             
+            break;
            case 9:
             /* unknown */"(sendself self-4/2190 html_of_module_comment/1916 b/2191 (field 0 ele/2193))";
             
+            break
            }
          },
        html_of_module_type_kind,
@@ -3073,17 +3002,18 @@ var
             
             /* unknown */'(sendself self-4/2205 html_of_text/2177 b/2206 [0: [1: "end"] 0a])';
             
+            break;
            case 1:
             /* unknown */"(sendself self-4/2205 html_of_module_parameter/1891 b/2206 father/2207\n  (field 0 kind/2210))";
             
             /* unknown */"(sendself self-4/2205 html_of_module_type_kind/1893 b/2206 father/2207\n  modu/2208 mt/2209 (field 1 kind/2210))";
             
+            break;
            case 2:
             bs(b,'<code class="type">');
             /* unknown */"(sendself self-4/2205 create_fully_qualified_module_idents_links/1883\n  father/2207 (field 0 (field 0 kind/2210)))";
             bs(b,0);
             return bs(b,"</code>");
-            
            case 3:
             /* unknown */"(sendself self-4/2205 html_of_module_type_kind/1893 b/2206 father/2207\n  modu/2208 mt/2209 (field 0 kind/2210))";
             
@@ -3091,13 +3021,11 @@ var
             /* unknown */"(sendself self-4/2205 create_fully_qualified_module_idents_links/1883\n  father/2207 (field 1 kind/2210))";
             bs(b,0);
             return bs(b,"</code>");
-            
            case 4:
             bs(b,'<code class="type">module type of ');
             /* unknown */"(sendself self-4/2205 create_fully_qualified_module_idents_links/1883\n  father/2207 (field 0 kind/2210))";
             bs(b,0);
-            return bs(b,"</code>");
-            
+            return bs(b,"</code>")
            }
          },
        html_of_module_parameter_type,
@@ -3108,7 +3036,7 @@ var
           {/* unknown */"(sendself self-4/2223 html_of_module_type/1889 b/2224\n  (makeblock 0 (field 2 p/2226)) m_name/2225 (field 0 match/3085))";
            }
          else
-          {return bs(b,"<code>()</code>");}
+          {return bs(b,"<code>()</code>")}
          },
        output_module_type,
        function(self$neg4,in_title,file,mtyp)
@@ -3264,8 +3192,6 @@ var
                  bs(b,Pervasives["^"](" ",Pervasives["^"](0," ")));
                  /* unknown */"(sendself self-4/2248 html_of_type_expr/1884 b/2249 father/2256\n  (field 0 match/3073))";
                  }
-               else
-                {}
                }
              
              var match$3=x[5];
@@ -3297,8 +3223,6 @@ var
                else
                 {bs(b,xa[1])}
                }
-             else
-              {}
              
              bs(b,"</code></td>\n");
              var match$5=x[7];
@@ -3320,19 +3244,15 @@ var
                bs(b,"<code>"),
                bs(b,"*)"),
                bs(b,"</code></td>")}
-             else
-              {}
              
-             return bs(b,"\n</tr>");
-             };
+             return bs(b,"\n</tr>")};
          
          print_concat(b,"\n",print_one,te[5]);
          bs(b,"</table>\n");
          bs(b,"\n");
          /* unknown */"(sendself self-4/2248 html_of_info/2246 0a 0a b/2249 (field 0 te/2251))";
          
-         return bs(b,"\n");
-         },
+         return bs(b,"\n")},
        html_of_exception,
        function(self$neg4,b,e)
         {Odoc_info["reset_type_names"](/* () */0);
@@ -3378,8 +3298,6 @@ var
              bs(b,Pervasives["^"](" ",Pervasives["^"](0," ")));
              /* unknown */"(sendself self-4/2265 html_of_type_expr/1884 b/2266\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 e/2267))\n  (field 0 match/3061))";
              }
-           else
-            {}
            }
          
          var match$2=e[5];
@@ -3411,8 +3329,6 @@ var
            else
             {bs(b,ea[1])}
            }
-         else
-          {}
          
          bs(b,"</pre>\n");
          /* unknown */"(sendself self-4/2265 html_of_info/2246 0a 0a b/2266 (field 1 e/2267))";
@@ -3428,8 +3344,7 @@ var
             {bs(b,'<tr>\n<td align="left" valign="top" >\n');
              bs(b,"<code>&nbsp;&nbsp;</code>");
              bs(b,'</td>\n<td align="left" valign="top" >\n');
-             return bs(b,"<code>");
-             };
+             return bs(b,"<code>")};
          
          var
           print_field_comment=
@@ -3447,10 +3362,9 @@ var
                bs
                 (b,
                  '</td><td class="typefieldcomment" align="left" valign="bottom" >');
-               return bs(b,"<code>*)</code></td>");
-               }
+               return bs(b,"<code>*)</code></td>")}
              else
-              {return /* () */0;}
+              {return /* () */0}
              };
          
          var match=t[6];
@@ -3497,6 +3411,7 @@ var
               /* unknown */"(sendself self-4/2275 html_of_type_expr/1884 b/2276 father/2278\n  (field 0 match/3039))";
               
               bs(b," ");
+              break;
              case 1:
               bs(b,"= ");
               if(priv){bs(b,"private ")}
@@ -3528,22 +3443,22 @@ var
                   
                   bs(b,";</code></td>\n");
                   print_field_comment(f[3]);
-                  return bs(b,"\n</tr>");
-                  };
+                  return bs(b,"\n</tr>")};
               
               print_concat(b,"\n",print_one,match$4[1]),
               bs(b,"</table>\n>\n"),
-              bs(b," ")
+              bs(b," ");
+              break
              }
            }
-         else
-          {}
          
          var match$5=t[4];
          
          if(typeof match$5==="number")
           {switch(match$5)
-            {case 0:bs(b,"</pre>");case 1:bs(b,"= .."),bs(b,"</pre>")}}
+            {case 0:bs(b,"</pre>");break;
+             case 1:bs(b,"= .."),bs(b,"</pre>");break
+             }}
          else
           {switch(match$5[0])
             {case 0:
@@ -3605,8 +3520,6 @@ var
                       bs(b,Pervasives["^"](" ",Pervasives["^"](0," ")));
                       /* unknown */"(sendself self-4/2275 html_of_type_expr/1884 b/2276 father/2278\n  (field 0 match/3025))";
                       }
-                    else
-                     {}
                     }
                   
                   bs(b,"</code></td>\n");
@@ -3631,13 +3544,11 @@ var
                     bs(b,"<code>"),
                     bs(b,"*)"),
                     bs(b,"</code></td>")}
-                  else
-                   {}
                   
-                  return bs(b,"\n</tr>");
-                  };
+                  return bs(b,"\n</tr>")};
               
               print_concat(b,"\n",print_one$1,match$5[1]),bs(b,"</table>\n");
+              break;
              case 1:
               bs(b,"= ");
               if(priv){bs(b,"private ")}
@@ -3657,8 +3568,6 @@ var
                   if(r[2])
                    {/* unknown */'(sendself self-4/2275 keyword/1879 "mutable&nbsp;")';
                     bs(b,0)}
-                  else
-                   {}
                   
                   bp
                    (b,
@@ -3698,21 +3607,18 @@ var
                      (b,
                       '</td><td class="typefieldcomment" align="left" valign="bottom" >'),
                     bs(b,"<code>*)</code></td>")}
-                  else
-                   {}
                   
-                  return bs(b,"\n</tr>");
-                  };
+                  return bs(b,"\n</tr>")};
               
               print_concat(b,"\n",print_one$2,match$5[1]),
-              bs(b,"</table>\n}\n")
+              bs(b,"</table>\n}\n");
+              break
              }}
          
          bs(b,"\n");
          /* unknown */"(sendself self-4/2275 html_of_info/2246 0a 0a b/2276 (field 1 t/2277))";
          
-         return bs(b,"\n");
-         },
+         return bs(b,"\n")},
        html_of_attribute,
        function(self$neg4,b,a)
         {var module_name=Odoc_info["Name"][5](Odoc_info["Name"][5](a[1][1]));
@@ -3734,14 +3640,10 @@ var
          if(a[3])
           {/* unknown */'(sendself self-4/2300 keyword/1879 "virtual")';
            bs(b,Pervasives["^"](0," "))}
-         else
-          {}
          
          if(a[2])
           {/* unknown */"(sendself self-4/2300 keyword/1879 (field 193 (global Odoc_messages!)))";
            bs(b,Pervasives["^"](0," "))}
-         else
-          {}
          
          var match=a[1][6];
          
@@ -3795,14 +3697,10 @@ var
          if(m[2])
           {/* unknown */'(sendself self-4/2307 keyword/1879 "private")';
            bs(b,Pervasives["^"](0," "))}
-         else
-          {}
          
          if(m[3])
           {/* unknown */'(sendself self-4/2307 keyword/1879 "virtual")';
            bs(b,Pervasives["^"](0," "))}
-         else
-          {}
          
          var match=m[1][6];
          
@@ -3853,7 +3751,7 @@ var
               l2=
                List["filter"]
                 (function(n)
-                  {return Odoc_info["Parameter"][4](p,n)!==/* None */0;},
+                  {return Odoc_info["Parameter"][4](p,n)!==/* None */0},
                  l);
              
              var
@@ -3868,11 +3766,10 @@ var
                    /* unknown */"(sendself self-4/2314 html_of_text/2177 b/2315 (field 0 match/3011))";
                    }
                  else
-                  {return /* () */0;}
+                  {return /* () */0}
                  };
              
-             return print_concat(b,"<br>\n",print_one,l2);
-             }
+             return print_concat(b,"<br>\n",print_one,l2)}
            else
             {var match=Odoc_info["Parameter"][4](p,l[1]);
              
@@ -3880,11 +3777,11 @@ var
               {/* unknown */"(sendself self-4/2314 html_of_text/2177 b/2315 (field 0 match/3009))";
                }
              else
-              {return /* () */0;}
+              {return /* () */0}
              }
            }
          else
-          {return /* () */0;}
+          {return /* () */0}
          },
        html_of_parameter_list,
        function(self$neg4,b,m_name,l)
@@ -3904,7 +3801,7 @@ var
                  '<tr>\n<td align="center" valign="top" width="15%" class="code">\n');
                var s=Odoc_info["Parameter"][1](p);
                
-               switch(s){case "":var $js="?";default:var $js=s;}
+               switch(s){case "":var $js="?";break;default:var $js=s;}
                bs(b,$js);
                bs(b,'</td>\n<td align="center" valign="top">:</td>\n');
                bs(b,"<td>");
@@ -3913,14 +3810,12 @@ var
                bs(b,"<br>\n");
                /* unknown */"(sendself self-4/2326 html_of_parameter_description/1903 b/2327 p/2331)";
                
-               return bs(b,"\n</tr>\n");
-               };
+               return bs(b,"\n</tr>\n")};
            
            List["iter"](print_one,l);
-           return bs(b,"</table>\n</td>\n</tr>\n</table></div>\n");
-           }
+           return bs(b,"</table>\n</td>\n</tr>\n</table></div>\n")}
          else
-          {return /* () */0;}
+          {return /* () */0}
          },
        html_of_described_parameter_list,
        function(self$neg4,b,m_name,l)
@@ -3930,9 +3825,8 @@ var
             (function(p)
               {return List["exists"]
                        (function(n)
-                         {return Odoc_info["Parameter"][4](p,n)!==/* None */0;},
-                        Odoc_info["Parameter"][3](p));
-               },
+                         {return Odoc_info["Parameter"][4](p,n)!==/* None */0},
+                        Odoc_info["Parameter"][3](p))},
              l);
          
          var
@@ -3943,11 +3837,9 @@ var
              bs(b,"</code> : ");
              /* unknown */"(sendself self-4/2334 html_of_parameter_description/1903 b/2335 p/2342)";
              
-             return bs(b,"</div>\n");
-             };
+             return bs(b,"</div>\n")};
          
-         return List["iter"](f,l2);
-         },
+         return List["iter"](f,l2)},
        html_of_module_parameter_list,
        function(self$neg4,b,m_name,l)
         {return l
@@ -3976,15 +3868,13 @@ var
                         {bs(b,"<br>");
                          /* unknown */"(sendself self-4/2344 html_of_text/2177 b/2345 (field 0 desc_opt/2349))";
                          
-                         return bs(b,"\n</tr>\n");
-                         }
+                         return bs(b,"\n</tr>\n")}
                        else
-                        {return /* () */0;}
+                        {return /* () */0}
                        },
                      l),
                    bs(b,"</table>\n</td>\n</tr>\n</table>\n"))
-                 :/* () */0;
-         },
+                 :/* () */0},
        html_of_module,
        function(self$neg4,b,$staropt$star,$staropt$star,$staropt$star,m)
         {var info$1=$staropt$star$1?$staropt$star$1[1]:/* true */1;
@@ -4023,9 +3913,9 @@ var
          var exit;
          
          switch(match$1[0])
-          {case 2:if(html_short_functors[1]){}else{exit=94;}default:exit=94;}
+          {case 2:if(!html_short_functors[1]){exit=94;}break;default:exit=94;}
          
-         switch(exit){case 94:bs(b,": ")}
+         switch(exit){case 94:bs(b,": ");break}
          
          /* unknown */"(sendself self-4/2352 html_of_module_kind/1890 b/2353 father/2365\n  (makeblock 0 m/2363) (field 5 m/2363))";
          
@@ -4038,10 +3928,9 @@ var
            else
             {/* unknown */"(sendself self-4/2352 html_of_info_first_sentence/2366)";
              }
-           return $js(b,m[3]);
-           }
+           return $js(b,m[3])}
          else
-          {return /* () */0;}
+          {return /* () */0}
          },
        html_of_modtype,
        function(self$neg4,b,$staropt$star,$staropt$star,$staropt$star,mt)
@@ -4082,8 +3971,6 @@ var
           {bs(b," = ");
            /* unknown */"(sendself self-4/2368 html_of_module_type_kind/1893 b/2369 father/2381 0a\n  (makeblock 0 mt/2379) (field 0 match/2982))";
            }
-         else
-          {}
          
          bs(b,"</pre>");
          if(info$1)
@@ -4094,10 +3981,9 @@ var
            else
             {/* unknown */"(sendself self-4/2368 html_of_info_first_sentence/2366)";
              }
-           return $js(b,mt[2]);
-           }
+           return $js(b,mt[2])}
          else
-          {return /* () */0;}
+          {return /* () */0}
          },
        html_of_included_module,
        function(self$neg4,b,im)
@@ -4140,12 +4026,15 @@ var
           {case 0:
             /* unknown */"(sendself self-4/2395 html_of_attribute/1901 b/2396 (field 0 element/2397))";
             
+            break;
            case 1:
             /* unknown */"(sendself self-4/2395 html_of_method/1902 b/2396 (field 0 element/2397))";
             
+            break;
            case 2:
             /* unknown */"(sendself self-4/2395 html_of_class_comment/1917 b/2396\n  (field 0 element/2397))";
             
+            break
            }
          },
        html_of_class_kind,
@@ -4174,17 +4063,17 @@ var
               if(inh$2)
                {/* unknown */"(sendself self-4/2402 generate_inheritance_info/1918 b/2403 inh/2407)";
                 }
-              else
-               {}
               
               /* unknown */"(sendself self-4/2402 html_of_class_element/1910 b/2403)";
               List["iter"](0,kind[2])}
             
             /* unknown */'(sendself self-4/2402 html_of_text/2177 b/2403 [0: [1: "end"] 0a])';
             
+            break;
            case 1:
             /* unknown */'(sendself self-4/2402 html_of_text/2177 b/2403\n  [0: [0: "class application not handled yet"] 0a])';
             
+            break;
            case 2:
             var cco=kind[1];
             
@@ -4194,14 +4083,11 @@ var
              {/* unknown */"(sendself self-4/2402 html_of_class_type_param_expr_list/1886 b/2403\n  father/2404 l/2415)";
               
               bs(b," ")}
-            else
-             {}
             
             bs(b,'<code class="type">');
             /* unknown */"(sendself self-4/2402 create_fully_qualified_idents_links/1882 father/2404\n  (field 0 cco/2410))";
             bs(b,0);
             return bs(b,"</code>");
-            
            case 3:
             /* unknown */'(sendself self-4/2402 html_of_text/2177 b/2403 [0: [1: "( "] 0a])';
             
@@ -4213,6 +4099,7 @@ var
             
             /* unknown */'(sendself self-4/2402 html_of_text/2177 b/2403 [0: [1: " )"] 0a])';
             
+            break
            }
          },
        html_of_class_type_kind,
@@ -4241,14 +4128,13 @@ var
               if(inh$2)
                {/* unknown */"(sendself self-4/2417 generate_inheritance_info/1918 b/2418 inh/2423)";
                 }
-              else
-               {}
               
               /* unknown */"(sendself self-4/2417 html_of_class_element/1910 b/2418)";
               List["iter"](0,kind[2])}
             
             /* unknown */'(sendself self-4/2417 html_of_text/2177 b/2418 [0: [1: "end"] 0a])';
             
+            break;
            case 1:
             var cta=kind[1];
             
@@ -4258,14 +4144,11 @@ var
              {/* unknown */"(sendself self-4/2417 html_of_class_type_param_expr_list/1886 b/2418\n  father/2419 l/2425)";
               
               bs(b," ")}
-            else
-             {}
             
             bs(b,'<code class="type">');
             /* unknown */"(sendself self-4/2417 create_fully_qualified_idents_links/1882 father/2419\n  (field 0 cta/2422))";
             bs(b,0);
-            return bs(b,"</code>");
-            
+            return bs(b,"</code>")
            }
          },
        html_of_class,
@@ -4304,8 +4187,6 @@ var
          if(c[5])
           {/* unknown */'(sendself self-4/2429 keyword/1879 "virtual")';
            bs(b,Pervasives["^"](0," "))}
-         else
-          {}
          
          var l=c[4];
          
@@ -4313,8 +4194,6 @@ var
           {/* unknown */"(sendself self-4/2429 html_of_class_type_param_expr_list/1886 b/2430\n  father/2438 l/2440)";
            
            bs(b," ")}
-         else
-          {}
          
          with_link
           ?bp
@@ -4348,8 +4227,7 @@ var
          else
           {/* unknown */"(sendself self-4/2429 html_of_info_first_sentence/2366)";
            }
-         return $js(b,c[2]);
-         },
+         return $js(b,c[2])},
        html_of_class_type,
        function(self$neg4,b,$staropt$star,$staropt$star,ct)
         {var complete=$staropt$star$1?$staropt$star$1[1]:/* true */1;
@@ -4386,8 +4264,6 @@ var
          if(ct[5])
           {/* unknown */'(sendself self-4/2442 keyword/1879 "virtual")';
            bs(b,Pervasives["^"](0," "))}
-         else
-          {}
          
          var l=ct[4];
          
@@ -4395,8 +4271,6 @@ var
           {/* unknown */"(sendself self-4/2442 html_of_class_type_param_expr_list/1886 b/2443\n  father/2451 l/2453)";
            
            bs(b," ")}
-         else
-          {}
          
          with_link
           ?bp
@@ -4428,8 +4302,7 @@ var
          else
           {/* unknown */"(sendself self-4/2442 html_of_info_first_sentence/2366)";
            }
-         return $js(b,ct[2]);
-         },
+         return $js(b,ct[2])},
        html_of_dag,
        function(self$neg4,dag)
         {var
@@ -4464,20 +4337,17 @@ var
                         (match$1[1],
                          Pervasives["^"]("</a>","</td></tr>\n</table>\n"))))));
              
-             return /* record */[0,n[1],new_v,n[3]];
-             };
+             return /* record */[0,n[1],new_v,n[3]]};
          
          var a=$$Array["map"](f,dag[1]);
          
-         return Odoc_dag2html["html_of_dag"](/* record */[0,a]);
-         },
+         return Odoc_dag2html["html_of_dag"](/* record */[0,a])},
        html_of_module_comment,
        function(self$neg4,b,text)
         {bs(b,"<br>\n");
          /* unknown */"(sendself self-4/2468 html_of_text/2177 b/2469 text/2470)";
          
-         return bs(b,"<br>\n");
-         },
+         return bs(b,"<br>\n")},
        html_of_class_comment,
        function(self$neg4,b,text)
         {var exit;
@@ -4498,13 +4368,13 @@ var
                   /* None */0,
                   /* :: */[0,/* Raw */[0,match[1]],/* [] */0]],
                  text[2]];
-                
+                break;
                default:exit=63;}}
            }
          else
           {exit=63;}
          
-         switch(exit){case 63:var text2=text;}
+         switch(exit){case 63:var text2=text;break}
          
          /* unknown */"(sendself self-4/2472 html_of_text/2177 b/2473 text2/2475)";
          },
@@ -4526,15 +4396,13 @@ var
                        /* Link */[15,
                         match$1[1],
                         /* :: */[0,/* Code */[1,real_name],/* [] */0]],
-                       match$2?/* :: */[0,[/* Raw */0,"    "],match$2[1]]:/* [] */0];
-               }
+                       match$2?/* :: */[0,[/* Raw */0,"    "],match$2[1]]:/* [] */0]}
              else
               {var match$3=inh[3];
                
                return /* :: */[0,
                        /* Code */[1,inh[1]],
-                       match$3?/* :: */[0,[/* Raw */0,"    "],match$3[1]]:/* [] */0];
-               }
+                       match$3?/* :: */[0,[/* Raw */0,"    "],match$3[1]]:/* [] */0]}
              };
          
          var
@@ -4561,18 +4429,17 @@ var
                  {/* unknown */"(sendself self-4/2493 generate_inheritance_info/1918 b/2494 l/2498)";
                   }
                 else
-                 {return /* () */0;}
-                
-               case 1:exit=57;
-               case 2:exit=57;
-               case 3:return iter_kind(k[1]);
+                 {return /* () */0}
+                break;
+               case 1:exit=57;break;
+               case 2:exit=57;break;
+               case 3:return iter_kind(k[1])
                }
              
-             switch(exit){case 57:return /* () */0;}
+             switch(exit){case 57:return /* () */0}
              };
          
-         return iter_kind(cl[6]);
-         },
+         return iter_kind(cl[6])},
        generate_class_type_inheritance_info,
        function(self$neg4,b,clt)
         {var match=clt[6];
@@ -4585,9 +4452,9 @@ var
              {/* unknown */"(sendself self-4/2502 generate_inheritance_info/1918 b/2503 l/2505)";
               }
             else
-             {return /* () */0;}
-            
-           case 1:return /* () */0;
+             {return /* () */0}
+            break;
+           case 1:return /* () */0
            }
          },
        generate_elements_index,
@@ -4615,15 +4482,14 @@ var
               (function(e1,e2)
                 {return CamlPrimitive["caml_string_compare"]
                          (Odoc_info["Name"][1](name(e1)),
-                          Odoc_info["Name"][1](name(e2)));
-                 },
+                          Odoc_info["Name"][1](name(e2)))},
                elements);
            
            var
             groups=
              Odoc_info["create_index_lists"]
               (sorted_elements,
-               function(e){return Odoc_info["Name"][1](name(e));});
+               function(e){return Odoc_info["Name"][1](name(e))});
            
            var
             f_ele=
@@ -4671,8 +4537,7 @@ var
                bs(b,"</td>\n<td>");
                /* unknown */"(sendself self-4/2507 html_of_info_first_sentence/2366 b/2515\n  (apply info/2510 e/2522))";
                
-               return bs(b,"</td></tr>\n");
-               };
+               return bs(b,"</td></tr>\n")};
            
            var
             f_group=
@@ -4688,10 +4553,9 @@ var
                  bs(b,'<tr><td align="left"><br>');
                  bs(b,s);
                  bs(b,"</td></tr>\n");
-                 return List["iter"](f_ele,l);
-                 }
+                 return List["iter"](f_ele,l)}
                else
-                {return /* () */0;}
+                {return /* () */0}
                };
            
            bs(b,"<table>\n");
@@ -4699,13 +4563,12 @@ var
            bs(b,"</table>\n");
            bs(b,"</body>\n</html>");
            Buffer["output_buffer"](chanout,b);
-           return Pervasives["close_out"](chanout);
-           }
+           return Pervasives["close_out"](chanout)}
          catch(exn)
           {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
-            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]];}
+            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]]}
            else
-            {throw exn;}
+            {throw exn}
            }
          },
        generate_elements,
@@ -4722,17 +4585,15 @@ var
                 {var ele2=match[1];
                  
                  f_generate(pre_opt,/* Some */[0,ele2],ele);
-                 return iter(/* Some */[0,ele],/* :: */[0,ele2,match[2]]);
-                 }
+                 return iter(/* Some */[0,ele],/* :: */[0,ele2,match[2]])}
                else
-                {return f_generate(pre_opt,/* None */0,ele);}
+                {return f_generate(pre_opt,/* None */0,ele)}
                }
              else
-              {return /* () */0;}
+              {return /* () */0}
              };
          
-         return iter(/* None */0,l);
-         },
+         return iter(/* None */0,l)},
        generate_for_class,
        function(self$neg4,pre,post,cl)
         {Odoc_info["reset_type_names"](/* () */0);
@@ -4748,9 +4609,9 @@ var
            
            var b=new_buf(/* () */0);
            
-           var pre_name=opt(function(c){return c[1];},pre);
+           var pre_name=opt(function(c){return c[1]},pre);
            
-           var post_name=opt(function(c){return c[1];},post);
+           var post_name=opt(function(c){return c[1]},post);
            
            bs(b,self$neg4[doctype+1]);
            bs(b,"<html>\n");
@@ -4796,9 +4657,9 @@ var
            }
          catch(exn)
           {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
-            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]];}
+            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]]}
            else
-            {throw exn;}
+            {throw exn}
            }
          },
        generate_for_class_type,
@@ -4816,9 +4677,9 @@ var
            
            var b=new_buf(/* () */0);
            
-           var pre_name=opt(function(ct){return ct[1];},pre);
+           var pre_name=opt(function(ct){return ct[1]},pre);
            
-           var post_name=opt(function(ct){return ct[1];},post);
+           var post_name=opt(function(ct){return ct[1]},post);
            
            bs(b,self$neg4[doctype+1]);
            bs(b,"<html>\n");
@@ -4862,9 +4723,9 @@ var
            }
          catch(exn)
           {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
-            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]];}
+            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]]}
            else
-            {throw exn;}
+            {throw exn}
            }
          },
        generate_for_module_type,
@@ -4881,9 +4742,9 @@ var
            
            var b=new_buf(/* () */0);
            
-           var pre_name=opt(function(mt){return mt[1];},pre);
+           var pre_name=opt(function(mt){return mt[1]},pre);
            
-           var post_name=opt(function(mt){return mt[1];},post);
+           var post_name=opt(function(mt){return mt[1]},post);
            
            bs(b,self$neg4[doctype+1]);
            bs(b,"<html>\n");
@@ -4943,13 +4804,13 @@ var
             {/* unknown */"(sendself self-4/2570 output_module_type/1895 (field 0 mt/2573)\n  (apply (field 3 (global Filename!))\n    (field 0 (field 4 (field 53 (global Odoc_info!)))) type_file/2575)\n  (field 0 match/2880))";
              }
            else
-            {return /* () */0;}
+            {return /* () */0}
            }
          catch(exn)
           {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
-            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]];}
+            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]]}
            else
-            {throw exn;}
+            {throw exn}
            }
          },
        generate_for_module,
@@ -4970,9 +4831,9 @@ var
            
            var b=new_buf(/* () */0);
            
-           var pre_name=opt(function(m){return m[1];},pre);
+           var pre_name=opt(function(m){return m[1]},pre);
            
-           var post_name=opt(function(m){return m[1];},post);
+           var post_name=opt(function(m){return m[1]},post);
            
            bs(b,self$neg4[doctype+1]);
            bs(b,"<html>\n");
@@ -5024,8 +4885,6 @@ var
            if(!modu[11])
             {/* unknown */"(sendself self-4/2585 html_of_module/1907 b/2593 0a 0a [0: 0a] modu/2588)";
              }
-           else
-            {}
            
            /* unknown */"(sendself self-4/2585 html_of_module_parameter_list/1906 b/2593\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 modu/2588))\n  (apply (field 14 (field 9 (global Odoc_info!))) 0a modu/2588))";
            
@@ -5052,13 +4911,13 @@ var
             {/* unknown */"(sendself self-4/2585 output_code/1881 (field 0 modu/2588)\n  (apply (field 3 (global Filename!))\n    (field 0 (field 4 (field 53 (global Odoc_info!)))) code_file/2591)\n  (field 0 match/2864))";
              }
            else
-            {return /* () */0;}
+            {return /* () */0}
            }
          catch(exn)
           {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
-            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]];}
+            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]]}
            else
-            {throw exn;}
+            {throw exn}
            }
          },
        generate_index,
@@ -5107,13 +4966,12 @@ var
            
            bs(b,"</body>\n</html>");
            Buffer["output_buffer"](chanout,b);
-           return Pervasives["close_out"](chanout);
-           }
+           return Pervasives["close_out"](chanout)}
          catch(exn)
           {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
-            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]];}
+            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]]}
            else
-            {throw exn;}
+            {throw exn}
            }
          },
        generate_values_index,
@@ -5177,7 +5035,7 @@ var
          
          self$neg4[known_types_names+1]=
          List["fold_left"]
-          (function(acc,t){return StringSet[4](t[1],acc);},
+          (function(acc,t){return StringSet[4](t[1],acc)},
            self$neg4[known_types_names+1],
            types);
          var classes=Odoc_info["Search"][8](module_list);
@@ -5186,12 +5044,12 @@ var
          
          self$neg4[known_classes_names+1]=
          List["fold_left"]
-          (function(acc,c){return StringSet[4](c[1],acc);},
+          (function(acc,c){return StringSet[4](c[1],acc)},
            self$neg4[known_classes_names+1],
            classes);
          self$neg4[known_classes_names+1]=
          List["fold_left"]
-          (function(acc,ct){return StringSet[4](ct[1],acc);},
+          (function(acc,ct){return StringSet[4](ct[1],acc)},
            self$neg4[known_classes_names+1],
            class_types);
          var module_types=Odoc_info["Search"][11](module_list);
@@ -5200,19 +5058,17 @@ var
          
          self$neg4[known_modules_names+1]=
          List["fold_left"]
-          (function(acc,m){return StringSet[4](m[1],acc);},
+          (function(acc,m){return StringSet[4](m[1],acc)},
            self$neg4[known_modules_names+1],
            modules);
          self$neg4[known_modules_names+1]=
          List["fold_left"]
-          (function(acc,mt){return StringSet[4](mt[1],acc);},
+          (function(acc,mt){return StringSet[4](mt[1],acc)},
            self$neg4[known_modules_names+1],
            module_types);
          if(!index_only[1])
           {/* unknown */"(sendself self-4/2669 generate_elements/1922\n  (sendself self-4/2669 generate_for_module/1926) module_list/2670)";
            }
-         else
-          {}
          
          try
           {/* unknown */"(sendself self-4/2669 generate_index/1927 module_list/2670)";
@@ -5240,10 +5096,9 @@ var
          catch(exn)
           {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
             {Pervasives["prerr_endline"](exn[2]);
-             return Odoc_info["errors"][0]++;
-             }
+             return Odoc_info["errors"][0]++}
            else
-            {throw exn;}
+            {throw exn}
            }
          }]);
     CamlinternalOO["add_initializer"]
@@ -5255,10 +5110,8 @@ var
                  
                  /* unknown */"(sendself self-4/2688 html_of_text/2177 b/2690\n  (apply (field 0 (field 1 (global Odoc_text!))) s/2689))";
                  
-                 return Buffer["contents"](b);
-                 },
-               0;
-        });
+                 return Buffer["contents"](b)},
+               0});
     return function(env,$$self)
      {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);
       
@@ -5434,11 +5287,8 @@ var
         
         var comments=$staropt$star?$staropt$star[1]:/* [] */0;
         
-        return /* () */0;
-        };
-      return CamlinternalOO["run_initializers_opt"]($$self,$$self$1,$$class);
-      };
-    };
+        return /* () */0};
+      return CamlinternalOO["run_initializers_opt"]($$self,$$self$1,$$class)}};
 
 var
  html=

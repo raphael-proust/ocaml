@@ -28,8 +28,7 @@ var
   function(dir)
    {Config["load_path"][1]=
     /* :: */[0,dir,Primitives["except"](dir,Config["load_path"][1])];
-    return Envaux["reset_cache"](/* () */0);
-    };
+    return Envaux["reset_cache"](/* () */0)};
 
 var
  add_path_for=
@@ -41,12 +40,11 @@ var
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {old=/* [] */0;}
       else
-       {throw exn;}
+       {throw exn}
       }
     
     return Hashtbl["replace"]
-            (Debugger_config["load_path_for"],mdl,/* :: */[0,dir,old]);
-    };
+            (Debugger_config["load_path_for"],mdl,/* :: */[0,dir,old])};
 
 var emacs=[0,/* false */0];
 

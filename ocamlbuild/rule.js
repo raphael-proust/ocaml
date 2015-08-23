@@ -21,25 +21,24 @@ var
 
 var Failed=CamlPrimitive["caml_set_oo_id"]([248,"Rule.Failed",0]);
 
-var name_of_rule=function(r){return r[1];};
+var name_of_rule=function(r){return r[1]};
 
-var deps_of_rule=function(r){return r[2];};
+var deps_of_rule=function(r){return r[2]};
 
-var prods_of_rule=function(r){return r[3];};
+var prods_of_rule=function(r){return r[3]};
 
-var stamp_of_rule=function(r){return r[4];};
+var stamp_of_rule=function(r){return r[4]};
 
-var doc_of_rule=function(r){return r[5];};
+var doc_of_rule=function(r){return r[5]};
 
 var
  compare=
   function(param,param$1)
    {throw [0,
            CamlPrimitive["caml_global_data"]["Assert_failure"],
-           [0,"rule.ml",49,18]];
-    };
+           [0,"rule.ml",49,18]]};
 
-var print_rule_name=function(f,r){return Format["pp_print_string"](f,r[1]);};
+var print_rule_name=function(f,r){return Format["pp_print_string"](f,r[1])};
 
 var print_resource_list=My_std["List"][1](Resource["print"]);
 
@@ -150,8 +149,7 @@ var
                    [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
                   "Some %S"],
                  match[1])
-              :"None");
-    };
+              :"None")};
 
 var
  pretty_print=
@@ -218,8 +216,7 @@ var
               [/* String_literal */11,
                "<fun>",
                [/* Formatting_lit */17,/* Close_box */0,/* End_of_format */0]],
-              "<fun>@]"]);
-    };
+              "<fun>@]"])};
 
 var print=print_rule_name;
 
@@ -235,7 +232,7 @@ var
     var
      finder=
       function(next_finder,p)
-       {return next_finder(Resource["subst_any"](env,p));};
+       {return next_finder(Resource["subst_any"](env,p))};
     
     var match=rule[4];
     
@@ -262,8 +259,7 @@ var
             prods,
             stamp,
             rule[5],
-            function(env){return rule[6](finder(env));}];
-    };
+            function(env){return rule[6](finder(env))}]};
 
 var Can_produce=CamlPrimitive["caml_set_oo_id"]([248,"Rule.Can_produce",0]);
 
@@ -276,15 +272,14 @@ var
          {var match=Resource["matchit"](resource,target);
           
           if(match)
-           {throw [0,Can_produce,subst(match[1],rule)];}
+           {throw [0,Can_produce,subst(match[1],rule)]}
           else
-           {return /* () */0;}
+           {return /* () */0}
           },
         rule[3]);
-      return /* None */0;
-      }
+      return /* None */0}
     catch(exn)
-     {if(exn[1]===Can_produce){return /* Some */[0,exn[2]];}else{throw exn;}}
+     {if(exn[1]===Can_produce){return /* Some */[0,exn[2]]}else{throw exn}}
     };
 
 var
@@ -296,11 +291,9 @@ var
                
                return My_std["sys_file_exists"](f)
                        ?/* :: */[0,/* tuple */[0,f,My_std["Digest"][3](f)],acc]
-                       :acc;
-               },
+                       :acc},
              r[3],
-             /* [] */0);
-    };
+             /* [] */0)};
 
 var
  digest_deps=
@@ -311,15 +304,13 @@ var
      add_resource=
       function(r)
        {return Buffer["add_string"]
-                (buf,My_std["Digest"][6](Resource["digest"](r)));
-        };
+                (buf,My_std["Digest"][6](Resource["digest"](r)))};
     
     Buffer["add_string"](buf,"deps:");
     My_std["List"][14](add_resource,r[2]);
     Buffer["add_string"](buf,"dyndeps:");
     Resource["Resources"][13](add_resource,dyndeps);
-    return My_std["Digest"][6](My_std["Digest"][1](Buffer["contents"](buf)));
-    };
+    return My_std["Digest"][6](My_std["Digest"][1](Buffer["contents"](buf)))};
 
 var
  digest_rule=
@@ -329,7 +320,7 @@ var
     Buffer["add_string"](buf,action[1]);
     var
      add_resource=
-      function(r){return Buffer["add_string"](buf,Resource["digest"](r));};
+      function(r){return Buffer["add_string"](buf,Resource["digest"](r))};
     
     Buffer["add_string"](buf,"prods:");
     My_std["List"][14](add_resource,r[3]);
@@ -337,42 +328,40 @@ var
     My_std["List"][14](add_resource,r[2]);
     Buffer["add_string"](buf,"dyndeps:");
     Resource["Resources"][13](add_resource,dyndeps);
-    return My_std["Digest"][1](Buffer["contents"](buf));
-    };
+    return My_std["Digest"][1](Buffer["contents"](buf))};
 
 var
  cached_digest=
   function(r)
    {try
-     {return /* Some */[0,Digest_cache["get"](Pervasives["^"]("Rule: ",r[1]))];
-      }
+     {return /* Some */[0,Digest_cache["get"](Pervasives["^"]("Rule: ",r[1]))]}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-       {return /* None */0;}
+       {return /* None */0}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
 var
  store_digest=
   function(r,digest)
-   {return Digest_cache["put"](Pervasives["^"]("Rule: ",r[1]),digest);};
+   {return Digest_cache["put"](Pervasives["^"]("Rule: ",r[1]),digest)};
 
 var
  print_digest=
-  function(f,x){return Format["pp_print_string"](f,My_std["Digest"][6](x));};
+  function(f,x){return Format["pp_print_string"](f,My_std["Digest"][6](x))};
 
 var
  exists2=
   function(find,p,rs)
    {try
-     {return /* Some */[0,find(p,rs)];}
+     {return /* Some */[0,find(p,rs)]}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-       {return /* None */0;}
+       {return /* None */0}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -386,9 +375,8 @@ var
               (My_std["Outcome"][3],
                builder
                 (My_std["List"][16]
-                  (function(x){return /* :: */[0,x,/* [] */0];},deps)))
-            :/* [] */0;
-    };
+                  (function(x){return /* :: */[0,x,/* [] */0]},deps)))
+            :/* [] */0};
 
 var
  build_deps_of_tags_on_cmd=
@@ -402,10 +390,8 @@ var
                          (My_std["Outcome"][2],
                           builder
                            (My_std["List"][16]
-                             (function(x){return /* :: */[0,x,/* [] */0];},deps)))
-                       :/* () */0;
-               });
-    };
+                             (function(x){return /* :: */[0,x,/* [] */0]},deps)))
+                       :/* () */0})};
 
 var
  call=
@@ -446,15 +432,13 @@ var
                       
                       dyndeps[1]=Resource["Resources"][4](res$prime,dyndeps[1]);
                       My_std["List"][14]
-                       (function(x){return Resource["Cache"][13](x,res$prime);},
+                       (function(x){return Resource["Cache"][13](x,res$prime)},
                         r[3]);
                       return res;
-                      
-                     case 1:return res;
+                     case 1:return res
                      }
                    },
-                 results);
-        };
+                 results)};
     
     var
      match=
@@ -468,7 +452,7 @@ var
         print,
         r);
     
-    var action=r[6](function(x){return x;},builder$1);
+    var action=r[6](function(x){return x},builder$1);
     
     build_deps_of_tags_on_cmd(builder$1,action[2]);
     var dyndeps$1=dyndeps[1];
@@ -489,7 +473,7 @@ var
      match$2=
       exists2
        (My_std["List"][32],
-        function(r){return !Resource["exists_in_build_dir"](r);},
+        function(r){return !Resource["exists_in_build_dir"](r)},
         r[3]);
     
     var match$3;
@@ -578,8 +562,7 @@ var
                     (l+1,
                      [/* Format */0,
                       [/* String_literal */11,"cache hit",/* End_of_format */0],
-                      "cache hit"]);
-          }
+                      "cache hit"])}
         else
          {var variant=reason[1];
           
@@ -604,8 +587,7 @@ var
                           [/* Char_literal */12,41,/* End_of_format */0]]],
                         "cache miss: a dynamic dependency has changed (%a)"],
                        Resource["print"],
-                       reason[2]);
-            }
+                       reason[2])}
           else
            {if(variant>=-433471969)
              {var match$7=reason[2];
@@ -629,8 +611,7 @@ var
                        print_digest,
                        match$7[1],
                        print_digest,
-                       match$7[2]);
-              }
+                       match$7[2])}
             else
              {return Log["dprintf"]
                       (l,
@@ -641,8 +622,7 @@ var
                           [/* Char_literal */12,41,/* End_of_format */0]]],
                         "cache miss: a product is not in build dir (%a)"],
                        Resource["print"],
-                       reason[2]);
-              }
+                       reason[2])}
             }
           }
         };
@@ -669,10 +649,7 @@ var
           print,
           r);
       
-      throw [0,Exit_rule_error,msg];
-      }
-    else
-     {}
+      throw [0,Exit_rule_error,msg]}
     
     explain_reason(3);
     var
@@ -693,13 +670,10 @@ var
                (/* None */0,
                 match$7[1],
                 function(oc)
-                 {return Pervasives["output_string"](oc,digest_deps$1);})}
-            else
-             {}
+                 {return Pervasives["output_string"](oc,digest_deps$1)})}
             }
           
-          My_std["List"][14]
-           (function(r){return Resource["Cache"][5](r);},r[3]);
+          My_std["List"][14](function(r){return Resource["Cache"][5](r)},r[3]);
           if(!cached)
            {var new_rule_digest=digest_rule(r,dyndeps$1,action);
             
@@ -717,20 +691,18 @@ var
                   var new_digest=My_std["List"][36](f,new_prod_digests);
                   
                   if(CamlPrimitive["caml_string_notequal"](digest,new_digest))
-                   {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+                   {throw CamlPrimitive["caml_global_data"]["Not_found"]}
                   else
-                   {return 0;}
+                   {return 0}
                   }
                 catch(exn)
                  {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-                   {return Resource["Cache"][3](p);}
+                   {return Resource["Cache"][3](p)}
                   else
-                   {throw exn;}
+                   {throw exn}
                   }
                 },
               r[3])}
-          else
-           {}
           
           return Log["dprintf"]
                   (5,
@@ -740,31 +712,29 @@ var
                      [/* Alpha */15,/* End_of_format */0]],
                     "end rule %a"],
                    print,
-                   r);
-          }
-        catch(exn){My_std["List"][14](Resource["clean"],r[3]);throw exn;}
+                   r)}
+        catch(exn){My_std["List"][14](Resource["clean"],r[3]);throw exn}
         };
     
     return cached
             ?thunk(/* () */0)
             :My_std["List"][14]
               (function(x)
-                {return Resource["Cache"][8](x,action[2],thunk,r[3]);},
-               r[3]);
-    };
+                {return Resource["Cache"][8](x,action[2],thunk,r[3])},
+               r[3])};
 
 var rules=[0,/* [] */0];
 
 var
  match=
   /* tuple */[0,
-   function(param){return rules[1];},
+   function(param){return rules[1]},
    function(pos,r)
     {try
       {var
         match$1=
          My_std["List"][32]
-          (function(x){return CamlPrimitive["caml_string_equal"](x[1],r[1]);},
+          (function(x){return CamlPrimitive["caml_string_equal"](x[1],r[1])},
            rules[1]);
        
        throw [0,
@@ -777,8 +747,7 @@ var
                    [/* Char_literal */12,41,/* End_of_format */0]]],
                  "Rule.add_rule: already exists: (%a)"],
                 print,
-                r)];
-       }
+                r)]}
      catch(exn)
       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
         {if(typeof pos==="number")
@@ -786,8 +755,7 @@ var
                    ?(rules[1]=/* :: */[0,r,rules[1]],0)
                    :(rules[1]=
                      Pervasives["@"](rules[1],/* :: */[0,r,/* [] */0]),
-                     0);
-           }
+                     0)}
          else
           {if(pos[1]>=497182236)
             {var s=pos[2];
@@ -797,12 +765,10 @@ var
                      (function(x,acc)
                        {return CamlPrimitive["caml_string_equal"](x[1],s)
                                 ?/* :: */[0,x,/* :: */[0,r,acc]]
-                                :/* :: */[0,x,acc];
-                        },
+                                :/* :: */[0,x,acc]},
                       rules[1],
                       /* [] */0),
-                    0;
-             }
+                    0}
            else
             {var s$1=pos[2];
              
@@ -811,19 +777,17 @@ var
                      (function(x,acc)
                        {return CamlPrimitive["caml_string_equal"](x[1],s$1)
                                 ?/* :: */[0,r,/* :: */[0,x,acc]]
-                                :/* :: */[0,x,acc];
-                        },
+                                :/* :: */[0,x,acc]},
                       rules[1],
                       /* [] */0),
-                    0;
-             }
+                    0}
            }
          }
        else
-        {throw exn;}
+        {throw exn}
        }
      },
-   function(param){return rules[1]=/* [] */0,0;}];
+   function(param){return rules[1]=/* [] */0,0}];
 
 var clear_rules=match[3];
 
@@ -889,16 +853,12 @@ var
                                  "in rule %s, multiple occurrences of the resource %s"],
                                 name,
                                 x))
-                           :/* :: */[0,r,acc];
-                   },
+                           :/* :: */[0,r,acc]},
                  xs,
-                 init);
-        };
+                 init)};
     
     if(prods===/* [] */0&&prod===/* None */0&&stamp===/* None */0)
-     {throw [0,Exit_rule_error,"Can't make a rule that produces nothing"];}
-    else
-     {}
+     {throw [0,Exit_rule_error,"Can't make a rule that produces nothing"]}
     
     var match$2;
     if(stamp)
@@ -919,8 +879,7 @@ var
       function(env,build)
        {var cmd=code(env,build);
         
-        return /* record */[0,Command["digest"](cmd),cmd];
-        };
+        return /* record */[0,Command["digest"](cmd),cmd]};
     
     return add_rule
             (insert,
@@ -930,8 +889,7 @@ var
               prods$1,
               match$2[1],
               doc,
-              code$1]);
-    };
+              code$1])};
 
 var
  mv=
@@ -942,8 +900,7 @@ var
               [/* A */1,"mv"],
               /* :: */[0,
                /* P */[2,src],
-               /* :: */[0,/* Px */[3,dest],/* [] */0]]]]];
-    };
+               /* :: */[0,/* Px */[3,dest],/* [] */0]]]]]};
 
 var
  cp=
@@ -954,8 +911,7 @@ var
               [/* A */1,"cp"],
               /* :: */[0,
                /* P */[2,src],
-               /* :: */[0,/* Px */[3,dest],/* [] */0]]]]];
-    };
+               /* :: */[0,/* Px */[3,dest],/* [] */0]]]]]};
 
 var
  cp_p=
@@ -968,8 +924,7 @@ var
                [/* A */1,"-p"],
                /* :: */[0,
                 /* P */[2,src],
-                /* :: */[0,/* Px */[3,dest],/* [] */0]]]]]];
-    };
+                /* :: */[0,/* Px */[3,dest],/* [] */0]]]]]]};
 
 var
  ln_f=
@@ -982,8 +937,7 @@ var
                [/* A */1,"-f"],
                /* :: */[0,
                 /* P */[2,pointed],
-                /* :: */[0,/* Px */[3,pointer],/* [] */0]]]]]];
-    };
+                /* :: */[0,/* Px */[3,pointer],/* [] */0]]]]]]};
 
 var
  ln_s=
@@ -996,8 +950,7 @@ var
                [/* A */1,"-s"],
                /* :: */[0,
                 /* P */[2,pointed],
-                /* :: */[0,/* Px */[3,pointer],/* [] */0]]]]]];
-    };
+                /* :: */[0,/* Px */[3,pointer],/* [] */0]]]]]]};
 
 var
  rm_f=
@@ -1006,8 +959,7 @@ var
             /* S */[0,
              /* :: */[0,
               [/* A */1,"rm"],
-              /* :: */[0,[/* A */1,"-f"],/* :: */[0,/* Px */[3,x],/* [] */0]]]]];
-    };
+              /* :: */[0,[/* A */1,"-f"],/* :: */[0,/* Px */[3,x],/* [] */0]]]]]};
 
 var
  chmod=
@@ -1016,8 +968,7 @@ var
             /* S */[0,
              /* :: */[0,
               [/* A */1,"chmod"],
-              /* :: */[0,opts,/* :: */[0,/* Px */[3,file],/* [] */0]]]]];
-    };
+              /* :: */[0,opts,/* :: */[0,/* Px */[3,file],/* [] */0]]]]]};
 
 var
  cmp=
@@ -1026,8 +977,7 @@ var
             /* S */[0,
              /* :: */[0,
               [/* A */1,"cmp"],
-              /* :: */[0,/* P */[2,a],/* :: */[0,/* Px */[3,b],/* [] */0]]]]];
-    };
+              /* :: */[0,/* P */[2,a],/* :: */[0,/* Px */[3,b],/* [] */0]]]]]};
 
 var Common_commands=[0,mv,cp,cp_p,ln_f,ln_s,rm_f,chmod,cmp];
 
@@ -1050,14 +1000,12 @@ var
                var dest$1=env(dest);
                
                Shell["mkdir_p"](Pathname["dirname"](dest$1));
-               return Common_commands[3](src$1,dest$1);
-               });
-    };
+               return Common_commands[3](src$1,dest$1)})};
 
 var
  show_documentation=
   function(param)
-   {var pp=function(fmt){return Log["raw_dprintf"](-1,fmt);};
+   {var pp=function(fmt){return Log["raw_dprintf"](-1,fmt)};
     
     var rules$1=get_rules(/* () */0);
     
@@ -1073,16 +1021,14 @@ var
                      /* End_of_format */0]]],
                   "%a@\n@\n"],
                  pretty_print(Resource["print_pattern"]),
-                 rule);
-        },
+                 rule)},
       rules$1);
     return pp
             ([/* Format */0,
               [/* Formatting_lit */17,
                /* Flush_newline */4,
                /* End_of_format */0],
-              "@."]);
-    };
+              "@."])};
 
 module["exports"]=
 {"Failed":Failed,

@@ -23,21 +23,19 @@ var jobs=[0,1];
 
 var
  no_tag_handler=
-  function(param){return Pervasives["failwith"]("no_tag_handler");};
+  function(param){return Pervasives["failwith"]("no_tag_handler")};
 
 var tag_handler=[0,no_tag_handler];
 
 var
  atomize=
   function(l)
-   {return /* S */[0,My_std["List"][16](function(x){return /* A */[1,x];},l)];
-    };
+   {return /* S */[0,My_std["List"][16](function(x){return /* A */[1,x]},l)]};
 
 var
  atomize_paths=
   function(l)
-   {return /* S */[0,My_std["List"][16](function(x){return /* P */[2,x];},l)];
-    };
+   {return /* S */[0,My_std["List"][16](function(x){return /* P */[2,x]},l)]};
 
 var
  env_path=
@@ -58,18 +56,16 @@ var
        function(path)
         {return CamlPrimitive["caml_string_equal"](path,"")
                  ?Filename["current_dir_name"]
-                 :path;
-         };
+                 :path};
      
-     return My_std["List"][16](norm_current_dir_name,paths);
-     }];
+     return My_std["List"][16](norm_current_dir_name,paths)}];
 
 var virtual_solvers=Hashtbl["create"](/* None */0,32);
 
 var
  setup_virtual_command_solver=
   function(virtual_command,solver)
-   {return Hashtbl["replace"](virtual_solvers,virtual_command,solver);};
+   {return Hashtbl["replace"](virtual_solvers,virtual_command,solver)};
 
 var
  virtual_solver=
@@ -94,11 +90,11 @@ var
             virtual_command));
         }
       else
-       {throw exn;}
+       {throw exn}
       }
     
     try
-     {return solver(/* () */0);}
+     {return solver(/* () */0)}
     catch(exn$1)
      {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
        {return Pervasives["failwith"]
@@ -112,10 +108,9 @@ var
                        " has failed finding a valid command",
                        /* End_of_format */0]]],
                     "the solver for the virtual command %S has failed finding a valid command"],
-                   virtual_command));
-        }
+                   virtual_command))}
       else
-       {throw exn$1;}
+       {throw exn$1}
       }
     };
 
@@ -124,8 +119,7 @@ var
   function(file)
    {return My_std["sys_file_exists"](file)||
            (Sys["win32"]||Sys["cygwin"])&&
-           My_std["sys_file_exists"](Pervasives["^"](file,".exe"));
-    };
+           My_std["sys_file_exists"](Pervasives["^"](file,".exe"))};
 
 var
  search_in_path=
@@ -136,16 +130,14 @@ var
        {return CamlPrimitive["caml_string_equal"]
                  (path,Filename["current_dir_name"])
                 ?file_or_exe_exists(cmd)
-                :file_or_exe_exists(My_std["filename_concat"](path,cmd));
-        };
+                :file_or_exe_exists(My_std["filename_concat"](path,cmd))};
     
     if(Filename["is_implicit"](cmd))
      {var path=My_std["List"][32](try_path,My_std["!*"](env_path));
       
-      return My_std["filename_concat"](path,cmd);
-      }
+      return My_std["filename_concat"](path,cmd)}
     else
-     {return cmd;}
+     {return cmd}
     };
 
 var
@@ -166,12 +158,12 @@ var
     var
      put_space=
       function(param)
-       {return first[1]?(first[1]=/* false */0,0):Buffer["add_char"](b,32);};
+       {return first[1]?(first[1]=/* false */0,0):Buffer["add_char"](b,32)};
     
     var
      put_filename=
       function(p)
-       {return Buffer["add_string"](b,Shell["quote_filename_if_needed"](p));};
+       {return Buffer["add_string"](b,Shell["quote_filename_if_needed"](p))};
     
     var
      do_spec=
@@ -179,19 +171,18 @@ var
        {var exit;
         
         if(typeof param==="number")
-         {switch(param){case 0:return /* () */0;}}
+         {switch(param){case 0:return /* () */0}}
         else
          {switch(param[0])
            {case 0:return My_std["List"][14](do_spec,param[1]);
-            case 1:exit=61;
-            case 2:exit=61;
+            case 1:exit=61;break;
+            case 2:exit=61;break;
             case 3:
              var u=param[1];
              
              put_space(/* () */0);
              put_filename(u);
              return call_with_target(u);
-             
             case 4:
              put_space(/* () */0);return Buffer["add_string"](b,param[1]);
             case 5:
@@ -199,7 +190,6 @@ var
              
              call_with_tags(tags);
              return do_spec(tag_handler[1](tags));
-             
             case 6:
              var v=param[1];
              
@@ -216,27 +206,24 @@ var
                             [/* Char_literal */12,62,/* End_of_format */0]]],
                           "<virtual %s>"],
                          Shell["quote_filename_if_needed"](v)));
-             
-            case 7:put_space(/* () */0);return put_filename($$self(param[1]));
+            case 7:put_space(/* () */0);return put_filename($$self(param[1]))
             }}
         
         switch(exit)
-         {case 61:put_space(/* () */0);return put_filename(param[1]);}
+         {case 61:put_space(/* () */0);return put_filename(param[1])}
         };
     
     do_spec(spec);
-    return Buffer["contents"](b);
-    };
+    return Buffer["contents"](b)};
 
 var
  string_of_command_spec=
   function(x)
    {return string_of_command_spec_with_calls
-            (function(prim){return prim;},
-             function(prim){return prim;},
+            (function(prim){return prim},
+             function(prim){return prim},
              /* false */0,
-             x);
-    };
+             x)};
 
 var
  string_target_and_tags_of_command_spec=
@@ -247,20 +234,19 @@ var
     
     var
      union_rtags=
-      function(tags){return rtags[1]=Tags["union"](rtags[1],tags),0;};
+      function(tags){return rtags[1]=Tags["union"](rtags[1],tags),0};
     
     var
      s=
       string_of_command_spec_with_calls
        (union_rtags,
-        function(prim,prim$1){return prim[1]=prim$1,0;}(rtarget),
+        function(prim,prim$1){return prim[1]=prim$1,0}(rtarget),
         /* true */1,
         spec);
     
     var target=CamlPrimitive["caml_string_equal"](rtarget[1],"")?s:rtarget[1];
     
-    return /* tuple */[0,s,target,rtags[1]];
-    };
+    return /* tuple */[0,s,target,rtags[1]]};
 
 var
  string_print_of_command_spec=
@@ -274,8 +260,7 @@ var
     var s=match[1];
     
     return function(param)
-     {if(!quiet){Log["event"](/* Some */[0,pretend],s,target,tags)}return s;};
-    };
+     {if(!quiet){Log["event"](/* Some */[0,pretend],s,target,tags)}return s}};
 
 var
  print_escaped_string=
@@ -284,14 +269,13 @@ var
             (f,
              [/* Format */0,
               [/* Caml_string */3,/* No_padding */0,/* End_of_format */0],
-              "%S"]);
-    };
+              "%S"])};
 
 var
  print=
   function(f,param)
    {if(typeof param==="number")
-     {switch(param){case 0:return Format["pp_print_string"](f,"nop");}}
+     {switch(param){case 0:return Format["pp_print_string"](f,"nop")}}
     else
      {switch(param[0])
        {case 0:return My_std["List"][1](print,f,param[1]);
@@ -323,8 +307,7 @@ var
                   My_std["List"][1](print_escaped_string),
                   param[1],
                   print_escaped_string,
-                  param[2]);
-         
+                  param[2])
         }}
     };
 
@@ -334,8 +317,7 @@ var
    {return My_std["sbprintf"]
             ([/* Format */0,[/* Alpha */15,/* End_of_format */0],"%a"],
              print,
-             x);
-    };
+             x)};
 
 var xmin=[0,Pervasives["max_int"]];
 
@@ -364,8 +346,7 @@ var
               xmin[1]=
               Pervasives["min"](xmin[1],x),
               0)
-            :0;
-    };
+            :0};
 
 var
  dump_parallel_stats=
@@ -378,8 +359,7 @@ var
                   [/* String_literal */11,
                    "# No parallelism done",
                    /* End_of_format */0],
-                  "# No parallelism done"]);
-        }
+                  "# No parallelism done"])}
       else
        {var xaverage=xsumall[1]/xcountall[1];
         
@@ -431,11 +411,10 @@ var
                  xmax[1],
                  xmin[1],
                  xaveragepara,
-                 xaverage);
-        }
+                 xaverage)}
       }
     else
-     {return 0;}
+     {return 0}
     };
 
 var match=/* tuple */[0,add_parallel_stat,dump_parallel_stats];
@@ -452,18 +431,16 @@ var
              dest_path,
              function(oc)
               {return My_std["List"][14]
-                       (Pervasives["output_string"](oc),texts);
-               });
-    };
+                       (Pervasives["output_string"](oc),texts)})};
 
-var echo=function(x,y,param){do_echo(x,y);return "";};
+var echo=function(x,y,param){do_echo(x,y);return ""};
 
 var Primitives=[0,do_echo,echo];
 
 var
  list_rev_iter=
   function(f,param)
-   {return param?(list_rev_iter(f,param[2]),f(param[1])):/* () */0;};
+   {return param?(list_rev_iter(f,param[2]),f(param[1])):/* () */0};
 
 var
  flatten_commands=
@@ -475,7 +452,7 @@ var
          {var match$1=param[1];
           
           if(typeof match$1==="number")
-           {switch(match$1){case 0:return loop(acc,param[2]);}}
+           {switch(match$1){case 0:return loop(acc,param[2])}}
           else
            {switch(match$1[0])
              {case 0:return loop(loop(acc,match$1[1]),param[2]);
@@ -485,20 +462,17 @@ var
                          string_print_of_command_spec(match$1[1],quiet,pretend),
                          acc],
                         param[2]);
-               
               case 2:
                return loop
                        (/* :: */[0,Primitives[2](match$1[1],match$1[2]),acc],
-                        param[2]);
-               
+                        param[2])
               }}
           }
         else
-         {return acc;}
+         {return acc}
         };
     
-    return My_std["List"][9](loop(/* [] */0,/* :: */[0,cmd,/* [] */0]));
-    };
+    return My_std["List"][9](loop(/* [] */0,/* :: */[0,cmd,/* [] */0]))};
 
 var
  execute_many=
@@ -524,15 +498,14 @@ var
     var display=Log["display"];
     
     if(cmds===/* [] */0)
-     {return /* None */0;}
+     {return /* None */0}
     else
      {var konts=My_std["List"][16](flatten_commands(quiet,pretend),cmds);
       
       if(pretend)
        {My_std["List"][14]
-         (My_std["List"][14](function(f){return f(/* () */0);}),konts);
-        return /* None */0;
-        }
+         (My_std["List"][14](function(f){return f(/* () */0)}),konts);
+        return /* None */0}
       else
        {My_std["reset_filesys_cache"](/* () */0);
         if(degraded)
@@ -547,8 +520,7 @@ var
                 if(acc_exn)
                  {return /* tuple */[0,
                           /* :: */[0,/* false */0,acc_res],
-                          acc_exn];
-                  }
+                          acc_exn]}
                 else
                  {try
                    {My_std["List"][14]
@@ -576,21 +548,18 @@ var
                               rc,
                               cmd)}
                           
-                          throw [0,My_std["Exit_with_code"],rc];
-                          }
+                          throw [0,My_std["Exit_with_code"],rc]}
                         else
-                         {return 0;}
+                         {return 0}
                         },
                       cmds);
                     return /* tuple */[0,
                             /* :: */[0,/* true */1,acc_res],
-                            /* None */0];
-                    }
+                            /* None */0]}
                   catch(e)
                    {return /* tuple */[0,
                             /* :: */[0,/* false */0,acc_res],
-                            /* Some */[0,e]];
-                    }
+                            /* Some */[0,e]]}
                   }
                 },
               [/* tuple */0,/* [] */0,/* None */0],
@@ -601,16 +570,14 @@ var
           return opt_exn
                   ?/* Some */[0,
                     /* tuple */[0,My_std["List"][9](match$1[1]),opt_exn[1]]]
-                  :/* None */0;
-          }
+                  :/* None */0}
         else
          {return My_unix["execute_many"]
                   (max_jobs,
                    /* Some */[0,ticker],
                    /* None */0,
                    /* Some */[0,display],
-                   konts);
-          }
+                   konts)}
         }
       }
     };
@@ -620,7 +587,7 @@ var
   function(quiet,pretend,cmd)
    {var match$1=execute_many(quiet,pretend,/* :: */[0,cmd,/* [] */0]);
     
-    if(match$1){throw match$1[1][2];}else{return /* () */0;}
+    if(match$1){throw match$1[1][2]}else{return /* () */0}
     };
 
 var
@@ -639,7 +606,7 @@ var
             case 5:return f(x[1]);
             default:exit=19;}}
         
-        switch(exit){case 19:return /* () */0;}
+        switch(exit){case 19:return /* () */0}
         };
     
     var
@@ -648,19 +615,18 @@ var
        {var exit;
         
         if(typeof x==="number")
-         {switch(x){case 0:exit=18;}}
+         {switch(x){case 0:exit=18;break}}
         else
          {switch(x[0])
            {case 0:return My_std["List"][14](cmd,x[1]);
             case 1:return spec(x[1]);
-            case 2:exit=18;
+            case 2:exit=18;break
             }}
         
-        switch(exit){case 18:return /* () */0;}
+        switch(exit){case 18:return /* () */0}
         };
     
-    return cmd(x);
-    };
+    return cmd(x)};
 
 var
  fold_pathnames=
@@ -675,31 +641,28 @@ var
         else
          {switch(param[0])
            {case 0:return My_std["List"][20](spec,param[1]);
-            case 2:exit=16;
-            case 3:exit=16;
+            case 2:exit=16;break;
+            case 3:exit=16;break;
             default:exit=14;}}
         
         switch(exit)
-         {case 16:return f(param[1]);
-          case 14:return function(acc){return acc;};
-          }
+         {case 16:return f(param[1]);case 14:return function(acc){return acc}}
         };
     
     var
      cmd=
       function(param)
        {if(typeof param==="number")
-         {switch(param){case 0:return function(acc){return acc;};}}
+         {switch(param){case 0:return function(acc){return acc}}}
         else
          {switch(param[0])
            {case 0:return My_std["List"][20](cmd,param[1]);
             case 1:return spec(param[1]);
-            case 2:return f(param[2]);
+            case 2:return f(param[2])
             }}
         };
     
-    return cmd(x);
-    };
+    return cmd(x)};
 
 var
  reduce=
@@ -708,29 +671,28 @@ var
      $$self=
       function(x,acc)
        {if(typeof x==="number")
-         {switch(x){case 0:return acc;}}
+         {switch(x){case 0:return acc}}
         else
          {switch(x[0])
            {case 0:return My_std["List"][20]($$self,x[1],acc);
             case 5:return $$self(tag_handler[1](x[1]),acc);
             case 7:return /* :: */[0,/* Quote */[7,reduce(x[1])],acc];
-            default:return /* :: */[0,x,acc];}}
+            default:return /* :: */[0,x,acc]}}
         };
     
     var xs=$$self(x,/* [] */0);
     
-    return xs?xs[2]?/* S */[0,xs]:xs[1]:/* N */0;
-    };
+    return xs?xs[2]?/* S */[0,xs]:xs[1]:/* N */0};
 
 var list=My_std["List"][20];
 
-var text=function(x,acc){return /* :: */[0,My_std["Digest"][1](x),acc];};
+var text=function(x,acc){return /* :: */[0,My_std["Digest"][1](x),acc]};
 
 var
  cmd=
   function(param)
    {if(typeof param==="number")
-     {switch(param){case 0:return function(acc){return acc;};}}
+     {switch(param){case 0:return function(acc){return acc}}}
     else
      {switch(param[0])
        {case 0:return list(cmd,param[1]);
@@ -738,9 +700,8 @@ var
          var spec=param[1];
          
          return function(acc)
-          {return /* :: */[0,string_of_command_spec(spec),acc];};
-         
-        case 2:return list(text,/* :: */[0,param[2],param[1]]);
+          {return /* :: */[0,string_of_command_spec(spec),acc]};
+        case 2:return list(text,/* :: */[0,param[2],param[1]])
         }}
     };
 
@@ -751,14 +712,13 @@ var
     
     var exit;
     
-    if(xs){if(xs[2]){exit=8;}else{return xs[1];}}else{exit=8;}
+    if(xs){if(xs[2]){exit=8;}else{return xs[1]}}else{exit=8;}
     
     switch(exit)
      {case 8:
        return My_std["Digest"][1]
                (Pervasives["^"]
-                 ("[",Pervasives["^"](My_std["String"][22](";",xs),"]")));
-       
+                 ("[",Pervasives["^"](My_std["String"][22](";",xs),"]")))
       }
     };
 
@@ -771,33 +731,29 @@ var
             (My_std["List"][9],
              My_std["List"][19]
               (function(acc,dep)
-                {return My_std["List"][30](dep,acc)?acc:/* :: */[0,dep,acc];},
+                {return My_std["List"][30](dep,acc)?acc:/* :: */[0,dep,acc]},
                acc,
-               deps));
-    };
+               deps))};
 
 var
  deps_of_tags=
   function(tags)
    {return My_std["List"][19]
             (function(acc,param)
-              {return Tags["does_match"](tags,param[1])?cons(param[2],acc):acc;
-               },
+              {return Tags["does_match"](tags,param[1])?cons(param[2],acc):acc},
              /* [] */0,
-             all_deps_of_tags[1]);
-    };
+             all_deps_of_tags[1])};
 
 var
  set_deps_of_tags=
   function(tags,deps)
    {return all_deps_of_tags[1]=
            /* :: */[0,/* tuple */[0,tags,deps],all_deps_of_tags[1]],
-           0;
-    };
+           0};
 
 var
  dep=
-  function(tags,deps){return set_deps_of_tags(Tags["of_list"](tags),deps);};
+  function(tags,deps){return set_deps_of_tags(Tags["of_list"](tags),deps)};
 
 var
  pdep=
@@ -807,11 +763,9 @@ var
              function(param)
               {return dep
                        (/* :: */[0,Param_tags["make"](ptag,param),tags],
-                        deps(param));
-               });
-    };
+                        deps(param))})};
 
-var list_all_deps=function(param){return all_deps_of_tags[1];};
+var list_all_deps=function(param){return all_deps_of_tags[1]};
 
 module["exports"]=
 {"atomize":atomize,

@@ -10,7 +10,7 @@ var Sys=require("./sys.js");
 
 
 CamlPrimitive["initialize_nat"](/* () */0);
-var length_nat=function(n){return /* -1 for tag */n["length"]-1-1;};
+var length_nat=function(n){return /* -1 for tag */n["length"]-1-1};
 
 var length_of_digit=Sys["word_size"];
 
@@ -18,13 +18,12 @@ var
  make_nat=
   function(len)
    {if(len<0)
-     {return Pervasives["invalid_arg"]("make_nat");}
+     {return Pervasives["invalid_arg"]("make_nat")}
     else
      {var res=CamlPrimitive["create_nat"](len);
       
       CamlPrimitive["set_to_zero_nat"](res,0,len);
-      return res;
-      }
+      return res}
     };
 
 var a_2=make_nat(2);
@@ -39,45 +38,40 @@ var
    {var res=CamlPrimitive["create_nat"](length);
     
     CamlPrimitive["blit_nat"](res,0,nat,off_set,length);
-    return res;
-    };
+    return res};
 
 var
  is_zero_nat=
   function(n,off,len)
    {return CamlPrimitive["compare_nat"]
             (make_nat(1),0,1,n,off,CamlPrimitive["num_digits_nat"](n,off,len))===
-           0;
-    };
+           0};
 
 var
  is_nat_int=
   function(nat,off,len)
    {return CamlPrimitive["num_digits_nat"](nat,off,len)===
            1&&
-           CamlPrimitive["is_digit_int"](nat,off);
-    };
+           CamlPrimitive["is_digit_int"](nat,off)};
 
 var
  sys_int_of_nat=
   function(nat,off,len)
    {return is_nat_int(nat,off,len)
             ?CamlPrimitive["nth_digit_nat"](nat,off)
-            :Pervasives["failwith"]("int_of_nat");
-    };
+            :Pervasives["failwith"]("int_of_nat")};
 
-var int_of_nat=function(nat){return sys_int_of_nat(nat,0,length_nat(nat));};
+var int_of_nat=function(nat){return sys_int_of_nat(nat,0,length_nat(nat))};
 
 var
  nat_of_int=
   function(i)
    {if(i<0)
-     {return Pervasives["invalid_arg"]("nat_of_int");}
+     {return Pervasives["invalid_arg"]("nat_of_int")}
     else
      {var res=make_nat(1);
       
-      return i===0?res:(CamlPrimitive["set_digit_nat"](res,0,i),res);
-      }
+      return i===0?res:(CamlPrimitive["set_digit_nat"](res,0,i),res)}
     };
 
 var
@@ -90,8 +84,7 @@ var
              nat2,
              off2,
              CamlPrimitive["num_digits_nat"](nat2,off2,len2))===
-           0;
-    };
+           0};
 
 var
  le_nat=
@@ -103,8 +96,7 @@ var
              nat2,
              off2,
              CamlPrimitive["num_digits_nat"](nat2,off2,len2))<=
-           0;
-    };
+           0};
 
 var
  lt_nat=
@@ -116,8 +108,7 @@ var
              nat2,
              off2,
              CamlPrimitive["num_digits_nat"](nat2,off2,len2))<
-           0;
-    };
+           0};
 
 var
  ge_nat=
@@ -129,8 +120,7 @@ var
              nat2,
              off2,
              CamlPrimitive["num_digits_nat"](nat2,off2,len2))>=
-           0;
-    };
+           0};
 
 var
  gt_nat=
@@ -142,22 +132,20 @@ var
              nat2,
              off2,
              CamlPrimitive["num_digits_nat"](nat2,off2,len2))>
-           0;
-    };
+           0};
 
 var
  gcd_int_nat=
   function(i,nat,off,len)
    {if(i===0)
-     {return 1;}
+     {return 1}
     else
      {if(is_nat_int(nat,off,len))
        {CamlPrimitive["set_digit_nat"]
          (nat,
           off,
           Int_misc["gcd_int"](CamlPrimitive["nth_digit_nat"](nat,off),i));
-        return 0;
-        }
+        return 0}
       else
        {var len_copy=1+len;
         
@@ -175,18 +163,17 @@ var
          (nat,
           off,
           Int_misc["gcd_int"](CamlPrimitive["nth_digit_nat"](remainder,0),i));
-        return 0;
-        }
+        return 0}
       }
     };
 
-var exchange=function(r1,r2){var old1=r1[1];r1[1]=r2[1];return r2[1]=old1,0;};
+var exchange=function(r1,r2){var old1=r1[1];r1[1]=r2[1];return r2[1]=old1,0};
 
 var
  gcd_nat=
   function(nat1,off1,len1,nat2,off2,len2)
    {if(is_zero_nat(nat1,off1,len1))
-     {CamlPrimitive["blit_nat"](nat1,off1,nat2,off2,len2);return len2;}
+     {CamlPrimitive["blit_nat"](nat1,off1,nat2,off2,len2);return len2}
     else
      {var copy1=[0,CamlPrimitive["create_nat"](1+len1)];
       
@@ -216,8 +203,7 @@ var
         }
       
       CamlPrimitive["blit_nat"](nat1,off1,copy1[1],0,real_len1);
-      return real_len1;
-      }
+      return real_len1}
     };
 
 var
@@ -250,7 +236,7 @@ var
       2;
     
     if(shift_cand===Sys["word_size"])
-     {return cand;}
+     {return cand}
     else
      {CamlPrimitive["complement_nat"](cand,0,cand_len);
       CamlPrimitive["shift_right_nat"](cand,0,1,a_1,0,shift_cand);
@@ -269,11 +255,9 @@ var
                   ?(CamlPrimitive["blit_nat"]
                      (cand,0,next_cand,cand_len,cand_len),
                     loop(/* () */0))
-                  :cand;
-          };
+                  :cand};
       
-      return loop(/* () */0);
-      }
+      return loop(/* () */0)}
     };
 
 var power_base_max=make_nat(2);
@@ -282,8 +266,7 @@ if(length_of_digit!==32)
  {if(length_of_digit!==64)
    {throw [0,
            CamlPrimitive["caml_global_data"]["Assert_failure"],
-           [0,"nat.ml",252,9]];
-    }
+           [0,"nat.ml",252,9]]}
   else
    {CamlPrimitive["set_digit_nat"](power_base_max,0,1e18),
     CamlPrimitive["mult_digit_nat"]
@@ -297,8 +280,7 @@ if(length_of_digit!==32)
  {if(length_of_digit!==64)
    {throw [0,
            CamlPrimitive["caml_global_data"]["Assert_failure"],
-           [0,"nat.ml",259,9]];
-    }
+           [0,"nat.ml",259,9]]}
   else
    {pmax=19;}
   }
@@ -310,8 +292,7 @@ if(length_of_digit!==32)
  {if(length_of_digit!==64)
    {throw [0,
            CamlPrimitive["caml_global_data"]["Assert_failure"],
-           [0,"nat.ml",266,9]];
-    }
+           [0,"nat.ml",266,9]]}
   else
    {max_superscript_10_power_in_int=18;}
   }
@@ -323,8 +304,7 @@ if(length_of_digit!==32)
  {if(length_of_digit!==64)
    {throw [0,
            CamlPrimitive["caml_global_data"]["Assert_failure"],
-           [0,"nat.ml",272,9]];
-    }
+           [0,"nat.ml",272,9]]}
   else
    {max_power_10_power_in_int=nat_of_int(1e18);}
   }
@@ -336,8 +316,7 @@ var
   function(nat,off)
    {if(is_nat_int(nat,off,1))
      {return Pervasives["string_of_int"]
-              (CamlPrimitive["nth_digit_nat"](nat,off));
-      }
+              (CamlPrimitive["nth_digit_nat"](nat,off))}
     else
      {CamlPrimitive["blit_nat"](b_2,0,nat,off,1);
       CamlPrimitive["div_digit_nat"]
@@ -355,16 +334,14 @@ var
         
         result[0]=Char["chr"](48+leading_digits);
         $$String["blit"](s1,0,result,result["length"]-len,len);
-        return Bytes["to_string"](result);
-        }
+        return Bytes["to_string"](result)}
       else
        {var result$1=Bytes["make"](max_superscript_10_power_in_int+2,48);
         
         $$String["blit"]
          (Pervasives["string_of_int"](leading_digits),0,result$1,0,2);
         $$String["blit"](s1,0,result$1,result$1["length"]-len,len);
-        return Bytes["to_string"](result$1);
-        }
+        return Bytes["to_string"](result$1)}
       }
     };
 
@@ -386,8 +363,7 @@ var
     
     while(j<i-1&&CamlPrimitive["is_digit_int"](power_base,j)){j=1+j;}
     
-    return /* tuple */[0,i-2,j];
-    };
+    return /* tuple */[0,i-2,j]};
 
 var
  int_to_string=
@@ -403,20 +379,19 @@ var
       
       i=i/base;
       }
-    return 0;
-    };
+    return 0};
 
 var
  power_base_int=
   function(base,i)
    {if(i===0||base===1)
-     {return nat_of_int(1);}
+     {return nat_of_int(1)}
     else
      {if(base===0)
-       {return nat_of_int(0);}
+       {return nat_of_int(0)}
       else
        {if(i<0)
-         {return Pervasives["invalid_arg"]("power_base_int");}
+         {return Pervasives["invalid_arg"]("power_base_int")}
         else
          {var power_base=make_nat(1+length_of_digit);
           
@@ -458,10 +433,9 @@ var
                     ?(CamlPrimitive["mult_digit_nat"]
                        (res2,0,newn,res,0,n,power_base,-1+rem),
                       res2)
-                    :res;
-            }
+                    :res}
           else
-           {return copy_nat(power_base,-1+rem,1);}
+           {return copy_nat(power_base,-1+rem,1)}
           }
         }
       }
@@ -473,7 +447,7 @@ var
    {var len=CamlPrimitive["num_digits_nat"](nat,off,len_nat);
     
     if(len===1)
-     {return raw_string_of_digit(nat,off);}
+     {return raw_string_of_digit(nat,off)}
     else
      {var len_copy=1+len;
       
@@ -484,7 +458,7 @@ var
       var rest_digit=make_nat(2);
       
       if(len>Int_misc["biggest_int"]/(1+pmax))
-       {return Pervasives["failwith"]("number too long");}
+       {return Pervasives["failwith"]("number too long")}
       else
        {var len_s=(1+pmax)*len;
         
@@ -509,8 +483,7 @@ var
           CamlPrimitive["blit_nat"](copy1,0,copy2,0,len_copy),
           CamlPrimitive["set_digit_nat"](copy1,len_copy,0)}
         
-        return Bytes["unsafe_to_string"](s);
-        }
+        return Bytes["unsafe_to_string"](s)}
       }
     };
 
@@ -523,12 +496,11 @@ var
     
     try
      {for(var i=0;i<=s["length"]-2;i++)
-       {if(s["charCodeAt"](i)!==48){index=i;throw Pervasives["Exit"];}else{}}
+       {if(s["charCodeAt"](i)!==48){index=i;throw Pervasives["Exit"]}}
       }
-    catch(exn){if(exn===Pervasives["Exit"]){}else{throw exn;}}
+    catch(exn){if(exn!==Pervasives["Exit"]){throw exn}}
     
-    return $$String["sub"](s,index,s["length"]-index);
-    };
+    return $$String["sub"](s,index,s["length"]-index)};
 
 var
  base_digit_of_char=
@@ -541,8 +513,7 @@ var
               ?n-55
               :n>=97&&n<=97+base-11
                 ?n-87
-                :Pervasives["failwith"]("invalid digit");
-    };
+                :Pervasives["failwith"]("invalid digit")};
 
 var
  sys_nat_of_string=
@@ -578,7 +549,7 @@ var
        {if(c<93)
          {if(58<-33+c>>>0){exit=5;}else{exit=6;}}
         else
-         {if(c!==95){exit=6;}else{if(i>off){}else{exit=6;}}}
+         {if(c!==95){exit=6;}else{if(!(i>off)){exit=6;}}}
         }
       else
        {if(c>=11)
@@ -592,8 +563,8 @@ var
          $$int=$$int*base+base_digit_of_char(c,base);
          
          digits_read=1+digits_read;
-         
-        case 5:
+         break;
+        case 5:break
         }
       
       if((digits_read===pint||i===bound)&&!(digits_read===0))
@@ -614,22 +585,19 @@ var
         
         digits_read=0;
         }
-      else
-       {}
       }
     
     var nat=CamlPrimitive["create_nat"](current_len);
     
     CamlPrimitive["blit_nat"](nat,0,nat1,0,current_len);
-    return nat;
-    };
+    return nat};
 
-var nat_of_string=function(s){return sys_nat_of_string(10,s,0,s["length"]);};
+var nat_of_string=function(s){return sys_nat_of_string(10,s,0,s["length"])};
 
 var
  float_of_nat=
   function(nat)
-   {return CamlPrimitive["caml_float_of_string"](string_of_nat(nat));};
+   {return CamlPrimitive["caml_float_of_string"](string_of_nat(nat))};
 
 module["exports"]=
 {"make_nat":make_nat,

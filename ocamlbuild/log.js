@@ -8,7 +8,7 @@ var My_unix=require("./my_unix.js");
 var Hashtbl=require("./hashtbl.js");
 
 
-var mode=function(param){return /* true */1;};
+var mode=function(param){return /* true */1};
 
 var Debug=[0,mode];
 
@@ -31,13 +31,12 @@ var
               /* None */0,
               /* None */0,
               /* Some */[0,level[1]],
-              /* () */0);
-     }];
+              /* () */0)}];
 
 var
  $unknown$neg=
   function(r)
-   {var match=r[1];return match?match[1]:My_std["!*"](failsafe_display);};
+   {var match=r[1];return match?match[1]:My_std["!*"](failsafe_display)};
 
 var
  init=
@@ -62,15 +61,13 @@ var
               log_file,
               /* Some */[0,level[1]],
               /* () */0)],
-           0;
-    };
+           0};
 
 var
  raw_dprintf=
   function(log_level)
    {return Display["dprintf"]
-            (/* Some */[0,log_level],$unknown$neg(internal_display));
-    };
+            (/* Some */[0,log_level],$unknown$neg(internal_display))};
 
 var
  dprintf=
@@ -94,23 +91,22 @@ var
                    [/* Formatting_lit */17,
                     /* Flush_newline */4,
                     /* End_of_format */0]],
-                  "@]@."])));
-    };
+                  "@]@."])))};
 
-var eprintf=function(fmt){return dprintf(-1,fmt);};
+var eprintf=function(fmt){return dprintf(-1,fmt)};
 
 var
  update=
-  function(param){return Display["update"]($unknown$neg(internal_display));};
+  function(param){return Display["update"]($unknown$neg(internal_display))};
 
 var
  $$event=
   function(pretend,x)
-   {return Display["event"]($unknown$neg(internal_display),pretend,x);};
+   {return Display["event"]($unknown$neg(internal_display),pretend,x)};
 
 var
  display=
-  function(x){return Display["display"]($unknown$neg(internal_display),x);};
+  function(x){return Display["display"]($unknown$neg(internal_display),x)};
 
 var do_at_end=Queue["create"](/* () */0);
 
@@ -122,8 +118,7 @@ var
    {return !Hashtbl["mem"](already_asked,name)
             ?(Hashtbl["add"](already_asked,name,/* () */0),
               Queue["add"](thunk,do_at_end))
-            :0;
-    };
+            :0};
 
 var
  at_end=
@@ -131,8 +126,7 @@ var
    {return at_end_always
             (name,
              function(param)
-              {return param>=94326179?thunk(/* Error */106380200):/* () */0;});
-    };
+              {return param>=94326179?thunk(/* Error */106380200):/* () */0})};
 
 var
  at_failure=
@@ -140,8 +134,7 @@ var
    {return at_end_always
             (name,
              function(param)
-              {return param>=106380200?thunk(/* Error */106380200):/* () */0;});
-    };
+              {return param>=106380200?thunk(/* Error */106380200):/* () */0})};
 
 var
  finish=
@@ -151,13 +144,12 @@ var
       
       Queue["clear"](do_at_end),
       Queue["iter"]
-       (function(thunk){return thunk(how?how[1]:/* Quiet */-249890668);},
+       (function(thunk){return thunk(how?how[1]:/* Quiet */-249890668)},
         actions)}
     
     var match=internal_display[1];
     
-    return match?Display["finish"](how,match[1]):/* () */0;
-    };
+    return match?Display["finish"](how,match[1]):/* () */0};
 
 module["exports"]=
 {"level":level,

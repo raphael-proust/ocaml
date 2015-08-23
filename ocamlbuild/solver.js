@@ -17,7 +17,7 @@ var Circular=CamlPrimitive["caml_set_oo_id"]([248,"Solver.Circular",0]);
 var
  failed=
   function(target,backtrace)
-   {Resource["Cache"][6](target);throw [0,Failed,backtrace];};
+   {Resource["Cache"][6](target);throw [0,Failed,backtrace]};
 
 var
  pp_repeat=
@@ -28,10 +28,9 @@ var
      {var s=param[2];
       
       Format["pp_print_string"](f,s);
-      return pp_repeat(f,/* tuple */[0,n-1,s]);
-      }
+      return pp_repeat(f,/* tuple */[0,n-1,s])}
     else
-     {return 0;}
+     {return 0}
     };
 
 var
@@ -54,9 +53,7 @@ var
       Resource["print"],
       target);
     if(My_std["List"][30](target,on_the_go_orig))
-     {throw [0,Circular,target,on_the_go_orig];}
-    else
-     {}
+     {throw [0,Circular,target,on_the_go_orig]}
     
     var match=Resource["Cache"][2](target);
     
@@ -73,7 +70,6 @@ var
                    "%a already built"],
                   Resource["print"],
                   target);
-         
         case 1:
          Log["dprintf"]
           (5,
@@ -84,16 +80,14 @@ var
            Resource["print"],
            target);
          return failed(target,/* Leaf */[0,target]);
-         
         case 2:
          if(!Pathname["is_relative"](target)&&Pathname["exists"](target))
           {return Resource["Cache"][15](target)
                    ?/* () */0
-                   :failed(target,/* Leaf */[0,target]);
-           }
+                   :failed(target,/* Leaf */[0,target])}
          else
           {if(Resource["exists_in_source_dir"](target))
-            {return Resource["Cache"][7](target);}
+            {return Resource["Cache"][7](target)}
            else
             {var
               matching_rules=
@@ -112,12 +106,12 @@ var
                       {My_std["List"][14]
                         (force_self(depth+1,on_the_go),Rule["deps_of_rule"](r));
                        try
-                        {return Rule["call"](self_firsts(depth+1,on_the_go),r);}
+                        {return Rule["call"](self_firsts(depth+1,on_the_go),r)}
                        catch(exn)
                         {if(exn===Rule["Failed"])
-                          {throw [0,Failed,/* Leaf */[0,target]];}
+                          {throw [0,Failed,/* Leaf */[0,target]]}
                          else
-                          {throw exn;}
+                          {throw exn}
                          }
                        }
                      catch(exn$1)
@@ -129,34 +123,31 @@ var
                                    (target,
                                     /* Depth */[2,
                                      target,
-                                     /* Choice */[1,/* :: */[0,backtrace,backtraces]]]);
-                           }
+                                     /* Choice */[1,/* :: */[0,backtrace,backtraces]]])}
                          else
                           {switch(backtrace[0])
-                            {case 2:var match$1=Resource["Cache"][12](backtrace[1]);
+                            {case 2:
+                              var match$1=Resource["Cache"][12](backtrace[1]);break;
                              default:var match$1=/* () */0;}
                            
-                           return until_works(rs$1,/* :: */[0,backtrace,backtraces]);
-                           }
+                           return until_works(rs$1,/* :: */[0,backtrace,backtraces])}
                          }
                        else
-                        {throw exn$1;}
+                        {throw exn$1}
                        }
                      }
                    else
                     {throw [0,
                             CamlPrimitive["caml_global_data"]["Assert_failure"],
-                            [0,"solver.ml",66,16]];
-                     }
+                            [0,"solver.ml",66,16]]}
                    };
                
-               return until_works(matching_rules,/* [] */0);
-               }
+               return until_works(matching_rules,/* [] */0)}
              else
-              {return failed(target,/* Leaf */[0,target]);}
+              {return failed(target,/* Leaf */[0,target])}
              }
            }
-         
+         break
         }
       }
     else
@@ -170,8 +161,7 @@ var
          "%a was suspended -> resuming"],
         Resource["print"],
         target);
-      return Resource["Cache"][10](match[1]);
-      }
+      return Resource["Cache"][10](match[1])}
     };
 
 var
@@ -181,18 +171,17 @@ var
      {var r=rs[1];
       
       try
-       {$$self(depth,on_the_go,r);return /* Good */[0,r];}
+       {$$self(depth,on_the_go,r);return /* Good */[0,r]}
       catch(exn)
        {if(exn[1]===Failed)
          {return self_first
-                  (depth,on_the_go,/* :: */[0,exn[2],already_failed],rs[2]);
-          }
+                  (depth,on_the_go,/* :: */[0,exn[2],already_failed],rs[2])}
         else
-         {throw exn;}
+         {throw exn}
         }
       }
     else
-     {return /* Bad */[1,[0,Failed,/* Choice */[1,already_failed]]];}
+     {return /* Bad */[1,[0,Failed,/* Choice */[1,already_failed]]]}
     };
 
 var
@@ -213,12 +202,11 @@ var
                
                return /* tuple */[0,
                        /* :: */[0,match$2[1],acc[1]],
-                       /* :: */[0,match$2[2],acc[2]]];
-               }
+                       /* :: */[0,match$2[2],acc[2]]]}
              else
-              {return acc;}
-             
-            case 1:return acc;
+              {return acc}
+             break;
+            case 1:return acc
             }
           },
         results,
@@ -259,20 +247,18 @@ var
      {var match$1=opt_exn[1];
       
       My_std["List"][21]
-       (function(res,thunk){return res?thunk(/* () */0):0;},match$1[1],thunks);
+       (function(res,thunk){return res?thunk(/* () */0):0},match$1[1],thunks);
       Log["finish"]([/* Some */0,/* Error */106380200],/* () */0);
-      throw match$1[2];
-      }
+      throw match$1[2]}
     else
-     {My_std["List"][14](function(thunk){return thunk(/* () */0);},thunks)}
+     {My_std["List"][14](function(thunk){return thunk(/* () */0)},thunks)}
     
-    return results;
-    };
+    return results};
 
 var
  force_self=
   function(depth,on_the_go,x)
-   {$$self(depth,on_the_go,x);return Resource["Cache"][9](x);};
+   {$$self(depth,on_the_go,x);return Resource["Cache"][9](x)};
 
 var solve=force_self(0,/* [] */0);
 
@@ -287,10 +273,10 @@ var
        var exn=match[1];
        
        if(exn[1]===Failed)
-        {throw [0,Failed,/* Target */[3,name,exn[2]]];}
+        {throw [0,Failed,/* Target */[3,name,exn[2]]]}
        else
-        {throw exn;}
-       
+        {throw exn}
+       break
       }
     };
 

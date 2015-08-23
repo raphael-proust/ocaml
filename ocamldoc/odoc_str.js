@@ -26,14 +26,14 @@ var
       var exit;
       
       if(param[1]!==0)
-       {if(cn!==0){exit=52;}else{return "+";}}
+       {if(cn!==0){exit=52;}else{return "+"}}
       else
-       {if(cn!==0){return "-";}else{exit=52;}}
+       {if(cn!==0){return "-"}else{exit=52;}}
       
-      switch(exit){case 52:return "";}
+      switch(exit){case 52:return ""}
       }
     else
-     {return "";}
+     {return ""}
     };
 
 var
@@ -48,12 +48,12 @@ var
     else
      {switch(match[0])
        {case 1:return /* true */1;
-        case 6:exit=51;
-        case 7:exit=51;
+        case 6:exit=51;break;
+        case 7:exit=51;break;
         default:exit=50;}}
     
     switch(exit)
-     {case 51:return is_arrow_type(match[1]);case 50:return /* false */0;}
+     {case 51:return is_arrow_type(match[1]);case 50:return /* false */0}
     };
 
 var
@@ -74,17 +74,17 @@ var
          {switch(match){}}
         else
          {switch(match[0])
-           {case 1:exit=42;
-            case 2:exit=42;
+           {case 1:exit=42;break;
+            case 2:exit=42;break;
             case 3:return /* false */0;
-            case 6:exit=45;
-            case 7:exit=45;
+            case 6:exit=45;break;
+            case 7:exit=45;break;
             default:exit=44;}}
         
         switch(exit)
          {case 45:return need_parent(match[1]);
           case 42:return /* true */1;
-          case 44:return /* false */0;
+          case 44:return /* false */0
           }
         };
     
@@ -115,8 +115,7 @@ var
                      "%s"],
                     variance),
                   Printtyp["type_scheme_max"]
-                   ([/* Some */0,/* false */0],fmt,t));
-        };
+                   ([/* Some */0,/* false */0],fmt,t))};
     
     if(type_list)
      {var tyl=type_list[2];
@@ -149,8 +148,7 @@ var
                  [/* String */2,/* No_padding */0,/* End_of_format */0]],
                 "@,%s"],
                sep);
-             return print_one_type(param[1],param[2]);
-             },
+             return print_one_type(param[1],param[2])},
            tyl),
          Format["fprintf"]
           (fmt,
@@ -159,12 +157,9 @@ var
             "@]"]))
        :print_one_type(variance,ty);
       }
-    else
-     {}
     
     Format["pp_print_flush"](fmt,/* () */0);
-    return Buffer["contents"](buf);
-    };
+    return Buffer["contents"](buf)};
 
 var
  string_of_type_list=
@@ -180,7 +175,7 @@ var
       else
        {exit=36;}
       
-      switch(exit){case 36:par$1=/* false */0;}
+      switch(exit){case 36:par$1=/* false */0;break}
       }
     
     return Printf["sprintf"]
@@ -194,9 +189,8 @@ var
              par$1?"(":"",
              raw_string_of_type_list
               (sep,
-               List["map"](function(t){return /* tuple */[0,"",t];},type_list)),
-             par$1?")":"");
-    };
+               List["map"](function(t){return /* tuple */[0,"",t]},type_list)),
+             par$1?")":"")};
 
 var
  string_of_type_param_list=
@@ -208,7 +202,7 @@ var
     var par;
     if(match){if(match[2]){par=/* true */1;}else{exit=32;}}else{exit=32;}
     
-    switch(exit){case 32:var par=/* false */0;}
+    switch(exit){case 32:var par=/* false */0;break}
     
     return Printf["sprintf"]
             ([/* Format */0,
@@ -225,11 +219,9 @@ var
                 (function(param)
                   {return /* tuple */[0,
                            string_of_variance(t,/* tuple */[0,param[2],param[3]]),
-                           param[1]];
-                   },
+                           param[1]]},
                  t[3])),
-             par?")":"");
-    };
+             par?")":"")};
 
 var
  string_of_type_extension_param_list=
@@ -241,7 +233,7 @@ var
     var par;
     if(match){if(match[2]){par=/* true */1;}else{exit=28;}}else{exit=28;}
     
-    switch(exit){case 28:var par=/* false */0;}
+    switch(exit){case 28:var par=/* false */0;break}
     
     return Printf["sprintf"]
             ([/* Format */0,
@@ -254,9 +246,8 @@ var
              par?"(":"",
              raw_string_of_type_list
               (", ",
-               List["map"](function(typ){return /* tuple */[0,"",typ];},te[3])),
-             par?")":"");
-    };
+               List["map"](function(typ){return /* tuple */[0,"",typ]},te[3])),
+             par?")":"")};
 
 var
  string_of_class_type_param_list=
@@ -266,7 +257,7 @@ var
     var par;
     if(l){if(l[2]){par=/* true */1;}else{exit=24;}}else{exit=24;}
     
-    switch(exit){case 24:var par=/* false */0;}
+    switch(exit){case 24:var par=/* false */0;break}
     
     return Printf["sprintf"]
             ([/* Format */0,
@@ -279,9 +270,8 @@ var
              par?"[":"",
              raw_string_of_type_list
               (", ",
-               List["map"](function(typ){return /* tuple */[0,"",typ];},l)),
-             par?"]":"");
-    };
+               List["map"](function(typ){return /* tuple */[0,"",typ]},l)),
+             par?"]":"")};
 
 var
  string_of_class_params=
@@ -294,8 +284,8 @@ var
        {var exit;
         
         switch(param[0])
-         {case 0:exit=21;
-          case 1:exit=21;
+         {case 0:exit=21;break;
+          case 1:exit=21;break;
           case 2:
            var t=param[2];
            
@@ -304,7 +294,8 @@ var
            var parent=is_arrow_type(t);
            
            switch(label)
-            {case "":var $js="";default:var $js=Pervasives["^"](label,":");}
+            {case "":var $js="";break;
+             default:var $js=Pervasives["^"](label,":");}
            Printf["bprintf"]
             (b,
              [/* Format */0,
@@ -323,20 +314,18 @@ var
              Odoc_print["string_of_type_expr"]
               (Odoc_misc["is_optional"](label)?Odoc_misc["remove_option"](t):t),
              parent?")":"");
-           return iter(param[3]);
-           
+           return iter(param[3])
           }
         
-        switch(exit){case 21:return /* () */0;}
+        switch(exit){case 21:return /* () */0}
         };
     
     iter(c[3]);
-    return Buffer["contents"](b);
-    };
+    return Buffer["contents"](b)};
 
 var
  bool_of_private=
-  function(param){return param!==0?/* false */0:/* true */1;};
+  function(param){return param!==0?/* false */0:/* true */1};
 
 var
  string_of_type=
@@ -358,8 +347,7 @@ var
                       [/* String_literal */11," *)",/* End_of_format */0]]],
                     "(* %s *)"],
                    Odoc_misc["string_of_info"](param[1]))
-                :"";
-        };
+                :""};
     
     var priv=bool_of_private(t[5]);
     
@@ -371,8 +359,7 @@ var
          (function(param)
            {return Pervasives["^"]
                     (string_of_variance(t,/* tuple */[0,param[2],param[3]]),
-                     Odoc_print["string_of_type_expr"](param[1]));
-            },
+                     Odoc_print["string_of_type_expr"](param[1]))},
           t[3]));
     
     var match=t[6];
@@ -390,7 +377,7 @@ var
             (priv?"private ":"",
              Pervasives["^"]
               (Odoc_print["string_of_type_expr"](match$1[1])," ")));
-         
+         break;
         case 1:
          manifest_str=
          P[4]
@@ -426,10 +413,9 @@ var
                            "   %s : %s;%s"],
                           field[1],
                           Odoc_print["string_of_type_expr"](field[2]),
-                          field_doc_str(field[3]));
-                 },
+                          field_doc_str(field[3]))},
                match$1[1])));
-         
+         break
         }
       }
     else
@@ -439,7 +425,9 @@ var
     
     if(typeof match$2==="number")
      {switch(match$2)
-       {case 0:var type_kind_str="";case 1:var type_kind_str="= ..";}}
+       {case 0:var type_kind_str="";break;
+        case 1:var type_kind_str="= ..";break
+        }}
     else
      {switch(match$2[0])
        {case 0:
@@ -487,10 +475,8 @@ var
                                  (function(t)
                                    {return Pervasives["^"]
                                             ("(",
-                                             Pervasives["^"](Odoc_print["string_of_type_expr"](t),")"));
-                                    },
-                                  lst));
-                       };
+                                             Pervasives["^"](Odoc_print["string_of_type_expr"](t),")"))},
+                                  lst))};
                    
                    var match$4=cons[2];
                    
@@ -526,10 +512,9 @@ var
                                ?Pervasives["^"]
                                  (" : ",Odoc_print["string_of_type_expr"](match$5[1]))
                                :"",
-                            comment);
-                   },
+                            comment)},
                  match$2[1])));
-         
+         break;
         case 1:
          var
           type_kind_str=
@@ -569,10 +554,9 @@ var
                             field[2]?"mutable ":"",
                             field[1],
                             Odoc_print["string_of_type_expr"](field[3]),
-                            field_doc_str(field[4]));
-                   },
+                            field_doc_str(field[4]))},
                  match$2[1])));
-         
+         break
         }}
     
     var match$3=t[2];
@@ -599,8 +583,7 @@ var
              Odoc_name["simple"](t[1]),
              manifest_str,
              type_kind_str,
-             match$3?Odoc_misc["string_of_info"](match$3[1]):"");
-    };
+             match$3?Odoc_misc["string_of_info"](match$3[1]):"")};
 
 var
  string_of_type_extension=
@@ -617,8 +600,7 @@ var
                  List["map"]
                   (function(p)
                     {return Pervasives["^"]
-                             (Odoc_print["string_of_type_expr"](p)," ");
-                     },
+                             (Odoc_print["string_of_type_expr"](p)," ")},
                    te[3])),
                Pervasives["^"]
                 (te[2],
@@ -667,8 +649,7 @@ var
                                                        (function(t)
                                                          {return Pervasives["^"]
                                                                   ("(",
-                                                                   Pervasives["^"](Odoc_print["string_of_type_expr"](t),")"));
-                                                          },
+                                                                   Pervasives["^"](Odoc_print["string_of_type_expr"](t),")"))},
                                                         match$1)),
                                                     Pervasives["^"]
                                                      (" -> ",Odoc_print["string_of_type_expr"](match$2[1]))))
@@ -680,8 +661,7 @@ var
                                                      (function(t)
                                                        {return Pervasives["^"]
                                                                 ("(",
-                                                                 Pervasives["^"](Odoc_print["string_of_type_expr"](t),")"));
-                                                        },
+                                                                 Pervasives["^"](Odoc_print["string_of_type_expr"](t),")"))},
                                                       match$1)))
                                              :match$2
                                                ?Pervasives["^"]
@@ -696,11 +676,9 @@ var
                                                     Pervasives["^"]
                                                      (Odoc_misc["string_of_info"](match$5[1])," *)"))
                                                  :"",
-                                                "\n")))));
-                               },
+                                                "\n")))))},
                              te[5])),
-                         match?Odoc_misc["string_of_info"](match[1]):"")))))));
-    };
+                         match?Odoc_misc["string_of_info"](match[1]):"")))))))};
 
 var
  string_of_exception=
@@ -741,8 +719,7 @@ var
                             (function(t)
                               {return Pervasives["^"]
                                        ("(",
-                                        Pervasives["^"](Odoc_print["string_of_type_expr"](t),")"));
-                               },
+                                        Pervasives["^"](Odoc_print["string_of_type_expr"](t),")"))},
                              match)),
                          Pervasives["^"]
                           (" -> ",Odoc_print["string_of_type_expr"](match$1[1]))))
@@ -754,8 +731,7 @@ var
                           (function(t)
                             {return Pervasives["^"]
                                      ("(",
-                                      Pervasives["^"](Odoc_print["string_of_type_expr"](t),")"));
-                             },
+                                      Pervasives["^"](Odoc_print["string_of_type_expr"](t),")"))},
                            match)))
                   :match$1
                     ?Pervasives["^"]
@@ -764,8 +740,7 @@ var
                  Pervasives["^"]
                   ($js,
                    Pervasives["^"]
-                    ("\n",match$4?Odoc_misc["string_of_info"](match$4[1]):"")))));
-    };
+                    ("\n",match$4?Odoc_misc["string_of_info"](match$4[1]):"")))))};
 
 var
  string_of_value=
@@ -783,8 +758,7 @@ var
                  Pervasives["^"]
                   (Odoc_print["string_of_type_expr"](v[3]),
                    Pervasives["^"]
-                    ("\n",match?Odoc_misc["string_of_info"](match[1]):"")))));
-    };
+                    ("\n",match?Odoc_misc["string_of_info"](match[1]):"")))))};
 
 var
  string_of_attribute=
@@ -806,8 +780,7 @@ var
                      Pervasives["^"]
                       (Odoc_print["string_of_type_expr"](a[1][3]),
                        Pervasives["^"]
-                        ("\n",match?Odoc_misc["string_of_info"](match[1]):"")))))));
-    };
+                        ("\n",match?Odoc_misc["string_of_info"](match[1]):"")))))))};
 
 var
  string_of_method=
@@ -827,8 +800,7 @@ var
                    Pervasives["^"]
                     (Odoc_print["string_of_type_expr"](m[1][3]),
                      Pervasives["^"]
-                      ("\n",match?Odoc_misc["string_of_info"](match[1]):""))))));
-    };
+                      ("\n",match?Odoc_misc["string_of_info"](match[1]):""))))))};
 
 module["exports"]=
 {"string_of_variance":string_of_variance,

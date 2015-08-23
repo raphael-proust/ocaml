@@ -36,8 +36,7 @@ var
      :Pervasives["print_string"]($$String["sub"](content,start,next-start));
     
     Pervasives["print_newline"](/* () */0);
-    return next;
-    };
+    return next};
 
 var
  show_no_point=
@@ -47,8 +46,7 @@ var
               ([/* Format */0,
                 [/* String_literal */11,"\x1a\x1aH\n",/* End_of_format */0],
                 "\x1a\x1aH\n"])
-            :0;
-    };
+            :0};
 
 var
  show_point=
@@ -92,19 +90,17 @@ var
                    /* No_padding */0,
                    [/* Char_literal */12,10,/* End_of_format */0]],
                   "%s\n"],
-                 before?":before":":after");
-        }
+                 before?":before":":after")}
       catch(exn)
        {if(exn===Primitives["Out_of_range"])
-         {return Pervasives["prerr_endline"]("Position out of range.");}
+         {return Pervasives["prerr_endline"]("Position out of range.")}
         else
          {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
            {Pervasives["prerr_endline"]
              (Pervasives["^"]("No source file for ",Pervasives["^"](mdle,".")));
-            return show_no_point(/* () */0);
-            }
+            return show_no_point(/* () */0)}
           else
-           {throw exn;}
+           {throw exn}
           }
         }
       }
@@ -116,19 +112,17 @@ var
         
         var match=Source["start_and_cnum"](buffer$1,pos);
         
-        return print_line(buffer$1,pos[2],match[1],match[2],before);
-        }
+        return print_line(buffer$1,pos[2],match[1],match[2],before)}
       catch(exn$1)
        {if(exn$1===Primitives["Out_of_range"])
-         {return Pervasives["prerr_endline"]("Position out of range.");}
+         {return Pervasives["prerr_endline"]("Position out of range.")}
         else
          {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
            {return Pervasives["prerr_endline"]
                     (Pervasives["^"]
-                      ("No source file for ",Pervasives["^"](mdle,".")));
-            }
+                      ("No source file for ",Pervasives["^"](mdle,".")))}
           else
-           {throw exn$1;}
+           {throw exn$1}
           }
         }
       }
@@ -150,22 +144,19 @@ var
                     (/* tuple */[0,
                       print_line(buffer,line_number,param[1],point,before)+1,
                       line_number+1])
-                  :0;
-          };
+                  :0};
       
-      return aff(Source["pos_of_line"](buffer,start));
-      }
+      return aff(Source["pos_of_line"](buffer,start))}
     catch(exn)
      {if(exn===Primitives["Out_of_range"])
-       {return Pervasives["prerr_endline"]("Position out of range.");}
+       {return Pervasives["prerr_endline"]("Position out of range.")}
       else
        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
          {return Pervasives["prerr_endline"]
                   (Pervasives["^"]
-                    ("No source file for ",Pervasives["^"](mdle,".")));
-          }
+                    ("No source file for ",Pervasives["^"](mdle,".")))}
         else
-         {throw exn;}
+         {throw exn}
         }
       }
     };

@@ -32,17 +32,17 @@ var print_strings=My_std["List"][1](My_std["String"][1]);
 
 var concat=My_std["filename_concat"];
 
-var compare=function(x,y){return CamlPrimitive["caml_string_compare"](x,y);};
+var compare=function(x,y){return CamlPrimitive["caml_string_compare"](x,y)};
 
 var print=Format["pp_print_string"];
 
-var mk=function(s){return s;};
+var mk=function(s){return s};
 
 var pwd=CamlPrimitive["caml_sys_getcwd"](/* () */0);
 
 var
  add_extension=
-  function(ext,x){return Pervasives["^"](x,Pervasives["^"](".",ext));};
+  function(ext,x){return Pervasives["^"](x,Pervasives["^"](".",ext))};
 
 var
  check_extension=
@@ -56,16 +56,15 @@ var
            1&&
            x["charCodeAt"](lx-lext-1)===
            46&&
-           My_std["String"][9](x,ext);
-    };
+           My_std["String"][9](x,ext)};
 
-var $neg$dot$neg=function(file,ext){return add_extension(ext,file);};
+var $neg$dot$neg=function(file,ext){return add_extension(ext,file)};
 
 var Operators=[0,concat,$neg$dot$neg];
 
-var equal=function(x,y){return CamlPrimitive["caml_equal"](x,y);};
+var equal=function(x,y){return CamlPrimitive["caml_equal"](x,y)};
 
-var to_string=function(x){return x;};
+var to_string=function(x){return x};
 
 var is_link=Shell["is_link"];
 
@@ -75,24 +74,24 @@ var
  is_directory=
   function(x)
    {try
-     {return My_unix["stat"](x)[1]===/* FK_dir */0;}
+     {return My_unix["stat"](x)[1]===/* FK_dir */0}
     catch(exn)
      {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
-       {return /* false */0;}
+       {return /* false */0}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
 var
  readdir=
-  function(x){return My_std["Outcome"][3](My_std["sys_readdir"](x));};
+  function(x){return My_std["Outcome"][3](My_std["sys_readdir"](x))};
 
 var dir_seps=[/* :: */0,47,[/* :: */0,92,/* [] */0]];
 
 var not_normal_form_re=Glob["parse"](/* None */0,"<**/{,.,..}/**>");
 
-var parent=function(x){return concat(parent_dir_name,x);};
+var parent=function(x){return concat(parent_dir_name,x)};
 
 var
  split=
@@ -104,11 +103,9 @@ var
         
         return CamlPrimitive["caml_string_equal"](dir,p)
                 ?/* tuple */[0,dir,acc]
-                :go(dir,/* :: */[0,basename(p),acc]);
-        };
+                :go(dir,/* :: */[0,basename(p),acc])};
     
-    return go(p,/* [] */0);
-    };
+    return go(p,/* [] */0)};
 
 var
  join=
@@ -117,8 +114,7 @@ var
      root$1=
       CamlPrimitive["caml_string_equal"](root,current_dir_name)?"":root;
     
-    return My_std["List"][19](Operators[1],root$1,paths);
-    };
+    return My_std["List"][19](Operators[1],root$1,paths)};
 
 var _H1;
 if(CamlPrimitive["caml_string_equal"](current_dir_name,"."))
@@ -126,8 +122,7 @@ if(CamlPrimitive["caml_string_equal"](current_dir_name,"."))
 else
  {throw [0,
          CamlPrimitive["caml_global_data"]["Assert_failure"],
-         [0,"pathname.ml",74,10]];
-  }
+         [0,"pathname.ml",74,10]]}
 
 var _H2;
 if(CamlPrimitive["caml_string_equal"](parent_dir_name,".."))
@@ -135,8 +130,7 @@ if(CamlPrimitive["caml_string_equal"](parent_dir_name,".."))
 else
  {throw [0,
          CamlPrimitive["caml_global_data"]["Assert_failure"],
-         [0,"pathname.ml",75,10]];
-  }
+         [0,"pathname.ml",75,10]]}
 
 var
  normalize_list=
@@ -151,7 +145,6 @@ var
         case "..":
          return Pervasives["failwith"]
                  ("Pathname.normalize_list: .. is forbidden here");
-         
         default:exit=38;}
       
       switch(exit)
@@ -167,21 +160,21 @@ var
          else
           {exit$1=39;}
          
-         switch(exit$1){case 39:return /* :: */[0,x,normalize_list(xs)];}
-         
+         switch(exit$1){case 39:return /* :: */[0,x,normalize_list(xs)]}
+         break
         }
       }
     else
-     {return /* [] */0;}
+     {return /* [] */0}
     };
 
 var
  normalize=
   function(x)
    {if(Glob["eval"](not_normal_form_re,x))
-     {var match=split(x);return join(match[1],normalize_list(match[2]));}
+     {var match=split(x);return join(match[1],normalize_list(match[2]))}
     else
-     {return x;}
+     {return x}
     };
 
 var
@@ -196,23 +189,22 @@ var
             :lx<ly
               ?CamlPrimitive["caml_string_equal"](x,My_std["String"][3](y,lx))&&
                My_std["List"][30](y["charCodeAt"](lx),dir_seps)
-              :/* false */0;
-    };
+              :/* false */0};
 
 var
  link_to_dir=
-  function(p,dir){return is_link(p)&&is_prefix(dir,readlink(p));};
+  function(p,dir){return is_link(p)&&is_prefix(dir,readlink(p))};
 
 var
  remove_extension=
   function(x)
    {try
-     {return chop_extension(x);}
+     {return chop_extension(x)}
     catch(exn)
      {if(exn[1]===CamlPrimitive["caml_global_data"]["Invalid_argument"])
-       {return x;}
+       {return x}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -220,18 +212,18 @@ var
  get_extension=
   function(x)
    {try
-     {var pos=My_std["String"][30](x,46);return My_std["String"][4](x,pos+1);}
+     {var pos=My_std["String"][30](x,46);return My_std["String"][4](x,pos+1)}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-       {return "";}
+       {return ""}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
 var
  update_extension=
-  function(ext,x){return add_extension(ext,chop_extension(x));};
+  function(ext,x){return add_extension(ext,chop_extension(x))};
 
 var
  chop_extensions=
@@ -243,13 +235,12 @@ var
     try
      {var pos=My_std["String"][29](basename$1,46);
       
-      return Operators[1](dirname$1,My_std["String"][3](basename$1,pos));
-      }
+      return Operators[1](dirname$1,My_std["String"][3](basename$1,pos))}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-       {return Pervasives["invalid_arg"]("chop_extensions: no extensions");}
+       {return Pervasives["invalid_arg"]("chop_extensions: no extensions")}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -257,12 +248,12 @@ var
  remove_extensions=
   function(x)
    {try
-     {return chop_extensions(x);}
+     {return chop_extensions(x)}
     catch(exn)
      {if(exn[1]===CamlPrimitive["caml_global_data"]["Invalid_argument"])
-       {return x;}
+       {return x}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -274,19 +265,18 @@ var
     try
      {var pos=My_std["String"][29](basename$1,46);
       
-      return My_std["String"][4](basename$1,pos+1);
-      }
+      return My_std["String"][4](basename$1,pos+1)}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-       {return "";}
+       {return ""}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
 var
  update_extensions=
-  function(ext,x){return add_extension(ext,chop_extensions(x));};
+  function(ext,x){return add_extension(ext,chop_extensions(x))};
 
 var exists=My_std["sys_file_exists"];
 
@@ -294,7 +284,7 @@ var copy=Shell["cp"];
 
 var remove=Shell["rm"];
 
-var try_remove=function(x){return exists(x)?Shell["rm"](x):0;};
+var try_remove=function(x){return exists(x)?Shell["rm"](x):0};
 
 var read=My_std["read_file"];
 
@@ -310,19 +300,17 @@ var
  include_dirs_of=
   function(dir)
    {try
-     {return Hashtbl["find"](context_table,dir);}
+     {return Hashtbl["find"](context_table,dir)}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {return /* :: */[0,
                 dir,
                 My_std["List"][33]
                  (function(dir$prime)
-                   {return CamlPrimitive["caml_string_notequal"](dir,dir$prime);
-                    },
-                  Options["include_dirs"][1])];
-        }
+                   {return CamlPrimitive["caml_string_notequal"](dir,dir$prime)},
+                  Options["include_dirs"][1])]}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -333,15 +321,13 @@ var
     
     return My_std["&"]
             (Hashtbl["replace"](context_table,dir$1),
-             My_std["&"](My_std["List"][3](context),include_dirs_of(dir$1)));
-    };
+             My_std["&"](My_std["List"][3](context),include_dirs_of(dir$1)))};
 
 var
  same_contents=
   function(x,y)
    {return CamlPrimitive["caml_string_equal"]
-            (My_std["Digest"][3](x),My_std["Digest"][3](y));
-    };
+            (My_std["Digest"][3](x),My_std["Digest"][3](y))};
 
 module["exports"]=
 {"concat":concat,

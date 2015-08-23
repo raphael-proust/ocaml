@@ -28,14 +28,12 @@ var
           
           return match
                   ?loop(/* :: */[0,match[1],result],rest)
-                  :loop(result,rest);
-          }
+                  :loop(result,rest)}
         else
-         {return My_std["List"][9](result);}
+         {return My_std["List"][9](result)}
         };
     
-    return loop(/* [] */0,l);
-    };
+    return loop(/* [] */0,l)};
 
 var
  list_none_for_all=
@@ -44,13 +42,12 @@ var
      loop=
       function(param)
        {if(param)
-         {var y=f(param[1]);return y?y:loop(param[2]);}
+         {var y=f(param[1]);return y?y:loop(param[2])}
         else
-         {return /* None */0;}
+         {return /* None */0}
         };
     
-    return loop(l);
-    };
+    return loop(l)};
 
 var sf=Printf["sprintf"];
 
@@ -81,8 +78,7 @@ var
                 ?(microbes[1]=
                   SS[4](My_std["filename_concat"](path,name),microbes[1]),
                   0)
-                :0;
-        };
+                :0};
     
     var
      check_rule=
@@ -123,14 +119,13 @@ var
                                               {case 1:
                                                 if(param$2[4]!==0)
                                                  {return CamlPrimitive["caml_string_equal"]
-                                                          (name$prime,param$2[2]);
-                                                  }
+                                                          (name$prime,param$2[2])}
                                                 else
                                                  {exit$1=10;}
-                                                
+                                                break;
                                                default:exit$1=10;}}
                                            
-                                           switch(exit$1){case 10:return /* false */0;}
+                                           switch(exit$1){case 10:return /* false */0}
                                            },
                                          entries)
                                        ?(remove(path,name$prime),
@@ -152,20 +147,18 @@ var
                                             name,
                                             name$prime,
                                             path)])
-                                       :/* None */0;
-                               }
+                                       :/* None */0}
                              else
-                              {return /* None */0;}
+                              {return /* None */0}
                              }
                            else
                             {exit=14;}
-                           
+                           break;
                           default:exit=14;}}
                       
-                      switch(exit){case 14:return /* None */0;}
+                      switch(exit){case 14:return /* None */0}
                       },
                     entries);
-           
           case 1:
            var suffix=param[1];
            
@@ -206,17 +199,15 @@ var
                                           name,
                                           path,
                                           suffix)])
-                                     :/* None */0;
-                             }
+                                     :/* None */0}
                            else
                             {exit=8;}
-                           
+                           break;
                           default:exit=8;}}
                       
-                      switch(exit){case 8:return /* None */0;}
+                      switch(exit){case 8:return /* None */0}
                       },
-                    entries);
-           
+                    entries)
           }
         };
     
@@ -245,17 +236,15 @@ var
                            ?(penalties[1]=
                              /* :: */[0,/* tuple */[0,law,explanations],penalties[1]],
                              0)
-                           :/* () */0;
-                   },
+                           :/* () */0},
                  laws);
-               return My_std["List"][14](check_entry,My_std["!*"](entries));
-               }
+               return My_std["List"][14](check_entry,My_std["!*"](entries))}
              else
               {exit=6;}
-             
+             break;
             default:exit=6;}}
         
-        switch(exit){case 6:return /* () */0;}
+        switch(exit){case 6:return /* () */0}
         };
     
     check_entry(entry);
@@ -519,8 +508,7 @@ var
                         /* No_padding */0,
                         [/* Char_literal */12,10,/* End_of_format */0]]],
                       "rm -f %s\n"],
-                     Shell["quote_filename_if_needed"](fn));
-            },
+                     Shell["quote_filename_if_needed"](fn))},
           microbes$1),
         fp
          (oc,
@@ -555,8 +543,7 @@ var
                        32,
                        [/* String */2,/* No_padding */0,/* End_of_format */0]],
                       " %s"],
-                     fn);
-            },
+                     fn)},
           microbes$1);
         Log["eprintf"]
          ([/* Format */0,
@@ -564,14 +551,10 @@ var
             "Remove them manually, don't use the -no-sanitize option, use -no-hygiene, or\ndefine hygiene exceptions using the tags or plugin mechanism.\n",
             /* End_of_format */0],
            "Remove them manually, don't use the -no-sanitize option, use -no-hygiene, or\ndefine hygiene exceptions using the tags or plugin mechanism.\n"]);
-        throw Exit_hygiene_violations;
-        }
+        throw Exit_hygiene_violations}
       }
-    else
-     {}
     
-    return penalties[1];
-    };
+    return penalties[1]};
 
 module["exports"]={"check":check};
 

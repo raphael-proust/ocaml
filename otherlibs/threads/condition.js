@@ -5,7 +5,7 @@ var Thread=require("./thread.js");
 var Mutex=require("./mutex.js");
 
 
-var create=function(param){return /* record */[0,/* [] */0];};
+var create=function(param){return /* record */[0,/* [] */0]};
 
 var
  wait=
@@ -14,21 +14,19 @@ var
     Mutex["unlock"](mut);
     cond[1]=/* :: */[0,Thread["self"](/* () */0),cond[1]];
     Thread["sleep"](/* () */0);
-    return Mutex["lock"](mut);
-    };
+    return Mutex["lock"](mut)};
 
 var
  signal=
   function(cond)
    {var match=cond[1];
     
-    return match?(cond[1]=match[2],Thread["wakeup"](match[1])):/* () */0;
-    };
+    return match?(cond[1]=match[2],Thread["wakeup"](match[1])):/* () */0};
 
 var
  broadcast=
   function(cond)
-   {var w=cond[1];cond[1]=/* [] */0;return List["iter"](Thread["wakeup"],w);};
+   {var w=cond[1];cond[1]=/* [] */0;return List["iter"](Thread["wakeup"],w)};
 
 module["exports"]=
 {"create":create,"wait":wait,"signal":signal,"broadcast":broadcast};

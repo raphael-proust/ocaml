@@ -53,16 +53,13 @@ var
      {var
        entry=
         Slurp["map"]
-         (function(param$1,param$2,param$3){return /* true */1;},
+         (function(param$1,param$2,param$3){return /* true */1},
           Slurp["slurp"](Filename["current_dir_name"]));
       
       Slurp["force"](Resource["clean_up_links"](entry))}
-    else
-     {}
     
     Log["finish"](/* None */0,/* () */0);
-    throw Exit_silently;
-    };
+    throw Exit_silently};
 
 var
  show_tags=
@@ -103,17 +100,14 @@ var
                          "@[<2>Tags for %S:@ {. %a .}@]"],
                         path,
                         Tags["print"],
-                        Tools["tags_of_pathname"](path));
-               },
-             Options["show_tags"][1]);
-    };
+                        Tools["tags_of_pathname"](path))},
+             Options["show_tags"][1])};
 
 var
  show_documentation=
   function(param)
    {Rule["show_documentation"](/* () */0);
-    return Flags["show_documentation"](/* () */0);
-    };
+    return Flags["show_documentation"](/* () */0)};
 
 var
  builtin_useful_tags=
@@ -181,8 +175,7 @@ var
        (function(pkg)
          {var tag=Param_tags["make"]("package",pkg);
           
-          return Configuration["tag_any"](/* :: */[0,tag,/* [] */0]);
-          },
+          return Configuration["tag_any"](/* :: */[0,tag,/* [] */0])},
         Options["ocaml_pkgs"][1])}
     
     var match=Options["ocaml_syntax"][1];
@@ -218,8 +211,6 @@ var
                :Pathname["Operators"][1](Pathname["pwd"],path_name);
             
             Configuration["parse_file"](dir,tags_path)}
-          else
-           {}
           
           var tags=Tools["tags_of_pathname"](path_name);
           
@@ -248,8 +239,7 @@ var
                   CamlPrimitive["caml_string_notequal"]
                    (Pathname["normalize"](Options["build_dir"][1]),
                     Pathname["normalize"]
-                     (Pathname["Operators"][1](Pathname["pwd"],path_name))));
-          },
+                     (Pathname["Operators"][1](Pathname["pwd"],path_name))))},
         Slurp["slurp"](Filename["current_dir_name"]));
     
     Hooks["call_hook"](/* Before_hygiene */0);
@@ -262,8 +252,7 @@ var
             Tools["tags_of_pathname"](Pathname["Operators"][1](path,name));
           
           return !Tags["mem"]("not_hygienic",tags)&&
-                 !Tags["mem"]("precious",tags);
-          },
+                 !Tags["mem"]("precious",tags)},
         entry);
     
     Slurp["force"](hygiene_entry);
@@ -295,16 +284,14 @@ var
     Param_tags["init"](/* () */0);
     CamlPrimitive["caml_sys_chdir"](newpwd);
     if(Options["show_documentation"][1])
-     {show_documentation(/* () */0);throw Exit_silently;}
-    else
-     {}
+     {show_documentation(/* () */0);throw Exit_silently}
     
     var used_in_flags=Flags["get_used_tags"](/* () */0);
     
     var
      used_in_deps=
       My_std["List"][19]
-       (function(acc,param$1){return Tags["union"](acc,param$1[1]);},
+       (function(acc,param$1){return Tags["union"](acc,param$1[1])},
         Tags["empty"],
         Command["list_all_deps"](/* () */0));
     
@@ -327,8 +314,7 @@ var
           
           var ext=Pathname["get_extension"](starget$1);
           
-          return /* tuple */[0,target,starget$1,ext];
-          },
+          return /* tuple */[0,target,starget$1,ext]},
         Options["targets"][1]);
     
     try
@@ -341,8 +327,7 @@ var
             Shell["mkdir_p"](Pathname["dirname"](starget));
             var target=Solver["solve_target"](starget,param$1[1]);
             
-            return /* tuple */[0,target,param$1[3]];
-            },
+            return /* tuple */[0,target,param$1[3]]},
           targets);
       
       Command["dump_parallel_stats"](/* () */0);
@@ -352,8 +337,7 @@ var
        call=
         function(spec)
          {return My_std["sys_command"]
-                  (Command["string_of_command_spec"](spec));
-          };
+                  (Command["string_of_command_spec"](spec))};
       
       var
        cmds=
@@ -378,16 +362,15 @@ var
                                /* :: */[0,
                                 /* A */[1,Pathname["current_dir_name"]],
                                 /* [] */0]]]]])
-                        :0;
-                };
+                        :0};
             
             var exit;
             
             switch(param$1[2])
-             {case "byte":exit=24;
+             {case "byte":exit=24;break;
               case "html":link(Pathname["dirname"](cmd));return acc;
-              case "native":exit=24;
-              case "top":exit=24;
+              case "native":exit=24;break;
+              case "top":exit=24;break;
               default:exit=25;}
             
             switch(exit)
@@ -406,8 +389,7 @@ var
                    cmd)}
                
                return acc;
-               
-              case 24:link(cmd);return /* :: */[0,cmd,acc];
+              case 24:link(cmd);return /* :: */[0,cmd,acc]
               }
             },
           targets$1,
@@ -448,13 +430,12 @@ var
              "Running the user command:@ %a"],
             Pathname["print"],
             cmd);
-          throw [0,My_std["Exit_with_code"],call(cmd_spec)];
-          }
+          throw [0,My_std["Exit_with_code"],call(cmd_spec)]}
         else
-         {throw [0,My_std["Exit_usage"],"Using -- requires one target"];}
+         {throw [0,My_std["Exit_usage"],"Using -- requires one target"]}
         }
       else
-       {return /* () */0;}
+       {return /* () */0}
       }
     catch(exn)
      {if(exn[1]===Ocaml_dependencies["Circular_dependencies"])
@@ -484,10 +465,9 @@ var
                   "@[<2>Circular dependencies: %S already seen in@ %a@]@."],
                  exn[3],
                  Tools["pp_l"],
-                 exn[2])];
-        }
+                 exn[2])]}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -500,18 +480,17 @@ var
        {Log["finish"]
          (/* Some */[0,rc!==0?/* Error */106380200:/* Success */94326179],
           /* () */0);
-        return Pervasives["exit"](rc);
-        };
+        return Pervasives["exit"](rc)};
     
     try
-     {return proceed(/* () */0);}
+     {return proceed(/* () */0)}
     catch(e)
      {if(Options["catch_errors"][1])
        {try
-         {throw e;}
+         {throw e}
         catch(e$1)
          {if(e$1===My_std["Exit_OK"])
-           {return exit(Exit_codes["rc_ok"]);}
+           {return exit(Exit_codes["rc_ok"])}
           else
            {if(e$1===Fda["Exit_hygiene_failed"])
              {Log["eprintf"]
@@ -520,8 +499,7 @@ var
                   "Exiting due to hygiene violations.",
                   /* End_of_format */0],
                  "Exiting due to hygiene violations."]);
-              return exit(Exit_codes["rc_hygiene"]);
-              }
+              return exit(Exit_codes["rc_hygiene"])}
             else
              {if(e$1[1]===My_std["Exit_usage"])
                {Log["eprintf"]
@@ -535,8 +513,7 @@ var
                       [/* Char_literal */12,46,/* End_of_format */0]]]],
                    "Usage:@ %s."],
                   e$1[2]);
-                return exit(Exit_codes["rc_usage"]);
-                }
+                return exit(Exit_codes["rc_usage"])}
               else
                {if(e$1[1]===My_std["Exit_system_error"])
                  {Log["eprintf"]
@@ -550,23 +527,20 @@ var
                         [/* Char_literal */12,46,/* End_of_format */0]]]],
                      "System error:@ %s."],
                     e$1[2]);
-                  return exit(Exit_codes["rc_system_error"]);
-                  }
+                  return exit(Exit_codes["rc_system_error"])}
                 else
                  {if(e$1[1]===My_std["Exit_with_code"])
-                   {return exit(e$1[2]);}
+                   {return exit(e$1[2])}
                   else
                    {if(e$1===Exit_silently)
                      {Log["finish"]
                        ([/* Some */0,/* Quiet */-249890668],/* () */0);
-                      return Pervasives["exit"](Exit_codes["rc_ok"]);
-                      }
+                      return Pervasives["exit"](Exit_codes["rc_ok"])}
                     else
                      {if(e$1[1]===My_std["Exit_silently_with_code"])
                        {Log["finish"]
                          ([/* Some */0,/* Quiet */-249890668],/* () */0);
-                        return Pervasives["exit"](e$1[2]);
-                        }
+                        return Pervasives["exit"](e$1[2])}
                       else
                        {if(e$1[1]===Solver["Failed"])
                          {var backtrace=e$1[2];
@@ -618,8 +592,7 @@ var
                              "@[<v2>Backtrace:%a@]@]@."],
                             Report["print_backtrace"],
                             backtrace);
-                          return exit(Exit_codes["rc_solver_failed"]);
-                          }
+                          return exit(Exit_codes["rc_solver_failed"])}
                         else
                          {if(e$1[1]===CamlPrimitive["caml_global_data"]["Failure"])
                            {Log["eprintf"]
@@ -633,8 +606,7 @@ var
                                   [/* Char_literal */12,46,/* End_of_format */0]]]],
                                "Failure:@ %s."],
                               e$1[2]);
-                            return exit(Exit_codes["rc_failure"]);
-                            }
+                            return exit(Exit_codes["rc_failure"])}
                           else
                            {if(e$1[1]===Solver["Circular"])
                              {Log["eprintf"]
@@ -655,8 +627,7 @@ var
                                 e$1[2],
                                 My_std["List"][1](Resource["print"]),
                                 e$1[3]);
-                              return exit(Exit_codes["rc_circularity"]);
-                              }
+                              return exit(Exit_codes["rc_circularity"])}
                             else
                              {if
                                (e$1[1]===
@@ -672,8 +643,7 @@ var
                                       /* End_of_format */0]]],
                                    "INTERNAL ERROR: Invalid argument %s\nThis is likely to be a bug, please report this to the ocamlbuild\ndevelopers."],
                                   e$1[2]);
-                                return exit(Exit_codes["rc_invalid_argument"]);
-                                }
+                                return exit(Exit_codes["rc_invalid_argument"])}
                               else
                                {if(e$1[1]===Ocaml_utils["Ocamldep_error"])
                                  {Log["eprintf"]
@@ -683,8 +653,7 @@ var
                                       [/* String */2,/* No_padding */0,/* End_of_format */0]],
                                      "Ocamldep error: %s"],
                                     e$1[2]);
-                                  return exit(Exit_codes["rc_ocamldep_error"]);
-                                  }
+                                  return exit(Exit_codes["rc_ocamldep_error"])}
                                 else
                                  {if(e$1[1]===Lexers["Error"])
                                    {var match=e$1[2];
@@ -701,8 +670,7 @@ var
                                       Loc["print_loc"],
                                       match[2],
                                       match[1]);
-                                    return exit(Exit_codes["rc_lexing_error"]);
-                                    }
+                                    return exit(Exit_codes["rc_lexing_error"])}
                                   else
                                    {if(e$1[1]===Arg["Bad"])
                                      {Log["eprintf"]
@@ -710,8 +678,7 @@ var
                                          [/* String */2,/* No_padding */0,/* End_of_format */0],
                                          "%s"],
                                         e$1[2]);
-                                      return exit(Exit_codes["rc_usage"]);
-                                      }
+                                      return exit(Exit_codes["rc_usage"])}
                                     else
                                      {if(e$1[1]===Exit_build_error)
                                        {Log["eprintf"]
@@ -719,8 +686,7 @@ var
                                            [/* String */2,/* No_padding */0,/* End_of_format */0],
                                            "%s"],
                                           e$1[2]);
-                                        return exit(Exit_codes["rc_build_error"]);
-                                        }
+                                        return exit(Exit_codes["rc_build_error"])}
                                       else
                                        {if(e$1[1]===Arg["Help"])
                                          {Log["eprintf"]
@@ -728,16 +694,14 @@ var
                                              [/* String */2,/* No_padding */0,/* End_of_format */0],
                                              "%s"],
                                             e$1[2]);
-                                          return exit(Exit_codes["rc_ok"]);
-                                          }
+                                          return exit(Exit_codes["rc_ok"])}
                                         else
                                          {try
                                            {Log["eprintf"]
                                              ([/* Format */0,[/* Alpha */15,/* End_of_format */0],"%a"],
                                               My_unix["report_error"],
                                               e$1);
-                                            return exit(100);
-                                            }
+                                            return exit(100)}
                                           catch(e$2)
                                            {Log["eprintf"]
                                              ([/* Format */0,
@@ -750,8 +714,7 @@ var
                                                   [/* Char_literal */12,46,/* End_of_format */0]]]],
                                                "Exception@ %s."],
                                               Printexc["to_string"](e$2));
-                                            return exit(100);
-                                            }
+                                            return exit(100)}
                                           }
                                         }
                                       }
@@ -771,7 +734,7 @@ var
           }
         }
       else
-       {throw e;}
+       {throw e}
       }
     };
 

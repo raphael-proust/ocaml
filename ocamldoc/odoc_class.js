@@ -15,16 +15,16 @@ var
     
     if(match)
      {try
-       {var t=List["assoc"](label,match[1][8]);return /* Some */[0,t];}
+       {var t=List["assoc"](label,match[1][8]);return /* Some */[0,t]}
       catch(exn)
        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-         {return /* None */0;}
+         {return /* None */0}
         else
-         {throw exn;}
+         {throw exn}
         }
       }
     else
-     {return /* None */0;}
+     {return /* None */0}
     };
 
 var
@@ -44,15 +44,15 @@ var
            
            if(match)
             {if(trans)
-              {return class_elements(/* Some */[0,trans],match[1]);}
+              {return class_elements(/* Some */[0,trans],match[1])}
              else
               {exit=24;}
              }
            else
             {exit=24;}
            
-           switch(exit){case 24:return /* [] */0;}
-           
+           switch(exit){case 24:return /* [] */0}
+           break;
           case 2:
            var match$1=k[1][2];
            
@@ -64,29 +64,28 @@ var
              switch(match$2[0])
               {case 0:
                 if(trans)
-                 {return class_elements(/* Some */[0,trans],match$2[1]);}
+                 {return class_elements(/* Some */[0,trans],match$2[1])}
                 else
                  {exit$1=25;}
-                
+                break;
                case 1:
                 if(trans)
-                 {return class_type_elements(/* Some */[0,trans],match$2[1]);}
+                 {return class_type_elements(/* Some */[0,trans],match$2[1])}
                 else
                  {exit$1=25;}
-                
+                break
                }
              }
            else
             {exit$1=25;}
            
-           switch(exit$1){case 25:return /* [] */0;}
-           
-          case 3:return iter_kind(k[1]);
+           switch(exit$1){case 25:return /* [] */0}
+           break;
+          case 3:return iter_kind(k[1])
           }
         };
     
-    return iter_kind(cl[6]);
-    };
+    return iter_kind(cl[6])};
 
 var
  class_type_elements=
@@ -108,23 +107,23 @@ var
          switch(match$2[0])
           {case 0:
             if(trans)
-             {return class_elements(/* Some */[0,trans],match$2[1]);}
+             {return class_elements(/* Some */[0,trans],match$2[1])}
             else
              {exit=28;}
-            
+            break;
            case 1:
             if(trans)
-             {return class_type_elements(/* Some */[0,trans],match$2[1]);}
+             {return class_type_elements(/* Some */[0,trans],match$2[1])}
             else
              {exit=28;}
-            
+            break
            }
          }
        else
         {exit=28;}
        
-       switch(exit){case 28:return /* [] */0;}
-       
+       switch(exit){case 28:return /* [] */0}
+       break
       }
     };
 
@@ -140,15 +139,14 @@ var
                switch(ele[0])
                 {case 0:
                   return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0]);
-                 case 1:exit=21;
-                 case 2:exit=21;
+                 case 1:exit=21;break;
+                 case 2:exit=21;break
                  }
                
-               switch(exit){case 21:return acc;}
+               switch(exit){case 21:return acc}
                },
              /* [] */0,
-             class_elements(/* Some */[0,trans],cl));
-    };
+             class_elements(/* Some */[0,trans],cl))};
 
 var
  class_methods=
@@ -160,17 +158,16 @@ var
               {var exit;
                
                switch(ele[0])
-                {case 0:exit=18;
+                {case 0:exit=18;break;
                  case 1:
                   return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0]);
-                 case 2:exit=18;
+                 case 2:exit=18;break
                  }
                
-               switch(exit){case 18:return acc;}
+               switch(exit){case 18:return acc}
                },
              /* [] */0,
-             class_elements(/* Some */[0,trans],cl));
-    };
+             class_elements(/* Some */[0,trans],cl))};
 
 var
  class_comments=
@@ -182,17 +179,16 @@ var
               {var exit;
                
                switch(ele[0])
-                {case 0:exit=15;
-                 case 1:exit=15;
+                {case 0:exit=15;break;
+                 case 1:exit=15;break;
                  case 2:
-                  return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0]);
+                  return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0])
                  }
                
-               switch(exit){case 15:return acc;}
+               switch(exit){case 15:return acc}
                },
              /* [] */0,
-             class_elements(/* Some */[0,trans],cl));
-    };
+             class_elements(/* Some */[0,trans],cl))};
 
 var
  class_update_parameters_text=
@@ -201,11 +197,9 @@ var
      f=
       function(p)
        {return Odoc_parameter["update_parameter_text"]
-                (class_parameter_text_by_name(cl),p);
-        };
+                (class_parameter_text_by_name(cl),p)};
     
-    return List["iter"](f,cl[7]);
-    };
+    return List["iter"](f,cl[7])};
 
 var
  class_type_attributes=
@@ -219,15 +213,14 @@ var
                switch(ele[0])
                 {case 0:
                   return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0]);
-                 case 1:exit=10;
-                 case 2:exit=10;
+                 case 1:exit=10;break;
+                 case 2:exit=10;break
                  }
                
-               switch(exit){case 10:return acc;}
+               switch(exit){case 10:return acc}
                },
              /* [] */0,
-             class_type_elements(/* Some */[0,trans],clt));
-    };
+             class_type_elements(/* Some */[0,trans],clt))};
 
 var
  class_type_methods=
@@ -239,17 +232,16 @@ var
               {var exit;
                
                switch(ele[0])
-                {case 0:exit=7;
+                {case 0:exit=7;break;
                  case 1:
                   return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0]);
-                 case 2:exit=7;
+                 case 2:exit=7;break
                  }
                
-               switch(exit){case 7:return acc;}
+               switch(exit){case 7:return acc}
                },
              /* [] */0,
-             class_type_elements(/* Some */[0,trans],clt));
-    };
+             class_type_elements(/* Some */[0,trans],clt))};
 
 var
  class_type_comments=
@@ -261,17 +253,16 @@ var
               {var exit;
                
                switch(ele[0])
-                {case 0:exit=4;
-                 case 1:exit=4;
+                {case 0:exit=4;break;
+                 case 1:exit=4;break;
                  case 2:
-                  return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0]);
+                  return Pervasives["@"](acc,/* :: */[0,ele[1],/* [] */0])
                  }
                
-               switch(exit){case 4:return acc;}
+               switch(exit){case 4:return acc}
                },
              /* [] */0,
-             class_type_elements(/* Some */[0,trans],clt));
-    };
+             class_type_elements(/* Some */[0,trans],clt))};
 
 var
  class_type_parameter_text_by_name=
@@ -280,16 +271,16 @@ var
     
     if(match)
      {try
-       {var t=List["assoc"](label,match[1][8]);return /* Some */[0,t];}
+       {var t=List["assoc"](label,match[1][8]);return /* Some */[0,t]}
       catch(exn)
        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-         {return /* None */0;}
+         {return /* None */0}
         else
-         {throw exn;}
+         {throw exn}
         }
       }
     else
-     {return /* None */0;}
+     {return /* None */0}
     };
 
 module["exports"]=

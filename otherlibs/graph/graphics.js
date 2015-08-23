@@ -20,39 +20,37 @@ var
    {Sys["set_signal"]
      (CamlPrimitive["caml_gr_sigio_signal"](/* () */0),
       /* Signal_handle */[0,
-       function(prim){return CamlPrimitive["caml_gr_sigio_handler"](prim);}]);
-    return CamlPrimitive["caml_gr_open_graph"](arg);
-    };
+       function(prim){return CamlPrimitive["caml_gr_sigio_handler"](prim)}]);
+    return CamlPrimitive["caml_gr_open_graph"](arg)};
 
 var
  unix_close_graph=
   function(param)
    {Sys["set_signal"]
      (CamlPrimitive["caml_gr_sigio_signal"](/* () */0),/* Signal_ignore */1);
-    return CamlPrimitive["caml_gr_close_graph"](/* () */0);
-    };
+    return CamlPrimitive["caml_gr_close_graph"](/* () */0)};
 
 var match=Sys["os_type"];
 
 var exit;
 
 switch(match)
- {case "Cygwin":exit=70;
+ {case "Cygwin":exit=70;break;
   case "MacOS":
    var
     match$1=
      /* tuple */[0,
-      function(prim){return CamlPrimitive["caml_gr_open_graph"](prim);},
-      function(prim){return CamlPrimitive["caml_gr_close_graph"](prim);}];
-   
-  case "Unix":exit=70;
+      function(prim){return CamlPrimitive["caml_gr_open_graph"](prim)},
+      function(prim){return CamlPrimitive["caml_gr_close_graph"](prim)}];
+   break;
+  case "Unix":exit=70;break;
   case "Win32":
    var
     match$1=
      /* tuple */[0,
-      function(prim){return CamlPrimitive["caml_gr_open_graph"](prim);},
-      function(prim){return CamlPrimitive["caml_gr_close_graph"](prim);}];
-   
+      function(prim){return CamlPrimitive["caml_gr_open_graph"](prim)},
+      function(prim){return CamlPrimitive["caml_gr_close_graph"](prim)}];
+   break;
   default:exit=71;}
 
 switch(exit)
@@ -61,8 +59,8 @@ switch(exit)
     match$1=
      Pervasives["invalid_arg"]
       (Pervasives["^"]("Graphics: unknown OS type: ",Sys["os_type"]));
-   
-  case 70:var match$1=/* tuple */[0,unix_open_graph,unix_close_graph];
+   break;
+  case 70:var match$1=/* tuple */[0,unix_open_graph,unix_close_graph];break
   }
 
 var close_graph=match$1[2];
@@ -77,10 +75,9 @@ var
               CamlPrimitive["caml_gr_remember_mode"](/* true */1),
               CamlPrimitive["caml_gr_synchronize"](/* () */0))
             :(CamlPrimitive["caml_gr_display_mode"](/* false */0),
-              CamlPrimitive["caml_gr_remember_mode"](/* true */1));
-    };
+              CamlPrimitive["caml_gr_remember_mode"](/* true */1))};
 
-var rgb=function(r,g,b){return (r<<16)+(g<<8)+b;};
+var rgb=function(r,g,b){return (r<<16)+(g<<8)+b};
 
 var black=0;
 
@@ -109,32 +106,28 @@ var
      {var match$2=points[i+1];
       
       CamlPrimitive["caml_gr_plot"](match$2[1],match$2[2])}
-    return 0;
-    };
+    return 0};
 
 var
  current_point=
   function(param)
    {return /* tuple */[0,
             CamlPrimitive["caml_gr_current_x"](/* () */0),
-            CamlPrimitive["caml_gr_current_y"](/* () */0)];
-    };
+            CamlPrimitive["caml_gr_current_y"](/* () */0)]};
 
 var
  rlineto=
   function(x,y)
    {return CamlPrimitive["caml_gr_lineto"]
             (CamlPrimitive["caml_gr_current_x"](/* () */0)+x,
-             CamlPrimitive["caml_gr_current_y"](/* () */0)+y);
-    };
+             CamlPrimitive["caml_gr_current_y"](/* () */0)+y)};
 
 var
  rmoveto=
   function(x,y)
    {return CamlPrimitive["caml_gr_moveto"]
             (CamlPrimitive["caml_gr_current_x"](/* () */0)+x,
-             CamlPrimitive["caml_gr_current_y"](/* () */0)+y);
-    };
+             CamlPrimitive["caml_gr_current_y"](/* () */0)+y)};
 
 var
  draw_rect=
@@ -142,10 +135,9 @@ var
    {if(w<0||h<0)
      {throw [0,
              CamlPrimitive["caml_global_data"]["Invalid_argument"],
-             "draw_rect"];
-      }
+             "draw_rect"]}
     else
-     {return CamlPrimitive["caml_gr_draw_rect"](x,y,w,h);}
+     {return CamlPrimitive["caml_gr_draw_rect"](x,y,w,h)}
     };
 
 var
@@ -163,10 +155,9 @@ var
       if(close_flag)
        {CamlPrimitive["caml_gr_lineto"](points[1][1],points[1][2])}
       
-      return CamlPrimitive["caml_gr_moveto"](match$2[1],match$2[2]);
-      }
+      return CamlPrimitive["caml_gr_moveto"](match$2[1],match$2[2])}
     else
-     {return 0;}
+     {return 0}
     };
 
 var match$2=/* tuple */[0,dodraw(/* true */1),dodraw(/* false */0)];
@@ -186,8 +177,7 @@ var
       CamlPrimitive["caml_gr_moveto"](match$4[1],match$4[2]),
       CamlPrimitive["caml_gr_lineto"](match$4[3],match$4[4])}
     
-    return CamlPrimitive["caml_gr_moveto"](match$3[1],match$3[2]);
-    };
+    return CamlPrimitive["caml_gr_moveto"](match$3[1],match$3[2])};
 
 var
  draw_arc=
@@ -195,15 +185,14 @@ var
    {if(rx<0||ry<0)
      {throw [0,
              CamlPrimitive["caml_global_data"]["Invalid_argument"],
-             "draw_arc/ellipse/circle"];
-      }
+             "draw_arc/ellipse/circle"]}
     else
-     {return CamlPrimitive["caml_gr_draw_arc"](x,y,rx,ry,a1,a2);}
+     {return CamlPrimitive["caml_gr_draw_arc"](x,y,rx,ry,a1,a2)}
     };
 
-var draw_ellipse=function(x,y,rx,ry){return draw_arc(x,y,rx,ry,0,360);};
+var draw_ellipse=function(x,y,rx,ry){return draw_arc(x,y,rx,ry,0,360)};
 
-var draw_circle=function(x,y,r){return draw_arc(x,y,r,r,0,360);};
+var draw_circle=function(x,y,r){return draw_arc(x,y,r,r,0,360)};
 
 var
  set_line_width=
@@ -211,10 +200,9 @@ var
    {if(w<0)
      {throw [0,
              CamlPrimitive["caml_global_data"]["Invalid_argument"],
-             "set_line_width"];
-      }
+             "set_line_width"]}
     else
-     {return CamlPrimitive["caml_gr_set_line_width"](w);}
+     {return CamlPrimitive["caml_gr_set_line_width"](w)}
     };
 
 var
@@ -223,10 +211,9 @@ var
    {if(w<0||h<0)
      {throw [0,
              CamlPrimitive["caml_global_data"]["Invalid_argument"],
-             "fill_rect"];
-      }
+             "fill_rect"]}
     else
-     {return CamlPrimitive["caml_gr_fill_rect"](x,y,w,h);}
+     {return CamlPrimitive["caml_gr_fill_rect"](x,y,w,h)}
     };
 
 var
@@ -235,15 +222,14 @@ var
    {if(rx<0||ry<0)
      {throw [0,
              CamlPrimitive["caml_global_data"]["Invalid_argument"],
-             "fill_arc/ellipse/circle"];
-      }
+             "fill_arc/ellipse/circle"]}
     else
-     {return CamlPrimitive["caml_gr_fill_arc"](x,y,rx,ry,a1,a2);}
+     {return CamlPrimitive["caml_gr_fill_arc"](x,y,rx,ry,a1,a2)}
     };
 
-var fill_ellipse=function(x,y,rx,ry){return fill_arc(x,y,rx,ry,0,360);};
+var fill_ellipse=function(x,y,rx,ry){return fill_arc(x,y,rx,ry,0,360)};
 
-var fill_circle=function(x,y,r){return fill_arc(x,y,r,r,0,360);};
+var fill_circle=function(x,y,r){return fill_arc(x,y,r,r,0,360)};
 
 var transp=-1;
 
@@ -253,8 +239,7 @@ var
    {var image=CamlPrimitive["caml_gr_create_image"](w,h);
     
     CamlPrimitive["caml_gr_blit_image"](image,x,y);
-    return image;
-    };
+    return image};
 
 var
  mouse_pos=
@@ -263,8 +248,7 @@ var
      e=
       CamlPrimitive["caml_gr_wait_event"]([/* :: */0,/* Poll */4,/* [] */0]);
     
-    return /* tuple */[0,e[1],e[2]];
-    };
+    return /* tuple */[0,e[1],e[2]]};
 
 var
  button_down=
@@ -273,8 +257,7 @@ var
      e=
       CamlPrimitive["caml_gr_wait_event"]([/* :: */0,/* Poll */4,/* [] */0]);
     
-    return e[3];
-    };
+    return e[3]};
 
 var
  read_key=
@@ -284,8 +267,7 @@ var
       CamlPrimitive["caml_gr_wait_event"]
        ([/* :: */0,/* Key_pressed */2,/* [] */0]);
     
-    return e[5];
-    };
+    return e[5]};
 
 var
  key_pressed=
@@ -294,13 +276,12 @@ var
      e=
       CamlPrimitive["caml_gr_wait_event"]([/* :: */0,/* Poll */4,/* [] */0]);
     
-    return e[4];
-    };
+    return e[4]};
 
 var
  loop_at_exit=
   function(events,handler)
-   {var events$1=List["filter"](function(e){return e!==/* Poll */4;},events);
+   {var events$1=List["filter"](function(e){return e!==/* Poll */4},events);
     
     return Pervasives["at_exit"]
             (function(param)
@@ -309,41 +290,39 @@ var
                   {var e=CamlPrimitive["caml_gr_wait_event"](events$1);
                    
                    handler(e)}
-                 return 0;
-                 }
+                 return 0}
                catch(e$1)
                 {if(e$1===Pervasives["Exit"])
-                  {return close_graph(/* () */0);}
+                  {return close_graph(/* () */0)}
                  else
-                  {close_graph(/* () */0);throw e$1;}
+                  {close_graph(/* () */0);throw e$1}
                  }
-               });
-    };
+               })};
 
 var
  add=
   function(param,param$1)
-   {return /* tuple */[0,param[1]+param$1[1],param[2]+param$1[2]];};
+   {return /* tuple */[0,param[1]+param$1[1],param[2]+param$1[2]]};
 
 var
  sub=
   function(param,param$1)
-   {return /* tuple */[0,param[1]-param$1[1],param[2]-param$1[2]];};
+   {return /* tuple */[0,param[1]-param$1[1],param[2]-param$1[2]]};
 
 var
  middle=
   function(param,param$1)
-   {return /* tuple */[0,(param[1]+param$1[1])/2,(param[2]+param$1[2])/2];};
+   {return /* tuple */[0,(param[1]+param$1[1])/2,(param[2]+param$1[2])/2]};
 
 var
  area=
   function(param,param$1)
-   {return Math["abs"](param[1]*param$1[2]-param$1[1]*param[2]);};
+   {return Math["abs"](param[1]*param$1[2]-param$1[1]*param[2])};
 
 var
  norm=
   function(param)
-   {var y1=param[2];var x1=param[1];return Math["sqrt"](x1*x1+y1*y1);};
+   {var y1=param[2];var x1=param[1];return Math["sqrt"](x1*x1+y1*y1)};
 
 var
  test=
@@ -352,8 +331,7 @@ var
     
     var s=norm(v);
     
-    return area(v,sub(a,b))<=s&&area(v,sub(a,c))<=s;
-    };
+    return area(v,sub(a,b))<=s&&area(v,sub(a,c))<=s};
 
 var
  spline=
@@ -362,7 +340,7 @@ var
      spl=
       function(accu,a,b,c,d)
        {if(test(a,b,c,d))
-         {return /* :: */[0,d,accu];}
+         {return /* :: */[0,d,accu]}
         else
          {var a$prime=middle(a,b);
           
@@ -376,23 +354,21 @@ var
           
           var i=middle(b$prime,c$prime);
           
-          return spl(spl(accu,a,a$prime,b$prime,i),i,c$prime,d$prime,d);
-          }
+          return spl(spl(accu,a,a$prime,b$prime,i),i,c$prime,d$prime,d)}
         };
     
-    return spl(/* :: */[0,a,/* [] */0],a,b,c,d);
-    };
+    return spl(/* :: */[0,a,/* [] */0],a,b,c,d)};
 
 var
  curveto=
   function(b,c,d)
-   {var float_point=function(param){return /* tuple */[0,param[1],param[2]];};
+   {var float_point=function(param){return /* tuple */[0,param[1],param[2]]};
     
-    var round=function(f){return f+0.5;};
+    var round=function(f){return f+0.5};
     
     var
      int_point=
-      function(param){return /* tuple */[0,round(param[1]),round(param[2])];};
+      function(param){return /* tuple */[0,round(param[1]),round(param[2])]};
     
     var
      points=
@@ -403,18 +379,17 @@ var
         float_point(d));
     
     draw_poly_line($$Array["of_list"](List["map"](int_point,points)));
-    return CamlPrimitive["caml_gr_moveto"](d[1],d[2]);
-    };
+    return CamlPrimitive["caml_gr_moveto"](d[1],d[2])};
 
 module["exports"]=
 {"Graphic_failure":Graphic_failure,
  "open_graph":open_graph,
  "close_graph":close_graph,
  "set_window_title":
- function(prim){return CamlPrimitive["caml_gr_set_window_title"](prim);},
+ function(prim){return CamlPrimitive["caml_gr_set_window_title"](prim)},
  "resize_window":
  function(prim,prim$1)
-  {return CamlPrimitive["caml_gr_resize_window"](prim,prim$1);},
+  {return CamlPrimitive["caml_gr_resize_window"](prim,prim$1)},
  "rgb":rgb,
  "background":background,
  "foreground":foreground,
@@ -440,7 +415,7 @@ module["exports"]=
  "draw_circle":draw_circle,
  "set_line_width":set_line_width,
  "set_text_size":
- function(prim){return CamlPrimitive["caml_gr_set_text_size"](prim);},
+ function(prim){return CamlPrimitive["caml_gr_set_text_size"](prim)},
  "fill_rect":fill_rect,
  "fill_arc":fill_arc,
  "fill_ellipse":fill_ellipse,

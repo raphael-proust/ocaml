@@ -20,7 +20,7 @@ var
    {var pos_fname=pos[1];
     
     if(CamlPrimitive["caml_sys_file_exists"](pos_fname))
-     {return pos_fname;}
+     {return pos_fname}
     else
      {var
        is_submodule=
@@ -31,20 +31,19 @@ var
            {return CamlPrimitive["caml_string_equal"]
                     ($$String["sub"](m,0,len$prime),m$prime)&&
                    m["charCodeAt"](len$prime)===
-                   46;
-            }
+                   46}
           catch(exn)
            {if(exn[1]===CamlPrimitive["caml_global_data"]["Invalid_argument"])
-             {return /* false */0;}
+             {return /* false */0}
             else
-             {throw exn;}
+             {throw exn}
             }
           };
       
       var
        path=
         Hashtbl["fold"]
-         (function(mdl,dirs,acc){return is_submodule(mdle,mdl)?dirs:acc;},
+         (function(mdl,dirs,acc){return is_submodule(mdle,mdl)?dirs:acc},
           Debugger_config["load_path_for"],
           Config["load_path"][1]);
       
@@ -62,7 +61,7 @@ var
          {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
            {innermost_module=mdle;}
           else
-           {throw exn;}
+           {throw exn}
           }
         
         var
@@ -71,29 +70,27 @@ var
            {if(param)
              {try
                {return Misc["find_in_path_uncap"]
-                        (path,Pervasives["^"](innermost_module,param[1]));
-                }
+                        (path,Pervasives["^"](innermost_module,param[1]))}
               catch(exn$1)
                {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
-                 {return loop(param[2]);}
+                 {return loop(param[2])}
                 else
-                 {throw exn$1;}
+                 {throw exn$1}
                 }
               }
             else
-             {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+             {throw CamlPrimitive["caml_global_data"]["Not_found"]}
             };
         
-        return loop(source_extensions);
-        }
+        return loop(source_extensions)}
       else
        {if(Filename["is_relative"](fname))
-         {return Misc["find_in_path_rel"](path,fname);}
+         {return Misc["find_in_path_rel"](path,fname)}
         else
          {if(CamlPrimitive["caml_sys_file_exists"](fname))
-           {return fname;}
+           {return fname}
           else
-           {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+           {throw CamlPrimitive["caml_global_data"]["Not_found"]}
           }
         }
       }
@@ -105,13 +102,13 @@ var cache_size=30;
 
 var buffer_list=[0,/* [] */0];
 
-var flush_buffer_list=function(param){return buffer_list[1]=/* [] */0,0;};
+var flush_buffer_list=function(param){return buffer_list[1]=/* [] */0,0};
 
 var
  get_buffer=
   function(pos,mdle)
    {try
-     {return List["assoc"](mdle,buffer_list[1]);}
+     {return List["assoc"](mdle,buffer_list[1])}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {var inchan=Pervasives["open_in_bin"](source_of_module(pos,mdle));
@@ -127,16 +124,15 @@ var
         Primitives["list_truncate"]
          (buffer_max_count[1],
           /* :: */[0,/* tuple */[0,mdle,buffer],buffer_list[1]]);
-        return buffer;
-        }
+        return buffer}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
-var buffer_content=function(prim){return prim[1];};
+var buffer_content=function(prim){return prim[1]};
 
-var buffer_length=function(x){return buffer_content(x)["length"];};
+var buffer_length=function(x){return buffer_content(x)["length"]};
 
 var
  insert_pos=
@@ -157,16 +153,14 @@ var
                   ?/* :: */[0,pair,l$prime]
                   :CamlPrimitive["caml_equal"](lin,line)
                     ?l$prime
-                    :/* :: */[0,a,new_list(l$prime[2])];
-          }
+                    :/* :: */[0,a,new_list(l$prime[2])]}
         else
-         {return /* :: */[0,/* tuple */[0,position,line],/* [] */0];}
+         {return /* :: */[0,/* tuple */[0,position,line],/* [] */0]}
         };
     
     var buffer_cache=buffer[2];
     
-    return buffer_cache[1]=new_list(buffer_cache[1]),0;
-    };
+    return buffer_cache[1]=new_list(buffer_cache[1]),0};
 
 var
  next_linefeed=
@@ -176,21 +170,20 @@ var
     var len=buffer["length"];
     
     if(pos>=len)
-     {throw Primitives["Out_of_range"];}
+     {throw Primitives["Out_of_range"]}
     else
      {var
        search=
         function(p)
-         {return p===len||buffer["charCodeAt"](p)===10?p:search(1+p);};
+         {return p===len||buffer["charCodeAt"](p)===10?p:search(1+p)};
       
-      return search(pos);
-      }
+      return search(pos)}
     };
 
 var
  next_line=
   function(buffer,param)
-   {return /* tuple */[0,next_linefeed(buffer,param[1])+1,param[2]+1];};
+   {return /* tuple */[0,next_linefeed(buffer,param[1])+1,param[2]+1]};
 
 var
  line_of_pos=
@@ -199,12 +192,12 @@ var
      find=
       function(param)
        {if(param)
-         {var pair=param[1];return pair[1]>position?find(param[2]):pair;}
+         {var pair=param[1];return pair[1]>position?find(param[2]):pair}
         else
          {if(position<0)
-           {throw Primitives["Out_of_range"];}
+           {throw Primitives["Out_of_range"]}
           else
-           {return [/* tuple */0,0,1];}
+           {return [/* tuple */0,0,1]}
           }
         };
     
@@ -213,14 +206,12 @@ var
       function(previous)
        {var next=next_line(buffer,previous);
         
-        return next[1]<=position?find_line(next):previous;
-        };
+        return next[1]<=position?find_line(next):previous};
     
     var result=find_line(find(buffer[2][1]));
     
     insert_pos(buffer,result);
-    return result;
-    };
+    return result};
 
 var
  pos_of_line=
@@ -229,12 +220,12 @@ var
      find=
       function(param)
        {if(param)
-         {var pair=param[1];return pair[2]>line?find(param[2]):pair;}
+         {var pair=param[1];return pair[2]>line?find(param[2]):pair}
         else
          {if(line<=0)
-           {throw Primitives["Out_of_range"];}
+           {throw Primitives["Out_of_range"]}
           else
-           {return [/* tuple */0,0,1];}
+           {return [/* tuple */0,0,1]}
           }
         };
     
@@ -243,19 +234,16 @@ var
       function(previous)
        {var next=next_line(buffer,previous);
         
-        return next[2]<=line?find_pos(next):previous;
-        };
+        return next[2]<=line?find_pos(next):previous};
     
     var result=find_pos(find(buffer[2][1]));
     
     insert_pos(buffer,result);
-    return result;
-    };
+    return result};
 
 var
  point_of_coord=
-  function(buffer,line,column)
-   {return pos_of_line(buffer,line)[1]+(-1+column);};
+  function(buffer,line,column){return pos_of_line(buffer,line)[1]+(-1+column)};
 
 var
  start_and_cnum=
@@ -264,8 +252,7 @@ var
     
     var start=point_of_coord(buffer,line_number,1);
     
-    return /* tuple */[0,start,start+(pos[4]-pos[3])];
-    };
+    return /* tuple */[0,start,start+(pos[4]-pos[3])]};
 
 module["exports"]=
 {"source_of_module":source_of_module,

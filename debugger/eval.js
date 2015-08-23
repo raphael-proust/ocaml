@@ -39,13 +39,12 @@ var
        if(Ident["global"](id))
         {try
           {return Debugcom["Remote_value"][10]
-                   (Symtable["get_global_position"](id));
-           }
+                   (Symtable["get_global_position"](id))}
          catch(exn)
           {if(exn[1]===Symtable["Error"])
-            {throw [0,$$Error,/* Unbound_identifier */[0,id]];}
+            {throw [0,$$Error,/* Unbound_identifier */[0,id]]}
            else
-            {throw exn;}
+            {throw exn}
            }
          }
        else
@@ -55,43 +54,38 @@ var
            try
             {var pos=Ident["find_same"](id,ev[8][1]);
              
-             return Debugcom["Remote_value"][8](ev[9]-pos);
-             }
+             return Debugcom["Remote_value"][8](ev[9]-pos)}
            catch(exn$1)
             {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
               {try
                 {var pos$1=Ident["find_same"](id,ev[8][2]);
                  
-                 return Debugcom["Remote_value"][9](pos$1);
-                 }
+                 return Debugcom["Remote_value"][9](pos$1)}
                catch(exn$2)
                 {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
-                  {throw [0,$$Error,/* Unbound_identifier */[0,id]];}
+                  {throw [0,$$Error,/* Unbound_identifier */[0,id]]}
                  else
-                  {throw exn$2;}
+                  {throw exn$2}
                  }
                }
              else
-              {throw exn$1;}
+              {throw exn$1}
              }
            }
          else
-          {throw [0,$$Error,/* Unbound_identifier */[0,id]];}
+          {throw [0,$$Error,/* Unbound_identifier */[0,id]]}
          }
-       
+       break;
       case 1:
        var root=param[1];
        
        var v=path($$event,root);
        
        if(!Debugcom["Remote_value"][2](v))
-        {throw [0,$$Error,/* Not_initialized_yet */[1,root]];}
-       else
-        {}
+        {throw [0,$$Error,/* Not_initialized_yet */[1,root]]}
        
        return Debugcom["Remote_value"][5](v,param[3]);
-       
-      case 2:return Misc["fatal_error"]("Eval.path: Papply");
+      case 2:return Misc["fatal_error"]("Eval.path: Papply")
       }
     };
 
@@ -114,8 +108,7 @@ var
             {if(Frames["current_frame"][1]===0)
               {return /* tuple */[0,
                        Debugcom["Remote_value"][11](/* () */0),
-                       Subst["type_expr"](match[7],match$1[1])];
-               }
+                       Subst["type_expr"](match[7],match$1[1])]}
              else
               {exit=8;}
              }
@@ -123,8 +116,8 @@ var
          else
           {exit=8;}
          
-         switch(exit){case 8:throw [0,$$Error,/* No_result */0];}
-         
+         switch(exit){case 8:throw [0,$$Error,/* No_result */0]}
+         break
         }}
     else
      {switch(param[0])
@@ -159,32 +152,31 @@ var
                 
                 $js=
                 Debugcom["Remote_value"][5](v,Debugcom["Remote_value"][1](i));
-                
+                break;
                default:exit$1=6;}}
            
            var $js$1;
-           switch(exit$1){case 6:$js$1=path($$event,p);}
-           return /* tuple */[0,$js$1,Ctype["correct_levels"](valdesc[1])];
-           }
+           switch(exit$1){case 6:$js$1=path($$event,p);break}
+           return /* tuple */[0,$js$1,Ctype["correct_levels"](valdesc[1])]}
          catch(exn)
           {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-            {throw [0,$$Error,/* Unbound_long_identifier */[2,lid]];}
+            {throw [0,$$Error,/* Unbound_long_identifier */[2,lid]]}
            else
-            {throw exn;}
+            {throw exn}
            }
-         
+         break;
         case 1:
          var n=param[1];
          
          try
-          {return Printval["find_named_value"](n);}
+          {return Printval["find_named_value"](n)}
          catch(exn$1)
           {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
-            {throw [0,$$Error,/* Unknown_name */[3,n]];}
+            {throw [0,$$Error,/* Unknown_name */[3,n]]}
            else
-            {throw exn$1;}
+            {throw exn$1}
            }
-         
+         break;
         case 2:
          var n$1=param[2];
          
@@ -208,14 +200,12 @@ var
               if(n$1<1||n$1>List["length"](ty_list))
                {throw [0,
                        $$Error,
-                       /* Tuple_index */[4,ty,List["length"](ty_list),n$1]];
-                }
+                       /* Tuple_index */[4,ty,List["length"](ty_list),n$1]]}
               else
                {return /* tuple */[0,
                         Debugcom["Remote_value"][5](v$1,n$1-1),
-                        List["nth"](ty_list,n$1-1)];
-                }
-              
+                        List["nth"](ty_list,n$1-1)]}
+              break;
              case 3:
               var match$7=match$6[2];
               
@@ -231,12 +221,11 @@ var
                    {var size=Debugcom["Remote_value"][4](v$1);
                     
                     if(n$1>=size)
-                     {throw [0,$$Error,/* Array_index */[5,size,n$1]];}
+                     {throw [0,$$Error,/* Array_index */[5,size,n$1]]}
                     else
                      {return /* tuple */[0,
                               Debugcom["Remote_value"][5](v$1,n$1),
-                              ty_arg];
-                      }
+                              ty_arg]}
                     }
                   else
                    {if(Path["same"](path$1,Predef["path_list"]))
@@ -244,16 +233,14 @@ var
                        nth=
                         function(pos,v)
                          {if(!Debugcom["Remote_value"][2](v))
-                           {throw [0,$$Error,/* List_index */[6,pos,n$1]];}
+                           {throw [0,$$Error,/* List_index */[6,pos,n$1]]}
                           else
                            {return pos===n$1
                                     ?/* tuple */[0,Debugcom["Remote_value"][5](v,0),ty_arg]
-                                    :nth(pos+1,Debugcom["Remote_value"][5](v,1));
-                            }
+                                    :nth(pos+1,Debugcom["Remote_value"][5](v,1))}
                           };
                       
-                      return nth(0,v$1);
-                      }
+                      return nth(0,v$1)}
                     else
                      {exit$2=12;}
                     }
@@ -264,22 +251,21 @@ var
                  {var s=Debugcom["Remote_value"][1](v$1);
                   
                   if(n$1>=s["length"])
-                   {throw [0,$$Error,/* String_index */[7,s,s["length"],n$1]];}
+                   {throw [0,$$Error,/* String_index */[7,s,s["length"],n$1]]}
                   else
                    {return /* tuple */[0,
                             Debugcom["Remote_value"][7](s["charCodeAt"](n$1)),
-                            Predef["type_char"]];
-                    }
+                            Predef["type_char"]]}
                   }
                 else
                  {exit$2=12;}
                 }
-              
+              break;
              default:exit$2=12;}}
          
          switch(exit$2)
-          {case 12:throw [0,$$Error,/* Wrong_item_type */[8,ty,n$1]];}
-         
+          {case 12:throw [0,$$Error,/* Wrong_item_type */[8,ty,n$1]]}
+         break;
         case 3:
          var match$8=expression($$event,env,param[1]);
          
@@ -314,17 +300,15 @@ var
                    return /* tuple */[0,
                            Debugcom["Remote_value"][5](match$8[1],match$11[1]),
                            match$11[2]];
-                   
                   default:exit$4=15;}}
               
               switch(exit$4)
-               {case 15:throw [0,$$Error,/* Not_a_record */[10,ty$1]];}
-              
+               {case 15:throw [0,$$Error,/* Not_a_record */[10,ty$1]]}
+              break;
              default:exit$3=17;}}
          
-         switch(exit$3)
-          {case 17:throw [0,$$Error,/* Not_a_record */[10,ty$1]];}
-         
+         switch(exit$3){case 17:throw [0,$$Error,/* Not_a_record */[10,ty$1]]}
+         break
         }}
     };
 
@@ -349,14 +333,13 @@ var
             /* :: */[0,ty,/* [] */0]);
           }
         catch(exn)
-         {if(exn===Ctype["Cannot_apply"]){$js=abstract_type;}else{throw exn;}}
-        return /* tuple */[0,pos,$js];
-        }
+         {if(exn===Ctype["Cannot_apply"]){$js=abstract_type;}else{throw exn}}
+        return /* tuple */[0,pos,$js]}
       else
-       {return find_label(lbl,env,ty,path,tydesc,pos+1,param[2]);}
+       {return find_label(lbl,env,ty,path,tydesc,pos+1,param[2])}
       }
     else
-     {throw [0,$$Error,/* Wrong_label */[9,ty,lbl]];}
+     {throw [0,$$Error,/* Wrong_label */[9,ty,lbl]]}
     };
 
 var
@@ -377,8 +360,7 @@ var
                       [/* Formatting_lit */17,
                        /* Flush_newline */4,
                        /* End_of_format */0]]]],
-                   "@[No result available at current program event@]@."]);
-         
+                   "@[No result available at current program event@]@."])
         }}
     else
      {switch(param[0])
@@ -399,7 +381,6 @@ var
                         /* End_of_format */0]]]]],
                    "@[Unbound identifier %s@]@."],
                   Ident["name"](param[1]));
-         
         case 1:
          return Format["fprintf"]
                  (ppf,
@@ -427,7 +408,6 @@ var
                    "@[The module path %a is not yet initialized.@ Please run program forward@ until its initialization code is executed.@]@."],
                   Printtyp["path"],
                   param[1]);
-         
         case 2:
          return Format["fprintf"]
                  (ppf,
@@ -445,7 +425,6 @@ var
                    "@[Unbound identifier %a@]@."],
                   Printtyp["longident"],
                   param[1]);
-         
         case 3:
          return Format["fprintf"]
                  (ppf,
@@ -465,7 +444,6 @@ var
                         /* End_of_format */0]]]]],
                    "@[Unknown value name $%i@]@."],
                   param[1]);
-         
         case 4:
          var ty=param[1];
          
@@ -502,7 +480,6 @@ var
                   param[2],
                   Printtyp["type_expr"],
                   ty);
-         
         case 5:
          return Format["fprintf"]
                  (ppf,
@@ -529,7 +506,6 @@ var
                    "@[Cannot extract element number %i from an array of length %i@]@."],
                   param[2],
                   param[1]);
-         
         case 6:
          return Format["fprintf"]
                  (ppf,
@@ -556,7 +532,6 @@ var
                    "@[Cannot extract element number %i from a list of length %i@]@."],
                   param[2],
                   param[1]);
-         
         case 7:
          return Format["fprintf"]
                  (ppf,
@@ -592,7 +567,6 @@ var
                   param[3],
                   param[2],
                   param[1]);
-         
         case 8:
          return Format["fprintf"]
                  (ppf,
@@ -619,7 +593,6 @@ var
                   param[2],
                   Printtyp["type_expr"],
                   param[1]);
-         
         case 9:
          return Format["fprintf"]
                  (ppf,
@@ -646,7 +619,6 @@ var
                   Printtyp["type_expr"],
                   param[1],
                   param[2]);
-         
         case 10:
          return Format["fprintf"]
                  (ppf,
@@ -669,8 +641,7 @@ var
                            /* End_of_format */0]]]]]]]],
                    "@[The type@ %a@ is not a record type@]@."],
                   Printtyp["type_expr"],
-                  param[1]);
-         
+                  param[1])
         }}
     };
 

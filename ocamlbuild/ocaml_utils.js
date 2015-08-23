@@ -29,12 +29,11 @@ var
     var
      ps=
       Command["fold_pathnames"]
-       (function(p,ps){return /* :: */[0,p,ps];},
+       (function(p,ps){return /* :: */[0,p,ps]},
         /* Cmd */[1,cmd_spec],
         /* [] */0);
     
-    return Command["dep"](tags,ps);
-    };
+    return Command["dep"](tags,ps)};
 
 var
  stdlib_dir=
@@ -60,8 +59,7 @@ var
               [/* Sh */4,">"],
               /* :: */[0,/* P */[2,ocamlc_where],/* [] */0]]]]]]);
      
-     return My_std["String"][2](My_std["read_file"](ocamlc_where));
-     }];
+     return My_std["String"][2](My_std["read_file"](ocamlc_where))}];
 
 var
  pflag_and_dep=
@@ -71,26 +69,23 @@ var
              function(param)
               {return flag_and_dep
                        (/* :: */[0,Param_tags["make"](ptag,param),tags],
-                        cmd_spec(param));
-               });
-    };
+                        cmd_spec(param))})};
 
 var
  module_name_of_filename=
-  function(f){return My_std["String"][38](Pathname["remove_extensions"](f));};
+  function(f){return My_std["String"][38](Pathname["remove_extensions"](f))};
 
 var
  module_name_of_pathname=
   function(x)
    {return module_name_of_filename
-            (Pathname["to_string"](Pathname["basename"](x)));
-    };
+            (Pathname["to_string"](Pathname["basename"](x)))};
 
 var
  ignore_stdlib=
   function(x)
    {if(Options["nostdlib"][1])
-     {return /* false */0;}
+     {return /* false */0}
     else
      {var
        x$prime=
@@ -98,8 +93,7 @@ var
          (My_std["!*"](stdlib_dir),
           Pathname["Operators"][2](My_std["String"][39](x),"cmi"));
       
-      return Pathname["exists"](x$prime);
-      }
+      return Pathname["exists"](x$prime)}
     };
 
 var non_dependencies=[0,/* [] */0];
@@ -112,8 +106,7 @@ var
     
     return non_dependencies[1]=
            /* :: */[0,/* tuple */[0,m1,m2],non_dependencies[1]],
-           0;
-    };
+           0};
 
 var
  path_importance=
@@ -137,11 +130,9 @@ var
           x,
           path);
       
-      return /* ignored */-589744366;
-      }
+      return /* ignored */-589744366}
     else
-     {return ignore_stdlib(x)?/* just_try */886832744:/* mandatory */-38817255;
-      }
+     {return ignore_stdlib(x)?/* just_try */886832744:/* mandatory */-38817255}
     };
 
 var
@@ -171,13 +162,10 @@ var
                                     /* :: */[0,
                                      Pathname["Operators"][1]
                                       (include_dir,Pathname["Operators"][2](module_name_cap,ext)),
-                                     acc]];
-                            },
-                          exts);
-                 },
+                                     acc]]},
+                          exts)},
                include_dirs,
-               /* [] */0);
-      });
+               /* [] */0)});
 
 var
  string_list_of_file=
@@ -187,9 +175,7 @@ var
              file,
              function(ic)
               {return Lexers["blank_sep_strings"]
-                       (Const["Source"][1],Lexing["from_channel"](ic));
-               });
-    };
+                       (Const["Source"][1],Lexing["from_channel"](ic))})};
 
 var print_path_list=Pathname["print_path_list"];
 
@@ -208,16 +194,14 @@ var
             :/* S */[0,
               /* :: */[0,
                [/* A */1,"-pp"],
-               /* :: */[0,/* Quote */[7,reduced],/* [] */0]]];
-    };
+               /* :: */[0,/* Quote */[7,reduced],/* [] */0]]]};
 
 var
  ocaml_add_include_flag=
   function(x,acc)
    {return CamlPrimitive["caml_string_equal"](x,Pathname["current_dir_name"])
             ?acc
-            :/* :: */[0,[/* A */1,"-I"],/* :: */[0,/* A */[1,x],acc]];
-    };
+            :/* :: */[0,[/* A */1,"-I"],/* :: */[0,/* A */[1,x],acc]]};
 
 var
  ocaml_include_flags=
@@ -226,8 +210,7 @@ var
             My_std["List"][20]
              (ocaml_add_include_flag,
               Pathname["include_dirs_of"](Pathname["dirname"](path)),
-              /* [] */0)];
-    };
+              /* [] */0)]};
 
 var info_libraries=Hashtbl["create"](/* None */0,103);
 
@@ -237,19 +220,19 @@ var
  libraries_of=
   function(m)
    {try
-     {return Hashtbl["find"](libraries,m);}
+     {return Hashtbl["find"](libraries,m)}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-       {return /* [] */0;}
+       {return /* [] */0}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
 var
  use_lib=
   function(m,lib)
-   {return Hashtbl["replace"](libraries,m,/* :: */[0,lib,libraries_of(m)]);};
+   {return Hashtbl["replace"](libraries,m,/* :: */[0,lib,libraries_of(m)])};
 
 var
  ocaml_lib=
@@ -268,8 +251,7 @@ var
                   /* :: */[0,
                    [/* A */1,"-I"],
                    /* :: */[0,/* P */[2,dir[1]],/* :: */[0,x,/* [] */0]]]]
-                :x;
-        };
+                :x};
     
     var
      tag_name$1=
@@ -281,8 +263,7 @@ var
      flag_and_dep$1=
       function(tags,lib)
        {Flags["flag"](/* None */0,tags,add_dir(/* A */[1,lib]));
-        return !extern?Command["dep"](tags,/* :: */[0,lib,/* [] */0]):0;
-        };
+        return !extern?Command["dep"](tags,/* :: */[0,lib,/* [] */0]):0};
     
     Hashtbl["replace"]
      (info_libraries,tag_name$1,/* tuple */[0,libpath,extern]);
@@ -325,14 +306,12 @@ var
                           /* S */[0,
                            /* :: */[0,
                             [/* A */1,"-I"],
-                            /* :: */[0,/* P */[2,dir$1],/* [] */0]]]);
-                 },
+                            /* :: */[0,/* P */[2,dir$1],/* [] */0]]])},
                [/* :: */0,
                 "compile",
-                [/* :: */0,"doc",[/* :: */0,"infer_interface",/* [] */0]]]);
-      }
+                [/* :: */0,"doc",[/* :: */0,"infer_interface",/* [] */0]]])}
     else
-     {return /* () */0;}
+     {return /* () */0}
     };
 
 var cmi_of=Pathname["update_extensions"]("cmi");
@@ -372,10 +351,9 @@ var
                                /* No_padding */0,
                                [/* Char_literal */12,41,/* End_of_format */0]]],
                              "Ocamldep.ocamldep: bad output (%s)"],
-                            exn[2][1])];
-                   }
+                            exn[2][1])]}
                  else
-                  {throw exn;}
+                  {throw exn}
                  }
                
                var
@@ -389,7 +367,7 @@ var
                      if
                       (CamlPrimitive["caml_string_equal"]
                         (module_name$prime,module_name))
-                      {return My_std["List"][3](param[2],acc);}
+                      {return My_std["List"][3](param[2],acc)}
                      else
                       {throw [0,
                               Ocamldep_error,
@@ -403,8 +381,7 @@ var
                                     " not expected)",
                                     /* End_of_format */0]]],
                                  "Ocamldep.ocamldep: multiple files in ocamldep output (%s not expected)"],
-                                path$1)];
-                       }
+                                path$1)]}
                      },
                    ocamldep_output,
                    /* [] */0);
@@ -424,8 +401,7 @@ var
                      
                      return importance>=-38817255
                              ?/* :: */[0,/* tuple */[0,importance,dep],acc]
-                             :acc;
-                     },
+                             :acc},
                    deps$1,
                    /* [] */0);
                
@@ -436,13 +412,11 @@ var
                 {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
                   {$js=/* [] */0;}
                  else
-                  {throw exn$1;}
+                  {throw exn$1}
                  }
                Hashtbl["replace"]
                 (path_dependencies,path,My_std["List"][3]($js,deps$prime));
-               return deps$prime;
-               });
-    };
+               return deps$prime})};
 
 var path_dependencies_of=My_std["memo"](read_path_dependencies);
 

@@ -15,13 +15,13 @@ var
  Findlib_error=
   CamlPrimitive["caml_set_oo_id"]([248,"Findlib.Findlib_error",0]);
 
-var error=function(x){throw [0,Findlib_error,x];};
+var error=function(x){throw [0,Findlib_error,x]};
 
 var
  string_of_error=
   function(param)
    {if(typeof param==="number")
-     {switch(param){case 0:return "Cannot run Ocamlfind.";}}
+     {switch(param){case 0:return "Cannot run Ocamlfind."}}
     else
      {switch(param[0])
        {case 0:
@@ -41,7 +41,6 @@ var
                    'Ocamlfind returned "%s" as a dependency for package "%s" but does not know this dependency.'],
                   param[2],
                   param[1]);
-         
         case 1:
          return Printf["sprintf"]
                  ([/* Format */0,
@@ -52,7 +51,6 @@ var
                      [/* String_literal */11,'".',/* End_of_format */0]]],
                    'Findlib package not found: "%s".'],
                   param[1]);
-         
         case 2:
          return Printf["sprintf"]
                  ([/* Format */0,
@@ -65,8 +63,7 @@ var
                       [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
                    'Cannot parse Ocamlfind query for package "%s": %s'],
                   param[1],
-                  param[2]);
-         
+                  param[2])
         }}
     };
 
@@ -74,8 +71,7 @@ var
  report_error=
   function(e)
    {Pervasives["prerr_endline"](string_of_error(e));
-    return Pervasives["exit"](2);
-    };
+    return Pervasives["exit"](2)};
 
 var ocamlfind="ocamlfind";
 
@@ -89,21 +85,19 @@ var
               {return My_std["&"]
                        (lexer,
                         My_std["&"]
-                         (Lexing["from_string"],My_unix["run_and_read"](command)));
-               },
-             command);
-    };
+                         (Lexing["from_string"],My_unix["run_and_read"](command)))},
+             command)};
 
 var
  run_and_read=
   function(command)
-   {return Printf["ksprintf"](My_unix["run_and_read"],command);};
+   {return Printf["ksprintf"](My_unix["run_and_read"],command)};
 
 var
  query=
   function(name)
    {try
-     {return Hashtbl["find"](packages,name);}
+     {return Hashtbl["find"](packages,name)}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {try
@@ -155,7 +149,7 @@ var
            deps$1=
             My_std["List"][33]
              (function(prim,prim$1)
-                {return CamlPrimitive["caml_notequal"](prim,prim$1);}
+                {return CamlPrimitive["caml_notequal"](prim,prim$1)}
                (n),
               deps);
           
@@ -174,12 +168,13 @@ var
                {switch(match$1[0])
                  {case 1:
                    deps$2=error(/* Dependency_not_found */[0,name,match$1[1]]);
+                   break;
                   default:exit=32;}}
               }
             else
              {exit=32;}
             
-            switch(exit){case 32:throw exn$1;}
+            switch(exit){case 32:throw exn$1}
             }
           
           var
@@ -195,21 +190,20 @@ var
              deps$2];
           
           Hashtbl["add"](packages,n,$$package);
-          return $$package;
-          }
+          return $$package}
         catch(exn$2)
          {if(exn$2[1]===CamlPrimitive["caml_global_data"]["Failure"])
-           {return error(/* Cannot_run_ocamlfind */0);}
+           {return error(/* Cannot_run_ocamlfind */0)}
           else
            {if(exn$2[1]===Lexers["Error"])
-             {return error(/* Cannot_parse_query */[2,name,exn$2[2][1]]);}
+             {return error(/* Cannot_parse_query */[2,name,exn$2[2][1]])}
             else
-             {throw exn$2;}
+             {throw exn$2}
             }
           }
         }
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -224,16 +218,15 @@ var
        {var pos=My_std["String"][29](s,10);
         
         x[1]=/* :: */[0,My_std["String"][3](s,pos),x[1]];
-        return go(My_std["String"][4](s,pos+1));
-        };
+        return go(My_std["String"][4](s,pos+1))};
     
     try
-     {return go(s);}
+     {return go(s)}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-       {return x[1];}
+       {return x[1]}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -241,12 +234,12 @@ var
  before_space=
   function(s)
    {try
-     {return My_std["String"][3](s,My_std["String"][29](s,32));}
+     {return My_std["String"][3](s,My_std["String"][29](s,32))}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-       {return s;}
+       {return s}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -263,23 +256,21 @@ var
                    /* No_padding */0,
                    [/* String_literal */11," list",/* End_of_format */0]],
                   "%s list"],
-                 ocamlfind)));
-    };
+                 ocamlfind)))};
 
 var
  topological_closure=
   function(l)
-   {var add=function(l,x){return My_std["List"][30](x,l)?l:/* :: */[0,x,l];};
+   {var add=function(l,x){return My_std["List"][30](x,l)?l:/* :: */[0,x,l]};
     
     var
      l$1=
       My_std["List"][19]
-       (function(acc,p){return add(My_std["List"][19](add,acc,p[8]),p);},
+       (function(acc,p){return add(My_std["List"][19](add,acc,p[8]),p)},
         /* [] */0,
         l);
     
-    return My_std["List"][9](l$1);
-    };
+    return My_std["List"][9](l$1)};
 
 var $$let=My_std["String"];
 
@@ -294,10 +285,10 @@ var
      {switch(a){}}
     else
      {switch(a[0])
-       {case 1:switch(a[1]){case "":return l;default:exit=17;}
+       {case 1:switch(a[1]){case "":return l;default:exit=17;}break;
         default:exit=17;}}
     
-    switch(exit){case 17:return /* :: */[0,a,l];}
+    switch(exit){case 17:return /* :: */[0,a,l]}
     };
 
 var
@@ -308,7 +299,7 @@ var
     var
      locations=
       My_std["List"][19]
-       (function(acc,p){return SSet[4](p[7],acc);},SSet[1],pkgs);
+       (function(acc,p){return SSet[4](p[7],acc)},SSet[1],pkgs);
     
     var flags=/* [] */0;
     
@@ -316,12 +307,11 @@ var
      flags$1=
       My_std["List"][19]
        (function(acc,l)
-         {return add_atom(/* P */[2,l],add_atom([/* A */1,"-I"],acc));},
+         {return add_atom(/* P */[2,l],add_atom([/* A */1,"-I"],acc))},
         flags,
         SSet[20](locations));
     
-    return /* S */[0,My_std["List"][9](flags$1)];
-    };
+    return /* S */[0,My_std["List"][9](flags$1)]};
 
 var compile_flags_byte=compile_flags;
 
@@ -335,7 +325,7 @@ var
     var
      locations=
       My_std["List"][19]
-       (function(acc,p){return SSet[4](p[7],acc);},SSet[1],pkgs);
+       (function(acc,p){return SSet[4](p[7],acc)},SSet[1],pkgs);
     
     var flags=/* [] */0;
     
@@ -343,26 +333,25 @@ var
      flags$1=
       My_std["List"][19]
        (function(acc,l)
-         {return add_atom(/* P */[2,l],add_atom([/* A */1,"-I"],acc));},
+         {return add_atom(/* P */[2,l],add_atom([/* A */1,"-I"],acc))},
         flags,
         SSet[20](locations));
     
     var
      flags$2=
       My_std["List"][19]
-       (function(acc,x){return add_atom(/* A */[1,x[6]],acc);},flags$1,pkgs);
+       (function(acc,x){return add_atom(/* A */[1,x[6]],acc)},flags$1,pkgs);
     
     var
      flags$3=
       My_std["List"][19]
-       (function(acc,x){return add_atom(/* A */[1,f(x)],acc);},flags$2,pkgs);
+       (function(acc,x){return add_atom(/* A */[1,f(x)],acc)},flags$2,pkgs);
     
-    return /* S */[0,My_std["List"][9](flags$3)];
-    };
+    return /* S */[0,My_std["List"][9](flags$3)]};
 
-var link_flags_byte=link_flags(function(x){return x[4];});
+var link_flags_byte=link_flags(function(x){return x[4]});
 
-var link_flags_native=link_flags(function(x){return x[5];});
+var link_flags_native=link_flags(function(x){return x[5]});
 
 module["exports"]=
 {"Findlib_error":Findlib_error,

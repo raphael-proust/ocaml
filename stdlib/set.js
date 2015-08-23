@@ -2,6 +2,7 @@
 
 var List=require("./list.js");
 var Pervasives=require("./pervasives.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var

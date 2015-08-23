@@ -136,15 +136,13 @@ var
                                  /* No_padding */0,
                                  [/* Char_literal */12,10,/* End_of_format */0]]],
                                "  %s\n"],
-                              msg);
-                     },
-                   param[2]);
-          },
+                              msg)},
+                   param[2])},
         stuff);
-      if(evil[1]){throw Exit_hygiene_failed;}else{return 0;}
+      if(evil[1]){throw Exit_hygiene_failed}else{return 0}
       }
     else
-     {return /* () */0;}
+     {return /* () */0}
     };
 
 module["exports"]=

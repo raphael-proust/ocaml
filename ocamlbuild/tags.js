@@ -59,9 +59,9 @@ var split=include[24];
 
 var find=include[25];
 
-var does_match=function(x,y){return subset(y,x);};
+var does_match=function(x,y){return subset(y,x)};
 
-var of_list=function(l){return List["fold_right"](add,l,empty);};
+var of_list=function(l){return List["fold_right"](add,l,empty)};
 
 var
  print=
@@ -95,8 +95,7 @@ var
                ",@ "])}
           
           Format["pp_print_string"](f,elt);
-          return /* false */0;
-          },
+          return /* false */0},
         s,
         /* true */1);
     
@@ -104,16 +103,15 @@ var
             (f,
              [/* Format */0,
               [/* Formatting_lit */17,/* Close_box */0,/* End_of_format */0],
-              "@]"]);
-    };
+              "@]"])};
 
-var $plus$plus=function(x,y){return add(y,x);};
+var $plus$plus=function(x,y){return add(y,x)};
 
-var $neg$neg=function(x,y){return remove(y,x);};
+var $neg$neg=function(x,y){return remove(y,x)};
 
-var $plus$plus$plus=function(x,param){return param?add(param[1],x):x;};
+var $plus$plus$plus=function(x,param){return param?add(param[1],x):x};
 
-var $neg$neg$neg=function(x,param){return param?remove(param[1],x):x;};
+var $neg$neg$neg=function(x,param){return param?remove(param[1],x):x};
 
 var Operators=[0,$plus$plus,$neg$neg,$plus$plus$plus,$neg$neg$neg];
 

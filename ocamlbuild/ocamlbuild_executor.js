@@ -15,13 +15,13 @@ var CamlPrimitive=require("./camlPrimitive.js");
 
 var
  compare=
-  function(prim,prim$1){return CamlPrimitive["caml_compare"](prim,prim$1);};
+  function(prim,prim$1){return CamlPrimitive["caml_compare"](prim,prim$1)};
 
 var JS=Set["Make"]([0,compare]);
 
 var
  compare$1=
-  function(prim,prim$1){return CamlPrimitive["caml_compare"](prim,prim$1);};
+  function(prim,prim$1){return CamlPrimitive["caml_compare"](prim,prim$1)};
 
 var FDM=Map["Make"]([0,compare$1]);
 
@@ -46,7 +46,6 @@ var
                    /* End_of_format */0]],
                  "exit %d"],
                 param[1]);
-       
       case 1:
        return fp
                (oc,
@@ -60,7 +59,6 @@ var
                    /* End_of_format */0]],
                  "signal %d"],
                 param[1]);
-       
       case 2:
        return fp
                (oc,
@@ -73,8 +71,7 @@ var
                    /* No_precision */0,
                    /* End_of_format */0]],
                  "stop %d"],
-                param[1]);
-       
+                param[1])
       }
     };
 
@@ -97,8 +94,7 @@ var
                  /* End_of_format */0]]],
               "%d.%d"],
              param[1],
-             param[2]);
-    };
+             param[2])};
 
 var
  output_lines=
@@ -112,8 +108,7 @@ var
       function(i,j)
        {Pervasives["output_string"](oc,prefix);
         Pervasives["output_substring"](oc,u,i,j-i);
-        return Pervasives["output_char"](oc,10);
-        };
+        return Pervasives["output_char"](oc,10)};
     
     var
      loop=
@@ -126,18 +121,16 @@ var
            {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
              {j=m;}
             else
-             {throw exn;}
+             {throw exn}
             }
           
           output_line(i,j);
-          return loop(j+1);
-          }
+          return loop(j+1)}
         else
-         {return /* () */0;}
+         {return /* () */0}
         };
     
-    return loop(0);
-    };
+    return loop(0)};
 
 var
  execute=
@@ -145,9 +138,7 @@ var
    ($staropt$star,$staropt$star,$staropt$star,$staropt$star,exit,commands)
    {var max_jobs=$staropt$star$1?$staropt$star$1[1]:Pervasives["max_int"];
     
-    var
-     ticker=
-      $staropt$star$2?$staropt$star$2[1]:function(prim){return prim;};
+    var ticker=$staropt$star$2?$staropt$star$2[1]:function(prim){return prim};
     
     var period=$staropt$star$3?$staropt$star$3[1]:0.1;
     
@@ -155,7 +146,7 @@ var
      display=
       $staropt$star
        ?$staropt$star[1]
-       :function(f){return f(Pervasives["stdout"]);};
+       :function(f){return f(Pervasives["stdout"])};
     
     var batch_id=[0,0];
     
@@ -178,8 +169,7 @@ var
          {var result=[0,/* false */0];
           
           Queue["add"](/* tuple */[0,tasks,result],commands_to_execute);
-          return result;
-          },
+          return result},
         commands);
     
     var outputs=[0,FDM[1]];
@@ -210,14 +200,12 @@ var
               return /* tuple */[0,
                       /* :: */[0,ofd,/* :: */[0,efd,param$1[1]]],
                       param$1[2],
-                      /* :: */[0,ofd,/* :: */[0,ifd,/* :: */[0,efd,param$1[3]]]]];
-              },
+                      /* :: */[0,ofd,/* :: */[0,ifd,/* :: */[0,efd,param$1[3]]]]]},
             jobs[1],
             [/* tuple */0,/* [] */0,/* [] */0,/* [] */0]),
           0}
         
-        return fds[1];
-        };
+        return fds[1]};
     
     var
      add_job=
@@ -246,8 +234,7 @@ var
         
         outputs[1]=
         FDM[4](doi(stdout$prime),job,FDM[4](doi(stderr$prime),job,outputs[1]));
-        return jobs[1]=JS[4](job,jobs[1]),0;
-        };
+        return jobs[1]=JS[4](job,jobs[1]),0};
     
     var
      skip_empty_tasks=
@@ -259,10 +246,9 @@ var
           
           return CamlPrimitive["caml_string_equal"](cmd,"")
                   ?skip_empty_tasks(tasks)
-                  :/* Some */[0,/* tuple */[0,cmd,tasks]];
-          }
+                  :/* Some */[0,/* tuple */[0,cmd,tasks]]}
         else
-         {return /* None */0;}
+         {return /* None */0}
         };
     
     var
@@ -280,10 +266,9 @@ var
           var b_id=batch_id[1];
           
           batch_id[0]++;
-          return add_job(match$2[1],match$2[2],result,/* tuple */[0,b_id,0]);
-          }
+          return add_job(match$2[1],match$2[2],result,/* tuple */[0,b_id,0])}
         else
-         {return result[1]=/* false */0,0;}
+         {return result[1]=/* false */0,0}
         };
     
     var
@@ -296,8 +281,7 @@ var
                   /* true */1,
                   Queue["add"]
                    (/* tuple */[0,job,$$continue],jobs_to_terminate))
-                :/* () */0;
-        };
+                :/* () */0};
     
     var
      add_more_jobs_if_possible=
@@ -305,8 +289,7 @@ var
        {while
          (jobs_active[1]<max_jobs&&!Queue["is_empty"](commands_to_execute))
          {add_some_jobs(/* () */0)}
-        return 0;
-        };
+        return 0};
     
     var u=CamlPrimitive["caml_create_string"](4096);
     
@@ -337,22 +320,19 @@ var
                                   /* No_padding */0,
                                   [/* Char_literal */12,10,/* End_of_format */0]]],
                                 "Error while reading stdout/stderr: %s\n"],
-                               msg);
-                      });
+                               msg)});
                   m=0;
                   }
                 else
-                 {throw exn;}
+                 {throw exn}
                 }
               
               return m===0
                       ?job[9]?/* () */0:terminate(/* None */0,job)
                       :(Buffer["add_subbytes"](job[8],u,0,m),
-                        loop?iteration(/* () */0):/* () */0);
-              };
+                        loop?iteration(/* () */0):/* () */0)};
           
-          return iteration(/* () */0);
-          }
+          return iteration(/* () */0)}
         catch(x)
          {display
            (function(oc)
@@ -372,10 +352,8 @@ var
                              [/* Flush */10,/* End_of_format */0]]]]]],
                         "Exception %s while reading output of command %S\n%!"],
                        job[2],
-                       Printexc["to_string"](x));
-              });
-          return exit(/* Io_error */2);
-          }
+                       Printexc["to_string"](x))});
+          return exit(/* Io_error */2)}
         };
     
     var
@@ -418,9 +396,7 @@ var
                                 [/* Char_literal */12,10,/* End_of_format */0]]],
                               "+ %s\n"],
                              job[2]);
-                           return output_lines("",oc,job[8]);
-                           });
-              };
+                           return output_lines("",oc,job[8])})};
           
           if(Buffer["length"](job[8])>0){show_command(/* () */0)}
           
@@ -445,8 +421,7 @@ var
                                /* No_precision */0,
                                [/* String_literal */11,".\n",/* End_of_format */0]]],
                              "Command exited with code %d.\n"],
-                            rc);
-                   }),
+                            rc)}),
                all_ok[1]=
                /* false */0,
                exit(/* Subcommand_failed */0)}
@@ -470,9 +445,9 @@ var
                else
                 {all_ok[1]=/* false */0}
                }
-             
-            case 1:exit$1=11;
-            case 2:exit$1=11;
+             break;
+            case 1:exit$1=11;break;
+            case 2:exit$1=11;break
             }
           
           switch(exit$1)
@@ -495,18 +470,17 @@ var
                              /* No_precision */0,
                              [/* String_literal */11,".\n",/* End_of_format */0]]],
                            "Command got signal %d.\n"],
-                          s);
-                 }),
-             exit(/* Subcommand_got_signal */1)
+                          s)}),
+             exit(/* Subcommand_got_signal */1);
+             break
             }
           }
-        return 0;
-        };
+        return 0};
     
     var
      terminate_all_jobs=
       function(param)
-       {return JS[13](terminate([/* Some */0,/* false */0]),jobs[1]);};
+       {return JS[13](terminate([/* Some */0,/* false */0]),jobs[1])};
     
     var
      loop=
@@ -514,7 +488,7 @@ var
        {process_jobs_to_terminate(/* () */0);
         add_more_jobs_if_possible(/* () */0);
         if(JS[2](jobs[1]))
-         {return /* () */0;}
+         {return /* () */0}
         else
          {var match=compute_fds(/* () */0);
           
@@ -531,34 +505,31 @@ var
                           {var job=FDM[22](fd,outputs[1]);
                            
                            ticker(/* () */0);
-                           return hook(fd,job);
-                           }
+                           return hook(fd,job)}
                          catch(exn)
                           {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-                            {return /* () */0;}
+                            {return /* () */0}
                            else
-                            {throw exn;}
+                            {throw exn}
                            }
                          },
-                       param$1[1]);
-              },
+                       param$1[1])},
             /* :: */[0,
              /* tuple */[0,match$1[1],do_read([/* Some */0,/* false */0])],
              /* :: */[0,
               /* tuple */[0,
                match$1[2],
-               function(param$1,param$2){return /* () */0;}],
+               function(param$1,param$2){return /* () */0}],
               /* :: */[0,
                /* tuple */[0,
                 match$1[3],
-                function(param$1,_job){return /* () */0;}],
+                function(param$1,_job){return /* () */0}],
                /* [] */0]]]);
-          return loop(/* () */0);
-          }
+          return loop(/* () */0)}
         };
     
     try
-     {loop(/* () */0);return /* None */0;}
+     {loop(/* () */0);return /* None */0}
     catch(x)
      {try
        {terminate_all_jobs(/* () */0)}
@@ -576,14 +547,12 @@ var
                          10,
                          [/* Flush */10,/* End_of_format */0]]]],
                       "Extra exception %s\n%!"],
-                     Printexc["to_string"](x$prime));
-            })}
+                     Printexc["to_string"](x$prime))})}
       
       return /* Some */[0,
               /* tuple */[0,
-               List["map"](function(prim){return prim[1];},results),
-               x]];
-      }
+               List["map"](function(prim){return prim[1]},results),
+               x]]}
     };
 
 module["exports"]={"execute":execute};

@@ -17,16 +17,16 @@ var
     
     if(match)
      {try
-       {var t=List["assoc"](name,match[1][8]);return /* Some */[0,t];}
+       {var t=List["assoc"](name,match[1][8]);return /* Some */[0,t]}
       catch(exn)
        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-         {return /* None */0;}
+         {return /* None */0}
         else
-         {throw exn;}
+         {throw exn}
         }
       }
     else
-     {return /* None */0;}
+     {return /* None */0}
     };
 
 var
@@ -36,11 +36,9 @@ var
      f=
       function(p)
        {return Odoc_parameter["update_parameter_text"]
-                (value_parameter_text_by_name(v),p);
-        };
+                (value_parameter_text_by_name(v),p)};
     
-    return List["iter"](f,v[5]);
-    };
+    return List["iter"](f,v[5])};
 
 var
  parameter_list_from_arrows=
@@ -60,17 +58,15 @@ var
              return /* :: */[0,
                      /* tuple */[0,match[1],match[2]],
                      iter(match[3])];
-             
-            case 6:exit=13;
-            case 7:exit=13;
+            case 6:exit=13;break;
+            case 7:exit=13;break;
             case 10:return iter(match[1]);
             default:exit=12;}}
         
-        switch(exit){case 13:return iter(match[1]);case 12:return /* [] */0;}
+        switch(exit){case 13:return iter(match[1]);case 12:return /* [] */0}
         };
     
-    return iter(typ);
-    };
+    return iter(typ)};
 
 var
  dummy_parameter_list=
@@ -83,8 +79,7 @@ var
           default:
            var match=s["charCodeAt"](0);
            
-           return match!==63?s:$$String["sub"](s,1,s["length"]-1);
-           }
+           return match!==63?s:$$String["sub"](s,1,s["length"]-1)}
         };
     
     Printtyp["mark_loops"](typ);
@@ -109,26 +104,23 @@ var
              return CamlPrimitive["caml_string_equal"](label,"")
                      ?/* Tuple */[1,
                        List["map"]
-                        (function(t2){return iter(/* tuple */[0,"",t2]);},match[1]),
+                        (function(t2){return iter(/* tuple */[0,"",t2])},match[1]),
                        t]
                      :/* Simple_name */[0,
                        /* record */[0,normal_name(label),t,/* None */0]];
-             
-            case 6:exit=5;
-            case 7:exit=5;
+            case 6:exit=5;break;
+            case 7:exit=5;break;
             default:exit=4;}}
         
         switch(exit)
          {case 5:return iter(/* tuple */[0,label,match[1]]);
           case 4:
            return /* Simple_name */[0,
-                   /* record */[0,normal_name(label),t,/* None */0]];
-           
+                   /* record */[0,normal_name(label),t,/* None */0]]
           }
         };
     
-    return List["map"](iter,liste_param);
-    };
+    return List["map"](iter,liste_param)};
 
 var
  is_function=
@@ -148,11 +140,10 @@ var
             case 6:return f(match[1]);
             default:exit=1;}}
         
-        switch(exit){case 1:return /* false */0;}
+        switch(exit){case 1:return /* false */0}
         };
     
-    return f(v[3]);
-    };
+    return f(v[3])};
 
 module["exports"]=
 {"Name":Name,

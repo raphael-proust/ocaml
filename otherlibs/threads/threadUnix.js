@@ -70,7 +70,7 @@ var
   function(fd,buff,ofs,len,timeout)
    {if(Thread["wait_timed_read"](fd,timeout))
      {try
-       {return Unix["read"](fd,buff,ofs,len);}
+       {return Unix["read"](fd,buff,ofs,len)}
       catch(exn)
        {var exit;
         
@@ -88,16 +88,16 @@ var
           else
            {exit=4;}
           
-          switch(exit$1){case 5:return timed_read(fd,buff,ofs,len,timeout);}
+          switch(exit$1){case 5:return timed_read(fd,buff,ofs,len,timeout)}
           }
         else
          {exit=4;}
         
-        switch(exit){case 4:throw exn;}
+        switch(exit){case 4:throw exn}
         }
       }
     else
-     {throw [0,Unix["Unix_error"],/* ETIMEDOUT */62,"timed_read",""];}
+     {throw [0,Unix["Unix_error"],/* ETIMEDOUT */62,"timed_read",""]}
     };
 
 var
@@ -105,7 +105,7 @@ var
   function(fd,buff,ofs,len,timeout)
    {if(Thread["wait_timed_write"](fd,timeout))
      {try
-       {return Unix["write"](fd,buff,ofs,len);}
+       {return Unix["write"](fd,buff,ofs,len)}
       catch(exn)
        {var exit;
         
@@ -123,22 +123,22 @@ var
           else
            {exit=2;}
           
-          switch(exit$1){case 3:return timed_write(fd,buff,ofs,len,timeout);}
+          switch(exit$1){case 3:return timed_write(fd,buff,ofs,len,timeout)}
           }
         else
          {exit=2;}
         
-        switch(exit){case 2:throw exn;}
+        switch(exit){case 2:throw exn}
         }
       }
     else
-     {throw [0,Unix["Unix_error"],/* ETIMEDOUT */62,"timed_write",""];}
+     {throw [0,Unix["Unix_error"],/* ETIMEDOUT */62,"timed_write",""]}
     };
 
 var
  timed_write_substring=
   function(fd,buff,ofs,len,timeout)
-   {return timed_write(fd,Bytes["unsafe_of_string"](buff),ofs,len,timeout);};
+   {return timed_write(fd,Bytes["unsafe_of_string"](buff),ofs,len,timeout)};
 
 module["exports"]=
 {"execv":execv,

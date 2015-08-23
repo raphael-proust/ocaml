@@ -27,20 +27,20 @@ var
             case 5:exit=5;break;
             case 6:exit=5;break;
             case 7:exit=5;break;
-            case 8:return "\b";
-            case 9:return "\t";
-            case 10:return "\n";
+            case 8:return "\\b";
+            case 9:return "\\t";
+            case 10:return "\\n";
             case 11:exit=5;break;
             case 12:exit=5;break;
-            case 13:return "\r"
+            case 13:return "\\r"
             }
           }
         }
       else
-       {return "\\"}
+       {return "\\\\"}
       }
     else
-     {return "\'"}
+     {return "\\'"}
     
     switch(exit)
      {case 5:

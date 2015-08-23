@@ -18,7 +18,7 @@ var event_mark_after="<|a|>";
 
 var match=Sys["os_type"];
 
-switch(match){case "Win32":var shell="cmd";default:var shell="/bin/sh";}
+switch(match){case "Win32":var shell="cmd";break;default:var shell="/bin/sh";}
 
 var runtime_program="ocamlrun";
 
@@ -35,7 +35,7 @@ var checkpoint_max_count=[0,15];
 var match$1=Sys["os_type"];
 
 switch(match$1)
- {case "Win32":var $js=/* false */0;default:var $js=/* true */1;}
+ {case "Win32":var $js=/* false */0;break;default:var $js=/* true */1;}
 var make_checkpoints=[0,$js];
 
 var environment=[0,/* [] */0];

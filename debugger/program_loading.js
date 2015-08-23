@@ -17,14 +17,13 @@ var Sys=require("./sys.js");
 
 var debug_loading=[0,/* false */0];
 
-var launching_func=[0,function(param){return /* () */0;}];
+var launching_func=[0,function(param){return /* () */0}];
 
 var
  load_program=
   function(param)
    {launching_func[1](/* () */0);
-    return Input_handling["main_loop"](/* () */0);
-    };
+    return Input_handling["main_loop"](/* () */0)};
 
 var
  get_unix_environment=
@@ -43,12 +42,10 @@ var
                      [/* Char_literal */12,32,/* End_of_format */0]]]],
                   "%s=%s "],
                  param$1[1],
-                 Filename["quote"](param$1[2]));
-        };
+                 Filename["quote"](param$1[2]))};
     
     return $$String["concat"]
-            ("",List["map"](f,Debugger_config["environment"][1]));
-    };
+            ("",List["map"](f,Debugger_config["environment"][1]))};
 
 var
  quote_for_windows_shell=
@@ -77,12 +74,11 @@ var
          {if(switcher$1!==3){exit=25;}else{exit=24;}}
         }
       
-      switch(exit){case 25:case 24:Buffer["add_char"](b,94)}
+      switch(exit){case 25:break;case 24:Buffer["add_char"](b,94);break}
       
       Buffer["add_char"](b,s["charCodeAt"](i))}
     
-    return Buffer["contents"](b);
-    };
+    return Buffer["contents"](b)};
 
 var
  get_win32_environment=
@@ -103,12 +99,10 @@ var
                       [/* Char_literal */12,38,/* End_of_format */0]]]]],
                   "set %s=%s&"],
                  param$1[1],
-                 quote_for_windows_shell(param$1[2]));
-        };
+                 quote_for_windows_shell(param$1[2]))};
     
     return $$String["concat"]
-            ("",List["map"](f,Debugger_config["environment"][1]));
-    };
+            ("",List["map"](f,Debugger_config["environment"][1]))};
 
 var
  generic_exec_unix=
@@ -118,7 +112,7 @@ var
     var child;
     try
      {child=Unix["fork"](/* () */0);}
-    catch(x){Unix_tools["report_error"](x);throw Debugger_config["Toplevel"];}
+    catch(x){Unix_tools["report_error"](x);throw Debugger_config["Toplevel"]}
     
     if(child!==0)
      {var match=Unix["wait"](/* () */0);
@@ -128,27 +122,25 @@ var
       var exit;
       
       switch(match$1[0])
-       {case 0:if(match$1[1]!==0){exit=17;}else{return /* () */0;}
-        case 1:exit=17;
-        case 2:exit=17;
+       {case 0:if(match$1[1]!==0){exit=17;}else{return /* () */0}break;
+        case 1:exit=17;break;
+        case 2:exit=17;break
         }
       
-      switch(exit){case 17:throw Debugger_config["Toplevel"];}
+      switch(exit){case 17:throw Debugger_config["Toplevel"]}
       }
     else
      {try
        {var match$2=Unix["fork"](/* () */0);
         
         if(match$2!==0)
-         {return Pervasives["exit"](0);}
+         {return Pervasives["exit"](0)}
         else
          {try
            {Unix["setsid"](/* () */0)}
           catch(exn)
-           {if(exn[1]===CamlPrimitive["caml_global_data"]["Invalid_argument"])
-             {}
-            else
-             {throw exn;}
+           {if(exn[1]!==CamlPrimitive["caml_global_data"]["Invalid_argument"])
+             {throw exn}
             }
           
           return Unix["execv"]
@@ -156,11 +148,9 @@ var
                    [/* array */0,
                     Debugger_config["shell"],
                     "-c",
-                    cmdline(/* () */0)]);
-          }
+                    cmdline(/* () */0)])}
         }
-      catch(x$1)
-       {Unix_tools["report_error"](x$1);return Pervasives["exit"](1);}
+      catch(x$1){Unix_tools["report_error"](x$1);return Pervasives["exit"](1)}
       }
     };
 
@@ -175,15 +165,14 @@ var
                [/* array */0,"/C",cmdline(/* () */0)],
                Unix["stdin"],
                Unix["stdout"],
-               Unix["stderr"]);
-      }
-    catch(x){Unix_tools["report_error"](x);throw Debugger_config["Toplevel"];}
+               Unix["stderr"])}
+    catch(x){Unix_tools["report_error"](x);throw Debugger_config["Toplevel"]}
     };
 
 var match=Sys["os_type"];
 
 switch(match)
- {case "Win32":var generic_exec=generic_exec_win;
+ {case "Win32":var generic_exec=generic_exec_win;break;
   default:var generic_exec=generic_exec_unix;}
 
 var
@@ -219,7 +208,6 @@ var
                   Debugger_config["runtime_program"],
                   Parameters["program_name"][1],
                   Parameters["arguments"][1]);
-         
         default:
          return Printf["sprintf"]
                  ([/* Format */0,
@@ -245,8 +233,7 @@ var
                   Parameters["socket_name"][1],
                   Filename["quote"](Debugger_config["runtime_program"]),
                   Filename["quote"](Parameters["program_name"][1]),
-                  Parameters["arguments"][1]);
-         }
+                  Parameters["arguments"][1])}
       });
 
 var
@@ -277,7 +264,6 @@ var
                   Parameters["socket_name"][1],
                   Parameters["program_name"][1],
                   Parameters["arguments"][1]);
-         
         default:
          return Printf["sprintf"]
                  ([/* Format */0,
@@ -298,8 +284,7 @@ var
                   get_unix_environment(/* () */0),
                   Parameters["socket_name"][1],
                   Filename["quote"](Parameters["program_name"][1]),
-                  Parameters["arguments"][1]);
-         }
+                  Parameters["arguments"][1])}
       });
 
 var
@@ -310,8 +295,7 @@ var
     Pervasives["print_string"]
      (Pervasives["^"]
        ("(the socket is ",Pervasives["^"](Parameters["socket_name"][1],")")));
-    return Pervasives["print_newline"](/* () */0);
-    };
+    return Pervasives["print_newline"](/* () */0)};
 
 var
  loading_modes=
@@ -321,7 +305,7 @@ var
     /* tuple */[0,"runtime",exec_with_runtime],
     /* :: */[0,/* tuple */[0,"manual",exec_manual],/* [] */0]]];
 
-var set_launching_function=function(func){return launching_func[1]=func,0;};
+var set_launching_function=function(func){return launching_func[1]=func,0};
 
 set_launching_function(exec_direct);
 var connection=[0,Primitives["std_io"]];

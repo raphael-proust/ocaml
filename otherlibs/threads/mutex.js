@@ -4,7 +4,7 @@ var List=require("./list.js");
 var Thread=require("./thread.js");
 
 
-var create=function(param){return /* record */[0,/* false */0,/* [] */0];};
+var create=function(param){return /* record */[0,/* false */0,/* [] */0]};
 
 var
  lock=
@@ -16,12 +16,11 @@ var
               /* :: */[0,Thread["self"](/* () */0),m[2]],
               Thread["sleep"](/* () */0),
               lock(m))
-            :(m[1]=/* true */1,0);
-    };
+            :(m[1]=/* true */1,0)};
 
 var
  try_lock=
-  function(m){return m[1]?/* false */0:(m[1]=/* true */1,/* true */1);};
+  function(m){return m[1]?/* false */0:(m[1]=/* true */1,/* true */1)};
 
 var
  unlock=
@@ -30,8 +29,7 @@ var
     
     m[2]=/* [] */0;
     m[1]=/* false */0;
-    return List["iter"](Thread["wakeup"],w);
-    };
+    return List["iter"](Thread["wakeup"],w)};
 
 module["exports"]=
 {"create":create,"lock":lock,"try_lock":try_lock,"unlock":unlock};

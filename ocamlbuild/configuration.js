@@ -20,13 +20,11 @@ var
      ack=
       function(param)
        {return Param_tags["acknowledge"]
-                (source,/* Some */[0,param[2]],param[1]);
-        };
+                (source,/* Some */[0,param[2]],param[1])};
     
     return My_std["List"][14]
-            (function(param){return My_std["List"][14](ack,param[2][1]);},
-             config);
-    };
+            (function(param){return My_std["List"][14](ack,param[2][1])},
+             config)};
 
 var cache=Hashtbl["create"](/* None */0,107);
 
@@ -35,12 +33,11 @@ var configs=[0,/* [] */0];
 var
  match=
   /* tuple */[0,
-   function(param){return configs[1];},
+   function(param){return configs[1]},
    function(source,config)
     {acknowledge_config(source,config);
      configs[1]=/* :: */[0,config,configs[1]];
-     return Hashtbl["clear"](cache);
-     }];
+     return Hashtbl["clear"](cache)}];
 
 var add_config=match[2];
 
@@ -51,8 +48,7 @@ var
   function(dir,source,lexbuf)
    {var conf=Lexers["conf_lines"](dir,source,lexbuf);
     
-    return add_config(source,conf);
-    };
+    return add_config(source,conf)};
 
 var
  parse_string=
@@ -60,8 +56,7 @@ var
    {var source$1=source?source[1]:Const["Source"][8];
     
     return parse_lexbuf
-            (/* None */0,source$1,My_std["lexbuf_of_string"](/* None */0,s));
-    };
+            (/* None */0,source$1,My_std["lexbuf_of_string"](/* None */0,s))};
 
 var
  parse_file=
@@ -73,18 +68,16 @@ var
               {var lexbuf=Lexing["from_channel"](ic);
                
                My_std["set_lexbuf_fname"](file,lexbuf);
-               return parse_lexbuf(dir,Const["Source"][1],lexbuf);
-               });
-    };
+               return parse_lexbuf(dir,Const["Source"][1],lexbuf)})};
 
 var key_match=Glob["eval"];
 
 var
  apply_config=
   function(s,config,init)
-   {var add=function(param){return Tags["add"](param[1]);};
+   {var add=function(param){return Tags["add"](param[1])};
     
-    var remove=function(param){return Tags["remove"](param[1]);};
+    var remove=function(param){return Tags["remove"](param[1])};
     
     return My_std["List"][19]
             (function(tags,param)
@@ -93,40 +86,36 @@ var
                return key_match(param[1],s)
                        ?My_std["List"][20]
                          (add,v[1],My_std["List"][20](remove,v[2],tags))
-                       :tags;
-               },
+                       :tags},
              init,
-             config);
-    };
+             config)};
 
 var
  apply_configs=
   function(s)
    {return My_std["List"][20]
-            (apply_config(s),configs$1(/* () */0),Tags["empty"]);
-    };
+            (apply_config(s),configs$1(/* () */0),Tags["empty"])};
 
 var
  tags_of_filename=
   function(s)
    {try
-     {return Hashtbl["find"](cache,s);}
+     {return Hashtbl["find"](cache,s)}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {var res=apply_configs(s);
         
         var match$1=Hashtbl["replace"](cache,s,res);
         
-        return res;
-        }
+        return res}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
-var global_tags=function(param){return tags_of_filename("");};
+var global_tags=function(param){return tags_of_filename("")};
 
-var has_tag=function(tag){return Tags["mem"](tag,global_tags(/* () */0));};
+var has_tag=function(tag){return Tags["mem"](tag,global_tags(/* () */0))};
 
 var
  tag_file=
@@ -144,8 +133,7 @@ var
                   "%S: %s"],
                  file,
                  My_std["String"][22](", ",tags)))
-            :0;
-    };
+            :0};
 
 var
  tag_any=
@@ -160,8 +148,7 @@ var
                    [/* String */2,/* No_padding */0,/* End_of_format */0]],
                   "true: %s"],
                  My_std["String"][22](", ",tags)))
-            :0;
-    };
+            :0};
 
 var
  check_tags_usage=
@@ -186,8 +173,7 @@ var
                    Loc["print_loc"],
                    param[2],
                    tag)
-                :0;
-        };
+                :0};
     
     var
      check_conf=
@@ -195,12 +181,10 @@ var
        {var values=param[2];
         
         My_std["List"][14](check_tag,values[1]);
-        return My_std["List"][14](check_tag,values[2]);
-        };
+        return My_std["List"][14](check_tag,values[2])};
     
     return My_std["List"][14]
-            (My_std["List"][14](check_conf),configs$1(/* () */0));
-    };
+            (My_std["List"][14](check_conf),configs$1(/* () */0))};
 
 module["exports"]=
 {"parse_string":parse_string,

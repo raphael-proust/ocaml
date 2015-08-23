@@ -107,7 +107,7 @@ var man_section=[0,Odoc_messages["default_man_section"]];
 
 var man_mini=[0,/* false */0];
 
-var new_buf=function(param){return Buffer["create"](1024);};
+var new_buf=function(param){return Buffer["create"](1024)};
 
 var bp=Printf["bprintf"];
 
@@ -159,8 +159,7 @@ var
           
           /* unknown */"(sendself self-1/1261 man_of_text/1248 b/1263 t/1262)";
           
-          return Buffer["contents"](b);
-          },
+          return Buffer["contents"](b)},
         str_man_of_author_list,
         function(self$neg1,l)
          {if(l)
@@ -171,10 +170,9 @@ var
             bs(b,'"\n:\n');
             bs(b,$$String["concat"](", ",l));
             bs(b,"\n");
-            return Buffer["contents"](b);
-            }
+            return Buffer["contents"](b)}
           else
-           {return "";}
+           {return ""}
           },
         str_man_of_version_opt,
         function(self$neg1,v_opt)
@@ -186,10 +184,9 @@ var
             bs(b,'"\n:\n');
             bs(b,v_opt[1]);
             bs(b,"\n");
-            return Buffer["contents"](b);
-            }
+            return Buffer["contents"](b)}
           else
-           {return "";}
+           {return ""}
           },
         str_man_of_before,
         function(self$neg1,l)
@@ -218,17 +215,15 @@ var
                   
                   bs(b,"\n");
                   bs(b,"\n");
-                  return q?(bs(b,linebreak),iter(q)):/* () */0;
-                  }
+                  return q?(bs(b,linebreak),iter(q)):/* () */0}
                 else
-                 {return /* () */0;}
+                 {return /* () */0}
                 };
             
             iter(l);
-            return Buffer["contents"](b);
-            }
+            return Buffer["contents"](b)}
           else
-           {return "";}
+           {return ""}
           },
         str_man_of_since_opt,
         function(self$neg1,s_opt)
@@ -240,10 +235,9 @@ var
             bs(b,'"\n');
             bs(b,s_opt[1]);
             bs(b,"\n");
-            return Buffer["contents"](b);
-            }
+            return Buffer["contents"](b)}
           else
-           {return "";}
+           {return ""}
           },
         str_man_of_raised_exceptions,
         function(self$neg1,l)
@@ -264,17 +258,15 @@ var
                   /* unknown */"(sendself self-1/1287 man_of_text/1248 b/1289 (field 1 match/2214))";
                   
                   bs(b,"\n");
-                  return q?(bs(b,linebreak),iter(q)):/* () */0;
-                  }
+                  return q?(bs(b,linebreak),iter(q)):/* () */0}
                 else
-                 {return /* () */0;}
+                 {return /* () */0}
                 };
             
             iter(l);
-            return Buffer["contents"](b);
-            }
+            return Buffer["contents"](b)}
           else
-           {return "";}
+           {return ""}
           },
         str_man_of_see,
         function(self$neg1,param)
@@ -285,20 +277,21 @@ var
           switch(see_ref[0])
            {case 0:
              var t_ref=/* :: */[0,/* Link */[15,see_ref[1],t],/* [] */0];
+             break;
             case 1:
              var
               t_ref=
                /* :: */[0,
                 /* Code */[1,see_ref[1]],
                 /* :: */[0,[/* Raw */0," "],t]];
-             
+             break;
             case 2:
              var
               t_ref=
                /* :: */[0,
                 /* Italic */[5,/* :: */[0,/* Raw */[0,see_ref[1]],/* [] */0]],
                 /* :: */[0,[/* Raw */0," "],t]];
-             
+             break
             }
           
           /* unknown */"(sendself self-1/1295 str_man_of_text/1249 t_ref/1298)";
@@ -320,17 +313,15 @@ var
                   /* unknown */"(sendself self-1/1303 str_man_of_see/1255 (field 0 param/2205))";
                   bs(b,0);
                   bs(b,"\n");
-                  return q?(bs(b,linebreak),iter(q)):/* () */0;
-                  }
+                  return q?(bs(b,linebreak),iter(q)):/* () */0}
                 else
-                 {return /* () */0;}
+                 {return /* () */0}
                 };
             
             iter(l);
-            return Buffer["contents"](b);
-            }
+            return Buffer["contents"](b)}
           else
-           {return "";}
+           {return ""}
           },
         str_man_of_return_opt,
         function(self$neg1,return_opt)
@@ -343,10 +334,9 @@ var
             /* unknown */"(sendself self-1/1310 man_of_text/1248 b/1313 (field 0 return_opt/1311))";
             
             bs(b,"\n");
-            return Buffer["contents"](b);
-            }
+            return Buffer["contents"](b)}
           else
-           {return "";}
+           {return ""}
           },
         str_man_of_custom,
         function(self$neg1,l)
@@ -360,20 +350,17 @@ var
                        var buf=Buffer["create"](50);
                        
                        Buffer["add_string"](buf,f(param[2]));
-                       return /* :: */[0,Buffer["contents"](buf),acc];
-                       }
+                       return /* :: */[0,Buffer["contents"](buf),acc]}
                      catch(exn)
                       {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                         {Odoc_info["warning"](Odoc_messages["tag_not_handled"](tag));
-                         return acc;
-                         }
+                         return acc}
                        else
-                        {throw exn;}
+                        {throw exn}
                        }
                      },
                    /* [] */0,
-                   l);
-          },
+                   l)},
         man_of_info,
         function(self$neg1,$staropt$star,b,info_opt)
          {var margin=$staropt$star?$staropt$star[1]:0;
@@ -446,22 +433,19 @@ var
              l$1=
               List["filter"]
                (function(prim,prim$1)
-                  {return CamlPrimitive["caml_notequal"](prim,prim$1);}
+                  {return CamlPrimitive["caml_notequal"](prim,prim$1)}
                  (""),
                 l);
             
-            return Buffer["add_string"](b,$$String["concat"]("\n.sp\n",l$1));
-            }
+            return Buffer["add_string"](b,$$String["concat"]("\n.sp\n",l$1))}
           else
-           {return /* () */0;}
+           {return /* () */0}
           }]);
      return function(env,$$self)
       {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);
        
        $$self$1[tag_functions+1]=/* [] */0;
-       return $$self$1;
-       };
-     },
+       return $$self$1}},
    0,
    0];
 
@@ -586,8 +570,7 @@ var
              name,
              man_suffix[1]);
          
-         return Str["global_replace"](self$neg2[re_slash$1+1],"slash",s);
-         },
+         return Str["global_replace"](self$neg2[re_slash$1+1],"slash",s)},
        $$escape,
        function(self$neg2,s)
         {var len=s["length"];
@@ -600,40 +583,37 @@ var
            var exit;
            
            if(c>=47)
-            {if(c!==92){exit=98;}else{Buffer["add_string"](b,"\(rs")}}
+            {if(c!==92){exit=98;}else{Buffer["add_string"](b,"\\(rs")}}
            else
             {if(c>=39)
               {switch(-39+c)
-                {case 0:Buffer["add_string"](b,"\&'");
-                 case 1:exit=98;
-                 case 2:exit=98;
-                 case 3:exit=98;
-                 case 4:exit=98;
-                 case 5:exit=98;
-                 case 6:Buffer["add_string"](b,"\-");
-                 case 7:Buffer["add_string"](b,"\&.")
+                {case 0:Buffer["add_string"](b,"\\&'");break;
+                 case 1:exit=98;break;
+                 case 2:exit=98;break;
+                 case 3:exit=98;break;
+                 case 4:exit=98;break;
+                 case 5:exit=98;break;
+                 case 6:Buffer["add_string"](b,"\\-");break;
+                 case 7:Buffer["add_string"](b,"\\&.");break
                  }
                }
              else
               {exit=98;}
              }
            
-           switch(exit){case 98:Buffer["add_char"](b,c)}
+           switch(exit){case 98:Buffer["add_char"](b,c);break}
            }
          
-         return Buffer["contents"](b);
-         },
+         return Buffer["contents"](b)},
        open_out,
        function(self$neg2,file)
         {var f=Filename["concat"](Odoc_info["Global"][5][1],file);
          
-         return Pervasives["open_out"](f);
-         },
+         return Pervasives["open_out"](f)},
        man_of_text2,
        function(self$neg2,b,t)
         {/* unknown */"(sendself self-2/1417 man_of_text_element/1364 b/1418)";
-         return List["iter"](0,t);
-         },
+         return List["iter"](0,t)},
        man_of_text,
        function(self$neg2,b,t)
         {var b2=new_buf(/* () */0);
@@ -644,20 +624,19 @@ var
          
          var s2=Str["global_replace"](Str["regexp"]("\n[ ]*"),"\n",s);
          
-         return bs(b,Str["global_replace"](Str["regexp"]("\n\n"),"\n",s2));
-         },
+         return bs(b,Str["global_replace"](Str["regexp"]("\n\n"),"\n",s2))},
        remove_newlines,
        function(self$neg2,s)
-        {return Str["global_replace"](Str["regexp"]("[ ]*\n[ ]*")," ",s);},
+        {return Str["global_replace"](Str["regexp"]("[ ]*\n[ ]*")," ",s)},
        man_of_text_element,
        function(self$neg2,b,txt)
         {var exit;
          
          if(typeof txt==="number")
-          {switch(txt){case 0:return bs(b,"\n.sp\n");case 1:exit=91;}}
+          {switch(txt){case 0:return bs(b,"\n.sp\n");case 1:exit=91;break}}
          else
           {switch(txt[0])
-            {case 0:exit=92;
+            {case 0:exit=92;break;
              case 1:
               bs(b,"\n.B ");
               /* unknown */"(sendself self-2/1431 escape/1359 (field 0 txt/1433))";
@@ -665,7 +644,6 @@ var
                       (b,
                        Pervasives["^"]
                         (Str["global_replace"](Str["regexp"]("\n"),"\n.B ",0),"\n"));
-              
              case 2:
               bs(b,"\n.B ");
               /* unknown */"(sendself self-2/1431 escape/1359 (field 0 txt/1433))";
@@ -673,61 +651,62 @@ var
                       (b,
                        Pervasives["^"]
                         (Str["global_replace"](Str["regexp"]("\n"),"\n.B ",0),"\n"));
-              
-             case 3:exit=92;
+             case 3:exit=92;break;
              case 10:
               List["iter"]
                (function(t)
-                 {bs(b,"\n.sp\n \-");
+                 {bs(b,"\n.sp\n \\-");
                   /* unknown */"(sendself self-2/1431 man_of_text2/1361 b/1432 t/1459)";
                   
-                  return bs(b,"\n");
-                  },
+                  return bs(b,"\n")},
                 txt[1]);
               return bs(b,"\n");
-              
              case 11:
               List["iter"]
                (function(t)
-                 {bs(b,"\n.sp\n \-");
+                 {bs(b,"\n.sp\n \\-");
                   /* unknown */"(sendself self-2/1431 man_of_text2/1361 b/1432 t/1460)";
                   
-                  return bs(b,"\n");
-                  },
+                  return bs(b,"\n")},
                 txt[1]);
               return bs(b,"\n");
-              
              case 12:
               bs(b,"\n.sp\n");
               /* unknown */"(sendself self-2/1431 man_of_text2/1361 b/1432 (field 0 txt/1433))";
               
               return bs(b,"\n.sp\n");
-              
              case 13:
               /* unknown */"(sendself self-2/1431 man_of_text2/1361 b/1432\n  (makeblock 0\n    (makeblock 1 (apply (field 20 (global Odoc_info!)) (field 2 txt/1433)))\n    0a))";
               
-             case 14:exit=91;
+              break;
+             case 14:exit=91;break;
              case 15:
               /* unknown */"(sendself self-2/1431 man_of_text2/1361 b/1432 (field 1 txt/1433))";
               
+              break;
              case 16:
               /* unknown */"(sendself self-2/1431 man_of_text_element/1364 b/1432\n  (makeblock 1 (apply (field 37 (global Odoc_info!)) (field 0 txt/1433))))";
               
+              break;
              case 17:
               bs(b,"^{");
               /* unknown */"(sendself self-2/1431 man_of_text2/1361 b/1432 (field 0 txt/1433))";
               
+              break;
              case 18:
               bs(b,"_{");
               /* unknown */"(sendself self-2/1431 man_of_text2/1361 b/1432 (field 0 txt/1433))";
               
-             case 19:exit=91;
+              break;
+             case 19:exit=91;break;
              case 20:
               /* unknown */"(sendself self-2/1431 man_of_custom_text/1365 b/1432 (field 0 txt/1433)\n  (field 1 txt/1433))";
               
+              break;
              case 21:
               /* unknown */"(sendself self-2/1431 man_of_Target/1366 b/1432 (field 0 txt/1433)\n  (field 1 txt/1433))";
               
+              break;
              default:
               /* unknown */"(sendself self-2/1431 man_of_text2/1361 b/1432 (field 0 txt/1433))";
               }}
@@ -736,19 +715,17 @@ var
           {case 91:return /* () */0;
            case 92:
             /* unknown */"(sendself self-2/1431 escape/1359 (field 0 txt/1433))";
-            return bs(b,0);
-            
+            return bs(b,0)
            }
          },
        man_of_custom_text,
-       function(self$neg2,b,s,t){return /* () */0;},
+       function(self$neg2,b,s,t){return /* () */0},
        man_of_Target,
        function(self$neg2,b,target,code)
         {return CamlPrimitive["caml_string_equal"]
                   ($$String["lowercase"](target),"man")
                  ?bs(b,code)
-                 :/* () */0;
-         },
+                 :/* () */0},
        man_of_code,
        function(self$neg2,b,s)
         {/* unknown */"(sendself self-2/1472 man_of_text/1362 b/1473\n  (makeblock 0 (makeblock 1 s/1474) 0a))";
@@ -763,15 +740,13 @@ var
              return Odoc_info["apply_if_equal"]
                      (Odoc_info["use_hidden_modules"],
                       match_s,
-                      Odoc_info["Name"][4](m_name,match_s));
-             };
+                      Odoc_info["Name"][4](m_name,match_s))};
          
          return Str["global_substitute"]
                  (Str["regexp"]
-                   ("\([A-Z]\([a-zA-Z_'0-9]\)*\.\)+\([a-z][a-zA-Z_'0-9]*\)"),
+                   ("\\([A-Z]\\([a-zA-Z_'0-9]\\)*\\.\\)+\\([a-z][a-zA-Z_'0-9]*\\)"),
                   f,
-                  s);
-         },
+                  s)},
        man_of_type_expr,
        function(self$neg2,b,m_name,t)
         {var
@@ -786,8 +761,7 @@ var
          bs(b,"\n.B ");
          /* unknown */"(sendself self-2/1484 relative_idents/1368 m_name/1486 s2/1489)";
          bs(b,0);
-         return bs(b,"\n");
-         },
+         return bs(b,"\n")},
        man_of_class_type_expr,
        function(self$neg2,b,m_name,t)
         {var
@@ -803,8 +777,7 @@ var
          bs(b,"\n.B ");
          /* unknown */"(sendself self-2/1491 relative_idents/1368 m_name/1493 s2/1496)";
          bs(b,0);
-         return bs(b,"\n");
-         },
+         return bs(b,"\n")},
        man_of_type_expr_list,
        function(self$neg2,par,b,m_name,sep,l)
         {var s=Odoc_str["string_of_type_list"](par,sep,l);
@@ -814,8 +787,7 @@ var
          bs(b,"\n.B ");
          /* unknown */"(sendself self-2/1498 relative_idents/1368 m_name/1501 s2/1505)";
          bs(b,0);
-         return bs(b,"\n");
-         },
+         return bs(b,"\n")},
        man_of_type_expr_param_list,
        function(self$neg2,b,m_name,t)
         {var l=t[3];
@@ -828,10 +800,9 @@ var
            bs(b,"\n.B ");
            /* unknown */"(sendself self-2/1507 relative_idents/1368 m_name/1509 s2/1513)";
            bs(b,0);
-           return bs(b,"\n");
-           }
+           return bs(b,"\n")}
          else
-          {return /* () */0;}
+          {return /* () */0}
          },
        man_of_module_type,
        function(self$neg2,b,m_name,t)
@@ -848,8 +819,7 @@ var
          bs(b,"\n.B ");
          /* unknown */"(sendself self-2/1515 relative_idents/1368 m_name/1517 s2/1520)";
          bs(b,0);
-         return bs(b,"\n");
-         },
+         return bs(b,"\n")},
        man_of_value,
        function(self$neg2,b,v)
         {Odoc_info["reset_type_names"](/* () */0);
@@ -861,8 +831,7 @@ var
          bs(b,".sp\n");
          /* unknown */"(sendself self-2/1522 man_of_info/1525 0a b/1523 (field 1 v/1524))";
          
-         return bs(b,"\n.sp\n");
-         },
+         return bs(b,"\n.sp\n")},
        man_of_type_extension,
        function(self$neg2,b,m_name,te)
         {Odoc_info["reset_type_names"](/* () */0);
@@ -878,8 +847,6 @@ var
            /* unknown */"(sendself self-2/1527 relative_idents/1368 m_name/1529 s2/1533)";
            bs(b,0);
            bs(b,"\n"),bs(b,".I ")}
-         else
-          {}
          
          /* unknown */"(sendself self-2/1527 relative_idents/1368 m_name/1529 (field 1 te/1530))";
          bs(b,0);
@@ -929,8 +896,6 @@ var
                
                bs(b,match$3?match$3[1][1]:xa[1]);
                bs(b,"\n")}
-             else
-              {}
              
              var match$4=x[7];
              
@@ -939,17 +904,15 @@ var
                bs(b,"(* ");
                /* unknown */"(sendself self-2/1527 man_of_info/1525 0a b/1528\n  (makeblock 0 (field 0 match/2126)))";
                
-               return bs(b," *)\n ");
-               }
+               return bs(b," *)\n ")}
              else
-              {return bs(b," ");}
+              {return bs(b," ")}
              },
            te[5]);
          bs(b,"\n.sp\n");
          /* unknown */"(sendself self-2/1527 man_of_info/1525 0a b/1528 (field 0 te/1530))";
          
-         return bs(b,"\n.sp\n");
-         },
+         return bs(b,"\n.sp\n")},
        man_of_exception,
        function(self$neg2,b,e)
         {Odoc_info["reset_type_names"](/* () */0);
@@ -978,8 +941,6 @@ var
             {bs(b,".B : ");
              /* unknown */"(sendself self-2/1544 man_of_type_expr/1369 b/1545\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 e/1546))\n  (field 0 match/2121))";
              }
-           else
-            {}
            }
          
          var match$2=e[5];
@@ -991,14 +952,11 @@ var
            var match$3=ea[2];
            
            bs(b,match$3?match$3[1][1]:ea[1])}
-         else
-          {}
          
          bs(b,"\n.sp\n");
          /* unknown */"(sendself self-2/1544 man_of_info/1525 0a b/1545 (field 1 e/1546))";
          
-         return bs(b,"\n.sp\n");
-         },
+         return bs(b,"\n.sp\n")},
        man_of_type,
        function(self$neg2,b,t)
         {Odoc_info["reset_type_names"](/* () */0);
@@ -1011,10 +969,9 @@ var
               {bs(b,"  (* ");
                /* unknown */"(sendself self-2/1554 man_of_info/1525 0a b/1555\n  (makeblock 0 (field 0 param/2113)))";
                
-               return bs(b," *) ");
-               }
+               return bs(b," *) ")}
              else
-              {return /* () */0;}
+              {return /* () */0}
              };
          
          bs(b,".I type ");
@@ -1040,6 +997,7 @@ var
               
               /* unknown */"(sendself self-2/1554 man_of_type_expr/1369 b/1555 father/1557\n  (field 0 match/2110))";
               
+              break;
              case 1:
               bs(b,"= ");
               if(priv){bs(b,"private ")}
@@ -1051,19 +1009,17 @@ var
                   /* unknown */"(sendself self-2/1554 man_of_type_expr/1369 b/1555 father/1557\n  (field 1 r/1563))";
                   
                   bs(b,";");
-                  return field_comment(r[3]);
-                  },
+                  return field_comment(r[3])},
                 match$2[1]),
-              bs(b,"\n >\n")
+              bs(b,"\n >\n");
+              break
              }
            }
-         else
-          {}
          
          var match$3=t[4];
          
          if(typeof match$3==="number")
-          {switch(match$3){case 0:case 1:bs(b,"= .."),bs(b,"\n")}}
+          {switch(match$3){case 0:break;case 1:bs(b,"= .."),bs(b,"\n");break}}
          else
           {switch(match$3[0])
             {case 0:
@@ -1080,8 +1036,7 @@ var
                      {bs(b,"  (* ");
                       /* unknown */"(sendself self-2/1554 man_of_info/1525 0a b/1555 (makeblock 0 t/1568))";
                       
-                      return bs(b," *)\n ");
-                      };
+                      return bs(b," *)\n ")};
                   
                   var match$4=constr[2];
                   
@@ -1101,15 +1056,13 @@ var
                         /* unknown */"(sendself self-2/1554 man_of_type_expr/1369 b/1555 father/1557\n  (field 0 match/2103))";
                         
                         bs(b,'.I "  "\n');
-                        return print_text(t$1);
-                        }
+                        return print_text(t$1)}
                       else
                        {bs(b,"\n.B of ");
                         /* unknown */'(sendself self-2/1554 man_of_type_expr_list/1371 [0: 0a] b/1555 father/1557\n  " * " match/2101)';
                         
                         bs(b,'.I "  "\n');
-                        return print_text(t$1);
-                        }
+                        return print_text(t$1)}
                       }
                     else
                      {if(match$6)
@@ -1119,14 +1072,12 @@ var
                         bs(b,".B -> ");
                         /* unknown */"(sendself self-2/1554 man_of_type_expr/1369 b/1555 father/1557\n  (field 0 match/2103))";
                         
-                        return bs(b," ");
-                        }
+                        return bs(b," ")}
                       else
                        {bs(b,"\n.B of ");
                         /* unknown */'(sendself self-2/1554 man_of_type_expr_list/1371 [0: 0a] b/1555 father/1557\n  " * " match/2101)';
                         
-                        return bs(b," ");
-                        }
+                        return bs(b," ")}
                       }
                     }
                   else
@@ -1138,24 +1089,23 @@ var
                         /* unknown */"(sendself self-2/1554 man_of_type_expr/1369 b/1555 father/1557\n  (field 0 match/2103))";
                         
                         bs(b,'.I "  "\n');
-                        return print_text(t$2);
-                        }
+                        return print_text(t$2)}
                       else
-                       {return print_text(t$2);}
+                       {return print_text(t$2)}
                       }
                     else
                      {if(match$6)
                        {bs(b,"\n.B : ");
                         /* unknown */"(sendself self-2/1554 man_of_type_expr/1369 b/1555 father/1557\n  (field 0 match/2103))";
                         
-                        return bs(b," ");
-                        }
+                        return bs(b," ")}
                       else
-                       {return bs(b,"\n ");}
+                       {return bs(b,"\n ")}
                       }
                     }
                   },
                 match$3[1]);
+              break;
              case 1:
               bs(b,"= ");
               if(priv){bs(b,"private ")}
@@ -1168,17 +1118,16 @@ var
                   /* unknown */"(sendself self-2/1554 man_of_type_expr/1369 b/1555 father/1557\n  (field 2 r/1581))";
                   
                   bs(b,";");
-                  return field_comment(r[4]);
-                  },
+                  return field_comment(r[4])},
                 match$3[1]),
-              bs(b,"\n }\n")
+              bs(b,"\n }\n");
+              break
              }}
          
          bs(b,"\n.sp\n");
          /* unknown */"(sendself self-2/1554 man_of_info/1525 0a b/1555 (field 1 t/1556))";
          
-         return bs(b,"\n.sp\n");
-         },
+         return bs(b,"\n.sp\n")},
        man_of_attribute,
        function(self$neg2,b,a)
         {bs(b,".I val ");
@@ -1192,8 +1141,7 @@ var
          bs(b,"\n.sp\n");
          /* unknown */"(sendself self-2/1583 man_of_info/1525 0a b/1584 (field 1 (field 0 a/1585)))";
          
-         return bs(b,"\n.sp\n");
-         },
+         return bs(b,"\n.sp\n")},
        man_of_method,
        function(self$neg2,b,m)
         {bs(b,".I method ");
@@ -1207,8 +1155,7 @@ var
          bs(b,"\n.sp\n");
          /* unknown */"(sendself self-2/1587 man_of_info/1525 0a b/1588 (field 1 (field 0 m/1589)))";
          
-         return bs(b,"\n.sp\n");
-         },
+         return bs(b,"\n.sp\n")},
        man_of_parameter_list,
        function(self$neg2,b,m_name,l)
         {return l
@@ -1226,12 +1173,10 @@ var
                        bs(b,"\n");
                        /* unknown */"(sendself self-2/1591 man_of_parameter_description/1381 b/1592 p/1595)";
                        
-                       return bs(b,"\n");
-                       },
+                       return bs(b,"\n")},
                      l),
                    bs(b,"\n"))
-                 :/* () */0;
-         },
+                 :/* () */0},
        man_of_parameter_description,
        function(self$neg2,b,p)
         {var l=Odoc_info["Parameter"][3](p);
@@ -1248,10 +1193,9 @@ var
                           /* unknown */"(sendself self-2/1597 man_of_text/1362 b/1598 (field 0 match/2092))";
                           }
                         else
-                         {return /* () */0;}
+                         {return /* () */0}
                         },
-                      l);
-             }
+                      l)}
            else
             {var match=Odoc_info["Parameter"][4](p,l[1]);
              
@@ -1260,11 +1204,11 @@ var
                /* unknown */"(sendself self-2/1597 man_of_text/1362 b/1598 (field 0 match/2090))";
                }
              else
-              {return /* () */0;}
+              {return /* () */0}
              }
            }
          else
-          {return /* () */0;}
+          {return /* () */0}
          },
        man_of_module_parameter_list,
        function(self$neg2,b,m_name,l)
@@ -1286,15 +1230,11 @@ var
                        if(desc_opt)
                         {/* unknown */"(sendself self-2/1606 man_of_text/1362 b/1607 (field 0 desc_opt/1611))";
                          }
-                       else
-                        {}
                        
-                       return bs(b,"\n");
-                       },
+                       return bs(b,"\n")},
                      l),
                    bs(b,"\n\n"))
-                 :/* () */0;
-         },
+                 :/* () */0},
        man_of_class,
        function(self$neg2,b,c)
         {Odoc_info["reset_type_names"](/* () */0);
@@ -1314,8 +1254,7 @@ var
          bs(b,"\n.sp\n");
          /* unknown */"(sendself self-2/1614 man_of_info/1525 0a b/1615 (field 1 c/1616))";
          
-         return bs(b,"\n.sp\n");
-         },
+         return bs(b,"\n.sp\n")},
        man_of_class_type,
        function(self$neg2,b,ct)
         {Odoc_info["reset_type_names"](/* () */0);
@@ -1333,8 +1272,7 @@ var
          bs(b,"\n.sp\n");
          /* unknown */"(sendself self-2/1620 man_of_info/1525 0a b/1621 (field 1 ct/1622))";
          
-         return bs(b,"\n.sp\n");
-         },
+         return bs(b,"\n.sp\n")},
        man_of_module,
        function(self$neg2,b,m)
         {bs(b,".I module ");
@@ -1345,8 +1283,7 @@ var
          bs(b,"\n.sp\n");
          /* unknown */"(sendself self-2/1625 man_of_info/1525 0a b/1626 (field 2 m/1627))";
          
-         return bs(b,"\n.sp\n");
-         },
+         return bs(b,"\n.sp\n")},
        man_of_modtype,
        function(self$neg2,b,mt)
         {bs(b,".I module type ");
@@ -1357,28 +1294,23 @@ var
          if(match)
           {/* unknown */"(sendself self-2/1629 man_of_module_type/1373 b/1630\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 mt/1631))\n  (field 0 match/2077))";
            }
-         else
-          {}
          
          bs(b,"\n.sp\n");
          /* unknown */"(sendself self-2/1629 man_of_info/1525 0a b/1630 (field 1 mt/1631))";
          
-         return bs(b,"\n.sp\n");
-         },
+         return bs(b,"\n.sp\n")},
        man_of_module_comment,
        function(self$neg2,b,text)
         {bs(b,"\n.PP\n");
          /* unknown */'(sendself self-2/1634 man_of_text/1362 b/1635\n  (makeblock 0\n    (makeblock 1\n      (apply (field 15 (global Pervasives!)) "=== "\n        (apply (field 15 (global Pervasives!))\n          (apply (field 5 (global Odoc_misc!)) text/1636) " ===")))\n    0a))';
          
-         return bs(b,"\n.PP\n");
-         },
+         return bs(b,"\n.PP\n")},
        man_of_class_comment,
        function(self$neg2,b,text)
         {bs(b,"\n.PP\n");
          /* unknown */'(sendself self-2/1638 man_of_text/1362 b/1639\n  (makeblock 0\n    (makeblock 1\n      (apply (field 15 (global Pervasives!)) "=== "\n        (apply (field 15 (global Pervasives!))\n          (apply (field 5 (global Odoc_misc!)) text/1640) " ===")))\n    0a))';
          
-         return bs(b,"\n.PP\n");
-         },
+         return bs(b,"\n.PP\n")},
        man_of_recfield,
        function(self$neg2,b,modname,f)
         {bs(b,".I ");
@@ -1390,8 +1322,7 @@ var
          bs(b,"\n.sp\n");
          /* unknown */"(sendself self-2/1642 man_of_info/1525 0a b/1643 (field 3 f/1645))";
          
-         return bs(b,"\n.sp\n");
-         },
+         return bs(b,"\n.sp\n")},
        man_of_const,
        function(self$neg2,b,modname,c)
         {bs(b,".I ");
@@ -1408,14 +1339,11 @@ var
                /* unknown */"(sendself self-2/1647 man_of_type_expr/1369 b/1648 modname/1649 ty/1653)";
                },
              match[2])}
-         else
-          {}
          
          bs(b,"\n.sp\n");
          /* unknown */"(sendself self-2/1647 man_of_info/1525 0a b/1648 (field 3 c/1650))";
          
-         return bs(b,"\n.sp\n");
-         },
+         return bs(b,"\n.sp\n")},
        man_of_included_module,
        function(self$neg2,b,m_name,im)
         {bs(b,".I include ");
@@ -1432,8 +1360,7 @@ var
          bs(b,"\n.sp\n");
          /* unknown */"(sendself self-2/1655 man_of_info/1525 0a b/1656 (field 2 im/1658))";
          
-         return bs(b,"\n.sp\n");
-         },
+         return bs(b,"\n.sp\n")},
        generate_for_class,
        function(self$neg2,cl)
         {Odoc_info["reset_type_names"](/* () */0);
@@ -1481,13 +1408,14 @@ var
            else
             {exit=51;}
            
-           switch(exit){case 51:var $$abstract="no description";}
+           switch(exit){case 51:var $$abstract="no description";break}
            
            bs(b,".SH NAME\n");
            bs
             (b,
              Pervasives["^"]
-              (cl[1],Pervasives["^"](" \- ",Pervasives["^"]($$abstract,"\n"))));
+              (cl[1],
+               Pervasives["^"](" \\- ",Pervasives["^"]($$abstract,"\n"))));
            bs
             (b,
              Pervasives["^"]
@@ -1513,25 +1441,26 @@ var
                 {case 0:
                   /* unknown */"(sendself self-2/1664 man_of_attribute/1378 b/1669 (field 0 element/1674))";
                   
+                  break;
                  case 1:
                   /* unknown */"(sendself self-2/1664 man_of_method/1379 b/1669 (field 0 element/1674))";
                   
+                  break;
                  case 2:
                   /* unknown */"(sendself self-2/1664 man_of_class_comment/1388 b/1669\n  (field 0 element/1674))";
                   
+                  break
                  }
                },
              Odoc_info["Class"][1](/* None */0,cl));
            Buffer["output_buffer"](chanout,b);
-           return Pervasives["close_out"](chanout);
-           }
+           return Pervasives["close_out"](chanout)}
          catch(exn)
           {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
             {Odoc_info["errors"][0]++;
-             return Pervasives["prerr_endline"](exn[2]);
-             }
+             return Pervasives["prerr_endline"](exn[2])}
            else
-            {throw exn;}
+            {throw exn}
            }
          },
        generate_for_class_type,
@@ -1581,13 +1510,14 @@ var
            else
             {exit=43;}
            
-           switch(exit){case 43:var $$abstract="no description";}
+           switch(exit){case 43:var $$abstract="no description";break}
            
            bs(b,".SH NAME\n");
            bs
             (b,
              Pervasives["^"]
-              (ct[1],Pervasives["^"](" \- ",Pervasives["^"]($$abstract,"\n"))));
+              (ct[1],
+               Pervasives["^"](" \\- ",Pervasives["^"]($$abstract,"\n"))));
            bs
             (b,
              Pervasives["^"]
@@ -1611,25 +1541,26 @@ var
                 {case 0:
                   /* unknown */"(sendself self-2/1680 man_of_attribute/1378 b/1685 (field 0 element/1690))";
                   
+                  break;
                  case 1:
                   /* unknown */"(sendself self-2/1680 man_of_method/1379 b/1685 (field 0 element/1690))";
                   
+                  break;
                  case 2:
                   /* unknown */"(sendself self-2/1680 man_of_class_comment/1388 b/1685\n  (field 0 element/1690))";
                   
+                  break
                  }
                },
              Odoc_info["Class"][6](/* None */0,ct));
            Buffer["output_buffer"](chanout,b);
-           return Pervasives["close_out"](chanout);
-           }
+           return Pervasives["close_out"](chanout)}
          catch(exn)
           {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
             {Odoc_info["errors"][0]++;
-             return Pervasives["prerr_endline"](exn[2]);
-             }
+             return Pervasives["prerr_endline"](exn[2])}
            else
-            {throw exn;}
+            {throw exn}
            }
          },
        man_of_module_type_body,
@@ -1646,37 +1577,46 @@ var
                      {case 0:
                        /* unknown */"(sendself self-2/1696 man_of_module/1385 b/1697 (field 0 ele/1699))";
                        
+                       break;
                       case 1:
                        /* unknown */"(sendself self-2/1696 man_of_modtype/1386 b/1697 (field 0 ele/1699))";
                        
+                       break;
                       case 2:
                        /* unknown */"(sendself self-2/1696 man_of_included_module/1391 b/1697 (field 0 mt/1698)\n  (field 0 ele/1699))";
                        
+                       break;
                       case 3:
                        /* unknown */"(sendself self-2/1696 man_of_class/1383 b/1697 (field 0 ele/1699))";
                        
+                       break;
                       case 4:
                        /* unknown */"(sendself self-2/1696 man_of_class_type/1384 b/1697 (field 0 ele/1699))";
                        
+                       break;
                       case 5:
                        /* unknown */"(sendself self-2/1696 man_of_value/1374 b/1697 (field 0 ele/1699))";
                        
+                       break;
                       case 6:
                        /* unknown */"(sendself self-2/1696 man_of_type_extension/1375 b/1697 (field 0 mt/1698)\n  (field 0 ele/1699))";
                        
+                       break;
                       case 7:
                        /* unknown */"(sendself self-2/1696 man_of_exception/1376 b/1697 (field 0 ele/1699))";
                        
+                       break;
                       case 8:
                        /* unknown */"(sendself self-2/1696 man_of_type/1377 b/1697 (field 0 ele/1699))";
                        
+                       break;
                       case 9:
                        /* unknown */"(sendself self-2/1696 man_of_module_comment/1387 b/1697 (field 0 ele/1699))";
                        
+                       break
                       }
                     },
-                  Odoc_info["Module"][17](/* None */0,mt));
-         },
+                  Odoc_info["Module"][17](/* None */0,mt))},
        generate_for_module_type,
        function(self$neg2,mt)
         {var date=Unix["time"](/* () */0);
@@ -1723,13 +1663,14 @@ var
            else
             {exit=35;}
            
-           switch(exit){case 35:var $$abstract="no description";}
+           switch(exit){case 35:var $$abstract="no description";break}
            
            bs(b,".SH NAME\n");
            bs
             (b,
              Pervasives["^"]
-              (mt[1],Pervasives["^"](" \- ",Pervasives["^"]($$abstract,"\n"))));
+              (mt[1],
+               Pervasives["^"](" \\- ",Pervasives["^"]($$abstract,"\n"))));
            bs
             (b,
              Pervasives["^"]
@@ -1755,22 +1696,18 @@ var
            if(match$3)
             {/* unknown */"(sendself self-2/1711 man_of_module_type/1373 b/1716\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 mt/1712))\n  (field 0 match/1976))";
              }
-           else
-            {}
            
            bs(b,"\n.sp\n");
            /* unknown */"(sendself self-2/1711 man_of_module_type_body/1394 b/1716 mt/1712)";
            
            Buffer["output_buffer"](chanout,b);
-           return Pervasives["close_out"](chanout);
-           }
+           return Pervasives["close_out"](chanout)}
          catch(exn)
           {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
             {Odoc_info["errors"][0]++;
-             return Pervasives["prerr_endline"](exn[2]);
-             }
+             return Pervasives["prerr_endline"](exn[2])}
            else
-            {throw exn;}
+            {throw exn}
            }
          },
        man_of_module_body,
@@ -1787,37 +1724,46 @@ var
                      {case 0:
                        /* unknown */"(sendself self-2/1724 man_of_module/1385 b/1725 (field 0 ele/1727))";
                        
+                       break;
                       case 1:
                        /* unknown */"(sendself self-2/1724 man_of_modtype/1386 b/1725 (field 0 ele/1727))";
                        
+                       break;
                       case 2:
                        /* unknown */"(sendself self-2/1724 man_of_included_module/1391 b/1725 (field 0 m/1726)\n  (field 0 ele/1727))";
                        
+                       break;
                       case 3:
                        /* unknown */"(sendself self-2/1724 man_of_class/1383 b/1725 (field 0 ele/1727))";
                        
+                       break;
                       case 4:
                        /* unknown */"(sendself self-2/1724 man_of_class_type/1384 b/1725 (field 0 ele/1727))";
                        
+                       break;
                       case 5:
                        /* unknown */"(sendself self-2/1724 man_of_value/1374 b/1725 (field 0 ele/1727))";
                        
+                       break;
                       case 6:
                        /* unknown */"(sendself self-2/1724 man_of_type_extension/1375 b/1725 (field 0 m/1726)\n  (field 0 ele/1727))";
                        
+                       break;
                       case 7:
                        /* unknown */"(sendself self-2/1724 man_of_exception/1376 b/1725 (field 0 ele/1727))";
                        
+                       break;
                       case 8:
                        /* unknown */"(sendself self-2/1724 man_of_type/1377 b/1725 (field 0 ele/1727))";
                        
+                       break;
                       case 9:
                        /* unknown */"(sendself self-2/1724 man_of_module_comment/1387 b/1725 (field 0 ele/1727))";
                        
+                       break
                       }
                     },
-                  Odoc_info["Module"][1](/* None */0,m));
-         },
+                  Odoc_info["Module"][1](/* None */0,m))},
        generate_for_module,
        function(self$neg2,m)
         {var date=Unix["time"](/* () */0);
@@ -1864,13 +1810,13 @@ var
            else
             {exit=27;}
            
-           switch(exit){case 27:var $$abstract="no description";}
+           switch(exit){case 27:var $$abstract="no description";break}
            
            bs(b,".SH NAME\n");
            bs
             (b,
              Pervasives["^"]
-              (m[1],Pervasives["^"](" \- ",Pervasives["^"]($$abstract,"\n"))));
+              (m[1],Pervasives["^"](" \\- ",Pervasives["^"]($$abstract,"\n"))));
            bs
             (b,
              Pervasives["^"]
@@ -1897,13 +1843,12 @@ var
            /* unknown */"(sendself self-2/1739 man_of_module_body/1396 b/1744 m/1740)";
            
            Buffer["output_buffer"](chanout,b);
-           return Pervasives["close_out"](chanout);
-           }
+           return Pervasives["close_out"](chanout)}
          catch(exn)
           {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
-            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]];}
+            {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]]}
            else
-            {throw exn;}
+            {throw exn}
            }
          },
        create_groups,
@@ -1914,25 +1859,24 @@ var
             {var exit;
              
              switch(res_ele[0])
-              {case 4:exit=21;
-               case 5:exit=21;
-               case 6:exit=21;
-               case 7:exit=21;
-               case 8:exit=22;
-               case 9:exit=22;
+              {case 4:exit=21;break;
+               case 5:exit=21;break;
+               case 6:exit=21;break;
+               case 7:exit=21;break;
+               case 8:exit=22;break;
+               case 9:exit=22;break;
                case 10:
                 throw [0,
                        CamlPrimitive["caml_global_data"]["Assert_failure"],
                        [0,"odoc_man.ml",1147,27]];
-                
-               case 11:exit=23;
-               case 12:exit=23;
-               default:return res_ele[1][1];}
+               case 11:exit=23;break;
+               case 12:exit=23;break;
+               default:return res_ele[1][1]}
              
              switch(exit)
               {case 21:return Odoc_info["Name"][1](res_ele[1][1]);
                case 22:return Odoc_info["Name"][1](res_ele[1][1][1]);
-               case 23:return res_ele[2][1];
+               case 23:return res_ele[2][1]
                }
              };
          
@@ -1947,14 +1891,14 @@ var
               {var exit;
                
                switch(r[0])
-                {case 0:exit=16;
-                 case 1:exit=16;
-                 case 2:exit=16;
-                 case 3:exit=16;
+                {case 0:exit=16;break;
+                 case 1:exit=16;break;
+                 case 2:exit=16;break;
+                 case 3:exit=16;break;
                  case 10:return /* false */0;
-                 default:return !mini;}
+                 default:return !mini}
                
-               switch(exit){case 16:return /* true */1;}
+               switch(exit){case 16:return /* true */1}
                },
              all_items_pre);
          
@@ -1962,8 +1906,7 @@ var
           sorted_items=
            List["sort"]
             (function(e1,e2)
-              {return CamlPrimitive["caml_string_compare"](name(e1),name(e2));
-               },
+              {return CamlPrimitive["caml_string_compare"](name(e1),name(e2))},
              all_items);
          
          var
@@ -1980,14 +1923,12 @@ var
                            ?f(acc1,acc2,q)
                            :f(acc1,Pervasives["@"](acc2,/* :: */[0,h,/* [] */0]),q)
                          :f(/* :: */[0,acc2,acc1],/* :: */[0,h,/* [] */0],q)
-                       :f(acc1,/* :: */[0,h,/* [] */0],q);
-               }
+                       :f(acc1,/* :: */[0,h,/* [] */0],q)}
              else
-              {return /* :: */[0,acc2,acc1];}
+              {return /* :: */[0,acc2,acc1]}
              };
          
-         return f(/* [] */0,/* [] */0,sorted_items);
-         },
+         return f(/* [] */0,/* [] */0,sorted_items)},
        generate_for_group,
        function(self$neg2,l)
         {var match=List["hd"](l);
@@ -1996,15 +1937,16 @@ var
          
          var $js;
          switch(match[0])
-          {case 8:exit=12;
-           case 9:exit=12;
-           case 10:$js=match[1];
-           case 11:exit=13;
-           case 12:exit=13;
+          {case 8:exit=12;break;
+           case 9:exit=12;break;
+           case 10:$js=match[1];break;
+           case 11:exit=13;break;
+           case 12:exit=13;break;
            default:$js=match[1][1];}
          
          var $js$1;
-         switch(exit){case 12:$js$1=match[1][1][1];case 13:$js$1=match[2][1];}
+         switch(exit)
+          {case 12:$js$1=match[1][1][1];break;case 13:$js$1=match[2][1];break}
          var name=Odoc_info["Name"][1]($js$1);
          
          var date=Unix["time"](/* () */0);
@@ -2037,7 +1979,7 @@ var
              Pervasives["^"]
               (name,
                Pervasives["^"]
-                (" \- all ",Pervasives["^"](name," elements\n\n"))));
+                (" \\- all ",Pervasives["^"](name," elements\n\n"))));
            var
             f=
              function(ele)
@@ -2079,6 +2021,7 @@ var
                   bs(b,"\n.sp\n");
                   /* unknown */"(sendself self-2/1797 man_of_module_body/1396 b/1816 m/1832)";
                   
+                  break;
                  case 1:
                   var mt=ele[1];
                   
@@ -2101,12 +2044,11 @@ var
                   if(match$2)
                    {/* unknown */"(sendself self-2/1797 man_of_module_type/1373 b/1816\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 mt/1833))\n  (field 0 match/1905))";
                     }
-                  else
-                   {}
                   
                   bs(b,"\n.sp\n");
                   /* unknown */"(sendself self-2/1797 man_of_module_type_body/1394 b/1816 mt/1833)";
                   
+                  break;
                  case 2:
                   var c=ele[1];
                   
@@ -2120,6 +2062,7 @@ var
                          (" ",Pervasives["^"](Odoc_info["Name"][5](c[1]),"\n")))));
                   /* unknown */"(sendself self-2/1797 man_of_class/1383 b/1816 c/1826)";
                   
+                  break;
                  case 3:
                   var ct=ele[1];
                   
@@ -2133,6 +2076,7 @@ var
                          (" ",Pervasives["^"](Odoc_info["Name"][5](ct[1]),"\n")))));
                   /* unknown */"(sendself self-2/1797 man_of_class_type/1384 b/1816 ct/1827)";
                   
+                  break;
                  case 4:
                   var v=ele[1];
                   
@@ -2146,6 +2090,7 @@ var
                          (" ",Pervasives["^"](Odoc_info["Name"][5](v[1]),"\n")))));
                   /* unknown */"(sendself self-2/1797 man_of_value/1374 b/1816 v/1820)";
                   
+                  break;
                  case 5:
                   var t=ele[1];
                   
@@ -2159,6 +2104,7 @@ var
                          (" ",Pervasives["^"](Odoc_info["Name"][5](t[1]),"\n")))));
                   /* unknown */"(sendself self-2/1797 man_of_type/1377 b/1816 t/1821)";
                   
+                  break;
                  case 6:
                   var x=ele[1];
                   
@@ -2172,6 +2118,7 @@ var
                          (" ",Pervasives["^"](Odoc_info["Name"][5](x[1]),"\n")))));
                   /* unknown */"(sendself self-2/1797 man_of_type_extension/1375 b/1816\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 x/1822))\n  (field 3 x/1822))";
                   
+                  break;
                  case 7:
                   var e=ele[1];
                   
@@ -2185,6 +2132,7 @@ var
                          (" ",Pervasives["^"](Odoc_info["Name"][5](e[1]),"\n")))));
                   /* unknown */"(sendself self-2/1797 man_of_exception/1376 b/1816 e/1823)";
                   
+                  break;
                  case 8:
                   var a=ele[1];
                   
@@ -2198,6 +2146,7 @@ var
                          (" ",Pervasives["^"](Odoc_info["Name"][5](a[1][1]),"\n")))));
                   /* unknown */"(sendself self-2/1797 man_of_attribute/1378 b/1816 a/1824)";
                   
+                  break;
                  case 9:
                   var m$1=ele[1];
                   
@@ -2211,6 +2160,7 @@ var
                          (" ",Pervasives["^"](Odoc_info["Name"][5](m$1[1][1]),"\n")))));
                   /* unknown */"(sendself self-2/1797 man_of_method/1379 b/1816 m/1825)";
                   
+                  break;
                  case 10:return /* () */0;
                  case 11:
                   var ty=ele[1];
@@ -2220,6 +2170,7 @@ var
                     Pervasives["^"]("\n.SH Type ",Pervasives["^"](ty[1],"\n")));
                   /* unknown */"(sendself self-2/1797 man_of_recfield/1389 b/1816\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 ty/1828))\n  (field 1 ele/1819))";
                   
+                  break;
                  case 12:
                   var ty$1=ele[1];
                   
@@ -2228,20 +2179,19 @@ var
                     Pervasives["^"]("\n.SH Type ",Pervasives["^"](ty$1[1],"\n")));
                   /* unknown */"(sendself self-2/1797 man_of_const/1390 b/1816\n  (apply (field 4 (field 2 (global Odoc_info!))) (field 0 ty/1830))\n  (field 1 ele/1819))";
                   
+                  break
                  }
                };
            
            List["iter"](f,l);
            Buffer["output_buffer"](chanout,b);
-           return Pervasives["close_out"](chanout);
-           }
+           return Pervasives["close_out"](chanout)}
          catch(exn)
           {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
             {Odoc_info["errors"][0]++;
-             return Pervasives["prerr_endline"](exn[2]);
-             }
+             return Pervasives["prerr_endline"](exn[2])}
            else
-            {throw exn;}
+            {throw exn}
            }
          },
        generate,
@@ -2250,7 +2200,7 @@ var
           sorted_module_list=
            List["sort"]
             (function(m1,m2)
-              {return CamlPrimitive["caml_string_compare"](m1[1],m2[1]);},
+              {return CamlPrimitive["caml_string_compare"](m1[1],m2[1])},
              module_list);
          
          /* unknown */"(sendself self-2/1837 create_groups/1398 (field 0 man_mini/1235)\n  sorted_module_list/1839)";
@@ -2270,49 +2220,47 @@ var
                   else
                    {/* unknown */"(sendself self-2/1837 generate_for_module/1397 (field 0 match/1889))";
                     }
-                  
+                  break;
                  case 1:
                   if(group[2])
                    {exit=1;}
                   else
                    {/* unknown */"(sendself self-2/1837 generate_for_module_type/1395 (field 0 match/1889))";
                     }
-                  
+                  break;
                  case 2:
                   if(group[2])
                    {exit=1;}
                   else
                    {/* unknown */"(sendself self-2/1837 generate_for_class/1392 (field 0 match/1889))";
                     }
-                  
+                  break;
                  case 3:
                   if(group[2])
                    {exit=1;}
                   else
                    {/* unknown */"(sendself self-2/1837 generate_for_class_type/1393 (field 0 match/1889))";
                     }
-                  
+                  break;
                  default:exit=1;}
                }
              else
-              {return /* () */0;}
+              {return /* () */0}
              
              switch(exit)
               {case 1:
                 /* unknown */"(sendself self-2/1837 generate_for_group/1399 group/1844)";
                 
+                break
                }
              };
          
-         return List["iter"](f,groups);
-         }]);
+         return List["iter"](f,groups)}]);
     return function(env,$$self)
      {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);
       
       $$self$1[re_slash$1+1]=re_slash,obj_init($$self$1);
-      return CamlinternalOO["run_initializers_opt"]($$self,$$self$1,$$class);
-      };
-    };
+      return CamlinternalOO["run_initializers_opt"]($$self,$$self$1,$$class)}};
 
 var
  man=

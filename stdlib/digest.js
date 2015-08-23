@@ -32,9 +32,10 @@ var
    {var ic=Pervasives["open_in_bin"](filename);
     
     var exit;
+    var d;
     
     try
-     {var d=CamlPrimitive["caml_md5_chan"](ic,-1);exit=-1;}
+     {d=CamlPrimitive["caml_md5_chan"](ic,-1);exit=-1;}
     catch(e){Pervasives["close_in"](ic);throw e}
     
     switch(exit){case -1:Pervasives["close_in"](ic);return d}

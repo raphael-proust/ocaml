@@ -10,15 +10,15 @@ var CamlPrimitive=require("./camlPrimitive.js");
 var Sys=require("./sys.js");
 
 
-var wait_read=function(fd){return CamlPrimitive["thread_wait_read"](fd);};
+var wait_read=function(fd){return CamlPrimitive["thread_wait_read"](fd)};
 
-var wait_write=function(fd){return CamlPrimitive["thread_wait_write"](fd);};
+var wait_write=function(fd){return CamlPrimitive["thread_wait_write"](fd)};
 
-var select_aux=function(arg){return CamlPrimitive["thread_select"](arg);};
+var select_aux=function(arg){return CamlPrimitive["thread_select"](arg)};
 
-var wait_pid_aux=function(pid){return CamlPrimitive["thread_wait_pid"](pid);};
+var wait_pid_aux=function(pid){return CamlPrimitive["thread_wait_pid"](pid)};
 
-var delay=function(duration){return CamlPrimitive["thread_delay"](duration);};
+var delay=function(duration){return CamlPrimitive["thread_delay"](duration)};
 
 CamlPrimitive["thread_initialize"](/* () */0);
 var Unix_error=CamlPrimitive["caml_set_oo_id"]([248,"Unix.Unix_error",0]);
@@ -29,7 +29,7 @@ var
  handle_unix_error=
   function(f,arg)
    {try
-     {return f(arg);}
+     {return f(arg)}
     catch(exn)
      {if(exn[1]===Unix_error)
        {var arg$1=exn[4];
@@ -46,10 +46,9 @@ var
         Pervasives["prerr_string"](": ");
         Pervasives["prerr_endline"]
          (CamlPrimitive["unix_error_message"](exn[2]));
-        return Pervasives["exit"](2);
-        }
+        return Pervasives["exit"](2)}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -65,8 +64,7 @@ var
    {try
      {return ofs<0||len<0||ofs>buf["length"]-len
               ?Pervasives["invalid_arg"]("Unix.read")
-              :CamlPrimitive["unix_read"](fd,buf,ofs,len);
-      }
+              :CamlPrimitive["unix_read"](fd,buf,ofs,len)}
     catch(exn)
      {var exit;
       
@@ -84,12 +82,12 @@ var
         else
          {exit=161;}
         
-        switch(exit$1){case 162:wait_read(fd);return read(fd,buf,ofs,len);}
+        switch(exit$1){case 162:wait_read(fd);return read(fd,buf,ofs,len)}
         }
       else
        {exit=161;}
       
-      switch(exit){case 161:throw exn;}
+      switch(exit){case 161:throw exn}
       }
     };
 
@@ -99,8 +97,7 @@ var
    {try
      {return ofs<0||len<0||ofs>buf["length"]-len
               ?Pervasives["invalid_arg"]("Unix.write")
-              :CamlPrimitive["unix_write"](fd,buf,ofs,len);
-      }
+              :CamlPrimitive["unix_write"](fd,buf,ofs,len)}
     catch(exn)
      {var exit;
       
@@ -118,12 +115,12 @@ var
         else
          {exit=159;}
         
-        switch(exit$1){case 160:wait_write(fd);return write(fd,buf,ofs,len);}
+        switch(exit$1){case 160:wait_write(fd);return write(fd,buf,ofs,len)}
         }
       else
        {exit=159;}
       
-      switch(exit){case 159:throw exn;}
+      switch(exit){case 159:throw exn}
       }
     };
 
@@ -133,8 +130,7 @@ var
    {try
      {return ofs<0||len<0||ofs>buf["length"]-len
               ?Pervasives["invalid_arg"]("Unix.single_write")
-              :CamlPrimitive["unix_single_write"](fd,buf,ofs,len);
-      }
+              :CamlPrimitive["unix_single_write"](fd,buf,ofs,len)}
     catch(exn)
      {var exit;
       
@@ -153,24 +149,24 @@ var
          {exit=157;}
         
         switch(exit$1)
-         {case 158:wait_write(fd);return single_write(fd,buf,ofs,len);}
+         {case 158:wait_write(fd);return single_write(fd,buf,ofs,len)}
         }
       else
        {exit=157;}
       
-      switch(exit){case 157:throw exn;}
+      switch(exit){case 157:throw exn}
       }
     };
 
 var
  write_substring=
   function(fd,buf,ofs,len)
-   {return write(fd,Bytes["unsafe_of_string"](buf),ofs,len);};
+   {return write(fd,Bytes["unsafe_of_string"](buf),ofs,len)};
 
 var
  single_write_substring=
   function(fd,buf,ofs,len)
-   {return single_write(fd,Bytes["unsafe_of_string"](buf),ofs,len);};
+   {return single_write(fd,Bytes["unsafe_of_string"](buf),ofs,len)};
 
 var LargeFile=[0];
 
@@ -181,8 +177,7 @@ var
     
     CamlPrimitive["unix_set_nonblock"](fd_pair[2]);
     CamlPrimitive["unix_set_nonblock"](fd_pair[1]);
-    return fd_pair;
-    };
+    return fd_pair};
 
 var
  select=
@@ -198,24 +193,23 @@ var
        {case 0:return /* tuple */[0,match[1],match[2],match[3]];
         default:exit=151;}}
     
-    switch(exit)
-     {case 151:return [/* tuple */0,/* [] */0,/* [] */0,/* [] */0];}
+    switch(exit){case 151:return [/* tuple */0,/* [] */0,/* [] */0,/* [] */0]}
     };
 
 var
  safe_clear_nonblock=
   function(fd)
    {try
-     {return CamlPrimitive["unix_clear_nonblock"](fd);}
-    catch(exn){if(exn[1]===Unix_error){return /* () */0;}else{throw exn;}}
+     {return CamlPrimitive["unix_clear_nonblock"](fd)}
+    catch(exn){if(exn[1]===Unix_error){return /* () */0}else{throw exn}}
     };
 
 var
  safe_set_nonblock=
   function(fd)
    {try
-     {return CamlPrimitive["unix_set_nonblock"](fd);}
-    catch(exn){if(exn[1]===Unix_error){return /* () */0;}else{throw exn;}}
+     {return CamlPrimitive["unix_set_nonblock"](fd)}
+    catch(exn){if(exn[1]===Unix_error){return /* () */0}else{throw exn}}
     };
 
 var
@@ -227,17 +221,16 @@ var
     safe_clear_nonblock(stdout);
     safe_clear_nonblock(stderr);
     try
-     {return fn(/* () */0);}
+     {return fn(/* () */0)}
     catch(exn)
      {if(exn[1]===Unix_error)
        {CamlPrimitive["unix_setitimer"](/* ITIMER_VIRTUAL */1,oldtimer);
         safe_set_nonblock(stdin);
         safe_set_nonblock(stdout);
         safe_set_nonblock(stderr);
-        throw exn;
-        }
+        throw exn}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -245,23 +238,20 @@ var
  execv=
   function(proc,args)
    {return do_exec
-            (function(param){return CamlPrimitive["unix_execv"](proc,args);});
-    };
+            (function(param){return CamlPrimitive["unix_execv"](proc,args)})};
 
 var
  execve=
   function(proc,args,env)
    {return do_exec
             (function(param)
-              {return CamlPrimitive["unix_execve"](proc,args,env);});
-    };
+              {return CamlPrimitive["unix_execve"](proc,args,env)})};
 
 var
  execvp=
   function(proc,args)
    {return do_exec
-            (function(param){return CamlPrimitive["unix_execvp"](proc,args);});
-    };
+            (function(param){return CamlPrimitive["unix_execvp"](proc,args)})};
 
 var
  execvpe=
@@ -269,10 +259,8 @@ var
    {return do_exec
             (function(param)
               {return function(prim,prim$1,prim$2)
-                        {return CamlPrimitive["unix_execvpe"](prim,prim$1,prim$2);}
-                       (proc,args);
-               });
-    };
+                        {return CamlPrimitive["unix_execvpe"](prim,prim$1,prim$2)}
+                       (proc,args)})};
 
 var
  wait_pid=
@@ -287,29 +275,26 @@ var
      {switch(match[0])
        {case 1:return /* tuple */[0,match[1],match[2]];default:exit=138;}}
     
-    switch(exit)
-     {case 138:return Pervasives["invalid_arg"]("Thread.wait_pid");}
+    switch(exit){case 138:return Pervasives["invalid_arg"]("Thread.wait_pid")}
     };
 
-var wait=function(param){return wait_pid(-1);};
+var wait=function(param){return wait_pid(-1)};
 
 var
  waitpid=
   function(flags,pid)
    {return List["mem"](/* WNOHANG */0,flags)
             ?CamlPrimitive["unix_waitpid"](flags,pid)
-            :wait_pid(pid);
-    };
+            :wait_pid(pid)};
 
 var
  pause=
   function(param)
    {var sigs=CamlPrimitive["unix_sigprocmask"](/* SIG_BLOCK */1,/* [] */0);
     
-    return CamlPrimitive["unix_sigsuspend"](sigs);
-    };
+    return CamlPrimitive["unix_sigsuspend"](sigs)};
 
-var sleep=function(secs){return delay(secs);};
+var sleep=function(secs){return delay(secs)};
 
 var inet_addr_any=CamlPrimitive["unix_inet_addr_of_string"]("0.0.0.0");
 
@@ -322,7 +307,7 @@ catch(exn)
  {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
    {inet6_addr_any=inet_addr_any;}
   else
-   {throw exn;}
+   {throw exn}
   }
 
 var inet6_addr_loopback;
@@ -332,17 +317,17 @@ catch(exn$1)
  {if(exn$1[1]===CamlPrimitive["caml_global_data"]["Failure"])
    {inet6_addr_loopback=inet_addr_loopback;}
   else
-   {throw exn$1;}
+   {throw exn$1}
   }
 
-var is_inet6_addr=function(s){return s["length"]===16;};
+var is_inet6_addr=function(s){return s["length"]===16};
 
 var
  domain_of_sockaddr=
   function(param)
    {switch(param[0])
      {case 0:return /* PF_UNIX */0;
-      case 1:return is_inet6_addr(param[1])?/* PF_INET6 */2:/* PF_INET */1;
+      case 1:return is_inet6_addr(param[1])?/* PF_INET6 */2:/* PF_INET */1
       }
     };
 
@@ -352,8 +337,7 @@ var
    {var s=CamlPrimitive["unix_socket"](dom,typ,proto);
     
     CamlPrimitive["unix_set_nonblock"](s);
-    return s;
-    };
+    return s};
 
 var
  socketpair=
@@ -362,8 +346,7 @@ var
     
     CamlPrimitive["unix_set_nonblock"](spair[1]);
     CamlPrimitive["unix_set_nonblock"](spair[2]);
-    return spair;
-    };
+    return spair};
 
 var
  accept=
@@ -373,8 +356,7 @@ var
      {var result=CamlPrimitive["unix_accept"](req);
       
       CamlPrimitive["unix_set_nonblock"](result[1]);
-      return result;
-      }
+      return result}
     catch(exn$2)
      {var exit;
       
@@ -392,12 +374,12 @@ var
         else
          {exit=118;}
         
-        switch(exit$1){case 119:return accept(req);}
+        switch(exit$1){case 119:return accept(req)}
         }
       else
        {exit=118;}
       
-      switch(exit){case 118:throw exn$2;}
+      switch(exit){case 118:throw exn$2}
       }
     };
 
@@ -405,7 +387,7 @@ var
  connect=
   function(s,addr)
    {try
-     {return CamlPrimitive["unix_connect"](s,addr);}
+     {return CamlPrimitive["unix_connect"](s,addr)}
     catch(exn$2)
      {var exit;
       
@@ -424,12 +406,12 @@ var
          {exit=115;}
         
         switch(exit$1)
-         {case 116:wait_write(s);return CamlPrimitive["unix_getpeername"](s);}
+         {case 116:wait_write(s);return CamlPrimitive["unix_getpeername"](s)}
         }
       else
        {exit=115;}
       
-      switch(exit){case 115:throw exn$2;}
+      switch(exit){case 115:throw exn$2}
       }
     };
 
@@ -439,8 +421,7 @@ var
    {try
      {return ofs<0||len<0||ofs>buf["length"]-len
               ?Pervasives["invalid_arg"]("Unix.recv")
-              :CamlPrimitive["unix_recv"](fd,buf,ofs,len,flags);
-      }
+              :CamlPrimitive["unix_recv"](fd,buf,ofs,len,flags)}
     catch(exn$2)
      {var exit;
       
@@ -459,12 +440,12 @@ var
          {exit=113;}
         
         switch(exit$1)
-         {case 114:wait_read(fd);return recv(fd,buf,ofs,len,flags);}
+         {case 114:wait_read(fd);return recv(fd,buf,ofs,len,flags)}
         }
       else
        {exit=113;}
       
-      switch(exit){case 113:throw exn$2;}
+      switch(exit){case 113:throw exn$2}
       }
     };
 
@@ -474,8 +455,7 @@ var
    {try
      {return ofs<0||len<0||ofs>buf["length"]-len
               ?Pervasives["invalid_arg"]("Unix.recvfrom")
-              :CamlPrimitive["unix_recvfrom"](fd,buf,ofs,len,flags);
-      }
+              :CamlPrimitive["unix_recvfrom"](fd,buf,ofs,len,flags)}
     catch(exn$2)
      {var exit;
       
@@ -494,12 +474,12 @@ var
          {exit=111;}
         
         switch(exit$1)
-         {case 112:wait_read(fd);return recvfrom(fd,buf,ofs,len,flags);}
+         {case 112:wait_read(fd);return recvfrom(fd,buf,ofs,len,flags)}
         }
       else
        {exit=111;}
       
-      switch(exit){case 111:throw exn$2;}
+      switch(exit){case 111:throw exn$2}
       }
     };
 
@@ -509,8 +489,7 @@ var
    {try
      {return ofs<0||len<0||ofs>buf["length"]-len
               ?Pervasives["invalid_arg"]("Unix.send")
-              :CamlPrimitive["unix_send"](fd,buf,ofs,len,flags);
-      }
+              :CamlPrimitive["unix_send"](fd,buf,ofs,len,flags)}
     catch(exn$2)
      {var exit;
       
@@ -529,12 +508,12 @@ var
          {exit=109;}
         
         switch(exit$1)
-         {case 110:wait_write(fd);return send(fd,buf,ofs,len,flags);}
+         {case 110:wait_write(fd);return send(fd,buf,ofs,len,flags)}
         }
       else
        {exit=109;}
       
-      switch(exit){case 109:throw exn$2;}
+      switch(exit){case 109:throw exn$2}
       }
     };
 
@@ -544,8 +523,7 @@ var
    {try
      {return ofs<0||len<0||ofs>buf["length"]-len
               ?Pervasives["invalid_arg"]("Unix.sendto")
-              :CamlPrimitive["unix_sendto"](fd,buf,ofs,len,flags,addr);
-      }
+              :CamlPrimitive["unix_sendto"](fd,buf,ofs,len,flags,addr)}
     catch(exn$2)
      {var exit;
       
@@ -564,24 +542,24 @@ var
          {exit=107;}
         
         switch(exit$1)
-         {case 108:wait_write(fd);return sendto(fd,buf,ofs,len,flags,addr);}
+         {case 108:wait_write(fd);return sendto(fd,buf,ofs,len,flags,addr)}
         }
       else
        {exit=107;}
       
-      switch(exit){case 107:throw exn$2;}
+      switch(exit){case 107:throw exn$2}
       }
     };
 
 var
  send_substring=
   function(fd,buf,ofs,len,flags)
-   {return send(fd,Bytes["unsafe_of_string"](buf),ofs,len,flags);};
+   {return send(fd,Bytes["unsafe_of_string"](buf),ofs,len,flags)};
 
 var
  sendto_substring=
   function(fd,buf,ofs,len,flags,addr)
-   {return sendto(fd,Bytes["unsafe_of_string"](buf),ofs,len,flags,addr);};
+   {return sendto(fd,Bytes["unsafe_of_string"](buf),ofs,len,flags,addr)};
 
 var bool=0;
 
@@ -602,27 +580,27 @@ var
    $$float,
    error,
    function(prim,prim$1,prim$2)
-    {return CamlPrimitive["unix_getsockopt"](prim,prim$1,prim$2);},
+    {return CamlPrimitive["unix_getsockopt"](prim,prim$1,prim$2)},
    function(prim,prim$1,prim$2,prim$3)
-    {return CamlPrimitive["unix_setsockopt"](prim,prim$1,prim$2,prim$3);}];
+    {return CamlPrimitive["unix_setsockopt"](prim,prim$1,prim$2,prim$3)}];
 
-var getsockopt=function(fd,opt){return SO[6](SO[1],fd,opt);};
+var getsockopt=function(fd,opt){return SO[6](SO[1],fd,opt)};
 
-var setsockopt=function(fd,opt,v){return SO[7](SO[1],fd,opt,v);};
+var setsockopt=function(fd,opt,v){return SO[7](SO[1],fd,opt,v)};
 
-var getsockopt_int=function(fd,opt){return SO[6](SO[2],fd,opt);};
+var getsockopt_int=function(fd,opt){return SO[6](SO[2],fd,opt)};
 
-var setsockopt_int=function(fd,opt,v){return SO[7](SO[2],fd,opt,v);};
+var setsockopt_int=function(fd,opt,v){return SO[7](SO[2],fd,opt,v)};
 
-var getsockopt_optint=function(fd,opt){return SO[6](SO[3],fd,opt);};
+var getsockopt_optint=function(fd,opt){return SO[6](SO[3],fd,opt)};
 
-var setsockopt_optint=function(fd,opt,v){return SO[7](SO[3],fd,opt,v);};
+var setsockopt_optint=function(fd,opt,v){return SO[7](SO[3],fd,opt,v)};
 
-var getsockopt_float=function(fd,opt){return SO[6](SO[4],fd,opt);};
+var getsockopt_float=function(fd,opt){return SO[6](SO[4],fd,opt)};
 
-var setsockopt_float=function(fd,opt,v){return SO[7](SO[4],fd,opt,v);};
+var setsockopt_float=function(fd,opt,v){return SO[7](SO[4],fd,opt,v)};
 
-var getsockopt_error=function(fd){return SO[6](SO[5],fd,/* SO_ERROR */0);};
+var getsockopt_error=function(fd){return SO[6](SO[5],fd,/* SO_ERROR */0)};
 
 var
  getaddrinfo_emulation=
@@ -638,29 +616,28 @@ var
        {var exit;
         
         if(typeof param==="number")
-         {switch(param){case 2:return opt_passive[1]=/* true */1,0;}}
+         {switch(param){case 2:return opt_passive[1]=/* true */1,0}}
         else
          {switch(param[0])
            {case 1:return opt_socktype[1]=/* Some */[0,param[1]],0;
             case 2:return opt_protocol[1]=param[1],0;
             default:exit=86;}}
         
-        switch(exit){case 86:return /* () */0;}
+        switch(exit){case 86:return /* () */0}
         },
       opts);
     var
      get_port=
       function(ty,kind)
        {if(CamlPrimitive["caml_string_equal"](service,""))
-         {return /* :: */[0,/* tuple */[0,ty,0],/* [] */0];}
+         {return /* :: */[0,/* tuple */[0,ty,0],/* [] */0]}
         else
          {try
            {return /* :: */[0,
                     /* tuple */[0,
                      ty,
                      CamlPrimitive["caml_int_of_string"](service)],
-                    /* [] */0];
-            }
+                    /* [] */0]}
           catch(exn$2)
            {if(exn$2[1]===CamlPrimitive["caml_global_data"]["Failure"])
              {try
@@ -668,17 +645,16 @@ var
                         /* tuple */[0,
                          ty,
                          CamlPrimitive["unix_getservbyname"](service,kind)[3]],
-                        /* [] */0];
-                }
+                        /* [] */0]}
               catch(exn$3)
                {if(exn$3===CamlPrimitive["caml_global_data"]["Not_found"])
-                 {return /* [] */0;}
+                 {return /* [] */0}
                 else
-                 {throw exn$3;}
+                 {throw exn$3}
                 }
               }
             else
-             {throw exn$2;}
+             {throw exn$2}
             }
           }
         };
@@ -725,18 +701,18 @@ var
             
             addresses=
             List["map"]
-             (function(a){return /* tuple */[0,a,he[1]];},
+             (function(a){return /* tuple */[0,a,he[1]]},
               $$Array["to_list"](he[4]));
             }
           catch(exn$3)
            {if(exn$3===CamlPrimitive["caml_global_data"]["Not_found"])
              {addresses=/* [] */0;}
             else
-             {throw exn$3;}
+             {throw exn$3}
             }
           }
         else
-         {throw exn$2;}
+         {throw exn$2}
         }
       }
     
@@ -754,24 +730,20 @@ var
                                     ty$1,
                                     opt_protocol[1],
                                     /* ADDR_INET */[1,param$1[1],port],
-                                    param$1[2]];
-                            },
-                          addresses);
-                 },
-               ports));
-    };
+                                    param$1[2]]},
+                          addresses)},
+               ports))};
 
 var
  getaddrinfo=
   function(node,service,opts)
    {try
-     {return List["rev"](CamlPrimitive["unix_getaddrinfo"](node,service,opts));
-      }
+     {return List["rev"](CamlPrimitive["unix_getaddrinfo"](node,service,opts))}
     catch(exn$2)
      {if(exn$2[1]===CamlPrimitive["caml_global_data"]["Invalid_argument"])
-       {return getaddrinfo_emulation(node,service,opts);}
+       {return getaddrinfo_emulation(node,service,opts)}
       else
-       {throw exn$2;}
+       {throw exn$2}
       }
     };
 
@@ -788,31 +760,25 @@ var
        var hostname;
        try
         {if(List["mem"](/* NI_NUMERICHOST */1,opts))
-          {throw CamlPrimitive["caml_global_data"]["Not_found"];}
-         else
-          {}
+          {throw CamlPrimitive["caml_global_data"]["Not_found"]}
          
          hostname=CamlPrimitive["unix_gethostbyaddr"](a)[1];
          }
        catch(exn$2)
         {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
           {if(List["mem"](/* NI_NAMEREQD */2,opts))
-            {throw CamlPrimitive["caml_global_data"]["Not_found"];}
-           else
-            {}
+            {throw CamlPrimitive["caml_global_data"]["Not_found"]}
            
            hostname=CamlPrimitive["unix_string_of_inet_addr"](a);
            }
          else
-          {throw exn$2;}
+          {throw exn$2}
          }
        
        var service;
        try
         {if(List["mem"](/* NI_NUMERICSERV */3,opts))
-          {throw CamlPrimitive["caml_global_data"]["Not_found"];}
-         else
-          {}
+          {throw CamlPrimitive["caml_global_data"]["Not_found"]}
          
          var kind=List["mem"](/* NI_DGRAM */4,opts)?"udp":"tcp";
          
@@ -822,11 +788,10 @@ var
         {if(exn$3===CamlPrimitive["caml_global_data"]["Not_found"])
           {service=Pervasives["string_of_int"](p);}
          else
-          {throw exn$3;}
+          {throw exn$3}
          }
        
-       return /* record */[0,hostname,service];
-       
+       return /* record */[0,hostname,service]
       }
     };
 
@@ -834,12 +799,12 @@ var
  getnameinfo=
   function(addr,opts)
    {try
-     {return CamlPrimitive["unix_getnameinfo"](addr,opts);}
+     {return CamlPrimitive["unix_getnameinfo"](addr,opts)}
     catch(exn$2)
      {if(exn$2[1]===CamlPrimitive["caml_global_data"]["Invalid_argument"])
-       {return getnameinfo_emulation(addr,opts);}
+       {return getnameinfo_emulation(addr,opts)}
       else
-       {throw exn$2;}
+       {throw exn$2}
       }
     };
 
@@ -849,11 +814,11 @@ var
    {var id=CamlPrimitive["unix_fork"](/* () */0);
     
     if(id!==0)
-     {return waitpid(/* [] */0,id)[2];}
+     {return waitpid(/* [] */0,id)[2]}
     else
      {try
-       {return execv("/bin/sh",[/* array */0,"/bin/sh","-c",cmd]);}
-      catch(exn$2){return Pervasives["exit"](127);}
+       {return execv("/bin/sh",[/* array */0,"/bin/sh","-c",cmd])}
+      catch(exn$2){return Pervasives["exit"](127)}
       }
     };
 
@@ -863,18 +828,17 @@ var
    {var new_fd=CamlPrimitive["unix_dup"](fd);
     
     if(new_fd>=3)
-     {return new_fd;}
+     {return new_fd}
     else
-     {var res=safe_dup(fd);CamlPrimitive["unix_close"](new_fd);return res;}
+     {var res=safe_dup(fd);CamlPrimitive["unix_close"](new_fd);return res}
     };
 
 var
  safe_close=
   function(fd)
    {try
-     {return CamlPrimitive["unix_close"](fd);}
-    catch(exn$2)
-     {if(exn$2[1]===Unix_error){return /* () */0;}else{throw exn$2;}}
+     {return CamlPrimitive["unix_close"](fd)}
+    catch(exn$2){if(exn$2[1]===Unix_error){return /* () */0}else{throw exn$2}}
     };
 
 var
@@ -894,8 +858,7 @@ var
     CamlPrimitive["unix_dup2"](newnewstdout,stdout);
     CamlPrimitive["unix_close"](newnewstdout);
     CamlPrimitive["unix_dup2"](newnewstderr,stderr);
-    return CamlPrimitive["unix_close"](newnewstderr);
-    };
+    return CamlPrimitive["unix_close"](newnewstderr)};
 
 var
  create_process=
@@ -903,13 +866,12 @@ var
    {var id=CamlPrimitive["unix_fork"](/* () */0);
     
     if(id!==0)
-     {return id;}
+     {return id}
     else
      {try
        {perform_redirections(new_stdin,new_stdout,new_stderr);
-        return execvp(cmd,args);
-        }
-      catch(exn$2){return Pervasives["exit"](127);}
+        return execvp(cmd,args)}
+      catch(exn$2){return Pervasives["exit"](127)}
       }
     };
 
@@ -919,13 +881,12 @@ var
    {var id=CamlPrimitive["unix_fork"](/* () */0);
     
     if(id!==0)
-     {return id;}
+     {return id}
     else
      {try
        {perform_redirections(new_stdin,new_stdout,new_stderr);
-        return execvpe(cmd,args,env);
-        }
-      catch(exn$2){return Pervasives["exit"](127);}
+        return execvpe(cmd,args,env)}
+      catch(exn$2){return Pervasives["exit"](127)}
       }
     };
 
@@ -937,7 +898,7 @@ var
    {var id=CamlPrimitive["unix_fork"](/* () */0);
     
     if(id!==0)
-     {return Hashtbl["add"](popen_processes,proc,id);}
+     {return Hashtbl["add"](popen_processes,proc,id)}
     else
      {if(input!==stdin)
        {CamlPrimitive["unix_dup2"](input,stdin),
@@ -948,10 +909,10 @@ var
         CamlPrimitive["unix_close"](output)}
       
       List["iter"]
-       (function(prim){return CamlPrimitive["unix_close"](prim);},toclose);
+       (function(prim){return CamlPrimitive["unix_close"](prim)},toclose);
       try
-       {return execv("/bin/sh",[/* array */0,"/bin/sh","-c",cmd]);}
-      catch(exn$2){return Pervasives["exit"](127);}
+       {return execv("/bin/sh",[/* array */0,"/bin/sh","-c",cmd])}
+      catch(exn$2){return Pervasives["exit"](127)}
       }
     };
 
@@ -973,8 +934,7 @@ var
       in_write,
       /* :: */[0,in_read,/* [] */0]);
     CamlPrimitive["unix_close"](in_write);
-    return inchan;
-    };
+    return inchan};
 
 var
  open_process_out=
@@ -994,8 +954,7 @@ var
       stdout,
       /* :: */[0,out_write,/* [] */0]);
     CamlPrimitive["unix_close"](out_read);
-    return outchan;
-    };
+    return outchan};
 
 var
  open_process=
@@ -1024,8 +983,7 @@ var
       /* :: */[0,in_read,/* :: */[0,out_write,/* [] */0]]);
     CamlPrimitive["unix_close"](out_read);
     CamlPrimitive["unix_close"](in_write);
-    return /* tuple */[0,inchan,outchan];
-    };
+    return /* tuple */[0,inchan,outchan]};
 
 var
  open_proc_full=
@@ -1033,7 +991,7 @@ var
    {var id=CamlPrimitive["unix_fork"](/* () */0);
     
     if(id!==0)
-     {return Hashtbl["add"](popen_processes,proc,id);}
+     {return Hashtbl["add"](popen_processes,proc,id)}
     else
      {CamlPrimitive["unix_dup2"](input,stdin);
       CamlPrimitive["unix_close"](input);
@@ -1042,10 +1000,10 @@ var
       CamlPrimitive["unix_dup2"](error,stderr);
       CamlPrimitive["unix_close"](error);
       List["iter"]
-       (function(prim){return CamlPrimitive["unix_close"](prim);},toclose);
+       (function(prim){return CamlPrimitive["unix_close"](prim)},toclose);
       try
-       {return execve("/bin/sh",[/* array */0,"/bin/sh","-c",cmd],env);}
-      catch(exn$2){return Pervasives["exit"](127);}
+       {return execve("/bin/sh",[/* array */0,"/bin/sh","-c",cmd],env)}
+      catch(exn$2){return Pervasives["exit"](127)}
       }
     };
 
@@ -1087,8 +1045,7 @@ var
     CamlPrimitive["unix_close"](out_read);
     CamlPrimitive["unix_close"](in_write);
     CamlPrimitive["unix_close"](err_write);
-    return /* tuple */[0,inchan,outchan,errchan];
-    };
+    return /* tuple */[0,inchan,outchan,errchan]};
 
 var
  find_proc_id=
@@ -1097,13 +1054,12 @@ var
      {var pid=Hashtbl["find"](popen_processes,proc);
       
       Hashtbl["remove"](popen_processes,proc);
-      return pid;
-      }
+      return pid}
     catch(exn$2)
      {if(exn$2===CamlPrimitive["caml_global_data"]["Not_found"])
-       {throw [0,Unix_error,/* EBADF */3,fun_name,""];}
+       {throw [0,Unix_error,/* EBADF */3,fun_name,""]}
       else
-       {throw exn$2;}
+       {throw exn$2}
       }
     };
 
@@ -1111,7 +1067,7 @@ var
  waitpid_non_intr=
   function(pid)
    {try
-     {return waitpid(/* [] */0,pid);}
+     {return waitpid(/* [] */0,pid)}
     catch(exn$2)
      {var exit;
       
@@ -1119,14 +1075,14 @@ var
        {var match=exn$2[2];
         
         if(typeof match==="number")
-         {if(match!==11){exit=21;}else{return waitpid_non_intr(pid);}}
+         {if(match!==11){exit=21;}else{return waitpid_non_intr(pid)}}
         else
          {exit=21;}
         }
       else
        {exit=21;}
       
-      switch(exit){case 21:throw exn$2;}
+      switch(exit){case 21:throw exn$2}
       }
     };
 
@@ -1136,8 +1092,7 @@ var
    {var pid=find_proc_id("close_process_in",/* Process_in */[1,inchan]);
     
     Pervasives["close_in"](inchan);
-    return waitpid_non_intr(pid)[2];
-    };
+    return waitpid_non_intr(pid)[2]};
 
 var
  close_process_out=
@@ -1145,8 +1100,7 @@ var
    {var pid=find_proc_id("close_process_out",/* Process_out */[2,outchan]);
     
     Pervasives["close_out"](outchan);
-    return waitpid_non_intr(pid)[2];
-    };
+    return waitpid_non_intr(pid)[2]};
 
 var
  close_process=
@@ -1161,14 +1115,11 @@ var
     try
      {Pervasives["close_out"](outchan)}
     catch(exn$2)
-     {if(exn$2[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
-       {}
-      else
-       {throw exn$2;}
+     {if(exn$2[1]!==CamlPrimitive["caml_global_data"]["Sys_error"])
+       {throw exn$2}
       }
     
-    return waitpid_non_intr(pid)[2];
-    };
+    return waitpid_non_intr(pid)[2]};
 
 var
  close_process_full=
@@ -1188,15 +1139,12 @@ var
     try
      {Pervasives["close_out"](outchan)}
     catch(exn$2)
-     {if(exn$2[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
-       {}
-      else
-       {throw exn$2;}
+     {if(exn$2[1]!==CamlPrimitive["caml_global_data"]["Sys_error"])
+       {throw exn$2}
       }
     
     Pervasives["close_in"](errchan);
-    return waitpid_non_intr(pid)[2];
-    };
+    return waitpid_non_intr(pid)[2]};
 
 var
  open_connection=
@@ -1207,9 +1155,8 @@ var
      {connect(sock,sockaddr);
       return /* tuple */[0,
               CamlPrimitive["caml_ml_open_descriptor_in"](sock),
-              CamlPrimitive["caml_ml_open_descriptor_out"](sock)];
-      }
-    catch(exn$2){CamlPrimitive["unix_close"](sock);throw exn$2;}
+              CamlPrimitive["caml_ml_open_descriptor_out"](sock)]}
+    catch(exn$2){CamlPrimitive["unix_close"](sock);throw exn$2}
     };
 
 var
@@ -1217,8 +1164,7 @@ var
   function(inchan)
    {return CamlPrimitive["unix_shutdown"]
             (CamlPrimitive["caml_channel_descriptor"](inchan),
-             /* SHUTDOWN_SEND */1);
-    };
+             /* SHUTDOWN_SEND */1)};
 
 var
  establish_server=
@@ -1248,111 +1194,109 @@ var
         Pervasives["close_out"](outchan),
         Pervasives["exit"](0)}
       }
-    return 0;
-    };
+    return 0};
 
 module["exports"]=
 {"Unix_error":Unix_error,
  "error_message":
- function(prim){return CamlPrimitive["unix_error_message"](prim);},
+ function(prim){return CamlPrimitive["unix_error_message"](prim)},
  "handle_unix_error":handle_unix_error,
- "environment":function(prim){return CamlPrimitive["unix_environment"](prim);},
- "getenv":function(prim){return CamlPrimitive["caml_sys_getenv"](prim);},
+ "environment":function(prim){return CamlPrimitive["unix_environment"](prim)},
+ "getenv":function(prim){return CamlPrimitive["caml_sys_getenv"](prim)},
  "putenv":
- function(prim,prim$1){return CamlPrimitive["unix_putenv"](prim,prim$1);},
+ function(prim,prim$1){return CamlPrimitive["unix_putenv"](prim,prim$1)},
  "execv":execv,
  "execve":execve,
  "execvp":execvp,
  "execvpe":execvpe,
- "fork":function(prim){return CamlPrimitive["unix_fork"](prim);},
+ "fork":function(prim){return CamlPrimitive["unix_fork"](prim)},
  "wait":wait,
  "waitpid":waitpid,
  "system":system,
- "getpid":function(prim){return CamlPrimitive["unix_getpid"](prim);},
- "getppid":function(prim){return CamlPrimitive["unix_getppid"](prim);},
- "nice":function(prim){return CamlPrimitive["unix_nice"](prim);},
+ "getpid":function(prim){return CamlPrimitive["unix_getpid"](prim)},
+ "getppid":function(prim){return CamlPrimitive["unix_getppid"](prim)},
+ "nice":function(prim){return CamlPrimitive["unix_nice"](prim)},
  "stdin":stdin,
  "stdout":stdout,
  "stderr":stderr,
  "openfile":
  function(prim,prim$1,prim$2)
-  {return CamlPrimitive["unix_open"](prim,prim$1,prim$2);},
- "close":function(prim){return CamlPrimitive["unix_close"](prim);},
+  {return CamlPrimitive["unix_open"](prim,prim$1,prim$2)},
+ "close":function(prim){return CamlPrimitive["unix_close"](prim)},
  "read":read,
  "write":write,
  "single_write":single_write,
  "write_substring":write_substring,
  "single_write_substring":single_write_substring,
  "in_channel_of_descr":
- function(prim){return CamlPrimitive["caml_ml_open_descriptor_in"](prim);},
+ function(prim){return CamlPrimitive["caml_ml_open_descriptor_in"](prim)},
  "out_channel_of_descr":
- function(prim){return CamlPrimitive["caml_ml_open_descriptor_out"](prim);},
+ function(prim){return CamlPrimitive["caml_ml_open_descriptor_out"](prim)},
  "descr_of_in_channel":
- function(prim){return CamlPrimitive["caml_channel_descriptor"](prim);},
+ function(prim){return CamlPrimitive["caml_channel_descriptor"](prim)},
  "descr_of_out_channel":
- function(prim){return CamlPrimitive["caml_channel_descriptor"](prim);},
+ function(prim){return CamlPrimitive["caml_channel_descriptor"](prim)},
  "lseek":
  function(prim,prim$1,prim$2)
-  {return CamlPrimitive["unix_lseek"](prim,prim$1,prim$2);},
+  {return CamlPrimitive["unix_lseek"](prim,prim$1,prim$2)},
  "truncate":
- function(prim,prim$1){return CamlPrimitive["unix_truncate"](prim,prim$1);},
+ function(prim,prim$1){return CamlPrimitive["unix_truncate"](prim,prim$1)},
  "ftruncate":
- function(prim,prim$1){return CamlPrimitive["unix_ftruncate"](prim,prim$1);},
- "stat":function(prim){return CamlPrimitive["unix_stat"](prim);},
- "lstat":function(prim){return CamlPrimitive["unix_lstat"](prim);},
- "fstat":function(prim){return CamlPrimitive["unix_fstat"](prim);},
- "isatty":function(prim){return CamlPrimitive["unix_isatty"](prim);},
+ function(prim,prim$1){return CamlPrimitive["unix_ftruncate"](prim,prim$1)},
+ "stat":function(prim){return CamlPrimitive["unix_stat"](prim)},
+ "lstat":function(prim){return CamlPrimitive["unix_lstat"](prim)},
+ "fstat":function(prim){return CamlPrimitive["unix_fstat"](prim)},
+ "isatty":function(prim){return CamlPrimitive["unix_isatty"](prim)},
  "LargeFile":
  [0,
   function(prim,prim$1,prim$2)
-   {return CamlPrimitive["unix_lseek_64"](prim,prim$1,prim$2);},
+   {return CamlPrimitive["unix_lseek_64"](prim,prim$1,prim$2)},
+  function(prim,prim$1){return CamlPrimitive["unix_truncate_64"](prim,prim$1)},
   function(prim,prim$1)
-   {return CamlPrimitive["unix_truncate_64"](prim,prim$1);},
-  function(prim,prim$1)
-   {return CamlPrimitive["unix_ftruncate_64"](prim,prim$1);},
-  function(prim){return CamlPrimitive["unix_stat_64"](prim);},
-  function(prim){return CamlPrimitive["unix_lstat_64"](prim);},
-  function(prim){return CamlPrimitive["unix_fstat_64"](prim);}],
- "unlink":function(prim){return CamlPrimitive["unix_unlink"](prim);},
+   {return CamlPrimitive["unix_ftruncate_64"](prim,prim$1)},
+  function(prim){return CamlPrimitive["unix_stat_64"](prim)},
+  function(prim){return CamlPrimitive["unix_lstat_64"](prim)},
+  function(prim){return CamlPrimitive["unix_fstat_64"](prim)}],
+ "unlink":function(prim){return CamlPrimitive["unix_unlink"](prim)},
  "rename":
- function(prim,prim$1){return CamlPrimitive["unix_rename"](prim,prim$1);},
- "link":function(prim,prim$1){return CamlPrimitive["unix_link"](prim,prim$1);},
+ function(prim,prim$1){return CamlPrimitive["unix_rename"](prim,prim$1)},
+ "link":function(prim,prim$1){return CamlPrimitive["unix_link"](prim,prim$1)},
  "chmod":
- function(prim,prim$1){return CamlPrimitive["unix_chmod"](prim,prim$1);},
+ function(prim,prim$1){return CamlPrimitive["unix_chmod"](prim,prim$1)},
  "fchmod":
- function(prim,prim$1){return CamlPrimitive["unix_fchmod"](prim,prim$1);},
+ function(prim,prim$1){return CamlPrimitive["unix_fchmod"](prim,prim$1)},
  "chown":
  function(prim,prim$1,prim$2)
-  {return CamlPrimitive["unix_chown"](prim,prim$1,prim$2);},
+  {return CamlPrimitive["unix_chown"](prim,prim$1,prim$2)},
  "fchown":
  function(prim,prim$1,prim$2)
-  {return CamlPrimitive["unix_fchown"](prim,prim$1,prim$2);},
- "umask":function(prim){return CamlPrimitive["unix_umask"](prim);},
+  {return CamlPrimitive["unix_fchown"](prim,prim$1,prim$2)},
+ "umask":function(prim){return CamlPrimitive["unix_umask"](prim)},
  "access":
- function(prim,prim$1){return CamlPrimitive["unix_access"](prim,prim$1);},
- "dup":function(prim){return CamlPrimitive["unix_dup"](prim);},
- "dup2":function(prim,prim$1){return CamlPrimitive["unix_dup2"](prim,prim$1);},
+ function(prim,prim$1){return CamlPrimitive["unix_access"](prim,prim$1)},
+ "dup":function(prim){return CamlPrimitive["unix_dup"](prim)},
+ "dup2":function(prim,prim$1){return CamlPrimitive["unix_dup2"](prim,prim$1)},
  "set_nonblock":
- function(prim){return CamlPrimitive["unix_set_nonblock"](prim);},
+ function(prim){return CamlPrimitive["unix_set_nonblock"](prim)},
  "clear_nonblock":
- function(prim){return CamlPrimitive["unix_clear_nonblock"](prim);},
+ function(prim){return CamlPrimitive["unix_clear_nonblock"](prim)},
  "set_close_on_exec":
- function(prim){return CamlPrimitive["unix_set_close_on_exec"](prim);},
+ function(prim){return CamlPrimitive["unix_set_close_on_exec"](prim)},
  "clear_close_on_exec":
- function(prim){return CamlPrimitive["unix_clear_close_on_exec"](prim);},
+ function(prim){return CamlPrimitive["unix_clear_close_on_exec"](prim)},
  "mkdir":
- function(prim,prim$1){return CamlPrimitive["unix_mkdir"](prim,prim$1);},
- "rmdir":function(prim){return CamlPrimitive["unix_rmdir"](prim);},
- "chdir":function(prim){return CamlPrimitive["unix_chdir"](prim);},
- "getcwd":function(prim){return CamlPrimitive["unix_getcwd"](prim);},
- "chroot":function(prim){return CamlPrimitive["unix_chroot"](prim);},
- "opendir":function(prim){return CamlPrimitive["unix_opendir"](prim);},
- "readdir":function(prim){return CamlPrimitive["unix_readdir"](prim);},
- "rewinddir":function(prim){return CamlPrimitive["unix_rewinddir"](prim);},
- "closedir":function(prim){return CamlPrimitive["unix_closedir"](prim);},
+ function(prim,prim$1){return CamlPrimitive["unix_mkdir"](prim,prim$1)},
+ "rmdir":function(prim){return CamlPrimitive["unix_rmdir"](prim)},
+ "chdir":function(prim){return CamlPrimitive["unix_chdir"](prim)},
+ "getcwd":function(prim){return CamlPrimitive["unix_getcwd"](prim)},
+ "chroot":function(prim){return CamlPrimitive["unix_chroot"](prim)},
+ "opendir":function(prim){return CamlPrimitive["unix_opendir"](prim)},
+ "readdir":function(prim){return CamlPrimitive["unix_readdir"](prim)},
+ "rewinddir":function(prim){return CamlPrimitive["unix_rewinddir"](prim)},
+ "closedir":function(prim){return CamlPrimitive["unix_closedir"](prim)},
  "pipe":pipe,
  "mkfifo":
- function(prim,prim$1){return CamlPrimitive["unix_mkfifo"](prim,prim$1);},
+ function(prim,prim$1){return CamlPrimitive["unix_mkfifo"](prim,prim$1)},
  "create_process":create_process,
  "create_process_env":create_process_env,
  "open_process_in":open_process_in,
@@ -1364,52 +1308,52 @@ module["exports"]=
  "close_process":close_process,
  "close_process_full":close_process_full,
  "symlink":
- function(prim,prim$1){return CamlPrimitive["unix_symlink"](prim,prim$1);},
- "readlink":function(prim){return CamlPrimitive["unix_readlink"](prim);},
+ function(prim,prim$1){return CamlPrimitive["unix_symlink"](prim,prim$1)},
+ "readlink":function(prim){return CamlPrimitive["unix_readlink"](prim)},
  "select":select,
  "lockf":
  function(prim,prim$1,prim$2)
-  {return CamlPrimitive["unix_lockf"](prim,prim$1,prim$2);},
- "kill":function(prim,prim$1){return CamlPrimitive["unix_kill"](prim,prim$1);},
+  {return CamlPrimitive["unix_lockf"](prim,prim$1,prim$2)},
+ "kill":function(prim,prim$1){return CamlPrimitive["unix_kill"](prim,prim$1)},
  "sigprocmask":
- function(prim,prim$1){return CamlPrimitive["unix_sigprocmask"](prim,prim$1);},
- "sigpending":function(prim){return CamlPrimitive["unix_sigpending"](prim);},
- "sigsuspend":function(prim){return CamlPrimitive["unix_sigsuspend"](prim);},
+ function(prim,prim$1){return CamlPrimitive["unix_sigprocmask"](prim,prim$1)},
+ "sigpending":function(prim){return CamlPrimitive["unix_sigpending"](prim)},
+ "sigsuspend":function(prim){return CamlPrimitive["unix_sigsuspend"](prim)},
  "pause":pause,
- "time":function(prim){return CamlPrimitive["unix_time"](prim);},
+ "time":function(prim){return CamlPrimitive["unix_time"](prim)},
  "gettimeofday":
- function(prim){return CamlPrimitive["unix_gettimeofday"](prim);},
- "gmtime":function(prim){return CamlPrimitive["unix_gmtime"](prim);},
- "localtime":function(prim){return CamlPrimitive["unix_localtime"](prim);},
- "mktime":function(prim){return CamlPrimitive["unix_mktime"](prim);},
- "alarm":function(prim){return CamlPrimitive["unix_alarm"](prim);},
+ function(prim){return CamlPrimitive["unix_gettimeofday"](prim)},
+ "gmtime":function(prim){return CamlPrimitive["unix_gmtime"](prim)},
+ "localtime":function(prim){return CamlPrimitive["unix_localtime"](prim)},
+ "mktime":function(prim){return CamlPrimitive["unix_mktime"](prim)},
+ "alarm":function(prim){return CamlPrimitive["unix_alarm"](prim)},
  "sleep":sleep,
- "times":function(prim){return CamlPrimitive["unix_times"](prim);},
+ "times":function(prim){return CamlPrimitive["unix_times"](prim)},
  "utimes":
  function(prim,prim$1,prim$2)
-  {return CamlPrimitive["unix_utimes"](prim,prim$1,prim$2);},
- "getitimer":function(prim){return CamlPrimitive["unix_getitimer"](prim);},
+  {return CamlPrimitive["unix_utimes"](prim,prim$1,prim$2)},
+ "getitimer":function(prim){return CamlPrimitive["unix_getitimer"](prim)},
  "setitimer":
- function(prim,prim$1){return CamlPrimitive["unix_setitimer"](prim,prim$1);},
- "getuid":function(prim){return CamlPrimitive["unix_getuid"](prim);},
- "geteuid":function(prim){return CamlPrimitive["unix_geteuid"](prim);},
- "setuid":function(prim){return CamlPrimitive["unix_setuid"](prim);},
- "getgid":function(prim){return CamlPrimitive["unix_getgid"](prim);},
- "getegid":function(prim){return CamlPrimitive["unix_getegid"](prim);},
- "setgid":function(prim){return CamlPrimitive["unix_setgid"](prim);},
- "getgroups":function(prim){return CamlPrimitive["unix_getgroups"](prim);},
- "setgroups":function(prim){return CamlPrimitive["unix_setgroups"](prim);},
+ function(prim,prim$1){return CamlPrimitive["unix_setitimer"](prim,prim$1)},
+ "getuid":function(prim){return CamlPrimitive["unix_getuid"](prim)},
+ "geteuid":function(prim){return CamlPrimitive["unix_geteuid"](prim)},
+ "setuid":function(prim){return CamlPrimitive["unix_setuid"](prim)},
+ "getgid":function(prim){return CamlPrimitive["unix_getgid"](prim)},
+ "getegid":function(prim){return CamlPrimitive["unix_getegid"](prim)},
+ "setgid":function(prim){return CamlPrimitive["unix_setgid"](prim)},
+ "getgroups":function(prim){return CamlPrimitive["unix_getgroups"](prim)},
+ "setgroups":function(prim){return CamlPrimitive["unix_setgroups"](prim)},
  "initgroups":
- function(prim,prim$1){return CamlPrimitive["unix_initgroups"](prim,prim$1);},
- "getlogin":function(prim){return CamlPrimitive["unix_getlogin"](prim);},
- "getpwnam":function(prim){return CamlPrimitive["unix_getpwnam"](prim);},
- "getgrnam":function(prim){return CamlPrimitive["unix_getgrnam"](prim);},
- "getpwuid":function(prim){return CamlPrimitive["unix_getpwuid"](prim);},
- "getgrgid":function(prim){return CamlPrimitive["unix_getgrgid"](prim);},
+ function(prim,prim$1){return CamlPrimitive["unix_initgroups"](prim,prim$1)},
+ "getlogin":function(prim){return CamlPrimitive["unix_getlogin"](prim)},
+ "getpwnam":function(prim){return CamlPrimitive["unix_getpwnam"](prim)},
+ "getgrnam":function(prim){return CamlPrimitive["unix_getgrnam"](prim)},
+ "getpwuid":function(prim){return CamlPrimitive["unix_getpwuid"](prim)},
+ "getgrgid":function(prim){return CamlPrimitive["unix_getgrgid"](prim)},
  "inet_addr_of_string":
- function(prim){return CamlPrimitive["unix_inet_addr_of_string"](prim);},
+ function(prim){return CamlPrimitive["unix_inet_addr_of_string"](prim)},
  "string_of_inet_addr":
- function(prim){return CamlPrimitive["unix_string_of_inet_addr"](prim);},
+ function(prim){return CamlPrimitive["unix_string_of_inet_addr"](prim)},
  "inet_addr_any":inet_addr_any,
  "inet_addr_loopback":inet_addr_loopback,
  "inet6_addr_any":inet6_addr_any,
@@ -1418,14 +1362,14 @@ module["exports"]=
  "domain_of_sockaddr":domain_of_sockaddr,
  "socketpair":socketpair,
  "accept":accept,
- "bind":function(prim,prim$1){return CamlPrimitive["unix_bind"](prim,prim$1);},
+ "bind":function(prim,prim$1){return CamlPrimitive["unix_bind"](prim,prim$1)},
  "connect":connect,
  "listen":
- function(prim,prim$1){return CamlPrimitive["unix_listen"](prim,prim$1);},
+ function(prim,prim$1){return CamlPrimitive["unix_listen"](prim,prim$1)},
  "shutdown":
- function(prim,prim$1){return CamlPrimitive["unix_shutdown"](prim,prim$1);},
- "getsockname":function(prim){return CamlPrimitive["unix_getsockname"](prim);},
- "getpeername":function(prim){return CamlPrimitive["unix_getpeername"](prim);},
+ function(prim,prim$1){return CamlPrimitive["unix_shutdown"](prim,prim$1)},
+ "getsockname":function(prim){return CamlPrimitive["unix_getsockname"](prim)},
+ "getpeername":function(prim){return CamlPrimitive["unix_getpeername"](prim)},
  "recv":recv,
  "recvfrom":recvfrom,
  "send":send,
@@ -1444,33 +1388,33 @@ module["exports"]=
  "open_connection":open_connection,
  "shutdown_connection":shutdown_connection,
  "establish_server":establish_server,
- "gethostname":function(prim){return CamlPrimitive["unix_gethostname"](prim);},
+ "gethostname":function(prim){return CamlPrimitive["unix_gethostname"](prim)},
  "gethostbyname":
- function(prim){return CamlPrimitive["unix_gethostbyname"](prim);},
+ function(prim){return CamlPrimitive["unix_gethostbyname"](prim)},
  "gethostbyaddr":
- function(prim){return CamlPrimitive["unix_gethostbyaddr"](prim);},
+ function(prim){return CamlPrimitive["unix_gethostbyaddr"](prim)},
  "getprotobyname":
- function(prim){return CamlPrimitive["unix_getprotobyname"](prim);},
+ function(prim){return CamlPrimitive["unix_getprotobyname"](prim)},
  "getprotobynumber":
- function(prim){return CamlPrimitive["unix_getprotobynumber"](prim);},
+ function(prim){return CamlPrimitive["unix_getprotobynumber"](prim)},
  "getservbyname":
  function(prim,prim$1)
-  {return CamlPrimitive["unix_getservbyname"](prim,prim$1);},
+  {return CamlPrimitive["unix_getservbyname"](prim,prim$1)},
  "getservbyport":
  function(prim,prim$1)
-  {return CamlPrimitive["unix_getservbyport"](prim,prim$1);},
+  {return CamlPrimitive["unix_getservbyport"](prim,prim$1)},
  "getaddrinfo":getaddrinfo,
  "getnameinfo":getnameinfo,
- "tcgetattr":function(prim){return CamlPrimitive["unix_tcgetattr"](prim);},
+ "tcgetattr":function(prim){return CamlPrimitive["unix_tcgetattr"](prim)},
  "tcsetattr":
  function(prim,prim$1,prim$2)
-  {return CamlPrimitive["unix_tcsetattr"](prim,prim$1,prim$2);},
+  {return CamlPrimitive["unix_tcsetattr"](prim,prim$1,prim$2)},
  "tcsendbreak":
- function(prim,prim$1){return CamlPrimitive["unix_tcsendbreak"](prim,prim$1);},
- "tcdrain":function(prim){return CamlPrimitive["unix_tcdrain"](prim);},
+ function(prim,prim$1){return CamlPrimitive["unix_tcsendbreak"](prim,prim$1)},
+ "tcdrain":function(prim){return CamlPrimitive["unix_tcdrain"](prim)},
  "tcflush":
- function(prim,prim$1){return CamlPrimitive["unix_tcflush"](prim,prim$1);},
+ function(prim,prim$1){return CamlPrimitive["unix_tcflush"](prim,prim$1)},
  "tcflow":
- function(prim,prim$1){return CamlPrimitive["unix_tcflow"](prim,prim$1);},
- "setsid":function(prim){return CamlPrimitive["unix_setsid"](prim);}};
+ function(prim,prim$1){return CamlPrimitive["unix_tcflow"](prim,prim$1)},
+ "setsid":function(prim){return CamlPrimitive["unix_setsid"](prim)}};
 

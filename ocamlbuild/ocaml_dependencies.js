@@ -14,7 +14,7 @@ var CamlPrimitive=require("./camlPrimitive.js");
 
 
 
-var mydprintf=function(fmt){return Log["dprintf"](10,fmt);};
+var mydprintf=function(fmt){return Log["dprintf"](10,fmt)};
 
 var
  Circular_dependencies=
@@ -36,12 +36,12 @@ var
      find_all_set=
       function(x,acc)
        {try
-         {return SMap[22](x,acc);}
+         {return SMap[22](x,acc)}
         catch(exn)
          {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-           {return Resource["Resources"][1];}
+           {return Resource["Resources"][1]}
           else
-           {throw exn;}
+           {throw exn}
           }
         };
     
@@ -49,8 +49,7 @@ var
      smap_add_set=
       function(src,dst,acc)
        {return SMap[4]
-                (src,Resource["Resources"][4](dst,find_all_set(src,acc)),acc);
-        };
+                (src,Resource["Resources"][4](dst,find_all_set(src,acc)),acc)};
     
     var
      print_smap=
@@ -97,8 +96,7 @@ var
                       "@ @[<2>%S =>@ %a@];"],
                      k,
                      pp,
-                     v);
-            },
+                     v)},
           smap);
         return Format["fprintf"]
                 (f,
@@ -112,25 +110,24 @@ var
                      [/* Formatting_lit */17,
                       /* Close_box */0,
                       /* End_of_format */0]]]],
-                  "@]@,:}@]"]);
-        };
+                  "@]@,:}@]"])};
     
     var print_smap_list=print_smap(Tools["pp_l"]);
     
     var print_smap_set=print_smap(Resource["Resources"][29]);
     
-    var print_lazy=function(pp,f,l){return pp(f,My_std["!*"](l));};
+    var print_lazy=function(pp,f,l){return pp(f,My_std["!*"](l))};
     
     var
      find_all_list=
       function(x,acc)
        {try
-         {return SMap[22](x,acc);}
+         {return SMap[22](x,acc)}
         catch(exn)
          {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-           {return /* [] */0;}
+           {return /* [] */0}
           else
-           {throw exn;}
+           {throw exn}
           }
         };
     
@@ -143,7 +140,7 @@ var
          $$self=
           function(x,acc)
            {try
-             {Hashtbl["find"](visited,x);return acc;}
+             {Hashtbl["find"](visited,x);return acc}
             catch(exn)
              {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
                {Hashtbl["replace"](visited,x,/* () */0);
@@ -151,22 +148,20 @@ var
                 
                 try
                  {return Resource["Resources"][14]
-                          ($$self,SMap[22](x,map),acc$1);
-                  }
+                          ($$self,SMap[22](x,map),acc$1)}
                 catch(exn$1)
                  {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
-                   {return acc$1;}
+                   {return acc$1}
                   else
-                   {throw exn$1;}
+                   {throw exn$1}
                   }
                 }
               else
-               {throw exn;}
+               {throw exn}
               }
             };
         
-        return My_std["List"][20]($$self,xs,Resource["Resources"][1]);
-        };
+        return My_std["List"][20]($$self,xs,Resource["Resources"][1])};
     
     var
      mkindex=
@@ -176,14 +171,11 @@ var
                   {return filter(name)
                            ?My_std["List"][20]
                              (function(elt,acc)
-                               {return add(elt,/* :: */[0,name,find_all_list(elt,acc)],acc);
-                                },
+                               {return add(elt,/* :: */[0,name,find_all_list(elt,acc)],acc)},
                               contents,
                               acc)
-                           :acc;
-                   },
-                 empty);
-        };
+                           :acc},
+                 empty)};
     
     var
      Utils=
@@ -258,7 +250,7 @@ var
         var
          packages=
           I[3]
-           (function(name,param){return Resource["Resources"][4](name);},
+           (function(name,param){return Resource["Resources"][4](name)},
             Resource["Resources"][1]);
         
         mydprintf
@@ -276,8 +268,7 @@ var
           function(x)
            {return Filename["check_suffix"](x,".cmi")
                     ?Pathname["update_extensions"](caml_obj_ext,x)
-                    :x;
-            };
+                    :x};
         
         var
          maybe_caml_obj_ext_of_cmi=
@@ -286,24 +277,21 @@ var
              {if(Filename["check_suffix"](x,".cmi"))
                {var caml_obj=Pathname["update_extensions"](caml_obj_ext,x);
                 
-                return Resource["exists_in_build_dir"](caml_obj)?caml_obj:x;
-                }
+                return Resource["exists_in_build_dir"](caml_obj)?caml_obj:x}
               else
-               {return x;}
+               {return x}
               }
             else
              {return Filename["check_suffix"](x,".cmi")
                       ?Pathname["update_extensions"](caml_obj_ext,x)
-                      :x;
-              }
+                      :x}
             };
         
         var
          not_linkable=
           function(x)
            {return !My_std["List"][27]
-                    (Pathname["check_extension"](x),valid_link_exts);
-            };
+                    (Pathname["check_extension"](x),valid_link_exts)};
         
         var
          dependency_map=
@@ -317,8 +305,7 @@ var
                       not_linkable(x$1)||
                       not_linkable(y$1)
                       ?acc
-                      :Utils[4](x$1,y$1,acc);
-              },
+                      :Utils[4](x$1,y$1,acc)},
             SMap[1]);
         
         mydprintf
@@ -350,8 +337,7 @@ var
              {return Resource["Resources"][3](file,packages)&&
                       !My_std["List"][30](file,hidden_packages)
                       ?/* :: */[0,file,acc]
-                      :acc;
-              },
+                      :acc},
             used_files,
             /* [] */0);
         
@@ -369,15 +355,13 @@ var
          index_filter=
           function(ext,list,x)
            {return Pathname["check_extension"](x,ext)&&
-                   My_std["List"][30](x,list);
-            };
+                   My_std["List"][30](x,list)};
         
         var
          lib_index=
           [246,
            function(param)
-            {return Utils[11](I[2],index_filter(caml_lib_ext,used_libraries));
-             }];
+            {return Utils[11](I[2],index_filter(caml_lib_ext,used_libraries))}];
         
         mydprintf
          ([/* Format */0,
@@ -393,7 +377,7 @@ var
          package_index=
           [246,
            function(param)
-            {return Utils[11](I[3],index_filter(caml_obj_ext,open_packages));}];
+            {return Utils[11](I[3],index_filter(caml_obj_ext,open_packages))}];
         
         var
          resolve_packages=
@@ -418,10 +402,9 @@ var
                            Tools["pp_l"],
                            pkgs))
                       :resolve_packages(pkgs[1])
-                    :x;
-            };
+                    :x};
         
-        var libs_of=function(x){return Utils[9](x,My_std["!*"](lib_index));};
+        var libs_of=function(x){return Utils[9](x,My_std["!*"](lib_index))};
         
         var
          lib_of=
@@ -446,8 +429,7 @@ var
                            Tools["pp_l"],
                            libs))
                       :/* Some */[0,libs[1]]
-                    :/* None */0;
-            };
+                    :/* None */0};
         
         var
          convert_dependency=
@@ -461,8 +443,7 @@ var
               function(x,y)
                {return CamlPrimitive["caml_string_equal"](x,y)
                         ?acc
-                        :Utils[4](x,y,acc);
-                };
+                        :Utils[4](x,y,acc)};
             
             var match=lib_of(src$1);
             
@@ -473,13 +454,11 @@ var
               
               return match$1
                       ?add_if_diff(liba,match$1[1])
-                      :add_if_diff(liba,dst$1);
-              }
+                      :add_if_diff(liba,dst$1)}
             else
              {return match$1
                       ?add_if_diff(src$1,match$1[1])
-                      :add_if_diff(src$1,dst$1);
-              }
+                      :add_if_diff(src$1,dst$1)}
             };
         
         var
@@ -488,10 +467,9 @@ var
            function(param)
             {return SMap[11]
                      (function(k)
-                       {return Resource["Resources"][14](convert_dependency(k));},
+                       {return Resource["Resources"][14](convert_dependency(k))},
                       dependency_map,
-                      Utils[2]);
-             }];
+                      Utils[2])}];
         
         mydprintf
          ([/* Format */0,
@@ -507,12 +485,12 @@ var
          dependencies_of=
           function(x)
            {try
-             {return SMap[22](x,My_std["!*"](dependencies));}
+             {return SMap[22](x,My_std["!*"](dependencies))}
             catch(exn)
              {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-               {return Resource["Resources"][1];}
+               {return Resource["Resources"][1]}
               else
-               {throw exn;}
+               {throw exn}
               }
             };
         
@@ -533,11 +511,10 @@ var
                               ?/* Some */[0,My_std["List"][9](path)]
                               :!Resource["Resources"][3](f,files)
                                 ?/* None */0
-                                :dfs(/* :: */[0,f,path],f);
-                    };
+                                :dfs(/* :: */[0,f,path],f)};
                 
                 if(Resource["Resources"][3](fn,dead_ends[1]))
-                 {return /* None */0;}
+                 {return /* None */0}
                 else
                  {var
                    cycle=
@@ -548,14 +525,12 @@ var
                           ?cycle
                           :(dead_ends[1]=
                             Resource["Resources"][4](fn,dead_ends[1]),
-                            /* None */0);
-                  }
+                            /* None */0)}
                 };
             
             var match=dfs(/* [] */0,starting_file);
             
-            return match?match[1]:Resource["Resources"][20](files);
-            };
+            return match?match[1]:Resource["Resources"][20](files)};
         
         var needed_in_order=[0,/* [] */0];
         
@@ -570,9 +545,7 @@ var
              (My_std["sys_file_exists"](fn)&&
               !Resource["Resources"][3](fn,needed[1]))
              {if(Resource["Resources"][3](fn,seen[1]))
-               {throw [0,Circular_dependencies,refine_cycle(seen[1],fn),fn];}
-              else
-               {}
+               {throw [0,Circular_dependencies,refine_cycle(seen[1],fn),fn]}
               
               seen[1]=Resource["Resources"][4](fn,seen[1]);
               Resource["Resources"][13]
@@ -585,20 +558,18 @@ var
                               ?My_std["sys_file_exists"](f$prime)
                                 ?aux(f$prime)
                                 :pack_mode?aux(f):/* () */0
-                              :/* () */0;
-                      }
+                              :/* () */0}
                     else
-                     {return aux(f);}
+                     {return aux(f)}
                     }
                   else
-                   {return 0;}
+                   {return 0}
                   },
                 dependencies_of(fn));
               needed[1]=Resource["Resources"][4](fn,needed[1]);
-              return needed_in_order[1]=/* :: */[0,fn,needed_in_order[1]],0;
-              }
+              return needed_in_order[1]=/* :: */[0,fn,needed_in_order[1]],0}
             else
-             {return 0;}
+             {return 0}
             };
         
         My_std["List"][14](aux,fns);
@@ -619,13 +590,11 @@ var
           fns,
           Tools["pp_l"],
           needed_in_order[1]);
-        return My_std["List"][9](needed_in_order[1]);
-        };
+        return My_std["List"][9](needed_in_order[1])};
     
-    return [0,SMap,0,Utils,caml_transitive_closure];
-    };
+    return [0,SMap,0,Utils,caml_transitive_closure]};
 
 module["exports"]=
 {"Circular_dependencies":Circular_dependencies,
- "Make":function(funarg){var $$let=Make(funarg);return [0,$$let[4]];}};
+ "Make":function(funarg){var $$let=Make(funarg);return [0,$$let[4]]}};
 

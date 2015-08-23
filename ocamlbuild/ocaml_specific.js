@@ -41,8 +41,7 @@ var
                 CamlPrimitive["caml_string_notequal"]
                  (Options["ext_obj"][1],"o")
                 ?Pathname["update_extension"](Options["ext_obj"][1],x)
-                :x;
-        };
+                :x};
     
     var
      resluts=
@@ -51,16 +50,15 @@ var
          (function(o)
            {return My_std["List"][16]
                     (function(dir)
-                      {return Pathname["Operators"][1](dir,obj_of_o(o));},
-                     include_dirs);
-            },
+                      {return Pathname["Operators"][1](dir,obj_of_o(o))},
+                     include_dirs)},
           objs));
     
     var
      objs$1=
       My_std["List"][16]
        (function(param)
-         {switch(param[0]){case 0:return param[1];case 1:throw param[1];}},
+         {switch(param[0]){case 0:return param[1];case 1:throw param[1]}},
         resluts);
     
     return /* Cmd */[1,
@@ -76,8 +74,7 @@ var
                   Tags["Operators"][1]
                    (Tags["Operators"][1](Tools["tags_of_pathname"](a$1),"c"),
                     "ocamlmklib")],
-                 /* :: */[0,Command["atomize"](objs$1),/* [] */0]]]]]]];
-    };
+                 /* :: */[0,Command["atomize"](objs$1),/* [] */0]]]]]]]};
 
 var C_tools=[0,link_C_library];
 
@@ -135,7 +132,7 @@ var
           build
            (My_std["List"][16]
              (function(x)
-               {return /* :: */[0,Pathname["Operators"][1](dir,x),/* [] */0];},
+               {return /* :: */[0,Pathname["Operators"][1](dir,x),/* [] */0]},
               targets)));
         if(Options["make_links"][1])
          {var
@@ -150,16 +147,14 @@ var
                          /* :: */[0,
                           /* P */[2,
                            Pathname["Operators"][1](Options["build_dir"][1],x)],
-                          /* :: */[0,/* A */[1,Pathname["parent_dir_name"]],/* [] */0]]]]]];
-              };
+                          /* :: */[0,/* A */[1,Pathname["parent_dir_name"]],/* [] */0]]]]]]};
           
           return /* Seq */[0,
                   My_std["List"][16]
-                   (function(x){return link(Pathname["Operators"][1](dir,x));},
-                    targets)];
-          }
+                   (function(x){return link(Pathname["Operators"][1](dir,x))},
+                    targets)]}
         else
-         {return /* Nop */0;}
+         {return /* Nop */0}
         });
     Rule["rule"]
      ("ocaml: mli -> cmi",
@@ -841,8 +836,7 @@ var
                    cc,
                    /* :: */[0,
                     Rule["Common_commands"][1](Pathname["basename"](o),o),
-                    /* [] */0]]];
-        });
+                    /* [] */0]]]});
     Rule["rule"]
      ("ocaml: ml & ml.depends & *cmi -> .inferred.mli",
       /* None */0,
@@ -853,7 +847,7 @@ var
       /* None */0,
       /* None */0,
       [/* Some */0,
-       "The target foo.inferred.mli will produce a .mli that exposes all the declarations in foo.ml, as obtained by direct invocation of `ocamlc -i`."],
+       "The target foo.inferred.mli will produce a .mli that exposes all the declarations in foo.ml, as obtained by direct invocation of `ocamlc\xc2\xa0-i`."],
       Ocaml_tools["infer_interface"]("%.ml","%.inferred.mli"));
     Rule["rule"]
      ("ocaml: mltop -> top",
@@ -883,7 +877,7 @@ var
       [/* :: */0,"ocaml",[/* :: */0,"pp",/* [] */0]],
       /* S */[0,
        My_std["List"][20]
-        (function(x,acc){return /* :: */[0,/* Sh */[4,x],acc];},
+        (function(x,acc){return /* :: */[0,/* Sh */[4,x],acc]},
          Options["ocaml_ppflags"][1],
          /* [] */0)]);
     Flags["flag"]
@@ -941,9 +935,7 @@ var
                     {return /* S */[0,
                              /* :: */[0,
                               [/* A */1,"--external-tokens"],
-                              /* :: */[0,/* A */[1,name],/* [] */0]]];
-                     });
-          },
+                              /* :: */[0,/* A */[1,name],/* [] */0]]]})},
         [/* :: */0,"menhir",[/* :: */0,"menhir_ocamldep",/* [] */0]]);
     
     Flags["flag"]
@@ -957,28 +949,28 @@ var
       [/* :: */0,"ocaml",[/* :: */0,"byte",[/* :: */0,"link",/* [] */0]]],
       /* S */[0,
        My_std["List"][16]
-        (function(x){return /* A */[1,Pervasives["^"](x,".cma")];},
+        (function(x){return /* A */[1,Pervasives["^"](x,".cma")]},
          Options["ocaml_libs"][1])]);
     Flags["flag"]
      (/* None */0,
       [/* :: */0,"ocaml",[/* :: */0,"native",[/* :: */0,"link",/* [] */0]]],
       /* S */[0,
        My_std["List"][16]
-        (function(x){return /* A */[1,Pervasives["^"](x,".cmxa")];},
+        (function(x){return /* A */[1,Pervasives["^"](x,".cmxa")]},
          Options["ocaml_libs"][1])]);
     Flags["flag"]
      (/* None */0,
       [/* :: */0,"ocaml",[/* :: */0,"byte",[/* :: */0,"link",/* [] */0]]],
       /* S */[0,
        My_std["List"][16]
-        (function(x){return /* A */[1,Pervasives["^"](x,".cmo")];},
+        (function(x){return /* A */[1,Pervasives["^"](x,".cmo")]},
          Options["ocaml_mods"][1])]);
     Flags["flag"]
      (/* None */0,
       [/* :: */0,"ocaml",[/* :: */0,"native",[/* :: */0,"link",/* [] */0]]],
       /* S */[0,
        My_std["List"][16]
-        (function(x){return /* A */[1,Pervasives["^"](x,".cmx")];},
+        (function(x){return /* A */[1,Pervasives["^"](x,".cmx")]},
          Options["ocaml_mods"][1])]);
     var match$1;
     if(Options["use_ocamlfind"][1])
@@ -1017,8 +1009,7 @@ var
          {return /* S */[0,
                   /* :: */[0,
                    [/* A */1,"-dontlink"],
-                   /* :: */[0,/* A */[1,pkg],/* [] */0]]];
-          });
+                   /* :: */[0,/* A */[1,pkg],/* [] */0]]]});
       var
        all_tags=
         [/* :: */0,
@@ -1055,8 +1046,7 @@ var
              {return /* S */[0,
                       /* :: */[0,
                        [/* A */1,"-package"],
-                       /* :: */[0,/* A */[1,pkg],/* [] */0]]];
-              });
+                       /* :: */[0,/* A */[1,pkg],/* [] */0]]]});
           if(!My_std["List"][30]("ocamldep",tags))
            {Flags["pflag"]
              (tags,
@@ -1065,8 +1055,7 @@ var
                {return /* S */[0,
                         /* :: */[0,
                          [/* A */1,"-predicates"],
-                         /* :: */[0,/* A */[1,pkg],/* [] */0]]];
-                })}
+                         /* :: */[0,/* A */[1,pkg],/* [] */0]]]})}
           
           return Flags["pflag"]
                   (tags,
@@ -1075,9 +1064,7 @@ var
                     {return /* S */[0,
                              /* :: */[0,
                               [/* A */1,"-syntax"],
-                              /* :: */[0,/* A */[1,pkg],/* [] */0]]];
-                     });
-          },
+                              /* :: */[0,/* A */[1,pkg],/* [] */0]]]})},
         all_tags);
       }
     else
@@ -1114,7 +1101,7 @@ var
        {if(exn[1]===Findlib["Findlib_error"])
          {match$1=Findlib["report_error"](exn[2]);}
         else
-         {throw exn;}
+         {throw exn}
         }
       }
     
@@ -1125,8 +1112,7 @@ var
        {return /* S */[0,
                 /* :: */[0,
                  [/* A */1,"-for-pack"],
-                 /* :: */[0,/* A */[1,param$1],/* [] */0]]];
-        });
+                 /* :: */[0,/* A */[1,param$1],/* [] */0]]]});
     Flags["pflag"]
      ([/* :: */0,"ocaml",[/* :: */0,"native",[/* :: */0,"pack",/* [] */0]]],
       "for-pack",
@@ -1134,8 +1120,7 @@ var
        {return /* S */[0,
                 /* :: */[0,
                  [/* A */1,"-for-pack"],
-                 /* :: */[0,/* A */[1,param$1],/* [] */0]]];
-        });
+                 /* :: */[0,/* A */[1,param$1],/* [] */0]]]});
     Flags["pflag"]
      ([/* :: */0,"ocaml",[/* :: */0,"native",[/* :: */0,"compile",/* [] */0]]],
       "inline",
@@ -1143,8 +1128,7 @@ var
        {return /* S */[0,
                 /* :: */[0,
                  [/* A */1,"-inline"],
-                 /* :: */[0,/* A */[1,param$1],/* [] */0]]];
-        });
+                 /* :: */[0,/* A */[1,param$1],/* [] */0]]]});
     My_std["List"][14]
      (function(pp)
        {Flags["pflag"]
@@ -1154,8 +1138,7 @@ var
            {return /* S */[0,
                     /* :: */[0,
                      /* A */[1,Pervasives["^"]("-",pp)],
-                     /* :: */[0,/* A */[1,param$1],/* [] */0]]];
-            });
+                     /* :: */[0,/* A */[1,param$1],/* [] */0]]]});
         Flags["pflag"]
          ([/* :: */0,"ocaml",[/* :: */0,"ocamldep",/* [] */0]],
           pp,
@@ -1163,8 +1146,7 @@ var
            {return /* S */[0,
                     /* :: */[0,
                      /* A */[1,Pervasives["^"]("-",pp)],
-                     /* :: */[0,/* A */[1,param$1],/* [] */0]]];
-            });
+                     /* :: */[0,/* A */[1,param$1],/* [] */0]]]});
         Flags["pflag"]
          ([/* :: */0,"ocaml",[/* :: */0,"doc",/* [] */0]],
           pp,
@@ -1172,8 +1154,7 @@ var
            {return /* S */[0,
                     /* :: */[0,
                      /* A */[1,Pervasives["^"]("-",pp)],
-                     /* :: */[0,/* A */[1,param$1],/* [] */0]]];
-            });
+                     /* :: */[0,/* A */[1,param$1],/* [] */0]]]});
         return Flags["pflag"]
                 ([/* :: */0,"ocaml",[/* :: */0,"infer_interface",/* [] */0]],
                  pp,
@@ -1181,9 +1162,7 @@ var
                   {return /* S */[0,
                            /* :: */[0,
                             /* A */[1,Pervasives["^"]("-",pp)],
-                            /* :: */[0,/* A */[1,param$1],/* [] */0]]];
-                   });
-        },
+                            /* :: */[0,/* A */[1,param$1],/* [] */0]]]})},
       [/* :: */0,"pp",[/* :: */0,"ppx",/* [] */0]]);
     Flags["pflag"]
      ([/* :: */0,"ocaml",[/* :: */0,"compile",/* [] */0]],
@@ -1192,8 +1171,7 @@ var
        {return /* S */[0,
                 /* :: */[0,
                  [/* A */1,"-w"],
-                 /* :: */[0,/* A */[1,param$1],/* [] */0]]];
-        });
+                 /* :: */[0,/* A */[1,param$1],/* [] */0]]]});
     Flags["pflag"]
      ([/* :: */0,"ocaml",[/* :: */0,"compile",/* [] */0]],
       "warn_error",
@@ -1201,8 +1179,7 @@ var
        {return /* S */[0,
                 /* :: */[0,
                  [/* A */1,"-warn-error"],
-                 /* :: */[0,/* A */[1,param$1],/* [] */0]]];
-        });
+                 /* :: */[0,/* A */[1,param$1],/* [] */0]]]});
     Flags["pflag"]
      ([/* :: */0,"ocaml",[/* :: */0,"ocamldep",/* [] */0]],
       "open",
@@ -1210,8 +1187,7 @@ var
        {return /* S */[0,
                 /* :: */[0,
                  [/* A */1,"-open"],
-                 /* :: */[0,/* A */[1,param$1],/* [] */0]]];
-        });
+                 /* :: */[0,/* A */[1,param$1],/* [] */0]]]});
     Flags["pflag"]
      ([/* :: */0,"ocaml",[/* :: */0,"compile",/* [] */0]],
       "open",
@@ -1219,8 +1195,7 @@ var
        {return /* S */[0,
                 /* :: */[0,
                  [/* A */1,"-open"],
-                 /* :: */[0,/* A */[1,param$1],/* [] */0]]];
-        });
+                 /* :: */[0,/* A */[1,param$1],/* [] */0]]]});
     Flags["pflag"]
      ([/* :: */0,"ocaml",[/* :: */0,"link",/* [] */0]],
       "runtime_variant",
@@ -1228,8 +1203,7 @@ var
        {return /* S */[0,
                 /* :: */[0,
                  [/* A */1,"-runtime-variant"],
-                 /* :: */[0,/* A */[1,param$1],/* [] */0]]];
-        });
+                 /* :: */[0,/* A */[1,param$1],/* [] */0]]]});
     var match$2=/* () */0;
     
     var
@@ -1242,10 +1216,8 @@ var
                             /* :: */[0,
                              "ocaml",
                              /* :: */[0,"pp",/* :: */[0,camlp4,/* [] */0]]],
-                            /* A */[1,camlp4]);
-                   },
-                 camlp4s);
-        };
+                            /* A */[1,camlp4])},
+                 camlp4s)};
     
     var
      p4_series=
@@ -1262,7 +1234,7 @@ var
     var
      p4_opt_series=
       My_std["List"][16]
-       (function(f){return Pervasives["^"](f,".opt");},p4_series);
+       (function(f){return Pervasives["^"](f,".opt")},p4_series);
     
     camlp4_flags(p4_series);
     camlp4_flags(p4_opt_series);
@@ -1276,10 +1248,8 @@ var
                             /* :: */[0,
                              "ocaml",
                              /* :: */[0,"pp",/* :: */[0,param$1[1],/* [] */0]]],
-                            param$1[2]);
-                   },
-                 camlp4s);
-        };
+                            param$1[2])},
+                 camlp4s)};
     
     camlp4_flags$prime
      ([/* :: */0,
@@ -1868,8 +1838,7 @@ var
                      Format["sprintf"]
                       ([/* Format */0,[/* Char */0,/* End_of_format */0],"%c"],
                        Char["lowercase"](c))],
-                    /* [] */0]]]);
-        };
+                    /* [] */0]]])};
     
     My_std["List"][14]
      (ocaml_warn_flag,
@@ -1995,8 +1964,7 @@ var
        camlp4_flags$prime,
        ocaml_warn_flag];
     
-    return /* () */0;
-    };
+    return /* () */0};
 
 module["exports"]={"init":init};
 

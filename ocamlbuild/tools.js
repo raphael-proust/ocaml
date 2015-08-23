@@ -18,8 +18,7 @@ var
             (Tags["Operators"][1]
               (Configuration["tags_of_filename"](Pathname["to_string"](p)),
                Pervasives["^"]("file:",p)),
-             Pervasives["^"]("extension:",Pathname["get_extension"](p)));
-    };
+             Pervasives["^"]("extension:",Pathname["get_extension"](p)))};
 
 var
  opt_print=
@@ -44,8 +43,7 @@ var
                 "@[<2>Some@ %a@]"],
                elt,
                param[1])
-            :Format["pp_print_string"](ppf,"None");
-    };
+            :Format["pp_print_string"](ppf,"None")};
 
 var
  path_and_context_of_string=
@@ -59,19 +57,17 @@ var
        (CamlPrimitive["caml_string_notequal"](d,Pathname["current_dir_name"]))
        {var match=Pathname["define_context"](d,/* :: */[0,d,/* [] */0]);
         
-        return /* :: */[0,s,/* [] */0];
-        }
+        return /* :: */[0,s,/* [] */0]}
       else
        {var include_dirs=Pathname["include_dirs_of"](d);
         
         return My_std["List"][16]
                 (function(include_dir)
-                  {return Pathname["Operators"][1](include_dir,b);},
-                 include_dirs);
-        }
+                  {return Pathname["Operators"][1](include_dir,b)},
+                 include_dirs)}
       }
     else
-     {return /* :: */[0,s,/* [] */0];}
+     {return /* :: */[0,s,/* [] */0]}
     };
 
 module["exports"]=

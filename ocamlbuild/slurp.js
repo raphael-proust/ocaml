@@ -17,7 +17,7 @@ var
  filter=
   function(predicate,f)
    {if(typeof f==="number")
-     {switch(f){case 0:return /* Nothing */0;}}
+     {switch(f){case 0:return /* Nothing */0}}
     else
      {switch(f[0])
        {case 0:
@@ -38,12 +38,10 @@ var
                    [246,
                     function(param)
                      {return My_std["List"][16]
-                              (filter(predicate),My_std["!*"](entries));
-                      }]]
+                              (filter(predicate),My_std["!*"](entries))}]]
                  :/* Nothing */0;
-         
         case 1:return predicate(f[1],f[2],f[4])?f:/* Nothing */0;
-        case 2:return f;
+        case 2:return f
         }}
     };
 
@@ -57,8 +55,7 @@ var
       function(x)
        {return Filename["is_implicit"](x)||Filename["is_relative"](x)
                 ?$slash(cwd,x)
-                :x;
-        };
+                :x};
     
     var visited=Hashtbl["create"](/* None */0,1024);
     
@@ -81,28 +78,27 @@ var
                 var exit;
                 
                 if(typeof entry==="number")
-                 {switch(entry){case 0:return acc;}}
+                 {switch(entry){case 0:return acc}}
                 else
                  {switch(entry[0])
-                   {case 0:exit=19;
+                   {case 0:exit=19;break;
                     case 1:
                      return /* tuple */[0,/* :: */[0,entry,file_acc],dir_acc];
-                    case 2:exit=19;
+                    case 2:exit=19;break
                     }}
                 
                 switch(exit)
                  {case 19:
-                   return /* tuple */[0,file_acc,/* :: */[0,entry,dir_acc]];
+                   return /* tuple */[0,file_acc,/* :: */[0,entry,dir_acc]]
                   }
                 }
               else
-               {return acc;}
+               {return acc}
               },
             [/* tuple */0,/* [] */0,/* [] */0],
             names);
         
-        return Pervasives["@"](match[1],match[2]);
-        };
+        return Pervasives["@"](match[1],match[2])};
     
     var
      do_entry=
@@ -132,10 +128,10 @@ var
             {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
               {$js=/* false */0;}
              else
-              {throw exn;}
+              {throw exn}
              }
            if($js)
-            {return /* None */0;}
+            {return /* None */0}
            else
             {Hashtbl["add"](visited,key,/* true */1);
              var match$1=st[1];
@@ -156,16 +152,16 @@ var
                        name,
                        [250,st],
                        /* () */0,
-                       [246,function(param){return scandir(fn,names);}]]];
-                   
-                  case 1:var res=/* Some */[0,/* Error */[2,match$2[1]]];
+                       [246,function(param){return scandir(fn,names)}]]];
+                   break;
+                  case 1:var res=/* Some */[0,/* Error */[2,match$2[1]]];break
                   }
-                
+                break;
                case 1:
                 var
                  res=
                   /* Some */[0,/* File */[1,path,name,[250,st],/* () */0]];
-                
+                break;
                case 2:
                 var fn$prime=My_unix["readlink"](absfn);
                 
@@ -174,24 +170,23 @@ var
                   My_std["sys_file_exists"](abs(fn$prime))
                    ?do_entry(/* false */0,path,name)
                    :/* Some */[0,/* File */[1,path,name,[250,st],/* () */0]];
-                
-               case 3:var res=/* None */0;
+                break;
+               case 3:var res=/* None */0;break
                }
              
              Hashtbl["replace"](visited,key,/* false */0);
-             return res;
-             }
-           
-          case 1:return /* Some */[0,/* Error */[2,match[1]]];
+             return res}
+           break;
+          case 1:return /* Some */[0,/* Error */[2,match[1]]]
           }
         };
     
     var match=do_entry(/* true */1,"",path);
     
     if(match)
-     {return match[1];}
+     {return match[1]}
     else
-     {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+     {throw CamlPrimitive["caml_global_data"]["Not_found"]}
     };
 
 var
@@ -205,22 +200,19 @@ var
                 ?/* [] */0
                 :/* :: */[0,
                   Filename["basename"](path),
-                  aux(Filename["dirname"](path))];
-        };
+                  aux(Filename["dirname"](path))]};
     
-    return My_std["List"][9](aux(path));
-    };
+    return My_std["List"][9](aux(path))};
 
 var
  join=
   function(param)
    {if(param)
-     {var xs=param[2];var x=param[1];return xs?$slash(x,join(xs)):x;}
+     {var xs=param[2];var x=param[1];return xs?$slash(x,join(xs)):x}
     else
      {throw [0,
              CamlPrimitive["caml_global_data"]["Assert_failure"],
-             [0,"slurp.ml",105,10]];
-      }
+             [0,"slurp.ml",105,10]]}
     };
 
 var
@@ -239,7 +231,7 @@ var
        {var d=entries[1];
         
         if(typeof d==="number")
-         {switch(d){case 0:exit=14;}}
+         {switch(d){case 0:exit=14;break}}
         else
          {switch(d[0])
            {case 0:
@@ -259,13 +251,11 @@ var
                         [246,
                          function(param)
                           {return add
-                                   ($slash(root,xpath),xspath,My_std["!*"](dentries));
-                           }]],
+                                   ($slash(root,xpath),xspath,My_std["!*"](dentries))}]],
                        entries$1]
                      :/* :: */[0,d,add(root,path,entries$1)];
-             
-            case 1:exit$1=16;
-            case 2:exit=14;
+            case 1:exit$1=16;break;
+            case 2:exit=14;break
             }}
         }
       else
@@ -290,10 +280,9 @@ var
                         f[4],
                         [246,
                          function(param)
-                          {return add($slash(root,xpath),xspath,/* [] */0);}]],
+                          {return add($slash(root,xpath),xspath,/* [] */0)}]],
                        entries$prime]
-                     :/* :: */[0,f,add(root,path,entries$prime)];
-             }
+                     :/* :: */[0,f,add(root,path,entries$prime)]}
            else
             {return /* :: */[0,
                      /* Dir */[0,
@@ -301,13 +290,12 @@ var
                       xpath,
                       [246,
                        function(param)
-                        {return My_unix["stat"]($slash(root,join(path)));}],
+                        {return My_unix["stat"]($slash(root,join(path)))}],
                       /* () */0,
                       [246,
                        function(param)
-                        {return add($slash(root,xpath),xspath,/* [] */0);}]],
-                     /* [] */0];
-             }
+                        {return add($slash(root,xpath),xspath,/* [] */0)}]],
+                     /* [] */0]}
            }
          else
           {if(entries)
@@ -315,28 +303,26 @@ var
              
              return CamlPrimitive["caml_string_equal"](xpath,f$1[2])
                      ?entries
-                     :/* :: */[0,f$1,add(root,path,entries[2])];
-             }
+                     :/* :: */[0,f$1,add(root,path,entries[2])]}
            else
             {return /* :: */[0,
                      /* File */[1,
                       root,
                       xpath,
                       [246,
-                       function(param){return My_unix["stat"]($slash(root,xpath));}],
+                       function(param){return My_unix["stat"]($slash(root,xpath))}],
                       /* () */0],
-                     /* [] */0];
-             }
+                     /* [] */0]}
            }
-         
+         break
         }
       }
     else
-     {return entries;}
+     {return entries}
     
     switch(exit)
      {case 14:
-       return typeof entries[1]==="number"?add(root,path,entries[2]):entries;
+       return typeof entries[1]==="number"?add(root,path,entries[2]):entries
       }
     };
 
@@ -368,40 +354,37 @@ var
            {while(/* true */1)
              {acc=/* :: */[0,Pervasives["input_line"](ic),acc];}
             
-            return /* [] */0;
-            }
+            return /* [] */0}
           catch(exn$1)
            {if(exn$1===CamlPrimitive["caml_global_data"]["End_of_file"])
-             {return acc;}
+             {return acc}
             else
-             {throw exn$1;}
+             {throw exn$1}
             }
           });
     
     var
      res=
       My_std["List"][20]
-       (function(line,acc){return add(path,split(line),acc);},lines,/* [] */0);
+       (function(line,acc){return add(path,split(line),acc)},lines,/* [] */0);
     
     return res
             ?res[2]
               ?/* Dir */[0,
                 path,
                 Filename["basename"](path),
-                [246,function(param){return My_unix["stat"](path);}],
+                [246,function(param){return My_unix["stat"](path)}],
                 /* () */0,
                 [250,res]]
               :res[1]
-            :/* Nothing */0;
-    };
+            :/* Nothing */0};
 
 var
  slurp=
   function(x)
    {return My_std["!*"](My_unix["is_degraded"])
             ?slurp_with_find(x)
-            :real_slurp(x);
-    };
+            :real_slurp(x)};
 
 var
  print=
@@ -413,8 +396,7 @@ var
                  (f,
                   [/* Format */0,
                    [/* String_literal */11,"Nothing",/* End_of_format */0],
-                   "Nothing"]);
-         
+                   "Nothing"])
         }}
     else
      {switch(entry[0])
@@ -463,7 +445,6 @@ var
                   entry[4],
                   My_std["List"][1](print(print_attr)),
                   My_std["!*"](entry[5]));
-         
         case 1:
          return Format["fprintf"]
                  (f,
@@ -502,14 +483,12 @@ var
                   entry[2],
                   print_attr,
                   entry[4]);
-         
         case 2:
          return Format["fprintf"]
                  (f,
                   [/* Format */0,
                    [/* String_literal */11,"Error(_)",/* End_of_format */0],
-                   "Error(_)"]);
-         
+                   "Error(_)"])
         }}
     };
 
@@ -519,7 +498,7 @@ var
    {var exit;
     
     if(typeof entry==="number")
-     {switch(entry){case 0:exit=4;}}
+     {switch(entry){case 0:exit=4;break}}
     else
      {switch(entry[0])
        {case 0:
@@ -528,12 +507,11 @@ var
                   entry[2],
                   entry[4],
                   My_std["List"][20](fold(f),My_std["!*"](entry[5]),acc));
-         
         case 1:return f(entry[1],entry[2],entry[4],acc);
-        case 2:exit=4;
+        case 2:exit=4;break
         }}
     
-    switch(exit){case 4:return acc;}
+    switch(exit){case 4:return acc}
     };
 
 var
@@ -543,7 +521,7 @@ var
      $$self=
       function(entry)
        {if(typeof entry==="number")
-         {switch(entry){case 0:return /* Nothing */0;}}
+         {switch(entry){case 0:return /* Nothing */0}}
         else
          {switch(entry[0])
            {case 0:
@@ -560,8 +538,7 @@ var
                      f(path,name,entry[4]),
                      [246,
                       function(param)
-                       {return My_std["List"][16]($$self,My_std["!*"](contents));}]];
-             
+                       {return My_std["List"][16]($$self,My_std["!*"](contents))}]];
             case 1:
              var name$1=entry[2];
              
@@ -572,13 +549,11 @@ var
                      name$1,
                      entry[3],
                      f(path$1,name$1,entry[4])];
-             
-            case 2:return /* Error */[2,entry[1]];
+            case 2:return /* Error */[2,entry[1]]
             }}
         };
     
-    return $$self(entry);
-    };
+    return $$self(entry)};
 
 var
  force=
@@ -586,19 +561,18 @@ var
    {var exit;
     
     if(typeof param==="number")
-     {switch(param){case 0:exit=2;}}
+     {switch(param){case 0:exit=2;break}}
     else
      {switch(param[0])
        {case 0:
          var match=My_std["!*"](param[3]);
          
          return My_std["List"][14](force,My_std["!*"](param[5]));
-         
         case 1:return My_std["!*"](param[3]);
-        case 2:exit=2;
+        case 2:exit=2;break
         }}
     
-    switch(exit){case 2:return /* () */0;}
+    switch(exit){case 2:return /* () */0}
     };
 
 module["exports"]=

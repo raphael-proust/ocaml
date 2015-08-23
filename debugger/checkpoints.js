@@ -22,9 +22,9 @@ var checkpoints=[0,/* [] */0];
 
 var current_checkpoint=[0,root];
 
-var current_time=function(param){return current_checkpoint[1][1];};
+var current_time=function(param){return current_checkpoint[1][1]};
 
-var current_report=function(param){return current_checkpoint[1][5];};
+var current_report=function(param){return current_checkpoint[1][5]};
 
 var
  current_pc=
@@ -41,16 +41,16 @@ var
       var exit$1;
       
       if(match$2!==2)
-       {if(match$2>=4){exit$1=6;}else{return /* Some */[0,match$1[4]];}}
+       {if(match$2>=4){exit$1=6;}else{return /* Some */[0,match$1[4]]}}
       else
        {exit$1=6;}
       
-      switch(exit$1){case 6:exit=5;}
+      switch(exit$1){case 6:exit=5;break}
       }
     else
      {exit=5;}
     
-    switch(exit){case 5:return /* None */0;}
+    switch(exit){case 5:return /* None */0}
     };
 
 var
@@ -71,17 +71,17 @@ var
        {if(match$2>=4)
          {exit$1=2;}
         else
-         {return /* Some */[0,/* tuple */[0,match$1[4],match$1[3]]];}
+         {return /* Some */[0,/* tuple */[0,match$1[4],match$1[3]]]}
         }
       else
        {exit$1=2;}
       
-      switch(exit$1){case 2:exit=1;}
+      switch(exit$1){case 2:exit=1;break}
       }
     else
      {exit=1;}
     
-    switch(exit){case 1:return /* None */0;}
+    switch(exit){case 1:return /* None */0}
     };
 
 module["exports"]=

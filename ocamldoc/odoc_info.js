@@ -65,8 +65,7 @@ var
     Odoc_global["classic"][1]=!labels;
     Odoc_global["sort_modules"][1]=sort_modules;
     Odoc_global["no_stop"][1]=no_stop;
-    return Odoc_analyse["analyse_files"](/* Some */[0,init],files);
-    };
+    return Odoc_analyse["analyse_files"](/* Some */[0,init],files)};
 
 var dump_modules=Odoc_analyse["dump_modules"];
 
@@ -77,57 +76,56 @@ var reset_type_names=Printtyp["reset"];
 var
  string_of_variance=
   function(t,param)
-   {return Odoc_str["string_of_variance"](t,/* tuple */[0,param[1],param[2]]);
-    };
+   {return Odoc_str["string_of_variance"](t,/* tuple */[0,param[1],param[2]])};
 
 var
  string_of_type_expr=
-  function(t){return Odoc_print["string_of_type_expr"](t);};
+  function(t){return Odoc_print["string_of_type_expr"](t)};
 
 var string_of_class_params=Odoc_str["string_of_class_params"];
 
 var
  string_of_type_list=
   function(par,sep,type_list)
-   {return Odoc_str["string_of_type_list"](par,sep,type_list);};
+   {return Odoc_str["string_of_type_list"](par,sep,type_list)};
 
 var
  string_of_type_param_list=
-  function(t){return Odoc_str["string_of_type_param_list"](t);};
+  function(t){return Odoc_str["string_of_type_param_list"](t)};
 
 var
  string_of_type_extension_param_list=
-  function(te){return Odoc_str["string_of_type_extension_param_list"](te);};
+  function(te){return Odoc_str["string_of_type_extension_param_list"](te)};
 
 var
  string_of_class_type_param_list=
-  function(l){return Odoc_str["string_of_class_type_param_list"](l);};
+  function(l){return Odoc_str["string_of_class_type_param_list"](l)};
 
 var string_of_module_type=Odoc_print["string_of_module_type"];
 
 var string_of_class_type=Odoc_print["string_of_class_type"];
 
-var string_of_text=function(t){return Odoc_misc["string_of_text"](t);};
+var string_of_text=function(t){return Odoc_misc["string_of_text"](t)};
 
-var string_of_info=function(i){return Odoc_misc["string_of_info"](i);};
+var string_of_info=function(i){return Odoc_misc["string_of_info"](i)};
 
-var string_of_type=function(t){return Odoc_str["string_of_type"](t);};
+var string_of_type=function(t){return Odoc_str["string_of_type"](t)};
 
 var
  string_of_type_extension=
-  function(te){return Odoc_str["string_of_type_extension"](te);};
+  function(te){return Odoc_str["string_of_type_extension"](te)};
 
 var
  string_of_exception=
-  function(e){return Odoc_str["string_of_exception"](e);};
+  function(e){return Odoc_str["string_of_exception"](e)};
 
-var string_of_value=function(v){return Odoc_str["string_of_value"](v);};
+var string_of_value=function(v){return Odoc_str["string_of_value"](v)};
 
 var
  string_of_attribute=
-  function(att){return Odoc_str["string_of_attribute"](att);};
+  function(att){return Odoc_str["string_of_attribute"](att)};
 
-var string_of_method=function(m){return Odoc_str["string_of_method"](m);};
+var string_of_method=function(m){return Odoc_str["string_of_method"](m)};
 
 var first_sentence_of_text=Odoc_misc["first_sentence_of_text"];
 
@@ -154,8 +152,7 @@ var label_name=Odoc_misc["label_name"];
 var
  use_hidden_modules=
   function(n)
-   {return Odoc_name["hide_given_modules"](Odoc_global["hidden_modules"][1],n);
-    };
+   {return Odoc_name["hide_given_modules"](Odoc_global["hidden_modules"][1],n)};
 
 var
  verbose=
@@ -163,10 +160,9 @@ var
    {return Odoc_global["verbose"][1]
             ?(Pervasives["print_string"](s),
               Pervasives["print_newline"](/* () */0))
-            :/* () */0;
-    };
+            :/* () */0};
 
-var warning=function(s){return Odoc_global["pwarning"](s);};
+var warning=function(s){return Odoc_global["pwarning"](s)};
 
 var print_warnings=Odoc_config["print_warnings"];
 
@@ -176,7 +172,7 @@ var apply_opt=Odoc_misc["apply_opt"];
 
 var
  apply_if_equal=
-  function(f,v1,v2){return CamlPrimitive["caml_equal"](v1,v2)?f(v1):v2;};
+  function(f,v1,v2){return CamlPrimitive["caml_equal"](v1,v2)?f(v1):v2};
 
 var text_of_string=Odoc_text["Texter"][1];
 
@@ -192,11 +188,10 @@ var
     for(var i=0;i<=len-1;i++)
      {var c=s["charCodeAt"](i);
       
-      c!==64?Buffer["add_char"](b,c):Buffer["add_string"](b,"\@");
+      c!==64?Buffer["add_char"](b,c):Buffer["add_string"](b,"\\@");
       }
     
-    return Buffer["contents"](b);
-    };
+    return Buffer["contents"](b)};
 
 var
  info_string_of_info=
@@ -228,8 +223,7 @@ var
                      "author ",
                      [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
                   "\n@@author %s"],
-                 escape_arobas(s));
-        },
+                 escape_arobas(s))},
       i[2]);
     var match$1=i[3];
     
@@ -261,7 +255,6 @@ var
                        [/* Char_literal */12,62,/* End_of_format */0]]],
                      "<%s>"],
                     param[1]);
-           
           case 1:
            return Printf["sprintf"]
                    ([/* Format */0,
@@ -272,7 +265,6 @@ var
                        [/* Char_literal */12,39,/* End_of_format */0]]],
                      "'%s'"],
                     param[1]);
-           
           case 2:
            return Printf["sprintf"]
                    ([/* Format */0,
@@ -282,8 +274,7 @@ var
                        /* No_padding */0,
                        [/* Char_literal */12,34,/* End_of_format */0]]],
                      '"%s"'],
-                    param[1]);
-           
+                    param[1])
           }
         };
     
@@ -305,8 +296,7 @@ var
                        [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]],
                   "\n@@see %s %s"],
                  escape_arobas(f_see_ref(param[1])),
-                 escape_arobas(text_string_of_text(param[2])));
-        },
+                 escape_arobas(text_string_of_text(param[2])))},
       i[4]);
     var match$2=i[5];
     
@@ -358,8 +348,7 @@ var
                        [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]],
                   "\n@@param %s %s"],
                  escape_arobas(param[1]),
-                 escape_arobas(text_string_of_text(param[2])));
-        },
+                 escape_arobas(text_string_of_text(param[2])))},
       i[8]);
     List["iter"]
      (function(param)
@@ -379,8 +368,7 @@ var
                        [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]],
                   "\n@@raise %s %s"],
                  escape_arobas(param[1]),
-                 escape_arobas(text_string_of_text(param[2])));
-        },
+                 escape_arobas(text_string_of_text(param[2])))},
       i[9]);
     var match$4=i[10];
     
@@ -414,11 +402,9 @@ var
                       [/* String */2,/* No_padding */0,/* End_of_format */0]]]]],
                   "\n@@%s %s"],
                  param[1],
-                 escape_arobas(text_string_of_text(param[2])));
-        },
+                 escape_arobas(text_string_of_text(param[2])))},
       i[11]);
-    return Buffer["contents"](b);
-    };
+    return Buffer["contents"](b)};
 
 var info_of_string=Odoc_comments["info_of_string"];
 

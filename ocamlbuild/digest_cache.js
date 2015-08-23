@@ -22,8 +22,7 @@ var
   [246,
    function(param)
     {return Pathname["Operators"][1]
-             (Options["build_dir"][1],Pathname["mk"]("_digests"));
-     }];
+             (Options["build_dir"][1],Pathname["mk"]("_digests"))}];
 
 var
  finalize=
@@ -46,11 +45,8 @@ var
                                        [/* Char_literal */12,10,/* End_of_format */0]]]],
                                     "%S: %S\n"],
                                    name,
-                                   digest);
-                          },
-                        digests);
-               });
-    };
+                                   digest)},
+                        digests)})};
 
 var
  init=
@@ -75,18 +71,16 @@ var
                    [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]]],
                  "%S: %S"],
                 put)}
-            return 0;
-            }
+            return 0}
           catch(exn)
            {if(exn===CamlPrimitive["caml_global_data"]["End_of_file"])
-             {return /* () */0;}
+             {return /* () */0}
             else
-             {throw exn;}
+             {throw exn}
             }
           })}
     
-    return My_unix["at_exit_once"](finalize);
-    };
+    return My_unix["at_exit_once"](finalize)};
 
 module["exports"]={"init":init,"get":get,"put":put};
 

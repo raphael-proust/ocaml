@@ -14,7 +14,7 @@ catch(exn)
  {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
    {$js=Ocamlbuild_config["libdir"];}
   else
-   {throw exn;}
+   {throw exn}
   }
 var libdir=[0,Filename["concat"]($js,"ocamlbuild")];
 

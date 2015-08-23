@@ -34,11 +34,11 @@ var
               $js=Pervasives["failwith"]("Can't convert address");
               }
             else
-             {throw exn$1;}
+             {throw exn$1}
             }
           }
         else
-         {throw exn;}
+         {throw exn}
         }
       var $js$1;
       try
@@ -49,10 +49,9 @@ var
           $js$1=Pervasives["failwith"]("Can't convert address");
           }
         else
-         {throw exn$2;}
+         {throw exn$2}
         }
-      return /* tuple */[0,/* PF_INET */1,/* ADDR_INET */[1,$js,$js$1]];
-      }
+      return /* tuple */[0,/* PF_INET */1,/* ADDR_INET */[1,$js,$js$1]]}
     catch(exn$3)
      {if(exn$3===CamlPrimitive["caml_global_data"]["Not_found"])
        {var match=Sys["os_type"];
@@ -61,10 +60,10 @@ var
          {case "Win32":
            return Pervasives["failwith"]("Unix sockets not supported");
           default:
-           return /* tuple */[0,/* PF_UNIX */0,/* ADDR_UNIX */[0,address]];}
+           return /* tuple */[0,/* PF_UNIX */0,/* ADDR_UNIX */[0,address]]}
         }
       else
-       {throw exn$3;}
+       {throw exn$3}
       }
     };
 
@@ -83,10 +82,9 @@ var
         Pervasives["prerr_string"]("'")}
       
       Pervasives["prerr_string"](": ");
-      return Pervasives["prerr_endline"](Unix["error_message"](param[2]));
-      }
+      return Pervasives["prerr_endline"](Unix["error_message"](param[2]))}
     else
-     {return Misc["fatal_error"]("report_error: not a Unix error");}
+     {return Misc["fatal_error"]("report_error: not a Unix error")}
     };
 
 var
@@ -106,17 +104,17 @@ var
      check=
       function(name)
        {try
-         {Unix["access"](name,[/* :: */0,/* X_OK */2,/* [] */0]);return name;}
+         {Unix["access"](name,[/* :: */0,/* X_OK */2,/* [] */0]);return name}
         catch(exn)
          {if(exn[1]===Unix["Unix_error"])
-           {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+           {throw CamlPrimitive["caml_global_data"]["Not_found"]}
           else
-           {throw exn;}
+           {throw exn}
           }
         };
     
     if(!Filename["is_implicit"](name))
-     {return check(name);}
+     {return check(name)}
     else
      {var path=CamlPrimitive["caml_sys_getenv"]("PATH");
       
@@ -127,8 +125,7 @@ var
         function(pointer)
          {return pointer>=length||path["charCodeAt"](pointer)===58
                   ?pointer
-                  :traverse(pointer+1);
-          };
+                  :traverse(pointer+1)};
       
       var
        find=
@@ -144,21 +141,20 @@ var
              :Pervasives["^"](directory,Pervasives["^"]("/",name));
           
           try
-           {return check(fullname);}
+           {return check(fullname)}
           catch(exn)
            {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
              {if(pos2<length)
-               {return find(pos2+1);}
+               {return find(pos2+1)}
               else
-               {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+               {throw CamlPrimitive["caml_global_data"]["Not_found"]}
               }
             else
-             {throw exn;}
+             {throw exn}
             }
           };
       
-      return find(0);
-      }
+      return find(0)}
     };
 
 var
@@ -176,13 +172,12 @@ var
                      subst_variable($$String["sub"](ch,pos+2,ch["length"]-pos-2)))
                   :Pervasives["^"]
                     ($$String["sub"](ch,0,pos),
-                     subst2($$String["sub"](ch,pos+1,ch["length"]-pos-1)));
-          }
+                     subst2($$String["sub"](ch,pos+1,ch["length"]-pos-1)))}
         catch(exn)
          {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-           {return ch;}
+           {return ch}
           else
-           {throw exn;}
+           {throw exn}
           }
         };
     
@@ -201,8 +196,7 @@ var
         
         return Pervasives["^"]
                 (CamlPrimitive["caml_sys_getenv"]($$String["sub"](ch,0,suiv)),
-                 subst_variable($$String["sub"](ch,suiv,ch["length"]-suiv)));
-        };
+                 subst_variable($$String["sub"](ch,suiv,ch["length"]-suiv)))};
     
     var ch$1=subst_variable(ch);
     
@@ -210,12 +204,12 @@ var
      concat_root=
       function(nom,ch2)
        {try
-         {return Filename["concat"](Unix["getpwnam"](nom)[6],ch2);}
+         {return Filename["concat"](Unix["getpwnam"](nom)[6],ch2)}
         catch(exn)
          {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-           {return Pervasives["^"]("~",nom);}
+           {return Pervasives["^"]("~",nom)}
           else
-           {throw exn;}
+           {throw exn}
           }
         };
     
@@ -226,34 +220,31 @@ var
         if(n!==1)
          {return concat_root
                   ($$String["sub"](ch$1,1,n-1),
-                   $$String["sub"](ch$1,n+1,ch$1["length"]-n-1));
-          }
+                   $$String["sub"](ch$1,n+1,ch$1["length"]-n-1))}
         else
          {var tail=$$String["sub"](ch$1,2,ch$1["length"]-2);
           
           try
            {return Filename["concat"]
-                    (CamlPrimitive["caml_sys_getenv"]("HOME"),tail);
-            }
+                    (CamlPrimitive["caml_sys_getenv"]("HOME"),tail)}
           catch(exn)
            {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
              {return concat_root
-                      (CamlPrimitive["caml_sys_getenv"]("LOGNAME"),tail);
-              }
+                      (CamlPrimitive["caml_sys_getenv"]("LOGNAME"),tail)}
             else
-             {throw exn;}
+             {throw exn}
             }
           }
         }
       catch(exn$1)
        {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
-         {return expand_path(Pervasives["^"](ch$1,"/"));}
+         {return expand_path(Pervasives["^"](ch$1,"/"))}
         else
-         {throw exn$1;}
+         {throw exn$1}
         }
       }
     else
-     {return ch$1;}
+     {return ch$1}
     };
 
 var
@@ -261,8 +252,7 @@ var
   function(name)
    {return Filename["is_relative"](name)
             ?Filename["concat"](Unix["getcwd"](/* () */0),name)
-            :name;
-    };
+            :name};
 
 module["exports"]=
 {"convert_address":convert_address,

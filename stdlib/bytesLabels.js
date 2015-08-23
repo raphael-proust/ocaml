@@ -1,70 +1,69 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
+var Bytes=require("./bytes.js");
 
 
-var include=Bytes;
+var make=Bytes["make"];
 
-var make=include[1];
+var init=Bytes["init"];
 
-var init=include[2];
+var empty=Bytes["empty"];
 
-var empty=include[3];
+var copy=Bytes["copy"];
 
-var copy=include[4];
+var of_string=Bytes["of_string"];
 
-var of_string=include[5];
+var to_string=Bytes["to_string"];
 
-var to_string=include[6];
+var sub=Bytes["sub"];
 
-var sub=include[7];
+var sub_string=Bytes["sub_string"];
 
-var sub_string=include[8];
+var fill=Bytes["fill"];
 
-var fill=include[10];
+var blit=Bytes["blit"];
 
-var blit=include[11];
+var concat=Bytes["concat"];
 
-var concat=include[13];
+var iter=Bytes["iter"];
 
-var iter=include[15];
+var iteri=Bytes["iteri"];
 
-var iteri=include[16];
+var map=Bytes["map"];
 
-var map=include[17];
+var mapi=Bytes["mapi"];
 
-var mapi=include[18];
+var trim=Bytes["trim"];
 
-var trim=include[19];
+var escaped=Bytes["escaped"];
 
-var escaped=include[20];
+var index=Bytes["index"];
 
-var index=include[21];
+var rindex=Bytes["rindex"];
 
-var rindex=include[22];
+var index_from=Bytes["index_from"];
 
-var index_from=include[23];
+var rindex_from=Bytes["rindex_from"];
 
-var rindex_from=include[24];
+var contains=Bytes["contains"];
 
-var contains=include[25];
+var contains_from=Bytes["contains_from"];
 
-var contains_from=include[26];
+var rcontains_from=Bytes["rcontains_from"];
 
-var rcontains_from=include[27];
+var uppercase=Bytes["uppercase"];
 
-var uppercase=include[28];
+var lowercase=Bytes["lowercase"];
 
-var lowercase=include[29];
+var capitalize=Bytes["capitalize"];
 
-var capitalize=include[30];
+var uncapitalize=Bytes["uncapitalize"];
 
-var uncapitalize=include[31];
+var compare=Bytes["compare"];
 
-var compare=include[32];
+var unsafe_to_string=Bytes["unsafe_to_string"];
 
-var unsafe_to_string=include[33];
-
-var unsafe_of_string=include[34];
+var unsafe_of_string=Bytes["unsafe_of_string"];
 
 module["exports"]=
 {"make":make,

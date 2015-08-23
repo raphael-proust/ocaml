@@ -1009,7 +1009,12 @@ var
      {switch(ty1)
        {case 0:
          if(typeof ty2==="number")
-          {switch(ty2){case 0:return /* End_of_fmtty */0}}
+          {switch(ty2)
+            {case 0:return /* End_of_fmtty */0;
+             default:
+              throw [0,
+                     CamlPrimitive["caml_global_data"]["Assert_failure"],
+                     [0,"camlinternalFormat.ml",816,23]]}}
          else
           {switch(ty2[0])
             {case 8:exit=335;break;
@@ -1149,7 +1154,7 @@ var
          break;
         case 8:
          if(typeof ty2==="number")
-          {switch(ty2){}}
+          {switch(ty2){default:exit=336;}}
          else
           {switch(ty2[0])
             {case 8:
@@ -1165,7 +1170,7 @@ var
          break;
         case 9:
          if(typeof ty2==="number")
-          {switch(ty2){}}
+          {switch(ty2){default:exit=334;}}
          else
           {switch(ty2[0])
             {case 8:exit=335;break;
@@ -1193,7 +1198,7 @@ var
          var exit$1;
          
          if(typeof ty2==="number")
-          {switch(ty2){}}
+          {switch(ty2){default:exit$1=346;}}
          else
           {switch(ty2[0])
             {case 10:return /* Alpha_ty */[10,trans(ty1[1],ty2[1])];
@@ -1208,7 +1213,7 @@ var
          break;
         case 11:
          if(typeof ty2==="number")
-          {switch(ty2){}}
+          {switch(ty2){default:exit=344;}}
          else
           {switch(ty2[0])
             {case 10:exit=345;break;
@@ -1217,7 +1222,7 @@ var
          break;
         case 12:
          if(typeof ty2==="number")
-          {switch(ty2){}}
+          {switch(ty2){default:exit=342;}}
          else
           {switch(ty2[0])
             {case 10:exit=345;break;
@@ -1227,7 +1232,7 @@ var
          break;
         case 13:
          if(typeof ty2==="number")
-          {switch(ty2){}}
+          {switch(ty2){default:exit=340;}}
          else
           {switch(ty2[0])
             {case 10:exit=345;break;
@@ -1238,7 +1243,7 @@ var
          break;
         case 14:
          if(typeof ty2==="number")
-          {switch(ty2){}}
+          {switch(ty2){default:exit=338;}}
          else
           {switch(ty2[0])
             {case 10:exit=345;break;
@@ -1466,7 +1471,7 @@ var
                  fmtty];
         case 1:
          if(typeof fmtty==="number")
-          {switch(fmtty){}}
+          {switch(fmtty){default:exit=300;}}
          else
           {switch(fmtty[0])
             {case 2:
@@ -1492,7 +1497,7 @@ var
        {var match$1=match[2];
         
         if(typeof match$1==="number")
-         {switch(match$1){}}
+         {switch(match$1){default:exit=298;}}
         else
          {switch(match$1[0])
            {case 2:
@@ -1537,7 +1542,7 @@ var
      {switch(fmt[0])
        {case 0:
          if(typeof fmtty==="number")
-          {switch(fmtty){}}
+          {switch(fmtty){default:exit=293;}}
          else
           {switch(fmtty[0])
             {case 0:
@@ -1548,7 +1553,7 @@ var
          break;
         case 1:
          if(typeof fmtty==="number")
-          {switch(fmtty){}}
+          {switch(fmtty){default:exit=293;}}
          else
           {switch(fmtty[0])
             {case 0:
@@ -1567,7 +1572,7 @@ var
          var exit$1;
          
          if(typeof match$3==="number")
-          {switch(match$3){}}
+          {switch(match$3){default:exit$1=286;}}
          else
           {switch(match$3[0])
             {case 1:
@@ -1588,7 +1593,7 @@ var
          var exit$2;
          
          if(typeof match$6==="number")
-          {switch(match$6){}}
+          {switch(match$6){default:exit$2=287;}}
          else
           {switch(match$6[0])
             {case 1:
@@ -1609,7 +1614,7 @@ var
          var exit$3;
          
          if(typeof match$9==="number")
-          {switch(match$9){}}
+          {switch(match$9){default:exit$3=288;}}
          else
           {switch(match$9[0])
             {case 2:
@@ -1630,7 +1635,7 @@ var
          var exit$4;
          
          if(typeof match$12==="number")
-          {switch(match$12){}}
+          {switch(match$12){default:exit$4=289;}}
          else
           {switch(match$12[0])
             {case 3:
@@ -1651,7 +1656,7 @@ var
          var exit$5;
          
          if(typeof match$15==="number")
-          {switch(match$15){}}
+          {switch(match$15){default:exit$5=290;}}
          else
           {switch(match$15[0])
             {case 4:
@@ -1676,7 +1681,7 @@ var
          var exit$6;
          
          if(typeof match$18==="number")
-          {switch(match$18){}}
+          {switch(match$18){default:exit$6=291;}}
          else
           {switch(match$18[0])
             {case 5:
@@ -1697,7 +1702,7 @@ var
          var exit$7;
          
          if(typeof match$21==="number")
-          {switch(match$21){}}
+          {switch(match$21){default:exit$7=292;}}
          else
           {switch(match$21[0])
             {case 6:
@@ -1712,7 +1717,7 @@ var
          break;
         case 9:
          if(typeof fmtty==="number")
-          {switch(fmtty){}}
+          {switch(fmtty){default:exit=293;}}
          else
           {switch(fmtty[0])
             {case 7:
@@ -1741,7 +1746,7 @@ var
                  match$26[2]];
         case 13:
          if(typeof fmtty==="number")
-          {switch(fmtty){}}
+          {switch(fmtty){default:exit=293;}}
          else
           {switch(fmtty[0])
             {case 8:
@@ -1762,7 +1767,7 @@ var
          break;
         case 14:
          if(typeof fmtty==="number")
-          {switch(fmtty){}}
+          {switch(fmtty){default:exit=293;}}
          else
           {switch(fmtty[0])
             {case 9:
@@ -1788,7 +1793,7 @@ var
          break;
         case 15:
          if(typeof fmtty==="number")
-          {switch(fmtty){}}
+          {switch(fmtty){default:exit=293;}}
          else
           {switch(fmtty[0])
             {case 10:
@@ -1801,7 +1806,7 @@ var
          break;
         case 16:
          if(typeof fmtty==="number")
-          {switch(fmtty){}}
+          {switch(fmtty){default:exit=293;}}
          else
           {switch(fmtty[0])
             {case 11:
@@ -1821,7 +1826,7 @@ var
         case 18:return type_formatting_gen(fmt[1],fmt[2],fmtty);
         case 19:
          if(typeof fmtty==="number")
-          {switch(fmtty){}}
+          {switch(fmtty){default:exit=293;}}
          else
           {switch(fmtty[0])
             {case 13:
@@ -1834,7 +1839,7 @@ var
          break;
         case 20:
          if(typeof fmtty==="number")
-          {switch(fmtty){}}
+          {switch(fmtty){default:exit=293;}}
          else
           {switch(fmtty[0])
             {case 1:
@@ -1847,7 +1852,7 @@ var
          break;
         case 21:
          if(typeof fmtty==="number")
-          {switch(fmtty){}}
+          {switch(fmtty){default:exit=293;}}
          else
           {switch(fmtty[0])
             {case 2:
@@ -1909,7 +1914,7 @@ var
          var exit;
          
          if(typeof fmtty==="number")
-          {switch(fmtty){}}
+          {switch(fmtty){default:exit=294;}}
          else
           {switch(fmtty[0])
             {case 14:
@@ -1976,7 +1981,7 @@ var
      {switch(sub_fmtty[0])
        {case 0:
          if(typeof fmtty==="number")
-          {switch(fmtty){}}
+          {switch(fmtty){default:exit=297;}}
          else
           {switch(fmtty[0])
             {case 0:
@@ -1989,7 +1994,7 @@ var
          break;
         case 1:
          if(typeof fmtty==="number")
-          {switch(fmtty){}}
+          {switch(fmtty){default:exit=297;}}
          else
           {switch(fmtty[0])
             {case 1:
@@ -2004,7 +2009,7 @@ var
          break;
         case 2:
          if(typeof fmtty==="number")
-          {switch(fmtty){}}
+          {switch(fmtty){default:exit=297;}}
          else
           {switch(fmtty[0])
             {case 2:
@@ -2019,7 +2024,7 @@ var
          break;
         case 3:
          if(typeof fmtty==="number")
-          {switch(fmtty){}}
+          {switch(fmtty){default:exit=297;}}
          else
           {switch(fmtty[0])
             {case 3:
@@ -2034,7 +2039,7 @@ var
          break;
         case 4:
          if(typeof fmtty==="number")
-          {switch(fmtty){}}
+          {switch(fmtty){default:exit=297;}}
          else
           {switch(fmtty[0])
             {case 4:
@@ -2049,7 +2054,7 @@ var
          break;
         case 5:
          if(typeof fmtty==="number")
-          {switch(fmtty){}}
+          {switch(fmtty){default:exit=297;}}
          else
           {switch(fmtty[0])
             {case 5:
@@ -2064,7 +2069,7 @@ var
          break;
         case 6:
          if(typeof fmtty==="number")
-          {switch(fmtty){}}
+          {switch(fmtty){default:exit=297;}}
          else
           {switch(fmtty[0])
             {case 6:
@@ -2079,7 +2084,7 @@ var
          break;
         case 7:
          if(typeof fmtty==="number")
-          {switch(fmtty){}}
+          {switch(fmtty){default:exit=297;}}
          else
           {switch(fmtty[0])
             {case 7:
@@ -2094,7 +2099,7 @@ var
          break;
         case 8:
          if(typeof fmtty==="number")
-          {switch(fmtty){}}
+          {switch(fmtty){default:exit=297;}}
          else
           {switch(fmtty[0])
             {case 8:
@@ -2117,7 +2122,7 @@ var
          break;
         case 9:
          if(typeof fmtty==="number")
-          {switch(fmtty){}}
+          {switch(fmtty){default:exit=297;}}
          else
           {switch(fmtty[0])
             {case 9:
@@ -2168,7 +2173,7 @@ var
          break;
         case 10:
          if(typeof fmtty==="number")
-          {switch(fmtty){}}
+          {switch(fmtty){default:exit=297;}}
          else
           {switch(fmtty[0])
             {case 10:
@@ -2183,7 +2188,7 @@ var
          break;
         case 11:
          if(typeof fmtty==="number")
-          {switch(fmtty){}}
+          {switch(fmtty){default:exit=297;}}
          else
           {switch(fmtty[0])
             {case 11:
@@ -2199,7 +2204,7 @@ var
         case 12:exit=297;break;
         case 13:
          if(typeof fmtty==="number")
-          {switch(fmtty){}}
+          {switch(fmtty){default:exit=297;}}
          else
           {switch(fmtty[0])
             {case 13:
@@ -2214,7 +2219,7 @@ var
          break;
         case 14:
          if(typeof fmtty==="number")
-          {switch(fmtty){}}
+          {switch(fmtty){default:exit=297;}}
          else
           {switch(fmtty[0])
             {case 14:
@@ -3245,20 +3250,21 @@ var
       
       var match=exp_end!==len?invalid_box(/* () */0):0;
       
+      var box_type;
       var exit;
       
       switch(box_name)
        {case "":exit=178;break;
         case "b":exit=178;break;
-        case "h":var box_type=/* Pp_hbox */0;break;
-        case "hov":var box_type=/* Pp_hovbox */3;break;
-        case "hv":var box_type=/* Pp_hvbox */2;break;
-        case "v":var box_type=/* Pp_vbox */1;break;
+        case "h":box_type=/* Pp_hbox */0;break;
+        case "hov":box_type=/* Pp_hovbox */3;break;
+        case "hv":box_type=/* Pp_hvbox */2;break;
+        case "v":box_type=/* Pp_vbox */1;break;
         default:exit=179;}
       
       switch(exit)
-       {case 179:var box_type=invalid_box(/* () */0);break;
-        case 178:var box_type=/* Pp_box */4;break
+       {case 179:box_type=invalid_box(/* () */0);break;
+        case 178:box_type=/* Pp_box */4;break
         }
       
       return /* tuple */[0,indent,box_type]}
@@ -3881,9 +3887,9 @@ var
                       :/* None */0
                     :/* Some */[0,match[1]]};
         
+        var fmt_result;
         var exit;
         
-        var fmt_result;
         if(symb>=124)
          {exit=63;}
         else
@@ -4221,7 +4227,6 @@ var
            
            var fmt_rest$9=match$18[1];
            
-           var fmt_result;
            if(get_ign(/* () */0))
             {var ignored$6=/* Ignored_int */[2,iconv,get_pad_opt(95)];
              
@@ -4233,9 +4238,9 @@ var
              
              var match$20=get_prec(/* () */0);
              
+             var pad$3;
              var exit$1;
              
-             var pad$3;
              if(typeof match$20==="number")
               {if(match$20!==0){exit$1=36;}else{pad$3=match$19;}}
              else
@@ -4244,26 +4249,24 @@ var
              switch(exit$1)
               {case 36:
                 if(typeof match$19==="number")
-                 {switch(match$19){case 0:var pad$3=/* No_padding */0;break}}
+                 {switch(match$19){case 0:pad$3=/* No_padding */0;break}}
                 else
                  {switch(match$19[0])
                    {case 0:
-                     var
-                      pad$3=
-                       match$19[1]>=2
-                        ?legacy_behavior$1
-                          ?/* Lit_padding */[0,/* Right */1,match$19[2]]
-                          :incompatible_flag(pct_ind,str_ind,48,"precision")
-                        :match$19;
+                     pad$3=
+                     match$19[1]>=2
+                      ?legacy_behavior$1
+                        ?/* Lit_padding */[0,/* Right */1,match$19[2]]
+                        :incompatible_flag(pct_ind,str_ind,48,"precision")
+                      :match$19;
                      break;
                     case 1:
-                     var
-                      pad$3=
-                       match$19[1]>=2
-                        ?legacy_behavior$1
-                          ?[/* Arg_padding */1,/* Right */1]
-                          :incompatible_flag(pct_ind,str_ind,48,"precision")
-                        :match$19;
+                     pad$3=
+                     match$19[1]>=2
+                      ?legacy_behavior$1
+                        ?[/* Arg_padding */1,/* Right */1]
+                        :incompatible_flag(pct_ind,str_ind,48,"precision")
+                      :match$19;
                      break
                     }}
                 break
@@ -4279,7 +4282,6 @@ var
              }
            break;
           case 65:
-           var fmt_result;
            if(str_ind===end_ind||!is_int_base(str["charCodeAt"](str_ind)))
             {var match$22=parse(str_ind,end_ind);
              
@@ -4312,7 +4314,6 @@ var
            
            var fmt_rest$11=match$23[1];
            
-           var fmt_result;
            if(get_ign(/* () */0))
             {var
               ignored$8=
@@ -4337,52 +4338,48 @@ var
            
            var fmt_rest$12=match$25[1];
            
-           var
-            fmt_result=
-             get_ign(/* () */0)
-              ?/* Fmt_EBB */[0,
-                /* Ignored_param */[23,/* Ignored_bool */2,fmt_rest$12]]
-              :/* Fmt_EBB */[0,/* Bool */[9,fmt_rest$12]];
+           fmt_result=
+           get_ign(/* () */0)
+            ?/* Fmt_EBB */[0,
+              /* Ignored_param */[23,/* Ignored_bool */2,fmt_rest$12]]
+            :/* Fmt_EBB */[0,/* Bool */[9,fmt_rest$12]];
            break;
           case 68:
            var match$26=parse(str_ind,end_ind);
            
-           var
-            fmt_result=
-             /* Fmt_EBB */[0,/* Char_literal */[12,symb,match$26[1]]];
+           fmt_result=
+           /* Fmt_EBB */[0,/* Char_literal */[12,symb,match$26[1]]];
            break;
           case 69:
-           var
-            fmt_result=
-             failwith_message
-              ([/* Format */0,
+           fmt_result=
+           failwith_message
+            ([/* Format */0,
+              [/* String_literal */11,
+               "invalid format ",
+               [/* Caml_string */3,
+                /* No_padding */0,
                 [/* String_literal */11,
-                 "invalid format ",
-                 [/* Caml_string */3,
+                 ": at character number ",
+                 [/* Int */4,
+                  /* Int_d */0,
                   /* No_padding */0,
+                  /* No_precision */0,
                   [/* String_literal */11,
-                   ": at character number ",
-                   [/* Int */4,
-                    /* Int_d */0,
-                    /* No_padding */0,
-                    /* No_precision */0,
+                   ", flag ",
+                   [/* Caml_char */1,
                     [/* String_literal */11,
-                     ", flag ",
-                     [/* Caml_char */1,
+                     " is only allowed after the '",
+                     [/* Char_literal */12,
+                      37,
                       [/* String_literal */11,
-                       " is only allowed after the '",
-                       [/* Char_literal */12,
-                        37,
-                        [/* String_literal */11,
-                         "', before padding and precision",
-                         /* End_of_format */0]]]]]]]]],
-                "invalid format %S: at character number %d, flag %C is only allowed after the '%%', before padding and precision"],
-               str,
-               pct_ind,
-               symb);
+                       "', before padding and precision",
+                       /* End_of_format */0]]]]]]]]],
+              "invalid format %S: at character number %d, flag %C is only allowed after the '%%', before padding and precision"],
+             str,
+             pct_ind,
+             symb);
            break;
           case 63:
-           var fmt_result;
            if(symb>=108)
             {if(symb>=111)
               {exit=62;}
@@ -4507,29 +4504,28 @@ var
              }
            break;
           case 62:
-           var
-            fmt_result=
-             failwith_message
-              ([/* Format */0,
+           fmt_result=
+           failwith_message
+            ([/* Format */0,
+              [/* String_literal */11,
+               "invalid format ",
+               [/* Caml_string */3,
+                /* No_padding */0,
                 [/* String_literal */11,
-                 "invalid format ",
-                 [/* Caml_string */3,
+                 ": at character number ",
+                 [/* Int */4,
+                  /* Int_d */0,
                   /* No_padding */0,
+                  /* No_precision */0,
                   [/* String_literal */11,
-                   ": at character number ",
-                   [/* Int */4,
-                    /* Int_d */0,
-                    /* No_padding */0,
-                    /* No_precision */0,
-                    [/* String_literal */11,
-                     ', invalid conversion "',
-                     [/* Char_literal */12,
-                      37,
-                      [/* Char */0,[/* Char_literal */12,34,/* End_of_format */0]]]]]]]],
-                'invalid format %S: at character number %d, invalid conversion "%%%c"'],
-               str,
-               str_ind-1,
-               symb);
+                   ', invalid conversion "',
+                   [/* Char_literal */12,
+                    37,
+                    [/* Char */0,[/* Char_literal */12,34,/* End_of_format */0]]]]]]]],
+              'invalid format %S: at character number %d, invalid conversion "%%%c"'],
+             str,
+             str_ind-1,
+             symb);
            break
           }
         
@@ -4723,7 +4719,7 @@ var
        {var exit;
         
         if(typeof fmt==="number")
-         {switch(fmt){}}
+         {switch(fmt){default:exit=93;}}
         else
          {switch(fmt[0])
            {case 11:

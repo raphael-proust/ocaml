@@ -355,7 +355,7 @@ var
         
         var $js=queue_elem[2];
         if(typeof $js==="number")
-         {switch($js){}}
+         {switch($js){default:exit=194;}}
         else
          {switch($js[0])
            {case 1:exit=193;break;
@@ -1035,6 +1035,16 @@ var
  output_acc=
   function(ppf,acc)
    {var exit;
+    var p;
+    var size;
+    var s;
+    var p$1;
+    var size$1;
+    var c;
+    var p$2;
+    var s$1;
+    var p$3;
+    var c$1;
     
     if(typeof acc==="number")
      {switch(acc){case 0:return /* () */0}}
@@ -1045,14 +1055,14 @@ var
         case 1:
          var match=acc[2];
          
-         var p=acc[1];
+         var p$4=acc[1];
          
          switch(match[0])
           {case 0:
-            output_acc(ppf,p);
+            output_acc(ppf,p$4);
             return pp_open_tag(ppf,compute_tag(output_acc,match[1]));
            case 1:
-            var match$1=output_acc(ppf,p);
+            var match$1=output_acc(ppf,p$4);
             
             var
              match$2=
@@ -1063,68 +1073,50 @@ var
            }
          break;
         case 2:
-         var p$1=acc[1];
+         var p$5=acc[1];
          
          var exit$1;
          
-         if(typeof p$1==="number")
-          {switch(p$1){}}
+         if(typeof p$5==="number")
+          {switch(p$5){default:exit$1=36;}}
          else
-          {switch(p$1[0])
+          {switch(p$5[0])
             {case 0:
-              var match$3=p$1[2];
+              var match$3=p$5[2];
               
               if(typeof match$3==="number")
-               {switch(match$3){}}
+               {switch(match$3){default:exit$1=36;}}
               else
                {switch(match$3[0])
-                 {case 1:
-                   var p$2=p$1[1];
-                   
-                   var size=match$3[2];
-                   
-                   var s=acc[2];
-                   
-                   exit=32;
-                   
-                   break;
+                 {case 1:p=p$5[1];size=match$3[2];s=acc[2];exit=32;break;
                   default:exit$1=36;}}
               break;
              default:exit$1=36;}}
          
-         switch(exit$1){case 36:var p$3=p$1;var s$1=acc[2];exit=34;break}
+         switch(exit$1){case 36:p$2=p$5;s$1=acc[2];exit=34;break}
          break;
         case 3:
-         var p$4=acc[1];
+         var p$6=acc[1];
          
          var exit$2;
          
-         if(typeof p$4==="number")
-          {switch(p$4){}}
+         if(typeof p$6==="number")
+          {switch(p$6){default:exit$2=38;}}
          else
-          {switch(p$4[0])
+          {switch(p$6[0])
             {case 0:
-              var match$4=p$4[2];
+              var match$4=p$6[2];
               
               if(typeof match$4==="number")
-               {switch(match$4){}}
+               {switch(match$4){default:exit$2=38;}}
               else
                {switch(match$4[0])
-                 {case 1:
-                   var p$5=p$4[1];
-                   
-                   var size$1=match$4[2];
-                   
-                   var c=acc[2];
-                   
-                   exit=33;
-                   
-                   break;
+                 {case 1:p$1=p$6[1];size$1=match$4[2];c=acc[2];exit=33;break;
                   default:exit$2=38;}}
               break;
              default:exit$2=38;}}
          
-         switch(exit$2){case 38:var p$6=p$4;var c$1=acc[2];exit=35;break}
+         switch(exit$2){case 38:p$3=p$6;c$1=acc[2];exit=35;break}
          break;
         case 4:
          var p$7=acc[1];
@@ -1132,31 +1124,22 @@ var
          var exit$3;
          
          if(typeof p$7==="number")
-          {switch(p$7){}}
+          {switch(p$7){default:exit$3=37;}}
          else
           {switch(p$7[0])
             {case 0:
               var match$5=p$7[2];
               
               if(typeof match$5==="number")
-               {switch(match$5){}}
+               {switch(match$5){default:exit$3=37;}}
               else
                {switch(match$5[0])
-                 {case 1:
-                   var p$2=p$7[1];
-                   
-                   var size=match$5[2];
-                   
-                   var s=acc[2];
-                   
-                   exit=32;
-                   
-                   break;
+                 {case 1:p=p$7[1];size=match$5[2];s=acc[2];exit=32;break;
                   default:exit$3=37;}}
               break;
              default:exit$3=37;}}
          
-         switch(exit$3){case 37:var p$3=p$7;var s$1=acc[2];exit=34;break}
+         switch(exit$3){case 37:p$2=p$7;s$1=acc[2];exit=34;break}
          break;
         case 5:
          var p$8=acc[1];
@@ -1164,31 +1147,22 @@ var
          var exit$4;
          
          if(typeof p$8==="number")
-          {switch(p$8){}}
+          {switch(p$8){default:exit$4=39;}}
          else
           {switch(p$8[0])
             {case 0:
               var match$6=p$8[2];
               
               if(typeof match$6==="number")
-               {switch(match$6){}}
+               {switch(match$6){default:exit$4=39;}}
               else
                {switch(match$6[0])
-                 {case 1:
-                   var p$5=p$8[1];
-                   
-                   var size$1=match$6[2];
-                   
-                   var c=acc[2];
-                   
-                   exit=33;
-                   
-                   break;
+                 {case 1:p$1=p$8[1];size$1=match$6[2];c=acc[2];exit=33;break;
                   default:exit$4=39;}}
               break;
              default:exit$4=39;}}
          
-         switch(exit$4){case 39:var p$6=p$8;var c$1=acc[2];exit=35;break}
+         switch(exit$4){case 39:p$3=p$8;c$1=acc[2];exit=35;break}
          break;
         case 6:output_acc(ppf,acc[1]);return acc[2](ppf);
         case 7:output_acc(ppf,acc[1]);return pp_print_flush(ppf,/* () */0);
@@ -1196,12 +1170,12 @@ var
         }}
     
     switch(exit)
-     {case 32:output_acc(ppf,p$2);return pp_print_as_size(ppf,size,s);
+     {case 32:output_acc(ppf,p);return pp_print_as_size(ppf,size,s);
       case 33:
-       output_acc(ppf,p$5);
+       output_acc(ppf,p$1);
        return pp_print_as_size(ppf,size$1,$$String["make"](1,c));
-      case 34:output_acc(ppf,p$3);return pp_print_string(ppf,s$1);
-      case 35:output_acc(ppf,p$6);return pp_print_char(ppf,c$1)
+      case 34:output_acc(ppf,p$2);return pp_print_string(ppf,s$1);
+      case 35:output_acc(ppf,p$3);return pp_print_char(ppf,c$1)
       }
     };
 
@@ -1209,6 +1183,16 @@ var
  strput_acc=
   function(ppf,acc)
    {var exit;
+    var p;
+    var size;
+    var s;
+    var p$1;
+    var size$1;
+    var c;
+    var p$2;
+    var s$1;
+    var p$3;
+    var c$1;
     
     if(typeof acc==="number")
      {switch(acc){case 0:return /* () */0}}
@@ -1219,14 +1203,14 @@ var
         case 1:
          var match=acc[2];
          
-         var p=acc[1];
+         var p$4=acc[1];
          
          switch(match[0])
           {case 0:
-            strput_acc(ppf,p);
+            strput_acc(ppf,p$4);
             return pp_open_tag(ppf,compute_tag(strput_acc,match[1]));
            case 1:
-            var match$1=strput_acc(ppf,p);
+            var match$1=strput_acc(ppf,p$4);
             
             var
              match$2=
@@ -1237,68 +1221,50 @@ var
            }
          break;
         case 2:
-         var p$1=acc[1];
+         var p$5=acc[1];
          
          var exit$1;
          
-         if(typeof p$1==="number")
-          {switch(p$1){}}
+         if(typeof p$5==="number")
+          {switch(p$5){default:exit$1=26;}}
          else
-          {switch(p$1[0])
+          {switch(p$5[0])
             {case 0:
-              var match$3=p$1[2];
+              var match$3=p$5[2];
               
               if(typeof match$3==="number")
-               {switch(match$3){}}
+               {switch(match$3){default:exit$1=26;}}
               else
                {switch(match$3[0])
-                 {case 1:
-                   var p$2=p$1[1];
-                   
-                   var size=match$3[2];
-                   
-                   var s=acc[2];
-                   
-                   exit=21;
-                   
-                   break;
+                 {case 1:p=p$5[1];size=match$3[2];s=acc[2];exit=21;break;
                   default:exit$1=26;}}
               break;
              default:exit$1=26;}}
          
-         switch(exit$1){case 26:var p$3=p$1;var s$1=acc[2];exit=23;break}
+         switch(exit$1){case 26:p$2=p$5;s$1=acc[2];exit=23;break}
          break;
         case 3:
-         var p$4=acc[1];
+         var p$6=acc[1];
          
          var exit$2;
          
-         if(typeof p$4==="number")
-          {switch(p$4){}}
+         if(typeof p$6==="number")
+          {switch(p$6){default:exit$2=28;}}
          else
-          {switch(p$4[0])
+          {switch(p$6[0])
             {case 0:
-              var match$4=p$4[2];
+              var match$4=p$6[2];
               
               if(typeof match$4==="number")
-               {switch(match$4){}}
+               {switch(match$4){default:exit$2=28;}}
               else
                {switch(match$4[0])
-                 {case 1:
-                   var p$5=p$4[1];
-                   
-                   var size$1=match$4[2];
-                   
-                   var c=acc[2];
-                   
-                   exit=22;
-                   
-                   break;
+                 {case 1:p$1=p$6[1];size$1=match$4[2];c=acc[2];exit=22;break;
                   default:exit$2=28;}}
               break;
              default:exit$2=28;}}
          
-         switch(exit$2){case 28:var p$6=p$4;var c$1=acc[2];exit=24;break}
+         switch(exit$2){case 28:p$3=p$6;c$1=acc[2];exit=24;break}
          break;
         case 4:
          var p$7=acc[1];
@@ -1306,31 +1272,22 @@ var
          var exit$3;
          
          if(typeof p$7==="number")
-          {switch(p$7){}}
+          {switch(p$7){default:exit$3=27;}}
          else
           {switch(p$7[0])
             {case 0:
               var match$5=p$7[2];
               
               if(typeof match$5==="number")
-               {switch(match$5){}}
+               {switch(match$5){default:exit$3=27;}}
               else
                {switch(match$5[0])
-                 {case 1:
-                   var p$2=p$7[1];
-                   
-                   var size=match$5[2];
-                   
-                   var s=acc[2];
-                   
-                   exit=21;
-                   
-                   break;
+                 {case 1:p=p$7[1];size=match$5[2];s=acc[2];exit=21;break;
                   default:exit$3=27;}}
               break;
              default:exit$3=27;}}
          
-         switch(exit$3){case 27:var p$3=p$7;var s$1=acc[2];exit=23;break}
+         switch(exit$3){case 27:p$2=p$7;s$1=acc[2];exit=23;break}
          break;
         case 5:
          var p$8=acc[1];
@@ -1338,31 +1295,22 @@ var
          var exit$4;
          
          if(typeof p$8==="number")
-          {switch(p$8){}}
+          {switch(p$8){default:exit$4=29;}}
          else
           {switch(p$8[0])
             {case 0:
               var match$6=p$8[2];
               
               if(typeof match$6==="number")
-               {switch(match$6){}}
+               {switch(match$6){default:exit$4=29;}}
               else
                {switch(match$6[0])
-                 {case 1:
-                   var p$5=p$8[1];
-                   
-                   var size$1=match$6[2];
-                   
-                   var c=acc[2];
-                   
-                   exit=22;
-                   
-                   break;
+                 {case 1:p$1=p$8[1];size$1=match$6[2];c=acc[2];exit=22;break;
                   default:exit$4=29;}}
               break;
              default:exit$4=29;}}
          
-         switch(exit$4){case 29:var p$6=p$8;var c$1=acc[2];exit=24;break}
+         switch(exit$4){case 29:p$3=p$8;c$1=acc[2];exit=24;break}
          break;
         case 6:
          var p$9=acc[1];
@@ -1370,14 +1318,14 @@ var
          var exit$5;
          
          if(typeof p$9==="number")
-          {switch(p$9){}}
+          {switch(p$9){default:exit$5=25;}}
          else
           {switch(p$9[0])
             {case 0:
               var match$7=p$9[2];
               
               if(typeof match$7==="number")
-               {switch(match$7){}}
+               {switch(match$7){default:exit$5=25;}}
               else
                {switch(match$7[0])
                  {case 1:
@@ -1397,12 +1345,12 @@ var
         }}
     
     switch(exit)
-     {case 21:strput_acc(ppf,p$2);return pp_print_as_size(ppf,size,s);
+     {case 21:strput_acc(ppf,p);return pp_print_as_size(ppf,size,s);
       case 22:
-       strput_acc(ppf,p$5);
+       strput_acc(ppf,p$1);
        return pp_print_as_size(ppf,size$1,$$String["make"](1,c));
-      case 23:strput_acc(ppf,p$3);return pp_print_string(ppf,s$1);
-      case 24:strput_acc(ppf,p$6);return pp_print_char(ppf,c$1)
+      case 23:strput_acc(ppf,p$2);return pp_print_string(ppf,s$1);
+      case 24:strput_acc(ppf,p$3);return pp_print_char(ppf,c$1)
       }
     };
 

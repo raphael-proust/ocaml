@@ -427,11 +427,11 @@ var
 var
  token_int_literal=
   function(conv,ib)
-   {var exit;
+   {var tok;
+    var exit;
     
     var switcher=-88+conv;
     
-    var tok;
     if(32<switcher>>>0)
      {exit=228;}
     else
@@ -477,8 +477,8 @@ var
        throw [0,
               CamlPrimitive["caml_global_data"]["Assert_failure"],
               [0,"scanf.ml",507,11]];
-      case 226:var tok=Scanning[10](ib);break;
-      case 227:var tok=Pervasives["^"]("0x",Scanning[10](ib));break
+      case 226:tok=Scanning[10](ib);break;
+      case 227:tok=Pervasives["^"]("0x",Scanning[10](ib));break
       }
     
     var l=tok["length"];
@@ -988,10 +988,10 @@ var
               (Printf["sprintf"]
                 ([/* Format */0,
                   [/* String_literal */11,
-                   "bad character decimal encoding \",
+                   "bad character decimal encoding \\",
                    [/* Char */0,
                     [/* Char */0,[/* Char */0,/* End_of_format */0]]]],
-                  "bad character decimal encoding \%c%c%c"],
+                  "bad character decimal encoding \\%c%c%c"],
                  c0,
                  c1,
                  c2))
@@ -1011,9 +1011,9 @@ var
               (Printf["sprintf"]
                 ([/* Format */0,
                   [/* String_literal */11,
-                   "bad character hexadecimal encoding \",
+                   "bad character hexadecimal encoding \\",
                    [/* Char */0,[/* Char */0,/* End_of_format */0]]],
-                  "bad character hexadecimal encoding \%c%c"],
+                  "bad character hexadecimal encoding \\%c%c"],
                  c1,
                  c2))
             :Pervasives["char_of_int"](c)};
@@ -1278,12 +1278,13 @@ var
  scanf_bad_input=
   function(ib,x)
    {var exit;
+    var s;
     
     if(x[1]===Scan_failure)
-     {var s=x[2];exit=91;}
+     {s=x[2];exit=91;}
     else
      {if(x[1]===CamlPrimitive["caml_global_data"]["Failure"])
-       {var s=x[2];exit=91;}
+       {s=x[2];exit=91;}
       else
        {throw x}
       }
@@ -1512,7 +1513,7 @@ var
          var exit;
          
          if(typeof rest==="number")
-          {switch(rest){}}
+          {switch(rest){default:exit=67;}}
          else
           {switch(rest[0])
             {case 17:
@@ -1765,7 +1766,7 @@ var
          var exit$1;
          
          if(typeof rest$1==="number")
-          {switch(rest$1){}}
+          {switch(rest$1){default:exit$1=69;}}
          else
           {switch(rest$1[0])
             {case 17:

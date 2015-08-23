@@ -30,8 +30,7 @@ var
                 /* No_precision */0,
                 [/* Char_literal */12,65,/* End_of_format */0]]],
               "\x1b[%dA"],
-             n);
-    };
+             n)};
 
 var
  clear_to_eol=
@@ -40,8 +39,7 @@ var
             (oc,
              [/* Format */0,
               [/* String_literal */11,"\x1b[K",/* End_of_format */0],
-              "\x1b[K"]);
-    };
+              "\x1b[K"])};
 
 var
  bol=
@@ -50,8 +48,7 @@ var
             (oc,
              [/* Format */0,
               [/* Char_literal */12,13,/* End_of_format */0],
-              "\r"]);
-    };
+              "\r"])};
 
 var
  get_columns=
@@ -59,17 +56,16 @@ var
    {if(CamlPrimitive["caml_string_equal"](Sys["os_type"],"Unix"))
      {try
        {return CamlPrimitive["caml_int_of_string"]
-                (My_std["String"][2](My_unix["run_and_read"]("tput cols")));
-        }
+                (My_std["String"][2](My_unix["run_and_read"]("tput cols")))}
       catch(exn)
        {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
-         {return 80;}
+         {return 80}
         else
-         {throw exn;}
+         {throw exn}
         }
       }
     else
-     {return 80;}
+     {return 80}
     };
 
 var ANSI=[0,up,clear_to_eol,bol,get_columns];
@@ -110,7 +106,7 @@ var ticker_chars=3;
 
 var ticker_period=0.25;
 
-var ticker_animation=[/* array */0,"\","|","/","-"];
+var ticker_animation=[/* array */0,"\\","|","/","-"];
 
 var cached="*";
 
@@ -121,7 +117,7 @@ var cache_chars=1;
 var
  create_tagline=
   function(description)
-   {return Bytes["make"](My_std["List"][5](description),45);};
+   {return Bytes["make"](My_std["List"][5](description),45)};
 
 var
  create=
@@ -218,8 +214,7 @@ var
             channel,
             Format["formatter_of_out_channel"](channel),
             display_line,
-            /* false */0];
-    };
+            /* false */0]};
 
 var
  print_time=
@@ -255,19 +250,15 @@ var
               "%02d:%02d:%02d"],
              h,
              m,
-             s);
-    };
+             s)};
 
 var
  print_shortened_pathname=
   function(length,oc,u)
-   {if(length>=3)
-     {}
-    else
+   {if(!(length>=3))
      {throw [0,
              CamlPrimitive["caml_global_data"]["Assert_failure"],
-             [0,"display.ml",175,2]];
-      }
+             [0,"display.ml",175,2]]}
     
     var m=u["length"];
     
@@ -281,16 +272,14 @@ var
                  /* End_of_format */0],
                 "%*s"],
                length-m,
-               "");
-      }
+               "")}
     else
      {var n=dots["length"];
       
       var k=length-n;
       
       Pervasives["output_string"](oc,dots);
-      return Pervasives["output_substring"](oc,u,m-k,k);
-      }
+      return Pervasives["output_substring"](oc,u,m-k,k)}
     };
 
 var
@@ -361,12 +350,11 @@ var
               [/* Alpha */15,[/* Flush */10,/* End_of_format */0]],
               "%a%!"],
              ANSI[2],
-             /* () */0);
-    };
+             /* () */0)};
 
 var
  redraw=
-  function(param){return param?redraw_sophisticated(param[1]):/* () */0;};
+  function(param){return param?redraw_sophisticated(param[1]):/* () */0};
 
 var
  finish_sophisticated=
@@ -438,8 +426,7 @@ var
                ANSI[3],
                /* () */0,
                ANSI[2],
-               /* () */0);
-    };
+               /* () */0)};
 
 var
  sophisticated_display=
@@ -453,21 +440,19 @@ var
       /* () */0,
       ANSI[2],
       /* () */0);
-    return f(ds[1]);
-    };
+    return f(ds[1])};
 
 var
  call_if=
-  function(log_channel,f){return log_channel?f(log_channel[1]):/* () */0;};
+  function(log_channel,f){return log_channel?f(log_channel[1]):/* () */0};
 
 var
  display=
   function(di,f)
-   {call_if(di[2],function(param){return f(param[2]);});
+   {call_if(di[2],function(param){return f(param[2])});
     var match=di[5];
     
-    return match?sophisticated_display(match[1],f):f(di[3]);
-    };
+    return match?sophisticated_display(match[1],f):f(di[3])};
 
 var
  finish=
@@ -494,14 +479,12 @@ var
              "# Compilation %ssuccessful.@."],
             how===/* Error */106380200?"un":"");
           Pervasives["close_out"](param[2]);
-          return di[2]=/* None */0,0;
-          });
+          return di[2]=/* None */0,0});
       var match=di[5];
       
-      return match?finish_sophisticated(/* Some */[0,how],match[1]):/* () */0;
-      }
+      return match?finish_sophisticated(/* Some */[0,how],match[1]):/* () */0}
     else
-     {return 0;}
+     {return 0}
     };
 
 var
@@ -527,14 +510,12 @@ var
              ?(tagline[i]=Char["lowercase"](c),0)
              :(tagline[i]=45,0);
           
-          return loop(i+1,param[2]);
-          }
+          return loop(i+1,param[2])}
         else
-         {for(var j=i;j<=tagline["length"]-1;j++){tagline[j]=45}return 0;}
+         {for(var j=i;j<=tagline["length"]-1;j++){tagline[j]=45}return 0}
         };
     
-    return loop(0,ds[15]);
-    };
+    return loop(0,ds[15])};
 
 var
  update_sophisticated=
@@ -546,10 +527,9 @@ var
     if(dt>ds[8])
      {if(ds[7]){update_tagline_from_tags(ds),ds[7]=/* false */0,0}
       
-      return redraw_sophisticated(ds);
-      }
+      return redraw_sophisticated(ds)}
     else
-     {return /* () */0;}
+     {return /* () */0}
     };
 
 var
@@ -563,8 +543,7 @@ var
     
     ds[5]=cached;
     ds[13]=Tags["union"](ds[13],ds[6]);
-    return update_sophisticated(ds);
-    };
+    return update_sophisticated(ds)};
 
 var
  print_tags=
@@ -589,15 +568,13 @@ var
                             ", ",
                             [/* String */2,/* No_padding */0,/* End_of_format */0]],
                            ", %s"],
-                          tag);
-               },
-             tags);
-    };
+                          tag)},
+             tags)};
 
 var
  update=
   function(di)
-   {var match=di[5];return match?update_sophisticated(match[1]):/* () */0;};
+   {var match=di[5];return match?update_sophisticated(match[1]):/* () */0};
 
 var
  $$event=
@@ -636,16 +613,14 @@ var
                      /* End_of_format */0]]],
                   "%s%s@."],
                  command,
-                 pretend?" # cached":"");
-        });
+                 pretend?" # cached":"")});
     var match=di[5];
     
     if(match)
      {var ds=match[1];
       
       set_target_sophisticated(ds,target,tags,pretend);
-      return update_sophisticated(ds);
-      }
+      return update_sophisticated(ds)}
     else
      {if(pretend)
        {var command$1=Filename["basename"](command);
@@ -663,8 +638,7 @@ var
                        [/* Flush */10,/* End_of_format */0]]]],
                     "[cache hit] %s\n%!"],
                    command$1)
-                :0;
-        }
+                :0}
       else
        {return di[1]>=1
                 ?Format["fprintf"]
@@ -677,8 +651,7 @@ var
                       [/* Flush */10,/* End_of_format */0]]],
                     "%s\n%!"],
                    command)
-                :0;
-        }
+                :0}
       }
     };
 
@@ -688,25 +661,23 @@ var
    {var log_level=$staropt$star?$staropt$star[1]:1;
     
     if(log_level>di[1])
-     {return Discard_printf["discard_printf"](fmt);}
+     {return Discard_printf["discard_printf"](fmt)}
     else
      {var match=di[5];
       
       if(match)
        {if(log_level<0)
-         {display(di,function(prim){return prim;});
-          return Format["fprintf"](di[4],fmt);
-          }
+         {display(di,function(prim){return prim});
+          return Format["fprintf"](di[4],fmt)}
         else
          {var match$1=di[2];
           
           return match$1
                   ?Format["fprintf"](match$1[1][1],fmt)
-                  :Discard_printf["discard_printf"](fmt);
-          }
+                  :Discard_printf["discard_printf"](fmt)}
         }
       else
-       {return Format["fprintf"](di[4],fmt);}
+       {return Format["fprintf"](di[4],fmt)}
       }
     };
 

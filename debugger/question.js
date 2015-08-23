@@ -35,22 +35,19 @@ var
                         Pervasives["print_newline"](/* () */0),
                         ask(/* () */0))
                       :/* true */1
-                    :/* false */0;
-            };
+                    :/* false */0};
         
         var answer=ask(/* () */0);
         
         Input_handling["current_prompt"][1]=old_prompt;
-        return answer;
-        }
+        return answer}
       catch(x)
        {Input_handling["current_prompt"][1]=old_prompt;
         Input_handling["stop_user_input"](/* () */0);
-        throw x;
-        }
+        throw x}
       }
     else
-     {return /* false */0;}
+     {return /* false */0}
     };
 
 module["exports"]={"yes_or_no":yes_or_no};

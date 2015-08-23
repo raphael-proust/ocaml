@@ -16,8 +16,7 @@ var
  add_suffix=
   function(s)
    {return My_std["List"][16]
-            (function(x){return Pathname["Operators"][2](x,s);});
-    };
+            (function(x){return Pathname["Operators"][2](x,s)})};
 
 var
  ocamldep_command$prime=
@@ -34,8 +33,7 @@ var
               /* :: */[0,
                Ocaml_utils["ocaml_ppflags"]
                 (Tags["Operators"][1](tags,"pp:dep")),
-               [/* :: */0,[/* A */1,"-modules"],/* [] */0]]]]];
-    };
+               [/* :: */0,[/* A */1,"-modules"],/* [] */0]]]]]};
 
 var
  menhir_ocamldep_command$prime=
@@ -62,8 +60,7 @@ var
                    menhir_spec,
                    /* :: */[0,
                     [/* Sh */4,">"],
-                    /* :: */[0,/* Px */[3,out],/* [] */0]]]]]]]]]];
-    };
+                    /* :: */[0,/* Px */[3,out],/* [] */0]]]]]]]]]]};
 
 var
  menhir_ocamldep_command=
@@ -78,8 +75,7 @@ var
        (Tags["Operators"][1](Tools["tags_of_pathname"](arg$1),"ocaml"),
         "menhir_ocamldep");
     
-    return menhir_ocamldep_command$prime(tags,/* P */[2,arg$1],out$1);
-    };
+    return menhir_ocamldep_command$prime(tags,/* P */[2,arg$1],out$1)};
 
 var
  import_mlypack=
@@ -97,8 +93,7 @@ var
       My_std["List"][16]
        (function(module_name)
          {return Ocaml_utils["expand_module"]
-                  (include_dirs,module_name,[/* :: */0,"mly",/* [] */0]);
-          },
+                  (include_dirs,module_name,[/* :: */0,"mly",/* [] */0])},
         files);
     
     var
@@ -108,12 +103,11 @@ var
     var
      tags2=
       My_std["List"][20]
-       (function(file){return Tags["union"](Tools["tags_of_pathname"](file));},
+       (function(file){return Tags["union"](Tools["tags_of_pathname"](file))},
         files$1,
         tags1);
     
-    return /* tuple */[0,tags2,files$1];
-    };
+    return /* tuple */[0,tags2,files$1]};
 
 var
  menhir_modular_ocamldep_command=
@@ -140,8 +134,7 @@ var
          /* P */[2,menhir_base],
          /* :: */[0,Command["atomize_paths"](match[2]),/* [] */0]]]];
     
-    return menhir_ocamldep_command$prime(tags,menhir_spec,out$1);
-    };
+    return menhir_ocamldep_command$prime(tags,menhir_spec,out$1)};
 
 var
  menhir_modular=
@@ -203,8 +196,7 @@ var
                   [/* A */1,"--base"],
                   /* :: */[0,
                    /* Px */[3,menhir_base$1],
-                   /* :: */[0,Command["atomize_paths"](match[2]),/* [] */0]]]]]]]]];
-    };
+                   /* :: */[0,Command["atomize_paths"](match[2]),/* [] */0]]]]]]]]]};
 
 var
  ocamldep_command=
@@ -223,8 +215,7 @@ var
                /* P */[2,arg$1],
                /* :: */[0,
                 [/* Sh */4,">"],
-                /* :: */[0,/* Px */[3,out$1],/* [] */0]]]]]];
-    };
+                /* :: */[0,/* Px */[3,out$1],/* [] */0]]]]]]};
 
 var
  ocamlyacc=
@@ -249,8 +240,7 @@ var
                      (Tools["tags_of_pathname"](mly$1),"ocaml"),
                     "parser"),
                   "ocamlyacc")],
-               /* :: */[0,/* Px */[3,mly$1],/* [] */0]]]]];
-    };
+               /* :: */[0,/* Px */[3,mly$1],/* [] */0]]]]]};
 
 var
  ocamllex=
@@ -269,8 +259,7 @@ var
                      (Tools["tags_of_pathname"](mll$1),"ocaml"),
                     "lexer"),
                   "ocamllex")],
-               /* :: */[0,/* Px */[3,mll$1],/* [] */0]]]]];
-    };
+               /* :: */[0,/* Px */[3,mll$1],/* [] */0]]]]]};
 
 var
  infer_interface=
@@ -300,8 +289,7 @@ var
                     /* P */[2,ml$1],
                     /* :: */[0,
                      [/* Sh */4,">"],
-                     /* :: */[0,/* Px */[3,mli$1],/* [] */0]]]]]]]]]]];
-    };
+                     /* :: */[0,/* Px */[3,mli$1],/* [] */0]]]]]]]]]]]};
 
 var
  menhir=
@@ -350,8 +338,7 @@ var
                      /* [] */0]]]]],
                 /* :: */[0,
                  /* T */[5,menhir_tags],
-                 /* :: */[0,/* Px */[3,mly$1],/* [] */0]]]]]]];
-    };
+                 /* :: */[0,/* Px */[3,mly$1],/* [] */0]]]]]]]};
 
 var
  ocamldoc_c=
@@ -373,8 +360,7 @@ var
                    (Tags["Operators"][1](tags$1,"pp:doc")),
                   /* :: */[0,
                    Ocaml_utils["ocaml_include_flags"](arg),
-                   /* :: */[0,/* P */[2,arg],/* [] */0]]]]]]]]];
-    };
+                   /* :: */[0,/* P */[2,arg],/* [] */0]]]]]]]]]};
 
 var
  ocamldoc_l_dir=
@@ -408,8 +394,7 @@ var
                        {return /* S */[0,
                                 /* :: */[0,
                                  [/* A */1,"-load"],
-                                 /* :: */[0,/* P */[2,a],/* [] */0]]];
-                        },
+                                 /* :: */[0,/* P */[2,a],/* [] */0]]]},
                       deps)],
                    /* :: */[0,
                     /* T */[5,
@@ -418,8 +403,7 @@ var
                     /* :: */[0,
                      [/* A */1,"-d"],
                      /* :: */[0,/* Px */[3,docdir],/* [] */0]]]]]]],
-               /* [] */0]]]];
-    };
+               /* [] */0]]]]};
 
 var
  ocamldoc_l_file=
@@ -455,8 +439,7 @@ var
                        {return /* S */[0,
                                 /* :: */[0,
                                  [/* A */1,"-load"],
-                                 /* :: */[0,/* P */[2,a],/* [] */0]]];
-                        },
+                                 /* :: */[0,/* P */[2,a],/* [] */0]]]},
                       deps)],
                    /* :: */[0,
                     /* T */[5,
@@ -465,8 +448,7 @@ var
                     /* :: */[0,
                      [/* A */1,"-o"],
                      /* :: */[0,/* Px */[3,docout],/* [] */0]]]]]]],
-               /* [] */0]]]];
-    };
+               /* [] */0]]]]};
 
 var
  document_ocaml_interf=
@@ -479,8 +461,7 @@ var
     return ocamldoc_c
             (Tags["Operators"][1](Tools["tags_of_pathname"](mli$1),"interf"),
              mli$1,
-             odoc$1);
-    };
+             odoc$1)};
 
 var
  document_ocaml_implem=
@@ -493,8 +474,7 @@ var
     return ocamldoc_c
             (Tags["Operators"][1](Tools["tags_of_pathname"](ml$1),"implem"),
              ml$1,
-             odoc$1);
-    };
+             odoc$1)};
 
 var
  document_ocaml_project=
@@ -518,8 +498,7 @@ var
       My_std["List"][16]
        (function(module_name)
          {return Ocaml_utils["expand_module"]
-                  (include_dirs,module_name,[/* :: */0,"odoc",/* [] */0]);
-          },
+                  (include_dirs,module_name,[/* :: */0,"odoc",/* [] */0])},
         contents);
     
     var module_paths=My_std["List"][16](My_std["Outcome"][3],build(to_build));
@@ -532,8 +511,7 @@ var
           Tools["tags_of_pathname"](docdir$1)),
         "ocaml");
     
-    return ocamldoc(tags,module_paths,docout$1,docdir$1);
-    };
+    return ocamldoc(tags,module_paths,docout$1,docdir$1)};
 
 var
  camlp4=
@@ -569,8 +547,7 @@ var
                  [/* A */1,"o"],
                  /* :: */[0,
                   [/* A */1,"-o"],
-                  /* :: */[0,/* Px */[3,pp_ml],/* [] */0]]]]]]]];
-    };
+                  /* :: */[0,/* Px */[3,pp_ml],/* [] */0]]]]]]]]};
 
 module["exports"]=
 {"ocamldoc_c":ocamldoc_c,

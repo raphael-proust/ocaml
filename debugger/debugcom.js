@@ -22,34 +22,29 @@ var
     var a=match!==0?1:0;
     
     Pervasives["output_char"](conn[1][2],75);
-    return Pervasives["output_binary_int"](conn[1][2],a);
-    };
+    return Pervasives["output_binary_int"](conn[1][2],a)};
 
 var
  set_current_connection=
-  function(io_chan)
-   {conn[1]=io_chan;return update_follow_fork_mode(/* () */0);};
+  function(io_chan){conn[1]=io_chan;return update_follow_fork_mode(/* () */0)};
 
 var
  set_event=
   function(pos)
    {Pervasives["output_char"](conn[1][2],101);
-    return Pervasives["output_binary_int"](conn[1][2],pos);
-    };
+    return Pervasives["output_binary_int"](conn[1][2],pos)};
 
 var
  set_breakpoint=
   function(pos)
    {Pervasives["output_char"](conn[1][2],66);
-    return Pervasives["output_binary_int"](conn[1][2],pos);
-    };
+    return Pervasives["output_binary_int"](conn[1][2],pos)};
 
 var
  reset_instr=
   function(pos)
    {Pervasives["output_char"](conn[1][2],105);
-    return Pervasives["output_binary_int"](conn[1][2],pos);
-    };
+    return Pervasives["output_binary_int"](conn[1][2],pos)};
 
 var
  do_go_smallint=
@@ -73,34 +68,36 @@ var
                 {exit=50;}
                else
                 {switch(switcher)
-                  {case 0:summary=/* Breakpoint */1;
-                   case 1:exit=50;
-                   case 2:exit=50;
-                   case 3:summary=/* Event */0;
-                   case 4:exit=50;
-                   case 5:exit=50;
-                   case 6:exit=50;
-                   case 7:exit=50;
-                   case 8:exit=50;
-                   case 9:exit=50;
-                   case 10:exit=50;
-                   case 11:exit=50;
-                   case 12:exit=50;
-                   case 13:exit=50;
-                   case 14:exit=50;
-                   case 15:exit=50;
-                   case 16:exit=50;
-                   case 17:summary=/* Trap_barrier */3;
-                   case 18:exit=50;
-                   case 19:summary=/* Uncaught_exc */4;
-                   case 20:exit=50;
-                   case 21:exit=50;
-                   case 22:summary=/* Exited */2;
+                  {case 0:summary=/* Breakpoint */1;break;
+                   case 1:exit=50;break;
+                   case 2:exit=50;break;
+                   case 3:summary=/* Event */0;break;
+                   case 4:exit=50;break;
+                   case 5:exit=50;break;
+                   case 6:exit=50;break;
+                   case 7:exit=50;break;
+                   case 8:exit=50;break;
+                   case 9:exit=50;break;
+                   case 10:exit=50;break;
+                   case 11:exit=50;break;
+                   case 12:exit=50;break;
+                   case 13:exit=50;break;
+                   case 14:exit=50;break;
+                   case 15:exit=50;break;
+                   case 16:exit=50;break;
+                   case 17:summary=/* Trap_barrier */3;break;
+                   case 18:exit=50;break;
+                   case 19:summary=/* Uncaught_exc */4;break;
+                   case 20:exit=50;break;
+                   case 21:exit=50;break;
+                   case 22:summary=/* Exited */2;break
                    }
                  }
                
                switch(exit)
-                {case 50:var summary=Misc["fatal_error"]("Debugcom.do_go");}
+                {case 50:
+                  var summary=Misc["fatal_error"]("Debugcom.do_go");break
+                 }
                
                var event_counter=Pervasives["input_binary_int"](conn[1][1]);
                
@@ -108,26 +105,20 @@ var
                
                var pc=Pervasives["input_binary_int"](conn[1][1]);
                
-               return /* record */[0,summary,event_counter,stack_pos,pc];
-               });
-    };
+               return /* record */[0,summary,event_counter,stack_pos,pc]})};
 
 var
  do_go=
   function(n)
-   {if(n>=Int64ops["_0"])
-     {}
-    else
+   {if(!(n>=Int64ops["_0"]))
      {throw [0,
              CamlPrimitive["caml_global_data"]["Assert_failure"],
-             [0,"debugcom.ml",105,2]];
-      }
+             [0,"debugcom.ml",105,2]]}
     
     return n>Int64ops["max_small_int"]
             ?(do_go_smallint(Pervasives["max_int"]),
               do_go(Int64ops["--"](n,Int64ops["max_small_int"])))
-            :do_go_smallint(n);
-    };
+            :do_go_smallint(n)};
 
 var
  do_checkpoint=
@@ -141,8 +132,7 @@ var
        Pervasives["flush"](conn[1][2]);
        var pid=Pervasives["input_binary_int"](conn[1][1]);
        
-       return pid===-1?/* Checkpoint_failed */0:/* Checkpoint_done */[0,pid];
-       }
+       return pid===-1?/* Checkpoint_failed */0:/* Checkpoint_done */[0,pid]}
     };
 
 var
@@ -150,8 +140,7 @@ var
   function(chan)
    {try
      {Pervasives["output_char"](chan[2],115);
-      return Pervasives["flush"](chan[2]);
-      }
+      return Pervasives["flush"](chan[2])}
     catch(exn)
      {var exit;
       
@@ -161,10 +150,10 @@ var
        {if(exn===CamlPrimitive["caml_global_data"]["End_of_file"])
          {exit=41;}
         else
-         {throw exn;}
+         {throw exn}
         }
       
-      switch(exit){case 41:return /* () */0;}
+      switch(exit){case 41:return /* () */0}
       }
     };
 
@@ -172,7 +161,7 @@ var
  wait_child=
   function(chan)
    {try
-     {return Pervasives["output_char"](chan[2],119);}
+     {return Pervasives["output_char"](chan[2],119)}
     catch(exn)
      {var exit;
       
@@ -182,10 +171,10 @@ var
        {if(exn===CamlPrimitive["caml_global_data"]["End_of_file"])
          {exit=37;}
         else
-         {throw exn;}
+         {throw exn}
         }
       
-      switch(exit){case 37:return /* () */0;}
+      switch(exit){case 37:return /* () */0}
       }
     };
 
@@ -198,10 +187,9 @@ var
     
     var pc=Pervasives["input_binary_int"](conn[1][1]);
     
-    return /* tuple */[0,stack_pos,pc];
-    };
+    return /* tuple */[0,stack_pos,pc]};
 
-var set_initial_frame=function(param){return initial_frame(/* () */0);};
+var set_initial_frame=function(param){return initial_frame(/* () */0)};
 
 var
  up_frame=
@@ -213,8 +201,7 @@ var
     
     var pc=stack_pos===-1?0:Pervasives["input_binary_int"](conn[1][1]);
     
-    return /* tuple */[0,stack_pos,pc];
-    };
+    return /* tuple */[0,stack_pos,pc]};
 
 var
  get_frame=
@@ -225,32 +212,29 @@ var
     
     var pc=Pervasives["input_binary_int"](conn[1][1]);
     
-    return /* tuple */[0,stack_pos,pc];
-    };
+    return /* tuple */[0,stack_pos,pc]};
 
 var
  set_frame=
   function(stack_pos)
    {Pervasives["output_char"](conn[1][2],83);
-    return Pervasives["output_binary_int"](conn[1][2],stack_pos);
-    };
+    return Pervasives["output_binary_int"](conn[1][2],stack_pos)};
 
 var
  set_trap_barrier=
   function(pos)
    {Pervasives["output_char"](conn[1][2],98);
-    return Pervasives["output_binary_int"](conn[1][2],pos);
-    };
+    return Pervasives["output_binary_int"](conn[1][2],pos)};
 
 var value_size=1<<31===0?4:8;
 
 var
  input_remote_value=
-  function(ic){return Pervasives["really_input_string"](ic,value_size);};
+  function(ic){return Pervasives["really_input_string"](ic,value_size)};
 
 var
  output_remote_value=
-  function(ic,v){return Pervasives["output_substring"](ic,v,0,value_size);};
+  function(ic,v){return Pervasives["output_substring"](ic,v,0,value_size)};
 
 var
  Marshalling_error=
@@ -265,7 +249,7 @@ var
        output_remote_value(conn[1][2],param[1]);
        Pervasives["flush"](conn[1][2]);
        try
-        {return Pervasives["input_value"](conn[1][1]);}
+        {return Pervasives["input_value"](conn[1][1])}
        catch(exn)
         {var exit;
          
@@ -275,13 +259,13 @@ var
           {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
             {exit=18;}
            else
-            {throw exn;}
+            {throw exn}
            }
          
-         switch(exit){case 18:throw Marshalling_error;}
+         switch(exit){case 18:throw Marshalling_error}
          }
-       
-      case 1:return param[1];
+       break;
+      case 1:return param[1]
       }
     };
 
@@ -290,7 +274,7 @@ var
   function(param)
    {switch(param[0])
      {case 0:return CamlPrimitive["caml_obj_is_block"](param[1][1]);
-      case 1:return CamlPrimitive["caml_obj_is_block"](param[1]);
+      case 1:return CamlPrimitive["caml_obj_is_block"](param[1])
       }
     };
 
@@ -298,7 +282,7 @@ var
  tag=
   function(obj)
    {if(!is_block(obj))
-     {return Obj["int_tag"];}
+     {return Obj["int_tag"]}
     else
      {switch(obj[0])
        {case 0:
@@ -308,8 +292,7 @@ var
          var header=Pervasives["input_binary_int"](conn[1][1]);
          
          return header&255;
-         
-        case 1:return CamlPrimitive["caml_obj_tag"](obj[1]);
+        case 1:return CamlPrimitive["caml_obj_tag"](obj[1])
         }
       }
     };
@@ -327,8 +310,7 @@ var
        return (header&255)===Obj["double_array_tag"]&&Sys["word_size"]===32
                ?header>>>11
                :header>>>10;
-       
-      case 1:return /* -1 for tag */param[1]["length"]-1;
+      case 1:return /* -1 for tag */param[1]["length"]-1
       }
     };
 
@@ -342,21 +324,20 @@ var
        Pervasives["output_binary_int"](conn[1][2],n);
        Pervasives["flush"](conn[1][2]);
        if(Pervasives["input_byte"](conn[1][1])===0)
-        {return /* Remote */[0,input_remote_value(conn[1][1])];}
+        {return /* Remote */[0,input_remote_value(conn[1][1])]}
        else
         {var buf=Pervasives["really_input_string"](conn[1][1],8);
          
          var floatbuf=n;
          
          CamlPrimitive["caml_blit_string"](buf,0,floatbuf,0,8);
-         return /* Local */[1,floatbuf];
-         }
-       
-      case 1:return /* Local */[1,v[1][n+1]];
+         return /* Local */[1,floatbuf]}
+       break;
+      case 1:return /* Local */[1,v[1][n+1]]
       }
     };
 
-var of_int=function(n){return /* Local */[1,n];};
+var of_int=function(n){return /* Local */[1,n]};
 
 var
  local=
@@ -364,8 +345,7 @@ var
    {Pervasives["output_char"](conn[1][2],76);
     Pervasives["output_binary_int"](conn[1][2],pos);
     Pervasives["flush"](conn[1][2]);
-    return /* Remote */[0,input_remote_value(conn[1][1])];
-    };
+    return /* Remote */[0,input_remote_value(conn[1][1])]};
 
 var
  from_environment=
@@ -373,8 +353,7 @@ var
    {Pervasives["output_char"](conn[1][2],69);
     Pervasives["output_binary_int"](conn[1][2],pos);
     Pervasives["flush"](conn[1][2]);
-    return /* Remote */[0,input_remote_value(conn[1][1])];
-    };
+    return /* Remote */[0,input_remote_value(conn[1][1])]};
 
 var
  global=
@@ -382,16 +361,14 @@ var
    {Pervasives["output_char"](conn[1][2],71);
     Pervasives["output_binary_int"](conn[1][2],pos);
     Pervasives["flush"](conn[1][2]);
-    return /* Remote */[0,input_remote_value(conn[1][1])];
-    };
+    return /* Remote */[0,input_remote_value(conn[1][1])]};
 
 var
  accu=
   function(param)
    {Pervasives["output_char"](conn[1][2],65);
     Pervasives["flush"](conn[1][2]);
-    return /* Remote */[0,input_remote_value(conn[1][1])];
-    };
+    return /* Remote */[0,input_remote_value(conn[1][1])]};
 
 var
  closure_code=
@@ -402,12 +379,10 @@ var
        output_remote_value(conn[1][2],param[1]);
        Pervasives["flush"](conn[1][2]);
        return Pervasives["input_binary_int"](conn[1][1]);
-       
       case 1:
        throw [0,
               CamlPrimitive["caml_global_data"]["Assert_failure"],
-              [0,"debugcom.ml",282,19]];
-       
+              [0,"debugcom.ml",282,19]]
       }
     };
 
@@ -420,13 +395,14 @@ var
      {case 0:
        switch(rv2[0])
         {case 0:return CamlPrimitive["caml_string_equal"](rv1[1],rv2[1]);
-         case 1:exit=1;
+         case 1:exit=1;break
          }
-       
-      case 1:switch(rv2[0]){case 0:exit=1;case 1:return rv1[1]===rv2[1];}
+       break;
+      case 1:
+       switch(rv2[0]){case 0:exit=1;break;case 1:return rv1[1]===rv2[1]}break
       }
     
-    switch(exit){case 1:return /* false */0;}
+    switch(exit){case 1:return /* false */0}
     };
 
 var

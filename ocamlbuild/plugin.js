@@ -29,7 +29,7 @@ var plugin_config_file_interface=Pervasives["^"](plugin,"_config.mli");
 var
  we_need_a_plugin=
   function(param)
-   {return Options["plugin"][1]&&My_std["sys_file_exists"](plugin_file);};
+   {return Options["plugin"][1]&&My_std["sys_file_exists"](plugin_file)};
 
 var
  we_have_a_plugin=
@@ -37,17 +37,16 @@ var
    {return My_std["sys_file_exists"]
             (Pervasives["^"]
               (Pathname["Operators"][1](Options["build_dir"][1],plugin),
-               Options["exe"][1]));
-    };
+               Options["exe"][1]))};
 
 var
  we_have_a_config_file=
-  function(param){return My_std["sys_file_exists"](plugin_config_file);};
+  function(param){return My_std["sys_file_exists"](plugin_config_file)};
 
 var
  we_have_a_config_file_interface=
   function(param)
-   {return My_std["sys_file_exists"](plugin_config_file_interface);};
+   {return My_std["sys_file_exists"](plugin_config_file_interface)};
 
 var
  Make=
@@ -70,8 +69,7 @@ var
         return Pathname["exists"](fn)&&
                (Pathname["exists"](fn$prime)&&
                 Pathname["same_contents"](fn,fn$prime)||
-                (Shell["cp"](fn,fn$prime),/* false */0));
-        };
+                (Shell["cp"](fn,fn$prime),/* false */0))};
     
     var
      rebuild_plugin_if_needed=
@@ -88,7 +86,7 @@ var
           up_to_date_or_copy(plugin_config_file_interface);
         
         if(a&&b&&c&&we_have_a_plugin$1)
-         {return /* () */0;}
+         {return /* () */0}
         else
          {if
            (Options["native_plugin"][1]&&
@@ -185,14 +183,13 @@ var
                      "Cannot find %S in ocamlbuild -where directory"],
                     file))}
               
-              return path;
-              };
+              return path};
           
           var
            spec=
             function(param$1)
              {if(typeof param$1==="number")
-               {return /* N */0;}
+               {return /* N */0}
               else
                {var variant=param$1[1];
                 
@@ -212,8 +209,7 @@ var
                             /* :: */[0,
                              [/* A */1,"-package"],
                              /* :: */[0,/* A */[1,param$1[2]],/* [] */0]]]
-                          :/* P */[2,Pathname["Operators"][2](param$1[2],cma)];
-                }
+                          :/* P */[2,Pathname["Operators"][2](param$1[2],cma)]}
               };
           
           var
@@ -264,9 +260,9 @@ var
           Shell["rm_f"](Pervasives["^"](plugin,Options["exe"][1]));
           Command["execute"](/* None */0,/* None */0,cmd);
           if(Options["just_plugin"][1])
-           {Log["finish"](/* None */0,/* () */0);throw My_std["Exit_OK"];}
+           {Log["finish"](/* None */0,/* () */0);throw My_std["Exit_OK"]}
           else
-           {return 0;}
+           {return 0}
           }
         };
     
@@ -287,8 +283,7 @@ var
             My_std["List"][33]
              (function(s)
                {return CamlPrimitive["caml_string_notequal"]
-                        (s,"-plugin-option");
-                },
+                        (s,"-plugin-option")},
               argv);
           
           var
@@ -310,8 +305,7 @@ var
            rc=
             My_std["sys_command"](Command["string_of_command_spec"](spec));
           
-          throw [0,My_std["Exit_silently_with_code"],rc];
-          }
+          throw [0,My_std["Exit_silently_with_code"],rc]}
         else
          {return !My_std["sys_file_exists"](plugin_file)&&
                   Options["plugin_tags"][1]!==
@@ -323,8 +317,7 @@ var
                        [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
                       "Warning: option -plugin-tag(s) has no effect in absence of plugin file %S"],
                      plugin_file)
-                  :/* () */0;
-          }
+                  :/* () */0}
         };
     
     return [0,
@@ -334,12 +327,11 @@ var
             we_have_a_config_file_interface$1,
             up_to_date_or_copy,
             rebuild_plugin_if_needed,
-            execute_plugin_if_needed];
-    };
+            execute_plugin_if_needed]};
 
 var
  execute_plugin_if_needed=
-  function(param){var P=Make([0]);return P[7](/* () */0);};
+  function(param){var P=Make([0]);return P[7](/* () */0)};
 
 module["exports"]=
 {"execute_plugin_if_needed":execute_plugin_if_needed,

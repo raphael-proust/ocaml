@@ -39,8 +39,7 @@ var
      "",
      List["rev"]
       (/* :: */[0,Config["standard_library"],Clflags["include_dirs"][1]])];
-    return Env["reset_cache"](/* () */0);
-    };
+    return Env["reset_cache"](/* () */0)};
 
 var
  initial_env=
@@ -54,13 +53,12 @@ var
     try
      {return Clflags["nopervasives"][1]
               ?initial
-              :Env["open_pers_signature"]("Pervasives",initial);
-      }
+              :Env["open_pers_signature"]("Pervasives",initial)}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-       {return Misc["fatal_error"]("cannot open pervasives.cmi");}
+       {return Misc["fatal_error"]("cannot open pervasives.cmi")}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -68,7 +66,7 @@ var
  preprocess=
   function(sourcefile)
    {try
-     {return Pparse["preprocess"](sourcefile);}
+     {return Pparse["preprocess"](sourcefile)}
     catch(exn)
      {if(exn[1]===Pparse["Error"])
        {Format["eprintf"]
@@ -84,14 +82,13 @@ var
            "Preprocessing error@.%a@."],
           Pparse["report_error"],
           exn[2]);
-        return Pervasives["exit"](2);
-        }
+        return Pervasives["exit"](2)}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
-var $plus$plus=function(x,f){return f(x);};
+var $plus$plus=function(x,f){return f(x)};
 
 var tool_name="ocamldoc";
 
@@ -125,8 +122,7 @@ var
       
       return /* tuple */[0,
               /* Some */[0,/* tuple */[0,parsetree,typedtree]],
-              inputfile];
-      }
+              inputfile]}
     catch(e)
      {if(e[1]===Syntaxerr["Error"])
        {Format["fprintf"]
@@ -143,16 +139,14 @@ var
            "@[%a@]@."],
           Syntaxerr["report_error"],
           e[2]);
-        return /* tuple */[0,/* None */0,inputfile];
-        }
+        return /* tuple */[0,/* None */0,inputfile]}
       else
        {if(e[1]===CamlPrimitive["caml_global_data"]["Failure"])
          {Pervasives["prerr_endline"](e[2]);
           Odoc_global["errors"][0]++;
-          return /* tuple */[0,/* None */0,inputfile];
-          }
+          return /* tuple */[0,/* None */0,inputfile]}
         else
-         {throw e;}
+         {throw e}
         }
       }
     };
@@ -180,8 +174,7 @@ var
     var sg=Typemod["type_interface"](initial_env(/* () */0),ast);
     
     Warnings["check_fatal"](/* () */0);
-    return /* tuple */[0,ast,sg,inputfile];
-    };
+    return /* tuple */[0,ast,sg,inputfile]};
 
 var $$let=Odoc_comments["Basic_info_retriever"];
 
@@ -229,8 +222,7 @@ var
                     /* Flush_newline */4,
                     /* End_of_format */0]]]],
                 "Compilation error(%s). Use the OCaml compiler to get more details.@."],
-               Printexc["to_string"](exn));
-    };
+               Printexc["to_string"](exn))};
 
 var
  process_file=
@@ -239,14 +231,15 @@ var
      {var exit;
       
       switch(sourcefile[0])
-       {case 0:exit=50;case 1:exit=50;case 2:var f=sourcefile[1];}
+       {case 0:exit=50;break;
+        case 1:exit=50;break;
+        case 2:var f=sourcefile[1];break
+        }
       
-      switch(exit){case 50:var f=sourcefile[1];}
+      switch(exit){case 50:var f=sourcefile[1];break}
       
       Format["print_string"](Odoc_messages["analysing"](f)),
       Format["print_newline"](/* () */0)}
-    else
-     {}
     
     switch(sourcefile[0])
      {case 0:
@@ -274,10 +267,9 @@ var
              Format["print_newline"](/* () */0)}
            
            Pparse["remove_preprocessed"](match[2]);
-           return /* Some */[0,file_module];
-           }
+           return /* Some */[0,file_module]}
          else
-          {return /* None */0;}
+          {return /* None */0}
          }
        catch(e)
         {var exit$1;
@@ -288,18 +280,17 @@ var
           {if(e[1]===CamlPrimitive["caml_global_data"]["Failure"])
             {var s=e[2];exit$1=28;}
            else
-            {process_error(e);Odoc_global["errors"][0]++;return /* None */0;}
+            {process_error(e);Odoc_global["errors"][0]++;return /* None */0}
            }
          
          switch(exit$1)
           {case 28:
             Pervasives["prerr_endline"](s);
             Odoc_global["errors"][0]++;
-            return /* None */0;
-            
+            return /* None */0
            }
          }
-       
+       break;
       case 1:
        var file$1=sourcefile[1];
        
@@ -320,8 +311,7 @@ var
            Format["print_newline"](/* () */0)}
          
          Pparse["remove_preprocessed"](match$2[3]);
-         return /* Some */[0,file_module$1];
-         }
+         return /* Some */[0,file_module$1]}
        catch(e$1)
         {var exit$2;
          
@@ -331,21 +321,17 @@ var
           {if(e$1[1]===CamlPrimitive["caml_global_data"]["Failure"])
             {var s$1=e$1[2];exit$2=34;}
            else
-            {process_error(e$1);
-             Odoc_global["errors"][0]++;
-             return /* None */0;
-             }
+            {process_error(e$1);Odoc_global["errors"][0]++;return /* None */0}
            }
          
          switch(exit$2)
           {case 34:
             Pervasives["prerr_endline"](s$1);
             Odoc_global["errors"][0]++;
-            return /* None */0;
-            
+            return /* None */0
            }
          }
-       
+       break;
       case 2:
        var file$2=sourcefile[1];
        
@@ -366,10 +352,9 @@ var
             {throw [0,
                     CamlPrimitive["caml_global_data"]["Failure"],
                     Odoc_messages["text_parse_error"]
-                     (exn$1[2],exn$1[3],exn$1[4])];
-             }
+                     (exn$1[2],exn$1[3],exn$1[4])]}
            else
-            {throw exn$1;}
+            {throw exn$1}
            }
          
          var
@@ -390,8 +375,7 @@ var
             /* None */0,
             /* true */1];
          
-         return /* Some */[0,m];
-         }
+         return /* Some */[0,m]}
        catch(e$2)
         {var exit$3;
          
@@ -401,21 +385,17 @@ var
           {if(e$2[1]===CamlPrimitive["caml_global_data"]["Failure"])
             {var s$3=e$2[2];exit$3=40;}
            else
-            {process_error(e$2);
-             Odoc_global["errors"][0]++;
-             return /* None */0;
-             }
+            {process_error(e$2);Odoc_global["errors"][0]++;return /* None */0}
            }
          
          switch(exit$3)
           {case 40:
             Pervasives["prerr_endline"](s$3);
             Odoc_global["errors"][0]++;
-            return /* None */0;
-            
+            return /* None */0
            }
          }
-       
+       break
       }
     };
 
@@ -430,8 +410,8 @@ var
       var exit;
       
       switch(ele[0])
-       {case 0:exit=25;
-        case 1:exit=25;
+       {case 0:exit=25;break;
+        case 1:exit=25;break;
         case 2:
          var match=ele[1];
          
@@ -448,27 +428,26 @@ var
                    if(match[2])
                     {exit=25;}
                    else
-                    {return remove_class_elements_between_stop(!keep,q);}
-                   
+                    {return remove_class_elements_between_stop(!keep,q)}
+                   break;
                   default:exit=25;}
-                
+                break;
                default:exit=25;}}
            }
          else
           {exit=25;}
-         
+         break
         }
       
       switch(exit)
        {case 25:
          return keep
                  ?/* :: */[0,ele,remove_class_elements_between_stop(keep,q)]
-                 :remove_class_elements_between_stop(keep,q);
-         
+                 :remove_class_elements_between_stop(keep,q)
         }
       }
     else
-     {return /* [] */0;}
+     {return /* [] */0}
     };
 
 var
@@ -481,17 +460,15 @@ var
        return /* Class_structure */[0,
                k[1],
                remove_class_elements_between_stop(/* true */1,k[2])];
-       
-      case 1:exit=24;
-      case 2:exit=24;
+      case 1:exit=24;break;
+      case 2:exit=24;break;
       case 3:
        return /* Class_constraint */[3,
                remove_class_elements_between_stop_in_class_kind(k[1]),
-               remove_class_elements_between_stop_in_class_type_kind(k[2])];
-       
+               remove_class_elements_between_stop_in_class_type_kind(k[2])]
       }
     
-    switch(exit){case 24:return k;}
+    switch(exit){case 24:return k}
     };
 
 var
@@ -502,8 +479,7 @@ var
        return /* Class_signature */[0,
                tk[1],
                remove_class_elements_between_stop(/* true */1,tk[2])];
-       
-      case 1:return tk;
+      case 1:return tk
       }
     };
 
@@ -526,7 +502,6 @@ var
                     /* Element_module */[0,m],
                     remove_module_elements_between_stop(keep,q)])
                  :remove_module_elements_between_stop(keep,q);
-         
         case 1:
          var mt=ele[1];
          
@@ -539,12 +514,10 @@ var
                     /* Element_module_type */[1,mt],
                     remove_module_elements_between_stop(keep,q)])
                  :remove_module_elements_between_stop(keep,q);
-         
         case 2:
          return keep
                  ?/* :: */[0,ele,remove_module_elements_between_stop(keep,q)]
                  :remove_module_elements_between_stop(keep,q);
-         
         case 3:
          var c=ele[1];
          
@@ -555,7 +528,6 @@ var
                     /* Element_class */[3,c],
                     remove_module_elements_between_stop(keep,q)])
                  :remove_module_elements_between_stop(keep,q);
-         
         case 4:
          var ct=ele[1];
          
@@ -566,7 +538,6 @@ var
                     /* Element_class_type */[4,ct],
                     remove_module_elements_between_stop(keep,q)])
                  :remove_module_elements_between_stop(keep,q);
-         
         case 9:
          var match=ele[1];
          
@@ -585,10 +556,10 @@ var
                    if(match[2])
                     {exit=20;}
                    else
-                    {return remove_module_elements_between_stop(!keep,q);}
-                   
+                    {return remove_module_elements_between_stop(!keep,q)}
+                   break;
                   default:exit=20;}
-                
+                break;
                default:exit=20;}}
            }
          else
@@ -598,18 +569,16 @@ var
           {case 20:
             return keep
                     ?/* :: */[0,ele,remove_module_elements_between_stop(keep,q)]
-                    :remove_module_elements_between_stop(keep,q);
-            
+                    :remove_module_elements_between_stop(keep,q)
            }
-         
+         break;
         default:
          return keep
                  ?/* :: */[0,ele,remove_module_elements_between_stop(keep,q)]
-                 :remove_module_elements_between_stop(keep,q);
-         }
+                 :remove_module_elements_between_stop(keep,q)}
       }
     else
-     {return /* [] */0;}
+     {return /* [] */0}
     };
 
 var
@@ -619,28 +588,23 @@ var
      {case 0:
        return /* Module_struct */[0,
                remove_module_elements_between_stop(/* true */1,k[1])];
-       
       case 2:
        return /* Module_functor */[2,
                k[1],
                remove_module_elements_between_stop_in_module_kind(k[2])];
-       
       case 3:
        return /* Module_apply */[3,
                remove_module_elements_between_stop_in_module_kind(k[1]),
                remove_module_elements_between_stop_in_module_kind(k[2])];
-       
       case 4:
        return /* Module_with */[4,
                remove_module_elements_between_stop_in_module_type_kind(k[1]),
                k[2]];
-       
       case 5:
        return /* Module_constraint */[5,
                remove_module_elements_between_stop_in_module_kind(k[1]),
                remove_module_elements_between_stop_in_module_type_kind(k[2])];
-       
-      default:return k;}
+      default:return k}
     };
 
 var
@@ -652,22 +616,19 @@ var
      {case 0:
        return /* Module_type_struct */[0,
                remove_module_elements_between_stop(/* true */1,tk[1])];
-       
       case 1:
        return /* Module_type_functor */[1,
                tk[1],
                remove_module_elements_between_stop_in_module_type_kind(tk[2])];
-       
-      case 2:exit=23;
+      case 2:exit=23;break;
       case 3:
        return /* Module_type_with */[3,
                remove_module_elements_between_stop_in_module_type_kind(tk[1]),
                tk[2]];
-       
-      case 4:exit=23;
+      case 4:exit=23;break
       }
     
-    switch(exit){case 23:return tk;}
+    switch(exit){case 23:return tk}
     };
 
 var
@@ -676,10 +637,8 @@ var
    {return List["map"]
             (function(m)
               {m[6]=remove_module_elements_between_stop_in_module_kind(m[6]);
-               return m;
-               },
-             module_list);
-    };
+               return m},
+             module_list)};
 
 var
  analyse_files=
@@ -697,16 +656,14 @@ var
               
               return match
                       ?Pervasives["@"](acc,/* :: */[0,match[1],/* [] */0])
-                      :acc;
-              }
+                      :acc}
             catch(exn)
              {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
                {Pervasives["prerr_endline"](exn[2]);
                 Odoc_global["errors"][0]++;
-                return acc;
-                }
+                return acc}
               else
-               {throw exn;}
+               {throw exn}
               }
             },
           /* [] */0,
@@ -737,8 +694,7 @@ var
          {return Pervasives["@"]
                   (acc,
                    Odoc_module["module_all_submodules"]
-                    ([/* Some */0,/* false */0],m));
-          },
+                    ([/* Some */0,/* false */0],m))},
         merged_modules,
         merged_modules);
     
@@ -755,10 +711,9 @@ var
     return Odoc_global["sort_modules"][1]
             ?List["sort"]
               (function(m1,m2)
-                {return CamlPrimitive["caml_string_compare"](m1[1],m2[1]);},
+                {return CamlPrimitive["caml_string_compare"](m1[1],m2[1])},
                merged_modules)
-            :merged_modules;
-    };
+            :merged_modules};
 
 var
  dump_modules=
@@ -769,13 +724,12 @@ var
       var dump=Odoc_types["make_dump"](modules);
       
       Pervasives["output_value"](chanout,dump);
-      return Pervasives["close_out"](chanout);
-      }
+      return Pervasives["close_out"](chanout)}
     catch(exn)
      {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
-       {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]];}
+       {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]]}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -788,13 +742,12 @@ var
       var dump=Pervasives["input_value"](chanin);
       
       Pervasives["close_in"](chanin);
-      return Odoc_types["open_dump"](dump);
-      }
+      return Odoc_types["open_dump"](dump)}
     catch(exn)
      {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
-       {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]];}
+       {throw [0,CamlPrimitive["caml_global_data"]["Failure"],exn[2]]}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 

@@ -25,5 +25,6 @@ val lambda_as_module : Env.t  -> Format.formatter -> Lambda.lambda -> unit
 
 val seriaize: Env.t -> string -> lambda -> unit
 
-val serialize_raw_js: (Env.t -> string  -> lambda  -> unit) ref
+val serialize_raw_js: 
+    (Env.t -> Types.signature ->  string  -> lambda  -> unit) ref
 val serialize_js: (Env.t -> string  -> lambda  -> unit) ref

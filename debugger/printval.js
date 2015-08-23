@@ -17,7 +17,7 @@ var next_name=[0,1];
 
 var
  reset_named_values=
-  function(param){Hashtbl["clear"](named_values);return next_name[1]=1,0;};
+  function(param){Hashtbl["clear"](named_values);return next_name[1]=1,0};
 
 var
  name_value=
@@ -26,12 +26,11 @@ var
     
     next_name[0]++;
     Hashtbl["add"](named_values,name,/* tuple */[0,v,ty]);
-    return name;
-    };
+    return name};
 
 var
  find_named_value=
-  function(name){return Hashtbl["find"](named_values,name);};
+  function(name){return Hashtbl["find"](named_values,name)};
 
 var
  check_depth=
@@ -41,10 +40,9 @@ var
       
       return /* Some */[0,
               /* Oval_stuff */[12,
-               Pervasives["^"]("$",Pervasives["string_of_int"](n))]];
-      }
+               Pervasives["^"]("$",Pervasives["string_of_int"](n))]]}
     else
-     {return /* None */0;}
+     {return /* None */0}
     };
 
 var
@@ -58,20 +56,19 @@ var
      {case 0:
        try
         {return Debugcom["Remote_value"][10]
-                 (Symtable["get_global_position"](param[1]));
-         }
+                 (Symtable["get_global_position"](param[1]))}
        catch(exn)
-        {if(exn[1]===Symtable["Error"]){throw $$Error;}else{throw exn;}}
-       
+        {if(exn[1]===Symtable["Error"]){throw $$Error}else{throw exn}}
+       break;
       case 1:
        var v=eval_path(env,param[1]);
        
        if(!Debugcom["Remote_value"][2](v))
-        {throw $$Error;}
+        {throw $$Error}
        else
-        {return Debugcom["Remote_value"][5](v,param[3]);}
-       
-      case 2:throw $$Error;
+        {return Debugcom["Remote_value"][5](v,param[3])}
+       break;
+      case 2:throw $$Error
       }
     };
 
@@ -94,7 +91,7 @@ var
              ty,
              function(ppf,remote_val)
               {try
-                {return fn(ppf,Debugcom["Remote_value"][1](remote_val));}
+                {return fn(ppf,Debugcom["Remote_value"][1](remote_val))}
                catch(exn)
                 {if(exn===Debugcom["Marshalling_error"])
                   {return Format["fprintf"]
@@ -103,13 +100,11 @@ var
                              [/* String_literal */11,
                               "<cannot fetch remote object>",
                               /* End_of_format */0],
-                             "<cannot fetch remote object>"]);
-                   }
+                             "<cannot fetch remote object>"])}
                  else
-                  {throw exn;}
+                  {throw exn}
                  }
-               });
-    };
+               })};
 
 var remove_printer=Printer[4];
 
@@ -120,7 +115,7 @@ var max_printer_steps=[0,300];
 var
  print_exception=
   function(ppf,obj)
-   {var t=Printer[5](obj);return Oprint["out_value"][1](ppf,t);};
+   {var t=Printer[5](obj);return Oprint["out_value"][1](ppf,t)};
 
 var
  print_value=
@@ -129,8 +124,7 @@ var
      t=
       Printer[6](max_printer_steps[1],max_depth,check_depth(ppf),env,obj,ty);
     
-    return Oprint["out_value"][1](ppf,t);
-    };
+    return Oprint["out_value"][1](ppf,t)};
 
 var
  print_named_value=
@@ -158,7 +152,6 @@ var
                          /* End_of_format */0]],
                        "$%i"],
                       param[1]);
-             
             default:exit=2;}}
         
         switch(exit)
@@ -176,8 +169,7 @@ var
                        /* No_precision */0,
                        /* End_of_format */0]],
                      "$%i"],
-                    n);
-           
+                    n)
           }
         };
     
@@ -214,8 +206,7 @@ var
              Printtyp["type_expr"],
              ty,
              print_value(max_depth,env,obj),
-             ty);
-    };
+             ty)};
 
 module["exports"]=
 {"max_printer_depth":max_printer_depth,

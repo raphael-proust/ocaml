@@ -35,11 +35,10 @@ var
              [/* Lit_padding */0,/* Zeros */2,3],
              /* No_precision */0,
              /* End_of_format */0]],
-           "\%03d"],
+           "\\%03d"],
           crc["charCodeAt"](i))}
       
-      return Pervasives["print_string"]('"');
-      }
+      return Pervasives["print_string"]('"')}
     catch(exn)
      {Pervasives["prerr_string"]("Error while reading the interface for ");
       Pervasives["prerr_endline"](unit);
@@ -58,17 +57,17 @@ var
              {case 5:
                Pervasives["prerr_string"]("Cannot find file "),
                Pervasives["prerr_endline"](match[1]);
+               break;
               default:exit=5;}}
           
           switch(exit)
-           {case 5:Pervasives["prerr_endline"]("Ill-formed .cmi file")}
+           {case 5:Pervasives["prerr_endline"]("Ill-formed .cmi file");break}
           }
         else
-         {throw exn;}
+         {throw exn}
         }
       
-      return Pervasives["exit"](2);
-      }
+      return Pervasives["exit"](2)}
     };
 
 var usage="Usage: extract_crc [-I <dir>] <files>";
@@ -85,14 +84,12 @@ var
          function(dir)
           {return load_path[1]=
                   Pervasives["@"](load_path[1],/* :: */[0,dir,/* [] */0]),
-                  0;
-           }],
+                  0}],
         "<dir>  Add <dir> to the list of include directories"],
        /* [] */0],
       print_crc,
       usage);
-    return Pervasives["print_string"]("\n]\n");
-    };
+    return Pervasives["print_string"]("\n]\n")};
 
 main(/* () */0);
 Pervasives["exit"](0);

@@ -10,22 +10,21 @@ var CamlPrimitive=require("./camlPrimitive.js");
 
 var
  dir=
-  function(name,contents){return /* Arch_dir */[0,name,/* () */0,contents];};
+  function(name,contents){return /* Arch_dir */[0,name,/* () */0,contents]};
 
 var
  dir_pack=
   function(name,contents)
-   {return /* Arch_dir_pack */[1,name,/* () */0,contents];};
+   {return /* Arch_dir_pack */[1,name,/* () */0,contents]};
 
-var file=function(name){return /* Arch_file */[2,name,/* () */0];};
+var file=function(name){return /* Arch_file */[2,name,/* () */0]};
 
 var
  join_pack=
   function(parent,base)
    {return CamlPrimitive["caml_string_equal"](parent,"")
             ?base
-            :Pervasives["^"](parent,Pervasives["^"](".",base));
-    };
+            :Pervasives["^"](parent,Pervasives["^"](".",base))};
 
 var
  annotate=
@@ -42,7 +41,6 @@ var
            return /* tuple */[0,
                    /* :: */[0,match[1],match[2]],
                    /* Arch_dir */[0,name,match[3],My_std["List"][9](match[4])]];
-           
           case 1:
            var name$1=arch[1];
            
@@ -56,9 +54,8 @@ var
                     name$1,
                     match$1[3],
                     My_std["List"][9](match$1[4])]];
-           
           case 2:
-           return /* tuple */[0,/* [] */0,/* Arch_file */[2,arch[1],acc]];
+           return /* tuple */[0,/* [] */0,/* Arch_file */[2,arch[1],acc]]
           }
         };
     
@@ -89,18 +86,15 @@ var
               
               return /* tuple */[0,
                       Pervasives["@"](include_dirs$1,match$1[1]),
-                      /* :: */[0,match$1[2],param[2]]];
-              },
+                      /* :: */[0,match$1[2],param[2]]]},
             [/* tuple */0,/* [] */0,/* [] */0],
             contents);
         
-        return /* tuple */[0,current_path,match[1],i,match[2]];
-        };
+        return /* tuple */[0,current_path,match[1],i,match[2]]};
     
     var init=[/* record */0,"",/* [] */0,""];
     
-    return $$self(arch,init)[2];
-    };
+    return $$self(arch,init)[2]};
 
 var
  print=
@@ -120,8 +114,7 @@ var
                    param[1],
                    print_contents,
                    param[2])
-                :/* () */0;
-        };
+                :/* () */0};
     
     return function(param)
      {switch(param[0])
@@ -149,7 +142,6 @@ var
                   param[2],
                   print_contents,
                   param[3]);
-         
         case 1:
          return Format["fprintf"]
                  (f,
@@ -174,7 +166,6 @@ var
                   param[2],
                   print_contents,
                   param[3]);
-         
         case 2:
          return Format["fprintf"]
                  (f,
@@ -195,11 +186,9 @@ var
                    "@[<2>file %S%a@]"],
                   param[1],
                   print_info,
-                  param[2]);
-         
+                  param[2])
         }
-      };
-    };
+      }};
 
 var print_include_dirs=My_std["List"][1](My_std["String"][1]);
 
@@ -273,18 +262,18 @@ var
              i[1],
              print_include_dirs,
              i[2],
-             i[3]);
-    };
+             i[3])};
 
 var
  iter_info=
   function(f,param)
    {var exit;
     
-    switch(param[0]){case 0:exit=17;case 1:exit=17;case 2:return f(param[2]);}
+    switch(param[0])
+     {case 0:exit=17;break;case 1:exit=17;break;case 2:return f(param[2])}
     
     switch(exit)
-     {case 17:f(param[2]);return My_std["List"][14](iter_info(f),param[3]);}
+     {case 17:f(param[2]);return My_std["List"][14](iter_info(f),param[3])}
     };
 
 var
@@ -293,10 +282,10 @@ var
    {var exit;
     
     switch(arch[0])
-     {case 0:exit=15;case 1:exit=15;case 2:return f(arch[2],acc);}
+     {case 0:exit=15;break;case 1:exit=15;break;case 2:return f(arch[2],acc)}
     
     switch(exit)
-     {case 15:return My_std["List"][20](fold_info(f),arch[3],f(arch[2],acc));}
+     {case 15:return My_std["List"][20](fold_info(f),arch[3],f(arch[2],acc))}
     };
 
 var $$let=My_std["String"];
@@ -308,13 +297,11 @@ var
   function(arch)
    {var
      set=
-      fold_info
-       (function(i){return My_std["List"][20](SS[4],i[2]);},arch,SS[1]);
+      fold_info(function(i){return My_std["List"][20](SS[4],i[2])},arch,SS[1]);
     
-    return function(f){return SS[13](f,set);};
-    };
+    return function(f){return SS[13](f,set)}};
 
-var forpack_flags_of_pathname=[0,function(param){return /* N */0;}];
+var forpack_flags_of_pathname=[0,function(param){return /* N */0}];
 
 var
  print_table=
@@ -363,8 +350,7 @@ var
                    k,
                    print_value,
                    v)
-                :0;
-        },
+                :0},
       table);
     return Format["fprintf"]
             (f,
@@ -378,8 +364,7 @@ var
                  [/* Formatting_lit */17,
                   /* Close_box */0,
                   /* End_of_format */0]]]],
-              "@]@ :}@]"]);
-    };
+              "@]@ :}@]"])};
 
 var
  print_tables=
@@ -425,8 +410,7 @@ var
              print_table(My_std["List"][1](My_std["String"][1])),
              param[1],
              print_table(My_std["String"][1]),
-             param[2]);
-    };
+             param[2])};
 
 var
  mk_tables=
@@ -438,8 +422,7 @@ var
     iter_info
      (function(i)
        {Hashtbl["replace"](include_dirs_table,i[1],i[2]);
-        return Hashtbl["replace"](for_pack_table,i[1],i[3]);
-        },
+        return Hashtbl["replace"](for_pack_table,i[1],i[3])},
       arch);
     var previous_forpack_flags_of_pathname=forpack_flags_of_pathname[1];
     
@@ -455,21 +438,19 @@ var
                 :/* S */[0,
                   /* :: */[0,
                    [/* A */1,"-for-pack"],
-                   /* :: */[0,/* A */[1,for_pack],/* [] */0]]];
-        }
+                   /* :: */[0,/* A */[1,for_pack],/* [] */0]]]}
       catch(exn)
        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-         {return previous_forpack_flags_of_pathname(m);}
+         {return previous_forpack_flags_of_pathname(m)}
         else
-         {throw exn;}
+         {throw exn}
         }
       };
-    return /* tuple */[0,include_dirs_table,for_pack_table];
-    };
+    return /* tuple */[0,include_dirs_table,for_pack_table]};
 
 var
  forpack_flags_of_pathname$1=
-  function(m){return forpack_flags_of_pathname[1](m);};
+  function(m){return forpack_flags_of_pathname[1](m)};
 
 module["exports"]=
 {"dir":dir,

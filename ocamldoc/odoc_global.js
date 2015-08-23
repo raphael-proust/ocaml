@@ -21,8 +21,7 @@ var
      {Pervasives["prerr_endline"]
        (Pervasives["^"](Odoc_messages["warning"],Pervasives["^"](": ",s)))}
     
-    return warn_error[1]?errors[0]++:0;
-    };
+    return warn_error[1]?errors[0]++:0};
 
 var merge_options=[0,/* [] */0];
 

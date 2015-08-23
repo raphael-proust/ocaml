@@ -42,14 +42,12 @@ var
           
           var a=param[1];
           
-          return a===key?l:/* :: */[0,a,remove(l)];
-          }
+          return a===key?l:/* :: */[0,a,remove(l)]}
         else
-         {return /* [] */0;}
+         {return /* [] */0}
         };
     
-    return remove(list);
-    };
+    return remove(list)};
 
 var debug_time_travel=[0,/* false */0];
 
@@ -67,30 +65,28 @@ var
           var t=a[1];
           
           if(t>time)
-           {return /* :: */[0,a,traverse(l$prime[2])];}
+           {return /* :: */[0,a,traverse(l$prime[2])]}
           else
            {if(t===time)
-             {throw Pervasives["Exit"];}
+             {throw Pervasives["Exit"]}
             else
-             {return /* :: */[0,checkpoint,l$prime];}
+             {return /* :: */[0,checkpoint,l$prime]}
             }
           }
         else
-         {return /* :: */[0,checkpoint,/* [] */0];}
+         {return /* :: */[0,checkpoint,/* [] */0]}
         };
     
     return Checkpoints["checkpoints"][1]=
            traverse(Checkpoints["checkpoints"][1]),
-           0;
-    };
+           0};
 
 var
  remove_checkpoint=
   function(checkpoint)
    {return Checkpoints["checkpoints"][1]=
            remove_1st(checkpoint,Checkpoints["checkpoints"][1]),
-           0;
-    };
+           0};
 
 var
  wait_for_connection=
@@ -108,21 +104,17 @@ var
                            {old_controller(fd);
                             return checkpoint[4]===/* true */1
                                     ?Input_handling["exit_main_loop"](/* () */0)
-                                    :0;
-                            },
+                                    :0},
                           Program_loading["connection"][1],
-                          Input_handling["main_loop"]);
-                 });
-      }
+                          Input_handling["main_loop"])})}
     catch(exn)
      {if(exn===Sys["Break"])
        {checkpoint[7]=Checkpoints["root"];
         remove_checkpoint(checkpoint);
         checkpoint[2]=-1;
-        throw Sys["Break"];
-        }
+        throw Sys["Break"]}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -136,8 +128,7 @@ var
     if(!checkpoint[4]){wait_for_connection(checkpoint)}
     
     Checkpoints["current_checkpoint"][1]=checkpoint;
-    return Debugcom["set_current_connection"](checkpoint[3]);
-    };
+    return Debugcom["set_current_connection"](checkpoint[3])};
 
 var
  kill_checkpoint=
@@ -157,11 +148,8 @@ var
       Primitives["close_io"](checkpoint[3]),
       Input_handling["remove_file"](checkpoint[3]),
       remove_checkpoint(checkpoint)}
-    else
-     {}
     
-    return checkpoint[2]=-1,0;
-    };
+    return checkpoint[2]=-1,0};
 
 var
  cut=
@@ -175,19 +163,17 @@ var
           var t$prime=a[1];
           
           if(t$prime<=t)
-           {return /* tuple */[0,/* [] */0,l$prime];}
+           {return /* tuple */[0,/* [] */0,l$prime]}
           else
            {var match=cut_t(l$prime[2]);
             
-            return /* tuple */[0,/* :: */[0,a,match[1]],match[2]];
-            }
+            return /* tuple */[0,/* :: */[0,a,match[1]],match[2]]}
           }
         else
-         {return [/* tuple */0,/* [] */0,/* [] */0];}
+         {return [/* tuple */0,/* [] */0,/* [] */0]}
         };
     
-    return cut_t;
-    };
+    return cut_t};
 
 var
  cut2=
@@ -202,16 +188,14 @@ var
           
           var l$1=cut2_t0(Int64ops["++"](t,t),match[2]);
           
-          return /* :: */[0,match[1],l$1];
-          }
+          return /* :: */[0,match[1],l$1]}
         else
-         {return /* [] */0;}
+         {return /* [] */0}
         };
     
     var match=cut(Int64ops["--"](t0,Int64ops["_1"]),l);
     
-    return /* :: */[0,match[1],cut2_t0(t,match[2])];
-    };
+    return /* :: */[0,match[1],cut2_t0(t,match[2])]};
 
 var
  chk_merge2=
@@ -227,25 +211,22 @@ var
           if(l)
            {var match=chk_merge2_cont(l);
             
-            return /* tuple */[0,match[1],/* :: */[0,a,match[2]]];
-            }
+            return /* tuple */[0,match[1],/* :: */[0,a,match[2]]]}
           else
-           {return /* tuple */[0,/* :: */[0,a,cont[1]],cont[2]];}
+           {return /* tuple */[0,/* :: */[0,a,cont[1]],cont[2]]}
           }
         else
-         {return cont;}
+         {return cont}
         };
     
-    return chk_merge2_cont;
-    };
+    return chk_merge2_cont};
 
 var
  chk_merge=
   function(param)
    {return param
             ?chk_merge2(chk_merge(param[2]),param[1])
-            :[/* tuple */0,/* [] */0,/* [] */0];
-    };
+            :[/* tuple */0,/* [] */0,/* [] */0]};
 
 var
  new_checkpoint_list=
@@ -253,8 +234,7 @@ var
    {if(List["length"](accepted)>=checkpoint_count)
      {var match=Primitives["list_truncate2"](checkpoint_count,accepted);
       
-      return /* tuple */[0,match[1],Pervasives["@"](match[2],rejected)];
-      }
+      return /* tuple */[0,match[1],Pervasives["@"](match[2],rejected)]}
     else
      {var
        match$1=
@@ -268,12 +248,10 @@ var
                   
                   var t2=param$1[1];
                   
-                  return CamlPrimitive["caml_int64_compare"](t2,t1);
-                  },
+                  return CamlPrimitive["caml_int64_compare"](t2,t1)},
                 accepted,
                 match$1[1]),
-              match$1[2]];
-      }
+              match$1[2]]}
     };
 
 var
@@ -289,8 +267,7 @@ var
     var match$2=new_checkpoint_list(checkpoint_count,match$1[1],match[1]);
     
     List["iter"](kill_checkpoint,Pervasives["@"](match$2[2],match$1[2]));
-    return Checkpoints["checkpoints"][1]=match$2[1],0;
-    };
+    return Checkpoints["checkpoints"][1]=match$2[1],0};
 
 var
  find_checkpoint_before=
@@ -299,21 +276,19 @@ var
      find=
       function(param)
        {if(param)
-         {var a=param[1];var t=a[1];return t>time?find(param[2]):a;}
+         {var a=param[1];var t=a[1];return t>time?find(param[2]):a}
         else
          {Pervasives["print_string"]("Can't go that far in the past !");
           Pervasives["print_newline"](/* () */0);
           if(Question["yes_or_no"]("Reload program"))
            {Program_loading["load_program"](/* () */0);
-            return find(Checkpoints["checkpoints"][1]);
-            }
+            return find(Checkpoints["checkpoints"][1])}
           else
-           {throw Debugger_config["Toplevel"];}
+           {throw Debugger_config["Toplevel"]}
           }
         };
     
-    return find(Checkpoints["checkpoints"][1]);
-    };
+    return find(Checkpoints["checkpoints"][1])};
 
 var
  duplicate_current_checkpoint=
@@ -355,19 +330,17 @@ var
                   (Pervasives["^"]
                     ("Waiting for connection: ",
                      Pervasives["string_of_int"](pid)))
-                :0;
-        }
+                :0}
       else
        {Pervasives["prerr_endline"]
          ("A fork failed. Reducing maximum number of checkpoints.");
         Debugger_config["checkpoint_max_count"][1]=
         List["length"](Checkpoints["checkpoints"][1])-
         1;
-        return remove_checkpoint(new_checkpoint);
-        }
+        return remove_checkpoint(new_checkpoint)}
       }
     else
-     {return 0;}
+     {return 0}
     };
 
 var interrupted=[0,/* false */0];
@@ -391,13 +364,12 @@ var
          var match=Events["current_event"][1];
          
          return match?/* () */0:find_event(/* () */0);
-         
-        case 1:exit=50;
-        case 2:return find_event(/* () */0);
+        case 1:exit=50;break;
+        case 2:return find_event(/* () */0)
         }
       }
     
-    switch(exit){case 50:return /* () */0;}
+    switch(exit){case 50:return /* () */0}
     };
 
 var
@@ -410,8 +382,7 @@ var
     var report=Debugcom["do_go"](Int64ops["_1"]);
     
     Checkpoints["current_checkpoint"][1][5]=/* Some */[0,report];
-    return stop_on_event(report);
-    };
+    return stop_on_event(report)};
 
 var
  internal_step=
@@ -430,7 +401,7 @@ var
       else
        {exit$1=48;}
       
-      switch(exit$1){case 48:return /* () */0;}
+      switch(exit$1){case 48:return /* () */0}
       }
     else
      {exit=47;}
@@ -473,16 +444,15 @@ var
               stop_on_event(report));
            
            try
-            {return insert_checkpoint(Checkpoints["current_checkpoint"][1]);}
+            {return insert_checkpoint(Checkpoints["current_checkpoint"][1])}
            catch(exn)
             {if(exn===Pervasives["Exit"])
               {kill_checkpoint(Checkpoints["current_checkpoint"][1]);
                return set_current_checkpoint
                        (find_checkpoint_before
-                         (Checkpoints["current_time"](/* () */0)));
-               }
+                         (Checkpoints["current_time"](/* () */0)))}
              else
-              {throw exn;}
+              {throw exn}
              }
            });
        return debug_time_travel[1]
@@ -516,12 +486,10 @@ var
                                "%d(%Ld)%s "],
                               pid,
                               time,
-                              valid?"":"(invalid)");
-                     },
+                              valid?"":"(invalid)")},
                    Checkpoints["checkpoints"][1]),
                  Pervasives["print_newline"](/* () */0))
-               :0;
-       
+               :0
       }
     };
 
@@ -542,8 +510,7 @@ var
        /* [] */0,
        0];
     
-    return insert_checkpoint(new_checkpoint$1);
-    };
+    return insert_checkpoint(new_checkpoint$1)};
 
 var
  set_file_descriptor=
@@ -558,13 +525,11 @@ var
           
           return pid!==pid$prime
                   ?find(param[2])
-                  :(checkpoint[3]=fd,checkpoint[4]=/* true */1,/* true */1);
-          }
+                  :(checkpoint[3]=fd,checkpoint[4]=/* true */1,/* true */1)}
         else
          {Pervasives["prerr_endline"]("Unexpected connection");
           Primitives["close_io"](fd);
-          return /* false */0;
-          }
+          return /* false */0}
         };
     
     if(debug_time_travel[1])
@@ -574,8 +539,7 @@ var
     return find
             (/* :: */[0,
               Checkpoints["current_checkpoint"][1],
-              Checkpoints["checkpoints"][1]]);
-    };
+              Checkpoints["checkpoints"][1]])};
 
 var
  kill_all_checkpoints=
@@ -584,8 +548,7 @@ var
             (kill_checkpoint,
              /* :: */[0,
               Checkpoints["current_checkpoint"][1],
-              Checkpoints["checkpoints"][1]]);
-    };
+              Checkpoints["checkpoints"][1]])};
 
 var
  forget_process=
@@ -593,7 +556,7 @@ var
    {var
      checkpoint=
       List["find"]
-       (function(c){return c[2]===pid;},
+       (function(c){return c[2]===pid},
         /* :: */[0,
          Checkpoints["current_checkpoint"][1],
          Checkpoints["checkpoints"][1]]);
@@ -643,8 +606,7 @@ var
          {throw [0,
                  Current_checkpoint_lost_start_at,
                  Checkpoints["current_checkpoint"][1][1],
-                 duration];
-          };
+                 duration]};
         }
       else
        {Printf["eprintf"]
@@ -658,11 +620,11 @@ var
              /* End_of_format */0]],
            "at time %Ld"],
           Checkpoints["current_checkpoint"][1][1]);
-        kont=function(param){throw Current_checkpoint_lost;};
+        kont=function(param){throw Current_checkpoint_lost};
         }
       }
     else
-     {kont=function(prim){return prim;};}
+     {kont=function(prim){return prim};}
     
     Printf["eprintf"]
      ([/* Format */0,[/* Char_literal */12,10,/* End_of_format */0],"\n"]);
@@ -674,15 +636,13 @@ var
     checkpoint[2]=-1;
     if(checkpoint[7][2]>0){Debugcom["wait_child"](checkpoint[7][3])}
     
-    return kont(/* () */0);
-    };
+    return kont(/* () */0)};
 
 var
  recover=
   function(param)
    {return set_current_checkpoint
-            (find_checkpoint_before(Checkpoints["current_time"](/* () */0)));
-    };
+            (find_checkpoint_before(Checkpoints["current_time"](/* () */0)))};
 
 var
  step_forward=
@@ -697,10 +657,9 @@ var
       internal_step(first_step);
       return !interrupted[1]
               ?step_forward(Int64ops["--"](duration,first_step))
-              :0;
-      }
+              :0}
     else
-     {return duration!==Int64ops["_0"]?internal_step(duration):0;}
+     {return duration!==Int64ops["_0"]?internal_step(duration):0}
     };
 
 var
@@ -710,9 +669,8 @@ var
     
     return duration>Int64ops["_0"]
             ?Breakpoints["execute_without_breakpoints"]
-              (function(param){return step_forward(duration);})
-            :0;
-    };
+              (function(param){return step_forward(duration)})
+            :0};
 
 var
  go_to=
@@ -720,8 +678,7 @@ var
    {var checkpoint=find_checkpoint_before(time);
     
     set_current_checkpoint(checkpoint);
-    return internal_go_to(time);
-    };
+    return internal_go_to(time)};
 
 var
  find_last_breakpoint=
@@ -740,11 +697,11 @@ var
         
         if(match)
          {if(Checkpoints["current_time"](/* () */0)<max_time)
-           {return find(last_breakpoint[1]);}
+           {return find(last_breakpoint[1])}
           else
            {if(match$1)
              {if(match[1][1]===match$1[1])
-               {return /* tuple */[0,max_time,last_breakpoint[1]];}
+               {return /* tuple */[0,max_time,last_breakpoint[1]]}
               else
                {exit=29;}
               }
@@ -755,7 +712,7 @@ var
         else
          {exit=29;}
         
-        switch(exit){case 29:return /* tuple */[0,time,$$break];}
+        switch(exit){case 29:return /* tuple */[0,time,$$break]}
         };
     
     var state=Checkpoints["current_pc_sp"](/* () */0);
@@ -773,9 +730,8 @@ var
      {exit=28;}
     
     var $js$1;
-    switch(exit){case 28:$js$1=/* None */0;}
-    return find($js$1);
-    };
+    switch(exit){case 28:$js$1=/* None */0;break}
+    return find($js$1)};
 
 var
  back_to=
@@ -799,8 +755,7 @@ var
               last_breakpoint[1]=
               $$break,
               0)
-            :back_to(time,new_time);
-    };
+            :back_to(time,new_time)};
 
 var
  step_backward=
@@ -811,31 +766,27 @@ var
             ?back_to
               (Pervasives["max"](Int64ops["_0"],Int64ops["--"](time,duration)),
                time)
-            :0;
-    };
+            :0};
 
 var
  run=
   function(param)
    {internal_step(Debugger_config["checkpoint_big_step"][1]);
-    return !interrupted[1]?run(/* () */0):0;
-    };
+    return !interrupted[1]?run(/* () */0):0};
 
 var
  back_run=
   function(param)
    {return Checkpoints["current_time"](/* () */0)>Int64ops["_0"]
             ?back_to(Int64ops["_0"],Checkpoints["current_time"](/* () */0))
-            :0;
-    };
+            :0};
 
 var
  step=
   function(duration)
    {return duration>=Int64ops["_0"]
             ?step_forward(duration)
-            :step_backward(Int64ops["--"](Int64ops["_0"],duration));
-    };
+            :step_backward(Int64ops["--"](Int64ops["_0"],duration))};
 
 var
  finish=
@@ -854,10 +805,7 @@ var
       if(frame<0)
        {Pervasives["prerr_endline"]
          ("`finish' not meaningful in outermost frame.");
-        throw Debugger_config["Toplevel"];
-        }
-      else
-       {}
+        throw Debugger_config["Toplevel"]}
       
       try
        {Symbols["any_event_at_pc"](pc)}
@@ -865,10 +813,9 @@ var
        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
          {Pervasives["prerr_endline"]
            ("Calling function has no debugging information.");
-          throw Debugger_config["Toplevel"];
-          }
+          throw Debugger_config["Toplevel"]}
         else
-         {throw exn;}
+         {throw exn}
         }
       
       return Trap_barrier["exec_with_trap_barrier"]
@@ -895,17 +842,13 @@ var
                              {exit=18;}
                             
                             var $js$1;
-                            switch(exit){case 18:$js$1=/* false */0;}
+                            switch(exit){case 18:$js$1=/* false */0;break}
                             while($js$1){}
-                            return 0;
-                            });
-                 });
-      }
+                            return 0})})}
     else
      {Pervasives["prerr_endline"]
        ("`finish' not meaningful in outermost frame.");
-      throw Debugger_config["Toplevel"];
-      }
+      throw Debugger_config["Toplevel"]}
     };
 
 var
@@ -931,22 +874,21 @@ var
           
           return frame1>=0&&frame2>=0&&frame2-match$2[1][9]>frame1-match[1][9]
                   ?finish(/* () */0)
-                  :0;
-          }
+                  :0}
         else
-         {return /* () */0;}
+         {return /* () */0}
         }
       else
-       {return 0;}
+       {return 0}
       }
     else
-     {return step(Int64ops["_1"]);}
+     {return step(Int64ops["_1"])}
     };
 
 var
  next=
   function(n)
-   {return n!==0?(next_1(/* () */0),!interrupted[1]?next(n-1):0):/* () */0;};
+   {return n!==0?(next_1(/* () */0),!interrupted[1]?next(n-1):0):/* () */0};
 
 var
  start=
@@ -968,10 +910,7 @@ var
       if(match$2[1]<0)
        {Pervasives["prerr_endline"]
          ("`start not meaningful in outermost frame.");
-        throw Debugger_config["Toplevel"];
-        }
-      else
-       {}
+        throw Debugger_config["Toplevel"]}
       
       var match$3;
       try
@@ -980,10 +919,9 @@ var
        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
          {Pervasives["prerr_endline"]
            ("Calling function has no debugging information.");
-          throw Debugger_config["Toplevel"];
-          }
+          throw Debugger_config["Toplevel"]}
         else
-         {throw exn;}
+         {throw exn}
         }
       
       var match$4=match$3[5];
@@ -1018,14 +956,12 @@ var
        {exit=5;}
       
       var $js$1;
-      switch(exit){case 5:$js$1=/* false */0;}
+      switch(exit){case 5:$js$1=/* false */0;break}
       while($js$1){}
-      return 0;
-      }
+      return 0}
     else
      {Pervasives["prerr_endline"]("`start not meaningful in outermost frame.");
-      throw Debugger_config["Toplevel"];
-      }
+      throw Debugger_config["Toplevel"]}
     };
 
 var
@@ -1051,16 +987,15 @@ var
           
           return frame1>=0&&frame2>=0&&frame2-match$2[1][9]>frame1-match[1][9]
                   ?start(/* () */0)
-                  :0;
-          }
+                  :0}
         else
-         {return /* () */0;}
+         {return /* () */0}
         }
       else
-       {return 0;}
+       {return 0}
       }
     else
-     {return step(Int64ops["_minus1"]);}
+     {return step(Int64ops["_minus1"])}
     };
 
 var
@@ -1068,8 +1003,7 @@ var
   function(n)
    {return n!==0
             ?(previous_1(/* () */0),!interrupted[1]?previous(n-1):0)
-            :/* () */0;
-    };
+            :/* () */0};
 
 module["exports"]=
 {"Current_checkpoint_lost":Current_checkpoint_lost,

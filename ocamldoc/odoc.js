@@ -44,40 +44,38 @@ var
             (Filename["check_suffix"](file,"cmo")||
              Filename["check_suffix"](file,"cma")||
              Filename["check_suffix"](file,"cmxs"))
-            {return iter(/* tuple */[0,/* :: */[0,file,files],incs],match[2]);
-             }
+            {return iter(/* tuple */[0,/* :: */[0,file,files],incs],match[2])}
            else
             {exit$1=21;}
            }
          else
           {exit$1=21;}
-         
+         break;
         case "-i":
          var match$1=param$1[2];
          
          if(match$1)
           {return iter
                    (/* tuple */[0,files,/* :: */[0,match$1[1],incs]],
-                    match$1[2]);
-           }
+                    match$1[2])}
          else
           {exit$1=21;}
-         
+         break;
         default:exit$1=21;}
       
       switch(exit$1)
        {case 21:
          var q=param$1[2];
          
-         if(q){return iter(/* tuple */[0,files,incs],q);}else{exit=20;}
-         
+         if(q){return iter(/* tuple */[0,files,incs],q)}else{exit=20;}
+         break
         }
       }
     else
      {exit=20;}
     
     switch(exit)
-     {case 20:return /* tuple */[0,List["rev"](files),List["rev"](incs)];}
+     {case 20:return /* tuple */[0,List["rev"](files),List["rev"](incs)]}
     };
 
 var match=iter([/* tuple */0,/* [] */0,/* [] */0],arg_list);
@@ -90,7 +88,7 @@ var
  get_real_filename=
   function(name)
    {if(CamlPrimitive["caml_string_notequal"](Filename["basename"](name),name))
-     {return name;}
+     {return name}
     else
      {var
        paths$1=
@@ -104,19 +102,16 @@ var
           List["find"]
            (function(d)
              {return CamlPrimitive["caml_sys_file_exists"]
-                      (Filename["concat"](d,name));
-              },
+                      (Filename["concat"](d,name))},
             paths$1);
         
-        return Filename["concat"](d,name);
-        }
+        return Filename["concat"](d,name)}
       catch(exn)
        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
          {return Pervasives["failwith"]
-                  (Odoc_messages["file_not_found_in_paths"](paths$1,name));
-          }
+                  (Odoc_messages["file_not_found_in_paths"](paths$1,name))}
         else
-         {throw exn;}
+         {throw exn}
         }
       }
     };
@@ -130,8 +125,7 @@ var
     try
      {var real_file=get_real_filename(file$1);
       
-      return Dynlink["loadfile"](real_file);
-      }
+      return Dynlink["loadfile"](real_file)}
     catch(exn)
      {var exit;
       
@@ -139,14 +133,12 @@ var
        {Pervasives["prerr_endline"]
          (Odoc_messages["load_file_error"]
            (file$1,Dynlink["error_message"](exn[2])));
-        return Pervasives["exit"](1);
-        }
+        return Pervasives["exit"](1)}
       else
        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
          {Pervasives["prerr_endline"]
            (Odoc_messages["load_file_error"](file$1,"Not_found"));
-          return Pervasives["exit"](1);
-          }
+          return Pervasives["exit"](1)}
         else
          {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
            {var s=exn[2];exit=9;}
@@ -154,7 +146,7 @@ var
            {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
              {var s=exn[2];exit=9;}
             else
-             {throw exn;}
+             {throw exn}
             }
           }
         }
@@ -163,8 +155,7 @@ var
        {case 9:
          Pervasives["prerr_endline"]
           (Odoc_messages["load_file_error"](file$1,s));
-         return Pervasives["exit"](1);
-         
+         return Pervasives["exit"](1)
         }
       }
     };
@@ -182,16 +173,14 @@ var
          {var l=Odoc_analyse["load_modules"](f);
           
           Odoc_info["verbose"](Odoc_messages["ok"]);
-          return l;
-          }
+          return l}
         catch(exn)
          {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
            {Pervasives["prerr_endline"](exn[2]);
             Odoc_global["errors"][0]++;
-            return /* [] */0;
-            }
+            return /* [] */0}
           else
-           {throw exn;}
+           {throw exn}
           }
         },
       Odoc_global["load"][1]));
@@ -210,11 +199,9 @@ if(match$2)
    {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
      {Pervasives["prerr_endline"](exn[2]),Odoc_global["errors"][0]++}
     else
-     {throw exn;}
+     {throw exn}
     }
   }
-else
- {}
 
 var match$3=Odoc_args["current_generator"][1];
 
@@ -225,8 +212,6 @@ if(match$3)
   /* unknown */"(send generator/1059 -643670219 modules/1045)";
   
   Odoc_info["verbose"](Odoc_messages["ok"])}
-else
- {}
 
 Odoc_global["errors"][1]>0
  ?(Pervasives["prerr_endline"]

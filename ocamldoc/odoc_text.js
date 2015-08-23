@@ -21,15 +21,13 @@ var
     
     try
      {Odoc_text_lexer["init"](/* () */0);
-      return Odoc_text_parser["main"](Odoc_text_lexer["main"],lexbuf);
-      }
+      return Odoc_text_parser["main"](Odoc_text_lexer["main"],lexbuf)}
     catch(exn)
      {throw [0,
              Text_syntax,
              Odoc_text_lexer["line_number"][1],
              Odoc_text_lexer["char_number"][1],
-             s];
-      }
+             s]}
     };
 
 var
@@ -38,10 +36,9 @@ var
    {var count$1=0;
     
     for(var i=0;i<=s["length"]-1;i++)
-     {if(s["charCodeAt"](i)===c){count$1=1+count$1;}else{}}
+     {if(s["charCodeAt"](i)===c){count$1=1+count$1;}}
     
-    return count$1;
-    };
+    return count$1};
 
 var
  escape_n=
@@ -58,7 +55,7 @@ var
          (b,
           [/* Format */0,
            [/* Char_literal */12,92,[/* Char */0,/* End_of_format */0]],
-           "\%c"],
+           "\\%c"],
           c);
         remain=-1+remain;
         }
@@ -66,8 +63,7 @@ var
        {Buffer["add_char"](b,s["charCodeAt"](i))}
       }
     
-    return Buffer["contents"](b);
-    };
+    return Buffer["contents"](b)};
 
 var
  escape_code=
@@ -80,8 +76,7 @@ var
             ?escape_n(s,91,open_brackets-close_brackets)
             :close_brackets>open_brackets
               ?escape_n(s,93,close_brackets-open_brackets)
-              :s;
-    };
+              :s};
 
 var
  escape_raw=
@@ -101,23 +96,23 @@ var
        {if(c!==91){if(c>=93){exit=5;}else{exit=6;}}else{exit=5;}}
       
       switch(exit)
-       {case 6:Buffer["add_char"](b,c);
+       {case 6:Buffer["add_char"](b,c);break;
         case 5:
          Printf["bprintf"]
           (b,
            [/* Format */0,
             [/* Char_literal */12,92,[/* Char */0,/* End_of_format */0]],
-            "\%c"],
-           s["charCodeAt"](i))
+            "\\%c"],
+           s["charCodeAt"](i));
+         break
         }
       }
     
-    return Buffer["contents"](b);
-    };
+    return Buffer["contents"](b)};
 
 var p=Printf["bprintf"];
 
-var p_text=function(b,t){return List["iter"](p_text_element(b),t);};
+var p_text=function(b,t){return List["iter"](p_text_element(b),t)};
 
 var
  p_list=
@@ -134,10 +129,8 @@ var
                        (b,
                         [/* Format */0,
                          [/* String_literal */11,"}\n",/* End_of_format */0],
-                         "}\n"]);
-               },
-             l);
-    };
+                         "}\n"])},
+             l)};
 
 var
  p_text_element=
@@ -150,14 +143,12 @@ var
                   [/* Format */0,
                    [/* Char_literal */12,10,/* End_of_format */0],
                    "\n"]);
-         
         case 1:
          return p
                  (b,
                   [/* Format */0,
                    [/* String_literal */11,"{!indexlist}",/* End_of_format */0],
-                   "{!indexlist}"]);
-         
+                   "{!indexlist}"])
         }}
     else
      {switch(param[0])
@@ -168,7 +159,6 @@ var
                    [/* String */2,/* No_padding */0,/* End_of_format */0],
                    "%s"],
                   escape_raw(param[1]));
-         
         case 1:
          return p
                  (b,
@@ -180,7 +170,6 @@ var
                      [/* Char_literal */12,93,/* End_of_format */0]]],
                    "[%s]"],
                   escape_code(param[1]));
-         
         case 2:
          return p
                  (b,
@@ -192,7 +181,6 @@ var
                      [/* String_literal */11,"]}",/* End_of_format */0]]],
                    "{[%s]}"],
                   param[1]);
-         
         case 3:
          return p
                  (b,
@@ -204,7 +192,6 @@ var
                      [/* String_literal */11," v}",/* End_of_format */0]]],
                    "{v %s v}"],
                   param[1]);
-         
         case 4:
          p
           (b,
@@ -217,7 +204,6 @@ var
                   [/* Format */0,
                    [/* Char_literal */12,125,/* End_of_format */0],
                    "}"]);
-         
         case 5:
          p
           (b,
@@ -230,7 +216,6 @@ var
                   [/* Format */0,
                    [/* Char_literal */12,125,/* End_of_format */0],
                    "}"]);
-         
         case 6:
          p
           (b,
@@ -243,7 +228,6 @@ var
                   [/* Format */0,
                    [/* Char_literal */12,125,/* End_of_format */0],
                    "}"]);
-         
         case 7:
          p
           (b,
@@ -256,7 +240,6 @@ var
                   [/* Format */0,
                    [/* Char_literal */12,125,/* End_of_format */0],
                    "}"]);
-         
         case 8:
          p
           (b,
@@ -269,7 +252,6 @@ var
                   [/* Format */0,
                    [/* Char_literal */12,125,/* End_of_format */0],
                    "}"]);
-         
         case 9:
          p
           (b,
@@ -282,7 +264,6 @@ var
                   [/* Format */0,
                    [/* Char_literal */12,125,/* End_of_format */0],
                    "}"]);
-         
         case 10:
          p
           (b,
@@ -295,7 +276,6 @@ var
                   [/* Format */0,
                    [/* Char_literal */12,125,/* End_of_format */0],
                    "}"]);
-         
         case 11:
          p
           (b,
@@ -308,7 +288,6 @@ var
                   [/* Format */0,
                    [/* Char_literal */12,125,/* End_of_format */0],
                    "}"]);
-         
         case 12:return p_text(b,param[1]);
         case 13:
          var l_opt=param[2];
@@ -334,7 +313,6 @@ var
                   [/* Format */0,
                    [/* Char_literal */12,125,/* End_of_format */0],
                    "}"]);
-         
         case 14:
          return p
                  (b,
@@ -352,7 +330,6 @@ var
                         [/* Char_literal */12,125,/* End_of_format */0]]]]]],
                    "{%% %s%%}"],
                   param[1]);
-         
         case 15:
          p
           (b,
@@ -370,7 +347,6 @@ var
                   [/* Format */0,
                    [/* Char_literal */12,125,/* End_of_format */0],
                    "}"]);
-         
         case 16:
          var text_opt=param[3];
          
@@ -383,18 +359,18 @@ var
            var s;
            if(typeof k==="number")
             {switch(k)
-              {case 0:s="module";
-               case 1:s="modtype";
-               case 2:s="class";
-               case 3:s="classtype";
-               case 4:s="val";
-               case 5:s="type";
-               case 6:s="extension";
-               case 7:s="exception";
-               case 8:s="attribute";
-               case 9:s="method";
-               case 10:s="recfield";
-               case 11:s="const";
+              {case 0:s="module";break;
+               case 1:s="modtype";break;
+               case 2:s="class";break;
+               case 3:s="classtype";break;
+               case 4:s="val";break;
+               case 5:s="type";break;
+               case 6:s="extension";break;
+               case 7:s="exception";break;
+               case 8:s="attribute";break;
+               case 9:s="method";break;
+               case 10:s="recfield";break;
+               case 11:s="const";break
                }
              }
            else
@@ -428,7 +404,6 @@ var
                       [/* Char_literal */12,125,/* End_of_format */0],
                       "}"]))
                  :/* () */0;
-         
         case 17:
          p
           (b,
@@ -441,7 +416,6 @@ var
                   [/* Format */0,
                    [/* Char_literal */12,125,/* End_of_format */0],
                    "}"]);
-         
         case 18:
          p
           (b,
@@ -454,7 +428,6 @@ var
                   [/* Format */0,
                    [/* Char_literal */12,125,/* End_of_format */0],
                    "}"]);
-         
         case 19:
          p
           (b,
@@ -470,15 +443,13 @@ var
                         32,
                         [/* String */2,/* No_padding */0,/* End_of_format */0]],
                        " %s"],
-                      s);
-             },
+                      s)},
            param[1]);
          return p
                  (b,
                   [/* Format */0,
                    [/* Char_literal */12,125,/* End_of_format */0],
                    "}"]);
-         
         case 20:
          p
           (b,
@@ -496,7 +467,6 @@ var
                   [/* Format */0,
                    [/* Char_literal */12,125,/* End_of_format */0],
                    "}"]);
-         
         case 21:
          return p
                  (b,
@@ -514,15 +484,14 @@ var
                         [/* Char_literal */12,125,/* End_of_format */0]]]]]],
                    "{%%%s: %s}"],
                   param[1],
-                  escape_raw(param[2]));
-         
+                  escape_raw(param[2]))
         }}
     };
 
 var
  string_of_text=
   function(s)
-   {var b=Buffer["create"](256);p_text(b,s);return Buffer["contents"](b);};
+   {var b=Buffer["create"](256);p_text(b,s);return Buffer["contents"](b)};
 
 var
  Texter=

@@ -280,7 +280,7 @@ var
 
 var latex_method_prefix=[0,Odoc_messages["default_latex_method_prefix"]];
 
-var new_buf=function(param){return Buffer["create"](1024);};
+var new_buf=function(param){return Buffer["create"](1024)};
 
 var
  new_fmt=
@@ -296,9 +296,7 @@ var
               var s=Buffer["contents"](b);
               
               Buffer["reset"](b);
-              return s;
-              }];
-    };
+              return s}]};
 
 var p=Format["fprintf"];
 
@@ -310,8 +308,7 @@ var
              [/* Format */0,
               [/* String */2,/* No_padding */0,/* End_of_format */0],
               "%s"],
-             s);
-    };
+             s)};
 
 var bp=Printf["bprintf"];
 
@@ -328,14 +325,12 @@ var
           
           var c=param[1];
           
-          return q?(f(c),ps(fmt,sep),iter(q)):f(c);
-          }
+          return q?(f(c),ps(fmt,sep),iter(q)):f(c)}
         else
-         {return /* () */0;}
+         {return /* () */0}
         };
     
-    return iter;
-    };
+    return iter};
 
 var
  text_init=
@@ -447,25 +442,23 @@ var
           {var sec=List["assoc"](level,latex_titles[1]);
            
            return Pervasives["^"]
-                   ("\",
+                   ("\\",
                     Pervasives["^"]
-                     (sec,Pervasives["^"]("{",Pervasives["^"](s,"}\n"))));
-           }
+                     (sec,Pervasives["^"]("{",Pervasives["^"](s,"}\n"))))}
          catch(exn)
           {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-            {return s;}
+            {return s}
            else
-            {throw exn;}
+            {throw exn}
            }
          },
        subst,
        function(self$neg1,l,s)
         {return List["fold_left"]
                  (function(acc,param)
-                   {return Str["global_replace"](param[1],param[2],acc);},
+                   {return Str["global_replace"](param[1],param[2],acc)},
                   s,
-                  l);
-         },
+                  l)},
        $$escape,
        function(self$neg1,s)
         {/* unknown */"(sendself self-1/1325 subst/1269\n  (array.unsafe_get self-1/1325 subst_strings/1262) s/1326)";
@@ -499,78 +492,78 @@ var
               {exit=106;}
              else
               {switch(switcher)
-                {case 0:match=[/* tuple */0,"-pipe",'"|'];
-                 case 1:exit=106;
-                 case 2:match=[/* tuple */0,"-tilde","~"];
+                {case 0:match=[/* tuple */0,"-pipe",'"|'];break;
+                 case 1:exit=106;break;
+                 case 2:match=[/* tuple */0,"-tilde","~"];break
                  }
                }
              }
            else
             {if(c>=33)
               {switch(-33+c)
-                {case 0:match=[/* tuple */0,"-bang",'"!'];
-                 case 1:exit=106;
-                 case 2:exit=106;
-                 case 3:match=[/* tuple */0,"-dollar","$"];
-                 case 4:match=[/* tuple */0,"-percent","%"];
-                 case 5:match=[/* tuple */0,"-ampersand","&"];
-                 case 6:exit=106;
-                 case 7:exit=106;
-                 case 8:exit=106;
-                 case 9:match=[/* tuple */0,"-star","*"];
-                 case 10:match=[/* tuple */0,"-plus","+"];
-                 case 11:exit=106;
-                 case 12:match=[/* tuple */0,"-minus","-"];
-                 case 13:exit=106;
-                 case 14:match=[/* tuple */0,"-slash","/"];
-                 case 15:exit=106;
-                 case 16:exit=106;
-                 case 17:exit=106;
-                 case 18:exit=106;
-                 case 19:exit=106;
-                 case 20:exit=106;
-                 case 21:exit=106;
-                 case 22:exit=106;
-                 case 23:exit=106;
-                 case 24:exit=106;
-                 case 25:match=[/* tuple */0,"-colon",":"];
-                 case 26:exit=106;
-                 case 27:match=[/* tuple */0,"-lt","<"];
-                 case 28:match=[/* tuple */0,"-equal","="];
-                 case 29:match=[/* tuple */0,"-gt",">"];
-                 case 30:exit=106;
-                 case 31:match=[/* tuple */0,"-at",'"@'];
-                 case 32:exit=106;
-                 case 33:exit=106;
-                 case 34:exit=106;
-                 case 35:exit=106;
-                 case 36:exit=106;
-                 case 37:exit=106;
-                 case 38:exit=106;
-                 case 39:exit=106;
-                 case 40:exit=106;
-                 case 41:exit=106;
-                 case 42:exit=106;
-                 case 43:exit=106;
-                 case 44:exit=106;
-                 case 45:exit=106;
-                 case 46:exit=106;
-                 case 47:exit=106;
-                 case 48:exit=106;
-                 case 49:exit=106;
-                 case 50:exit=106;
-                 case 51:exit=106;
-                 case 52:exit=106;
-                 case 53:exit=106;
-                 case 54:exit=106;
-                 case 55:exit=106;
-                 case 56:exit=106;
-                 case 57:exit=106;
-                 case 58:exit=106;
-                 case 59:exit=106;
-                 case 60:exit=106;
-                 case 61:match=[/* tuple */0,"-exp","^"];
-                 case 62:match=[/* tuple */0,"-underscore","_"];
+                {case 0:match=[/* tuple */0,"-bang",'"!'];break;
+                 case 1:exit=106;break;
+                 case 2:exit=106;break;
+                 case 3:match=[/* tuple */0,"-dollar","$"];break;
+                 case 4:match=[/* tuple */0,"-percent","%"];break;
+                 case 5:match=[/* tuple */0,"-ampersand","&"];break;
+                 case 6:exit=106;break;
+                 case 7:exit=106;break;
+                 case 8:exit=106;break;
+                 case 9:match=[/* tuple */0,"-star","*"];break;
+                 case 10:match=[/* tuple */0,"-plus","+"];break;
+                 case 11:exit=106;break;
+                 case 12:match=[/* tuple */0,"-minus","-"];break;
+                 case 13:exit=106;break;
+                 case 14:match=[/* tuple */0,"-slash","/"];break;
+                 case 15:exit=106;break;
+                 case 16:exit=106;break;
+                 case 17:exit=106;break;
+                 case 18:exit=106;break;
+                 case 19:exit=106;break;
+                 case 20:exit=106;break;
+                 case 21:exit=106;break;
+                 case 22:exit=106;break;
+                 case 23:exit=106;break;
+                 case 24:exit=106;break;
+                 case 25:match=[/* tuple */0,"-colon",":"];break;
+                 case 26:exit=106;break;
+                 case 27:match=[/* tuple */0,"-lt","<"];break;
+                 case 28:match=[/* tuple */0,"-equal","="];break;
+                 case 29:match=[/* tuple */0,"-gt",">"];break;
+                 case 30:exit=106;break;
+                 case 31:match=[/* tuple */0,"-at",'"@'];break;
+                 case 32:exit=106;break;
+                 case 33:exit=106;break;
+                 case 34:exit=106;break;
+                 case 35:exit=106;break;
+                 case 36:exit=106;break;
+                 case 37:exit=106;break;
+                 case 38:exit=106;break;
+                 case 39:exit=106;break;
+                 case 40:exit=106;break;
+                 case 41:exit=106;break;
+                 case 42:exit=106;break;
+                 case 43:exit=106;break;
+                 case 44:exit=106;break;
+                 case 45:exit=106;break;
+                 case 46:exit=106;break;
+                 case 47:exit=106;break;
+                 case 48:exit=106;break;
+                 case 49:exit=106;break;
+                 case 50:exit=106;break;
+                 case 51:exit=106;break;
+                 case 52:exit=106;break;
+                 case 53:exit=106;break;
+                 case 54:exit=106;break;
+                 case 55:exit=106;break;
+                 case 56:exit=106;break;
+                 case 57:exit=106;break;
+                 case 58:exit=106;break;
+                 case 59:exit=106;break;
+                 case 60:exit=106;break;
+                 case 61:match=[/* tuple */0,"-exp","^"];break;
+                 case 62:match=[/* tuple */0,"-underscore","_"];break
                  }
                }
              else
@@ -582,84 +575,70 @@ var
               var
                match=
                 /* tuple */[0,$$String["make"](1,c),$$String["make"](1,c)];
-              
+              break
              }
            
            Buffer["add_string"](buf,no_?match[1]:match[2])}
          
-         return Buffer["contents"](buf);
-         },
+         return Buffer["contents"](buf)},
        value_label,
        function(self$neg1,no_,name)
         {/* unknown */"(sendself self-1/1346 label/1273 no_/1347 name/1348)";
-         return Pervasives["^"](latex_value_prefix[1],0);
-         },
+         return Pervasives["^"](latex_value_prefix[1],0)},
        attribute_label,
        function(self$neg1,no_,name)
         {/* unknown */"(sendself self-1/1350 label/1273 no_/1351 name/1352)";
-         return Pervasives["^"](latex_attribute_prefix[1],0);
-         },
+         return Pervasives["^"](latex_attribute_prefix[1],0)},
        method_label,
        function(self$neg1,no_,name)
         {/* unknown */"(sendself self-1/1354 label/1273 no_/1355 name/1356)";
-         return Pervasives["^"](latex_method_prefix[1],0);
-         },
+         return Pervasives["^"](latex_method_prefix[1],0)},
        class_label,
        function(self$neg1,no_,name)
         {/* unknown */"(sendself self-1/1358 label/1273 no_/1359 name/1360)";
-         return Pervasives["^"](latex_class_prefix[1],0);
-         },
+         return Pervasives["^"](latex_class_prefix[1],0)},
        class_type_label,
        function(self$neg1,no_,name)
         {/* unknown */"(sendself self-1/1362 label/1273 no_/1363 name/1364)";
-         return Pervasives["^"](latex_class_type_prefix[1],0);
-         },
+         return Pervasives["^"](latex_class_type_prefix[1],0)},
        module_label,
        function(self$neg1,no_,name)
         {/* unknown */"(sendself self-1/1366 label/1273 no_/1367 name/1368)";
-         return Pervasives["^"](latex_module_prefix[1],0);
-         },
+         return Pervasives["^"](latex_module_prefix[1],0)},
        module_type_label,
        function(self$neg1,no_,name)
         {/* unknown */"(sendself self-1/1370 label/1273 no_/1371 name/1372)";
-         return Pervasives["^"](latex_module_type_prefix[1],0);
-         },
+         return Pervasives["^"](latex_module_type_prefix[1],0)},
        extension_label,
        function(self$neg1,no_,name)
         {/* unknown */"(sendself self-1/1374 label/1273 no_/1375 name/1376)";
-         return Pervasives["^"](latex_extension_prefix[1],0);
-         },
+         return Pervasives["^"](latex_extension_prefix[1],0)},
        exception_label,
        function(self$neg1,no_,name)
         {/* unknown */"(sendself self-1/1378 label/1273 no_/1379 name/1380)";
-         return Pervasives["^"](latex_exception_prefix[1],0);
-         },
+         return Pervasives["^"](latex_exception_prefix[1],0)},
        type_label,
        function(self$neg1,no_,name)
         {/* unknown */"(sendself self-1/1382 label/1273 no_/1383 name/1384)";
-         return Pervasives["^"](latex_type_prefix[1],0);
-         },
+         return Pervasives["^"](latex_type_prefix[1],0)},
        recfield_label,
        function(self$neg1,no_,name)
         {/* unknown */"(sendself self-1/1386 label/1273 no_/1387 name/1388)";
-         return Pervasives["^"](latex_type_elt_prefix[1],0);
-         },
+         return Pervasives["^"](latex_type_elt_prefix[1],0)},
        const_label,
        function(self$neg1,no_,name)
         {/* unknown */"(sendself self-1/1390 label/1273 no_/1391 name/1392)";
-         return Pervasives["^"](latex_type_elt_prefix[1],0);
-         },
+         return Pervasives["^"](latex_type_elt_prefix[1],0)},
        make_label,
        function(self$neg1,label)
-        {return Pervasives["^"]("\label{",Pervasives["^"](label,"}"));},
+        {return Pervasives["^"]("\\label{",Pervasives["^"](label,"}"))},
        make_ref,
        function(self$neg1,label)
-        {return Pervasives["^"]("\ref{",Pervasives["^"](label,"}"));},
+        {return Pervasives["^"]("\\ref{",Pervasives["^"](label,"}"))},
        latex_of_text,
        function(self$neg1,fmt,t)
         {/* unknown */"(sendself self-1/1400 latex_of_text_element/1289 fmt/1401)";
-         return List["iter"](0,t);
-         },
+         return List["iter"](0,t)},
        latex_of_text_element,
        function(self$neg1,fmt,txt)
         {var exit;
@@ -669,80 +648,102 @@ var
             {case 0:
               /* unknown */"(sendself self-1/1404 latex_of_Newline/1304 fmt/1405)";
               
-             case 1:exit=105;
+              break;
+             case 1:exit=105;break
              }}
          else
           {switch(txt[0])
             {case 0:
               /* unknown */"(sendself self-1/1404 latex_of_Raw/1292 fmt/1405 (field 0 txt/1406))";
               
+              break;
              case 1:
               /* unknown */"(sendself self-1/1404 latex_of_Code/1293 fmt/1405 (field 0 txt/1406))";
               
+              break;
              case 2:
               /* unknown */"(sendself self-1/1404 latex_of_CodePre/1294 fmt/1405 (field 0 txt/1406))";
               
+              break;
              case 3:
               /* unknown */"(sendself self-1/1404 latex_of_Verbatim/1295 fmt/1405 (field 0 txt/1406))";
               
+              break;
              case 4:
               /* unknown */"(sendself self-1/1404 latex_of_Bold/1296 fmt/1405 (field 0 txt/1406))";
               
+              break;
              case 5:
               /* unknown */"(sendself self-1/1404 latex_of_Italic/1297 fmt/1405 (field 0 txt/1406))";
               
+              break;
              case 6:
               /* unknown */"(sendself self-1/1404 latex_of_Emphasize/1298 fmt/1405 (field 0 txt/1406))";
               
+              break;
              case 7:
               /* unknown */"(sendself self-1/1404 latex_of_Center/1299 fmt/1405 (field 0 txt/1406))";
               
+              break;
              case 8:
               /* unknown */"(sendself self-1/1404 latex_of_Left/1300 fmt/1405 (field 0 txt/1406))";
               
+              break;
              case 9:
               /* unknown */"(sendself self-1/1404 latex_of_Right/1301 fmt/1405 (field 0 txt/1406))";
               
+              break;
              case 10:
               /* unknown */"(sendself self-1/1404 latex_of_List/1302 fmt/1405 (field 0 txt/1406))";
               
+              break;
              case 11:
               /* unknown */"(sendself self-1/1404 latex_of_Enum/1303 fmt/1405 (field 0 txt/1406))";
               
+              break;
              case 12:
               /* unknown */"(sendself self-1/1404 latex_of_Block/1305 fmt/1405 (field 0 txt/1406))";
               
+              break;
              case 13:
               /* unknown */"(sendself self-1/1404 latex_of_Title/1306 fmt/1405 (field 0 txt/1406)\n  (field 1 txt/1406) (field 2 txt/1406))";
               
+              break;
              case 14:
               /* unknown */"(sendself self-1/1404 latex_of_Latex/1307 fmt/1405 (field 0 txt/1406))";
               
+              break;
              case 15:
               /* unknown */"(sendself self-1/1404 latex_of_Link/1308 fmt/1405 (field 0 txt/1406)\n  (field 1 txt/1406))";
               
+              break;
              case 16:
               /* unknown */"(sendself self-1/1404 latex_of_Ref/1309 fmt/1405 (field 0 txt/1406)\n  (field 1 txt/1406) (field 2 txt/1406))";
               
+              break;
              case 17:
               /* unknown */"(sendself self-1/1404 latex_of_Superscript/1310 fmt/1405 (field 0 txt/1406))";
               
+              break;
              case 18:
               /* unknown */"(sendself self-1/1404 latex_of_Subscript/1311 fmt/1405 (field 0 txt/1406))";
               
-             case 19:exit=105;
+              break;
+             case 19:exit=105;break;
              case 20:
               /* unknown */"(sendself self-1/1404 latex_of_custom_text/1290 fmt/1405 (field 0 txt/1406)\n  (field 1 txt/1406))";
               
+              break;
              case 21:
               /* unknown */"(sendself self-1/1404 latex_of_Target/1291 fmt/1405 (field 0 txt/1406)\n  (field 1 txt/1406))";
               
+              break
              }}
          
-         switch(exit){case 105:return /* () */0;}
+         switch(exit){case 105:return /* () */0}
          },
        latex_of_custom_text,
-       function(self$neg1,fmt,s,t){return /* () */0;},
+       function(self$neg1,fmt,s,t){return /* () */0},
        latex_of_Target,
        function(self$neg1,fmt,target,code)
         {if
@@ -751,120 +752,105 @@ var
           {/* unknown */"(sendself self-1/1441 latex_of_Latex/1307 fmt/1442 code/1444)";
            }
          else
-          {return /* () */0;}
+          {return /* () */0}
          },
        latex_of_Raw,
        function(self$neg1,fmt,s)
         {/* unknown */"(sendself self-1/1446 escape/1270 s/1448)";
-         return ps(fmt,0);
-         },
+         return ps(fmt,0)},
        latex_of_Code,
        function(self$neg1,fmt,s)
         {/* unknown */"(sendself self-1/1450 escape_code/1272 s/1452)";
          
-         var s3=Str["global_replace"](Str["regexp"]("\n"),"\\\n",s2);
+         var s3=Str["global_replace"](Str["regexp"]("\n"),"\\\\\n",s2);
          
          return p
                  (fmt,
                   [/* Format */0,
                    [/* String_literal */11,
-                    "{\tt{",
+                    "{\\tt{",
                     [/* String */2,
                      /* No_padding */0,
                      [/* String_literal */11,"}}",/* End_of_format */0]]],
-                   "{\tt{%s}}"],
-                  s3);
-         },
+                   "{\\tt{%s}}"],
+                  s3)},
        latex_of_CodePre,
        function(self$neg1,fmt,s)
-        {ps(fmt,"\begin{ocamldoccode}\n");
+        {ps(fmt,"\\begin{ocamldoccode}\n");
          /* unknown */"(sendself self-1/1456 escape_simple/1271 s/1458)";
          ps(fmt,0);
-         return ps(fmt,"\n\end{ocamldoccode}\n");
-         },
+         return ps(fmt,"\n\\end{ocamldoccode}\n")},
        latex_of_Verbatim,
        function(self$neg1,fmt,s)
-        {ps(fmt,"\n\begin{verbatim}\n");
+        {ps(fmt,"\n\\begin{verbatim}\n");
          ps(fmt,s);
-         return ps(fmt,"\n\end{verbatim}\n");
-         },
+         return ps(fmt,"\n\\end{verbatim}\n")},
        latex_of_Bold,
        function(self$neg1,fmt,t)
-        {ps(fmt,"{\bf ");
+        {ps(fmt,"{\\bf ");
          /* unknown */"(sendself self-1/1464 latex_of_text/1288 fmt/1465 t/1466)";
          
-         return ps(fmt,"}");
-         },
+         return ps(fmt,"}")},
        latex_of_Italic,
        function(self$neg1,fmt,t)
-        {ps(fmt,"{\it ");
+        {ps(fmt,"{\\it ");
          /* unknown */"(sendself self-1/1468 latex_of_text/1288 fmt/1469 t/1470)";
          
-         return ps(fmt,"}");
-         },
+         return ps(fmt,"}")},
        latex_of_Emphasize,
        function(self$neg1,fmt,t)
-        {ps(fmt,"{\em ");
+        {ps(fmt,"{\\em ");
          /* unknown */"(sendself self-1/1472 latex_of_text/1288 fmt/1473 t/1474)";
          
-         return ps(fmt,"}");
-         },
+         return ps(fmt,"}")},
        latex_of_Center,
        function(self$neg1,fmt,t)
-        {ps(fmt,"\begin{center}\n");
+        {ps(fmt,"\\begin{center}\n");
          /* unknown */"(sendself self-1/1476 latex_of_text/1288 fmt/1477 t/1478)";
          
-         return ps(fmt,"\end{center}\n");
-         },
+         return ps(fmt,"\\end{center}\n")},
        latex_of_Left,
        function(self$neg1,fmt,t)
-        {ps(fmt,"\begin{flushleft}\n");
+        {ps(fmt,"\\begin{flushleft}\n");
          /* unknown */"(sendself self-1/1480 latex_of_text/1288 fmt/1481 t/1482)";
          
-         return ps(fmt,"\end{flushleft}\n");
-         },
+         return ps(fmt,"\\end{flushleft}\n")},
        latex_of_Right,
        function(self$neg1,fmt,t)
-        {ps(fmt,"\begin{flushright}\n");
+        {ps(fmt,"\\begin{flushright}\n");
          /* unknown */"(sendself self-1/1484 latex_of_text/1288 fmt/1485 t/1486)";
          
-         return ps(fmt,"\end{flushright}\n");
-         },
+         return ps(fmt,"\\end{flushright}\n")},
        latex_of_List,
        function(self$neg1,fmt,tl)
-        {ps(fmt,"\begin{itemize}\n");
+        {ps(fmt,"\\begin{itemize}\n");
          List["iter"]
           (function(t)
-            {ps(fmt,"\item ");
+            {ps(fmt,"\\item ");
              /* unknown */"(sendself self-1/1488 latex_of_text/1288 fmt/1489 t/1491)";
              
-             return ps(fmt,"\n");
-             },
+             return ps(fmt,"\n")},
            tl);
-         return ps(fmt,"\end{itemize}\n");
-         },
+         return ps(fmt,"\\end{itemize}\n")},
        latex_of_Enum,
        function(self$neg1,fmt,tl)
-        {ps(fmt,"\begin{enumerate}\n");
+        {ps(fmt,"\\begin{enumerate}\n");
          List["iter"]
           (function(t)
-            {ps(fmt,"\item ");
+            {ps(fmt,"\\item ");
              /* unknown */"(sendself self-1/1493 latex_of_text/1288 fmt/1494 t/1496)";
              
-             return ps(fmt,"\n");
-             },
+             return ps(fmt,"\n")},
            tl);
-         return ps(fmt,"\end{enumerate}\n");
-         },
+         return ps(fmt,"\\end{enumerate}\n")},
        latex_of_Newline,
-       function(self$neg1,fmt){return ps(fmt,"\n\n");},
+       function(self$neg1,fmt){return ps(fmt,"\n\n")},
        latex_of_Block,
        function(self$neg1,fmt,t)
-        {ps(fmt,"\begin{ocamldocdescription}\n");
+        {ps(fmt,"\\begin{ocamldocdescription}\n");
          /* unknown */"(sendself self-1/1501 latex_of_text/1288 fmt/1502 t/1503)";
          
-         return ps(fmt,"\n\end{ocamldocdescription}\n");
-         },
+         return ps(fmt,"\n\\end{ocamldocdescription}\n")},
        latex_of_Title,
        function(self$neg1,fmt,n,label_opt,t)
         {var match=new_fmt(/* () */0);
@@ -876,21 +862,19 @@ var
          ps(fmt,s_title2);
          if(label_opt)
           {/* unknown */"(sendself self-1/1505 make_label/1286\n  (sendself self-1/1505 label/1273 [0: 0a] (field 0 label_opt/1508)))";
-           return ps(fmt,0);
-           }
+           return ps(fmt,0)}
          else
-          {return /* () */0;}
+          {return /* () */0}
          },
        latex_of_Latex,
-       function(self$neg1,fmt,s){return ps(fmt,s);},
+       function(self$neg1,fmt,s){return ps(fmt,s)},
        latex_of_Link,
        function(self$neg1,fmt,s,t)
         {/* unknown */"(sendself self-1/1519 latex_of_text/1288 fmt/1520 t/1522)";
          
-         ps(fmt,"[\url{");
+         ps(fmt,"[\\url{");
          ps(fmt,s);
-         return ps(fmt,"}]");
-         },
+         return ps(fmt,"}]")},
        latex_of_Ref,
        function(self$neg1,fmt,name,ref_opt,text_opt)
         {if(ref_opt)
@@ -902,35 +886,54 @@ var
               {switch(kind)
                 {case 0:
                   /* unknown */"(sendself self-1/1524 module_label/1279)";
+                  
+                  break;
                  case 1:
                   /* unknown */"(sendself self-1/1524 module_type_label/1280)";
                   
+                  break;
                  case 2:
                   /* unknown */"(sendself self-1/1524 class_label/1277)";
+                  
+                  break;
                  case 3:
                   /* unknown */"(sendself self-1/1524 class_type_label/1278)";
+                  
+                  break;
                  case 4:
                   /* unknown */"(sendself self-1/1524 value_label/1274)";
-                 case 5:/* unknown */"(sendself self-1/1524 type_label/1283)";
+                  
+                  break;
+                 case 5:
+                  /* unknown */"(sendself self-1/1524 type_label/1283)";break;
                  case 6:
                   /* unknown */"(sendself self-1/1524 extension_label/1281)";
+                  
+                  break;
                  case 7:
                   /* unknown */"(sendself self-1/1524 exception_label/1282)";
+                  
+                  break;
                  case 8:
                   /* unknown */"(sendself self-1/1524 attribute_label/1275)";
+                  
+                  break;
                  case 9:
                   /* unknown */"(sendself self-1/1524 method_label/1276)";
+                  
+                  break;
                  case 10:
                   /* unknown */"(sendself self-1/1524 recfield_label/1284)";
+                  
+                  break;
                  case 11:
-                  /* unknown */"(sendself self-1/1524 const_label/1285)";
+                  /* unknown */"(sendself self-1/1524 const_label/1285)";break
                  }
                }
              else
               {throw [0,
                       CamlPrimitive["caml_global_data"]["Assert_failure"],
-                      [0,"odoc_latex.ml",423,40]];
-               }
+                      [0,"odoc_latex.ml",423,40]]}
              
              var
               text=
@@ -955,76 +958,74 @@ var
         {ps(fmt,"$^{");
          /* unknown */"(sendself self-1/1535 latex_of_text/1288 fmt/1536 t/1537)";
          
-         return ps(fmt,"}$");
-         },
+         return ps(fmt,"}$")},
        latex_of_Subscript,
        function(self$neg1,fmt,t)
         {ps(fmt,"$_{");
          /* unknown */"(sendself self-1/1539 latex_of_text/1288 fmt/1540 t/1541)";
          
-         return ps(fmt,"}$");
-         }]);
+         return ps(fmt,"}$")}]);
     return function(env,$$self)
      {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);
       
       $$self$1[subst_strings+1]=
       List["map"]
        (function(param)
-         {return /* tuple */[0,Str["regexp"](param[1]),param[2]];},
+         {return /* tuple */[0,Str["regexp"](param[1]),param[2]]},
         [/* :: */0,
          [/* tuple */0,"\x01","\x01\x02"],
          [/* :: */0,
-          [/* tuple */0,"\\","\x01b"],
+          [/* tuple */0,"\\\\","\x01b"],
           [/* :: */0,
-           [/* tuple */0,"{","\\{"],
+           [/* tuple */0,"{","\\\\{"],
            [/* :: */0,
-            [/* tuple */0,"}","\\}"],
+            [/* tuple */0,"}","\\\\}"],
             [/* :: */0,
-             [/* tuple */0,"\$","\\$"],
+             [/* tuple */0,"\\$","\\\\$"],
              [/* :: */0,
-              [/* tuple */0,"\^","{\\textasciicircum}"],
+              [/* tuple */0,"\\^","{\\\\textasciicircum}"],
               [/* :: */0,
-               [/* tuple */0,"à","\\`a"],
+               [/* tuple */0,"\xe0","\\\\`a"],
                [/* :: */0,
-                [/* tuple */0,"â","\\^a"],
+                [/* tuple */0,"\xe2","\\\\^a"],
                 [/* :: */0,
-                 [/* tuple */0,"é","\\'e"],
+                 [/* tuple */0,"\xe9","\\\\'e"],
                  [/* :: */0,
-                  [/* tuple */0,"è","\\`e"],
+                  [/* tuple */0,"\xe8","\\\\`e"],
                   [/* :: */0,
-                   [/* tuple */0,"ê","\\^e"],
+                   [/* tuple */0,"\xea","\\\\^e"],
                    [/* :: */0,
-                    [/* tuple */0,"ë",'\\"e'],
+                    [/* tuple */0,"\xeb",'\\\\"e'],
                     [/* :: */0,
-                     [/* tuple */0,"ç","\\c{c}"],
+                     [/* tuple */0,"\xe7","\\\\c{c}"],
                      [/* :: */0,
-                      [/* tuple */0,"ô","\\^o"],
+                      [/* tuple */0,"\xf4","\\\\^o"],
                       [/* :: */0,
-                       [/* tuple */0,"ö",'\\"o'],
+                       [/* tuple */0,"\xf6",'\\\\"o'],
                        [/* :: */0,
-                        [/* tuple */0,"î","\\^i"],
+                        [/* tuple */0,"\xee","\\\\^i"],
                         [/* :: */0,
-                         [/* tuple */0,"ï",'\\"i'],
+                         [/* tuple */0,"\xef",'\\\\"i'],
                          [/* :: */0,
-                          [/* tuple */0,"ù","\\`u"],
+                          [/* tuple */0,"\xf9","\\\\`u"],
                           [/* :: */0,
-                           [/* tuple */0,"û","\\^u"],
+                           [/* tuple */0,"\xfb","\\\\^u"],
                            [/* :: */0,
-                            [/* tuple */0,"%","\\%"],
+                            [/* tuple */0,"%","\\\\%"],
                             [/* :: */0,
-                             [/* tuple */0,"_","\\_"],
+                             [/* tuple */0,"_","\\\\_"],
                              [/* :: */0,
-                              [/* tuple */0,"~","\\~{}"],
+                              [/* tuple */0,"~","\\\\~{}"],
                               [/* :: */0,
-                               [/* tuple */0,"#","{\char35}"],
+                               [/* tuple */0,"#","{\\char35}"],
                                [/* :: */0,
-                                [/* tuple */0,"->","$\\rightarrow$"],
+                                [/* tuple */0,"->","$\\\\rightarrow$"],
                                 [/* :: */0,
-                                 [/* tuple */0,"<-","$\\leftarrow$"],
+                                 [/* tuple */0,"<-","$\\\\leftarrow$"],
                                  [/* :: */0,
-                                  [/* tuple */0,">=","$\\geq$"],
+                                  [/* tuple */0,">=","$\\\\geq$"],
                                   [/* :: */0,
-                                   [/* tuple */0,"<=","$\\leq$"],
+                                   [/* tuple */0,"<=","$\\\\leq$"],
                                    [/* :: */0,
                                     [/* tuple */0,">","$>$"],
                                     [/* :: */0,
@@ -1032,73 +1033,71 @@ var
                                      [/* :: */0,
                                       [/* tuple */0,"=","$=$"],
                                       [/* :: */0,
-                                       [/* tuple */0,"|","{\\textbar}"],
+                                       [/* tuple */0,"|","{\\\\textbar}"],
                                        [/* :: */0,
-                                        [/* tuple */0,"\.\.\.","$\\ldots$"],
+                                        [/* tuple */0,"\\.\\.\\.","$\\\\ldots$"],
                                         [/* :: */0,
-                                         [/* tuple */0,"&","\\&"],
+                                         [/* tuple */0,"&","\\\\&"],
                                          [/* :: */0,
-                                          [/* tuple */0,"\x01b","{\\char92}"],
+                                          [/* tuple */0,"\x01b","{\\\\char92}"],
                                           [/* :: */0,[/* tuple */0,"\x01\x02","\x01"],/* [] */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]),
       $$self$1[subst_strings_simple+1]=
       List["map"]
        (function(param)
-         {return /* tuple */[0,Str["regexp"](param[1]),param[2]];},
+         {return /* tuple */[0,Str["regexp"](param[1]),param[2]]},
         [/* :: */0,
          [/* tuple */0,"\x01","\x01\x02"],
          [/* :: */0,
-          [/* tuple */0,"\\","\x01b"],
+          [/* tuple */0,"\\\\","\x01b"],
           [/* :: */0,
            [/* tuple */0,"{","\x01l"],
            [/* :: */0,
-            [/* tuple */0,"}","{\\char125}"],
+            [/* tuple */0,"}","{\\\\char125}"],
             [/* :: */0,
-             [/* tuple */0,"'","{\\textquotesingle}"],
+             [/* tuple */0,"'","{\\\\textquotesingle}"],
              [/* :: */0,
-              [/* tuple */0,"`","{\\textasciigrave}"],
+              [/* tuple */0,"`","{\\\\textasciigrave}"],
               [/* :: */0,
-               [/* tuple */0,"\x01b","{\\char92}"],
+               [/* tuple */0,"\x01b","{\\\\char92}"],
                [/* :: */0,
-                [/* tuple */0,"\x01l","{\\char123}"],
+                [/* tuple */0,"\x01l","{\\\\char123}"],
                 [/* :: */0,[/* tuple */0,"\x01\x02","\x01"],/* [] */0]]]]]]]]]),
       $$self$1[subst_strings_code+1]=
       List["map"]
        (function(param)
-         {return /* tuple */[0,Str["regexp"](param[1]),param[2]];},
+         {return /* tuple */[0,Str["regexp"](param[1]),param[2]]},
         [/* :: */0,
          [/* tuple */0,"\x01","\x01\x02"],
          [/* :: */0,
-          [/* tuple */0,"\\","\x01b"],
+          [/* tuple */0,"\\\\","\x01b"],
           [/* :: */0,
            [/* tuple */0,"{","\x01l"],
            [/* :: */0,
-            [/* tuple */0,"}","{\\char125}"],
+            [/* tuple */0,"}","{\\\\char125}"],
             [/* :: */0,
-             [/* tuple */0,"'","{\\textquotesingle}"],
+             [/* tuple */0,"'","{\\\\textquotesingle}"],
              [/* :: */0,
-              [/* tuple */0,"`","{\\textasciigrave}"],
+              [/* tuple */0,"`","{\\\\textasciigrave}"],
               [/* :: */0,
-               [/* tuple */0,"%","\\%"],
+               [/* tuple */0,"%","\\\\%"],
                [/* :: */0,
-                [/* tuple */0,"_","\\_"],
+                [/* tuple */0,"_","\\\\_"],
                 [/* :: */0,
-                 [/* tuple */0,"~","{\\char126}"],
+                 [/* tuple */0,"~","{\\\\char126}"],
                  [/* :: */0,
-                  [/* tuple */0,"#","{\\char35}"],
+                  [/* tuple */0,"#","{\\\\char35}"],
                   [/* :: */0,
-                   [/* tuple */0,"&","\\&"],
+                   [/* tuple */0,"&","\\\\&"],
                    [/* :: */0,
-                    [/* tuple */0,"\$","\\$"],
+                    [/* tuple */0,"\\$","\\\\$"],
                     [/* :: */0,
-                     [/* tuple */0,"\^","{\\char94}"],
+                     [/* tuple */0,"\\^","{\\\\char94}"],
                      [/* :: */0,
-                      [/* tuple */0,"\x01b","{\\char92}"],
+                      [/* tuple */0,"\x01b","{\\\\char92}"],
                       [/* :: */0,
-                       [/* tuple */0,"\x01l","{\\char123}"],
+                       [/* tuple */0,"\x01l","{\\\\char123}"],
                        [/* :: */0,[/* tuple */0,"\x01\x02","\x01"],/* [] */0]]]]]]]]]]]]]]]]);
-      return $$self$1;
-      };
-    };
+      return $$self$1}};
 
 var
  text=
@@ -1172,8 +1171,7 @@ var
          /* unknown */"(sendself self-2/1553 latex_of_text/1549 fmt/1554\n  (sendself self-2/1553 text_of_info/1550 (makeblock 0 block/1556)\n    info_opt/1558))";
          });
      return function(env,$$self)
-      {return CamlinternalOO["create_object_opt"]($$self,$$class);};
-     },
+      {return CamlinternalOO["create_object_opt"]($$self,$$class)}},
    0,
    0];
 
@@ -1343,15 +1341,13 @@ var
              
              return /* tuple */[0,
                      Odoc_info["text_no_title_no_list"](match$1[1]),
-                     match$2[2]];
-             }
+                     match$2[2]]}
            else
             {/* unknown */"(sendself self-3/1688 text_of_info/1692 [0: 1a] i_opt/1689)";
-             return /* tuple */[0,/* [] */0,0];
-             }
+             return /* tuple */[0,/* [] */0,0]}
            }
          else
-          {return [/* tuple */0,/* [] */0,/* [] */0];}
+          {return [/* tuple */0,/* [] */0,/* [] */0]}
          },
        latex_of_value,
        function(self$neg3,fmt,v)
@@ -1380,8 +1376,7 @@ var
                Odoc_info["string_of_variance"]
                 (t,/* tuple */[0,param[2],param[3]]));
              /* unknown */"(sendself self-3/1718 normal_type/1726 m_name/1720 (field 0 param/2301))";
-             return ps(fmt,0);
-             };
+             return ps(fmt,0)};
          
          var l=t[3];
          
@@ -1389,16 +1384,14 @@ var
           {if(l[2])
             {ps(fmt,"(");
              print_concat(fmt,", ",print_one,t[3]);
-             return ps(fmt,")");
-             }
+             return ps(fmt,")")}
            else
             {var match=l[1];
              
-             return print_one(/* tuple */[0,match[1],match[2],match[3]]);
-             }
+             return print_one(/* tuple */[0,match[1],match[2],match[3]])}
            }
          else
-          {return /* () */0;}
+          {return /* () */0}
          },
        latex_of_class_parameter_list,
        function(self$neg3,fmt,father,c)
@@ -1457,13 +1450,14 @@ var
                  " = %s%s"],
                 priv?"private ":"",
                 0);
-             case 1:exit=84;
+              break;
+             case 1:exit=84;break
              }
            }
          else
           {exit=84;}
          
-         switch(exit){case 84:}
+         switch(exit){case 84:break}
          
          var match$4=t[4];
          
@@ -1477,28 +1471,28 @@ var
               
               if(match$5)
                {switch(match$5[1][0])
-                 {case 0:exit$1=82;
+                 {case 0:exit$1=82;break;
                   case 1:
                    $js=
                    Pervasives["^"]
                     ("= ",Pervasives["^"](priv?"private":""," <"));
-                   
+                   break
                   }
                 }
               else
                {exit$1=82;}
               
-              switch(exit$1){case 82:$js="";}
-              
-             case 1:$js="= ..";
+              switch(exit$1){case 82:$js="";break}
+              break;
+             case 1:$js="= ..";break
              }}
          else
           {switch(match$4[0])
-            {case 0:$js=Pervasives["^"]("=",priv?" private":"");
+            {case 0:$js=Pervasives["^"]("=",priv?" private":"");break;
              case 1:
               $js=
               Pervasives["^"]("= ",Pervasives["^"](priv?"private ":"","{"));
-              
+              break
              }}
          p
           (fmt2,
@@ -1514,16 +1508,15 @@ var
           entry_comment=
            function(param)
             {if(param)
-              {ps(fmt2,"\begin{ocamldoccomment}\n");
+              {ps(fmt2,"\\begin{ocamldoccomment}\n");
                /* unknown */"(sendself self-3/1738 latex_of_info/1753 fmt2/1743 0a\n  (makeblock 0 (field 0 param/2281)))";
                
-               ps(fmt2,"\n\end{ocamldoccomment}\n");
+               ps(fmt2,"\n\\end{ocamldoccomment}\n");
                var s=flush2(/* () */0);
                
-               return /* :: */[0,/* Latex */[14,s],/* [] */0];
-               }
+               return /* :: */[0,/* Latex */[14,s],/* [] */0]}
              else
-              {return /* [] */0;}
+              {return /* [] */0}
              };
          
          var match$6=t[4];
@@ -1540,7 +1533,7 @@ var
                {var match$8=match$7[1];
                 
                 switch(match$8[0])
-                 {case 0:exit$2=73;
+                 {case 0:exit$2=73;break;
                   case 1:
                    var
                     fields=
@@ -1573,23 +1566,22 @@ var
                          
                          return Pervasives["@"]
                                  (/* :: */[0,/* CodePre */[2,s_field],/* [] */0],
-                                  entry_comment(r[3]));
-                         },
+                                  entry_comment(r[3]))},
                        match$8[1]);
                    
                    defs=
                    Pervasives["@"]
                     (List["flatten"](fields),
                      [/* :: */0,[/* CodePre */2,">"],/* [] */0]);
-                   
+                   break
                   }
                 }
               else
                {exit$2=73;}
               
-              switch(exit$2){case 73:var defs=/* [] */0;}
-              
-             case 1:var defs=/* [] */0;
+              switch(exit$2){case 73:var defs=/* [] */0;break}
+              break;
+             case 1:var defs=/* [] */0;break
              }}
          else
           {switch(match$6[0])
@@ -1665,20 +1657,17 @@ var
                              [/* String */2,/* No_padding */0,/* End_of_format */0]]],
                            " :@ %s"],
                           0)}
-                      else
-                       {}
                       }
                     
                     var s_cons=flush2(/* () */0);
                     
                     return Pervasives["@"]
                             (/* :: */[0,/* CodePre */[2,s_cons],/* [] */0],
-                             entry_comment(constr[4]));
-                    },
+                             entry_comment(constr[4]))},
                   match$6[1]);
               
               var defs=List["flatten"](constructors);
-              
+              break;
              case 1:
               var
                fields$1=
@@ -1714,8 +1703,7 @@ var
                     
                     return Pervasives["@"]
                             (/* :: */[0,/* CodePre */[2,s_field],/* [] */0],
-                             entry_comment(r[4]));
-                    },
+                             entry_comment(r[4]))},
                   match$6[1]);
               
               var
@@ -1723,7 +1711,7 @@ var
                 Pervasives["@"]
                  (List["flatten"](fields$1),
                   [/* :: */0,[/* CodePre */2,"}"],/* [] */0]);
-              
+              break
              }}
          
          var defs2=/* :: */[0,/* CodePre */[2,s_type3],defs];
@@ -1756,18 +1744,17 @@ var
                                      /* CodePre */[2,
                                       Pervasives["^"](e[1],Pervasives["^"]("\n",match$10[1]))],
                                      match$9[2]]);
-                           
                           default:exit$3=68;}}
-                      
+                      break;
                      default:exit$3=68;}}
                  }
                else
-                {return /* :: */[0,e,/* [] */0];}
+                {return /* :: */[0,e,/* [] */0]}
                
-               switch(exit$3){case 68:return /* :: */[0,e,iter(param[2])];}
+               switch(exit$3){case 68:return /* :: */[0,e,iter(param[2])]}
                }
              else
-              {return /* [] */0;}
+              {return /* [] */0}
              };
          
          /* unknown */"(sendself self-3/1738 label/1779 0a s_name/1741)";
@@ -1781,9 +1768,9 @@ var
               (/* :: */[0,
                 /* Latex */[14,
                  Pervasives["^"]
-                  ("\index{",
+                  ("\\index{",
                    Pervasives["^"]
-                    (0,Pervasives["^"]("@\verb`",Pervasives["^"](0,"`}\n"))))],
+                    (0,Pervasives["^"]("@\\verb`",Pervasives["^"](0,"`}\n"))))],
                 /* [] */0],
                0));
          
@@ -1818,8 +1805,7 @@ var
                ", ",
                function(p)
                 {/* unknown */"(sendself self-3/1782 normal_type/1726 mod_name/1783 p/1791)";
-                 return ps(fmt2,0);
-                 },
+                 return ps(fmt2,0)},
                l),
              ps(fmt2,") ")}
            else
@@ -1827,8 +1813,6 @@ var
              ps(fmt2,0);
              ps(fmt2," ")}
            }
-         else
-          {}
          
          /* unknown */"(sendself self-3/1782 relative_idents/1792 mod_name/1783 (field 1 te/1785))";
          ps(fmt2,0);
@@ -1925,8 +1909,6 @@ var
                         " %s@ %s"],
                        ":",
                        0)}
-                   else
-                    {}
                    }
                  
                  var match$3=x[5];
@@ -1944,8 +1926,6 @@ var
                        [/* String */2,/* No_padding */0,/* End_of_format */0]],
                       " = %s"],
                      match$4?match$4[1][1]:xa[1])}
-                 else
-                  {}
                  
                  var s_cons=flush2(/* () */0);
                  
@@ -1954,10 +1934,10 @@ var
                  
                  var $js;
                  if(match$5)
-                  {ps(fmt2,"\begin{ocamldoccomment}\n");
+                  {ps(fmt2,"\\begin{ocamldoccomment}\n");
                    /* unknown */"(sendself self-3/1782 latex_of_info/1753 fmt2/1787 0a\n  (makeblock 0 (field 0 match/2252)))";
                    
-                   ps(fmt2,"\n\end{ocamldoccomment}\n");
+                   ps(fmt2,"\n\\end{ocamldoccomment}\n");
                    var s=flush2(/* () */0);
                    
                    $js=/* :: */[0,/* Latex */[14,s],/* [] */0];
@@ -1968,8 +1948,7 @@ var
                          (/* :: */[0,
                            /* Latex */[14,0],
                            /* :: */[0,/* CodePre */[2,s_cons],/* [] */0]],
-                          $js);
-                 },
+                          $js)},
                te[5]));
          
          var defs2=/* :: */[0,/* CodePre */[2,s_type3],defs];
@@ -2002,18 +1981,17 @@ var
                                      /* CodePre */[2,
                                       Pervasives["^"](e[1],Pervasives["^"]("\n",match$2[1]))],
                                      match$1[2]]);
-                           
                           default:exit=56;}}
-                      
+                      break;
                      default:exit=56;}}
                  }
                else
-                {return /* :: */[0,e,/* [] */0];}
+                {return /* :: */[0,e,/* [] */0]}
                
-               switch(exit){case 56:return /* :: */[0,e,iter(param[2])];}
+               switch(exit){case 56:return /* :: */[0,e,iter(param[2])]}
                }
              else
-              {return /* [] */0;}
+              {return /* [] */0}
              };
          
          /* unknown */"(sendself self-3/1782 text_of_info/1692 0a (field 0 te/1785))";
@@ -2038,48 +2016,56 @@ var
        function(self$neg3,fmt,father,kind)
         {switch(kind[0])
           {case 0:
-            /* unknown */'(sendself self-3/1827 latex_of_text/1703 fmt/1828\n  [0: [14: "\\begin{ocamldocsigend}\n"] 0a])';
+            /* unknown */'(sendself self-3/1827 latex_of_text/1703 fmt/1828\n  [0: [14: "\\\\begin{ocamldocsigend}\\n"] 0a])';
             
             /* unknown */"(sendself self-3/1827 latex_of_module_element/1679 fmt/1828 father/1829)";
             List["iter"](0,kind[1]);
-            /* unknown */'(sendself self-3/1827 latex_of_text/1703 fmt/1828\n  [0: [14: "\\end{ocamldocsigend}\n"] 0a])';
+            /* unknown */'(sendself self-3/1827 latex_of_text/1703 fmt/1828\n  [0: [14: "\\\\end{ocamldocsigend}\\n"] 0a])';
             
+            break;
            case 1:
             /* unknown */"(sendself self-3/1827 latex_of_module_parameter/1660 fmt/1828 father/1829\n  (field 0 kind/1830))";
             
             /* unknown */"(sendself self-3/1827 latex_of_module_type_kind/1661 fmt/1828 father/1829\n  (field 1 kind/1830))";
             
+            break;
            case 2:
             /* unknown */"(sendself self-3/1827 latex_of_text/1703 fmt/1828\n  (makeblock 0\n    (makeblock 1\n      (sendself self-3/1827 relative_module_idents/1838 father/1829\n        (field 0 (field 0 kind/1830))))\n    0a))";
             
+            break;
            case 3:
             /* unknown */"(sendself self-3/1827 latex_of_module_type_kind/1661 fmt/1828 father/1829\n  (field 0 kind/1830))";
             
             /* unknown */'(sendself self-3/1827 latex_of_text/1703 fmt/1828\n  (makeblock 0 [1: " "]\n    (makeblock 0\n      (makeblock 1\n        (sendself self-3/1827 relative_idents/1792 father/1829\n          (field 1 kind/1830)))\n      0a)))';
             
+            break;
            case 4:
             /* unknown */'(sendself self-3/1827 latex_of_text/1703 fmt/1828\n  (makeblock 0 [1: "module type of "]\n    (makeblock 0\n      (makeblock 1\n        (sendself self-3/1827 relative_idents/1792 father/1829\n          (field 0 kind/1830)))\n      0a)))';
             
+            break
            }
          },
        latex_of_module_kind,
        function(self$neg3,fmt,father,kind)
         {switch(kind[0])
           {case 0:
-            /* unknown */'(sendself self-3/1840 latex_of_text/1703 fmt/1841\n  [0: [14: "\\begin{ocamldocsigend}\n"] 0a])';
+            /* unknown */'(sendself self-3/1840 latex_of_text/1703 fmt/1841\n  [0: [14: "\\\\begin{ocamldocsigend}\\n"] 0a])';
             
             /* unknown */"(sendself self-3/1840 latex_of_module_element/1679 fmt/1841 father/1842)";
             List["iter"](0,kind[1]);
-            /* unknown */'(sendself self-3/1840 latex_of_text/1703 fmt/1841\n  [0: [14: "\\end{ocamldocsigend}\n"] 0a])';
+            /* unknown */'(sendself self-3/1840 latex_of_text/1703 fmt/1841\n  [0: [14: "\\\\end{ocamldocsigend}\\n"] 0a])';
             
+            break;
            case 1:
             /* unknown */"(sendself self-3/1840 latex_of_text/1703 fmt/1841\n  (makeblock 0\n    (makeblock 1\n      (sendself self-3/1840 relative_module_idents/1838 father/1842\n        (field 0 (field 0 kind/1843))))\n    0a))";
             
+            break;
            case 2:
             /* unknown */"(sendself self-3/1840 latex_of_module_parameter/1660 fmt/1841 father/1842\n  (field 0 kind/1843))";
             
             /* unknown */"(sendself self-3/1840 latex_of_module_kind/1662 fmt/1841 father/1842\n  (field 1 kind/1843))";
             
+            break;
            case 3:
             /* unknown */"(sendself self-3/1840 latex_of_module_kind/1662 fmt/1841 father/1842\n  (field 0 kind/1843))";
             
@@ -2089,37 +2075,44 @@ var
             
             /* unknown */'(sendself self-3/1840 latex_of_text/1703 fmt/1841 [0: [1: ")"] 0a])';
             
+            break;
            case 4:
             /* unknown */"(sendself self-3/1840 latex_of_module_type_kind/1661 fmt/1841 father/1842\n  (field 0 kind/1843))";
             
             /* unknown */'(sendself self-3/1840 latex_of_text/1703 fmt/1841\n  (makeblock 0 [1: " "]\n    (makeblock 0\n      (makeblock 1\n        (sendself self-3/1840 relative_idents/1792 father/1842\n          (field 1 kind/1843)))\n      0a)))';
             
+            break;
            case 5:
             /* unknown */"(sendself self-3/1840 latex_of_module_kind/1662 fmt/1841 father/1842\n  (field 0 kind/1843))";
             
+            break;
            case 6:
             /* unknown */'(sendself self-3/1840 latex_of_text/1703 fmt/1841\n  (makeblock 0 [1: "module type of "]\n    (makeblock 0\n      (makeblock 1\n        (sendself self-3/1840 relative_idents/1792 father/1842\n          (field 0 kind/1843)))\n      0a)))';
             
+            break;
            case 7:
             /* unknown */"(sendself self-3/1840 latex_of_text/1703 fmt/1841\n  (makeblock 0\n    (makeblock 1\n      (sendself self-3/1840 relative_idents/1792 father/1842\n        (field 0 kind/1843)))\n    0a))";
             
+            break
            }
          },
        latex_of_class_kind,
        function(self$neg3,fmt,father,kind)
         {switch(kind[0])
           {case 0:
-            /* unknown */'(sendself self-3/1857 latex_of_text/1703 fmt/1858\n  [0: [14: "\\begin{ocamldocobjectend}\n"] 0a])';
+            /* unknown */'(sendself self-3/1857 latex_of_text/1703 fmt/1858\n  [0: [14: "\\\\begin{ocamldocobjectend}\\n"] 0a])';
             
             /* unknown */"(sendself self-3/1857 generate_inheritance_info/1680 fmt/1858\n  (field 0 kind/1860))";
             
             /* unknown */"(sendself self-3/1857 latex_of_class_element/1678 fmt/1858 father/1859)";
             List["iter"](0,kind[2]);
-            /* unknown */'(sendself self-3/1857 latex_of_text/1703 fmt/1858\n  [0: [14: "\\end{ocamldocobjectend}\n"] 0a])';
+            /* unknown */'(sendself self-3/1857 latex_of_text/1703 fmt/1858\n  [0: [14: "\\\\end{ocamldocobjectend}\\n"] 0a])';
             
+            break;
            case 1:
             /* unknown */'(sendself self-3/1857 latex_of_text/1703 fmt/1858\n  [0: [0: "class application not handled yet"] 0a])';
             
+            break;
            case 2:
             var cco=kind[1];
             
@@ -2128,11 +2121,10 @@ var
             if(l)
              {/* unknown */'(sendself self-3/1857 latex_of_text/1703 fmt/1858\n  (apply (field 21 (global Pervasives!))\n    (makeblock 0 [1: "["]\n      (sendself self-3/1857 text_of_class_type_param_expr_list/1868\n        father/1859 l/1867))\n    [0: [1: "] "] 0a]))';
               }
-            else
-             {}
             
             /* unknown */"(sendself self-3/1857 latex_of_text/1703 fmt/1858\n  (makeblock 0\n    (makeblock 1\n      (sendself self-3/1857 relative_idents/1792 father/1859\n        (field 0 cco/1864)))\n    0a))";
             
+            break;
            case 3:
             /* unknown */'(sendself self-3/1857 latex_of_text/1703 fmt/1858 [0: [1: "( "] 0a])';
             
@@ -2144,20 +2136,22 @@ var
             
             /* unknown */'(sendself self-3/1857 latex_of_text/1703 fmt/1858 [0: [1: " )"] 0a])';
             
+            break
            }
          },
        latex_of_class_type_kind,
        function(self$neg3,fmt,father,kind)
         {switch(kind[0])
           {case 0:
-            /* unknown */'(sendself self-3/1870 latex_of_text/1703 fmt/1871\n  [0: [14: "\\begin{ocamldocobjectend}\n"] 0a])';
+            /* unknown */'(sendself self-3/1870 latex_of_text/1703 fmt/1871\n  [0: [14: "\\\\begin{ocamldocobjectend}\\n"] 0a])';
             
             /* unknown */"(sendself self-3/1870 generate_inheritance_info/1680 fmt/1871\n  (field 0 kind/1873))";
             
             /* unknown */"(sendself self-3/1870 latex_of_class_element/1678 fmt/1871 father/1872)";
             List["iter"](0,kind[2]);
-            /* unknown */'(sendself self-3/1870 latex_of_text/1703 fmt/1871\n  [0: [14: "\\end{ocamldocobjectend}\n"] 0a])';
+            /* unknown */'(sendself self-3/1870 latex_of_text/1703 fmt/1871\n  [0: [14: "\\\\end{ocamldocobjectend}\\n"] 0a])';
             
+            break;
            case 1:
             var cta=kind[1];
             
@@ -2166,57 +2160,52 @@ var
             if(l)
              {/* unknown */'(sendself self-3/1870 latex_of_text/1703 fmt/1871\n  (apply (field 21 (global Pervasives!))\n    (makeblock 0 [1: "["]\n      (sendself self-3/1870 text_of_class_type_param_expr_list/1868\n        father/1872 l/1877))\n    [0: [1: "] "] 0a]))';
               }
-            else
-             {}
             
             /* unknown */"(sendself self-3/1870 latex_of_text/1703 fmt/1871\n  (makeblock 0\n    (makeblock 1\n      (sendself self-3/1870 relative_idents/1792 father/1872\n        (field 0 cta/1874)))\n    0a))";
             
+            break
            }
          },
        latex_for_module_index,
        function(self$neg3,fmt,m)
         {var s_name=Odoc_info["Name"][1](m[1]);
          
-         /* unknown */'(sendself self-3/1879 latex_of_text/1703 fmt/1880\n  (makeblock 0\n    (makeblock 14\n      (apply (field 15 (global Pervasives!)) "\\index{"\n        (apply (field 15 (global Pervasives!))\n          (sendself self-3/1879 label/1779 0a s_name/1882)\n          (apply (field 15 (global Pervasives!)) "@\\verb`"\n            (apply (field 15 (global Pervasives!))\n              (sendself self-3/1879 label/1779 [0: 0a] s_name/1882) "`}\n")))))\n    0a))';
+         /* unknown */'(sendself self-3/1879 latex_of_text/1703 fmt/1880\n  (makeblock 0\n    (makeblock 14\n      (apply (field 15 (global Pervasives!)) "\\\\index{"\n        (apply (field 15 (global Pervasives!))\n          (sendself self-3/1879 label/1779 0a s_name/1882)\n          (apply (field 15 (global Pervasives!)) "@\\\\verb`"\n            (apply (field 15 (global Pervasives!))\n              (sendself self-3/1879 label/1779 [0: 0a] s_name/1882) "`}\\n")))))\n    0a))';
          },
        latex_for_module_type_index,
        function(self$neg3,fmt,mt)
         {var s_name=Odoc_info["Name"][1](mt[1]);
          
-         /* unknown */'(sendself self-3/1884 latex_of_text/1703 fmt/1885\n  (makeblock 0\n    (makeblock 14\n      (apply (field 15 (global Pervasives!)) "\\index{"\n        (apply (field 15 (global Pervasives!))\n          (sendself self-3/1884 label/1779 0a s_name/1887)\n          (apply (field 15 (global Pervasives!)) "@\\verb`"\n            (apply (field 15 (global Pervasives!))\n              (sendself self-3/1884 label/1779 [0: 0a]\n                (apply (field 0 (field 2 (global Odoc_info!))) s_name/1887))\n              "`}\n")))))\n    0a))';
+         /* unknown */'(sendself self-3/1884 latex_of_text/1703 fmt/1885\n  (makeblock 0\n    (makeblock 14\n      (apply (field 15 (global Pervasives!)) "\\\\index{"\n        (apply (field 15 (global Pervasives!))\n          (sendself self-3/1884 label/1779 0a s_name/1887)\n          (apply (field 15 (global Pervasives!)) "@\\\\verb`"\n            (apply (field 15 (global Pervasives!))\n              (sendself self-3/1884 label/1779 [0: 0a]\n                (apply (field 0 (field 2 (global Odoc_info!))) s_name/1887))\n              "`}\\n")))))\n    0a))';
          },
        latex_for_module_label,
        function(self$neg3,fmt,m)
         {/* unknown */"(sendself self-3/1889 make_label/1702\n  (sendself self-3/1889 module_label/1892 0a (field 0 m/1891)))";
-         return ps(fmt,0);
-         },
+         return ps(fmt,0)},
        latex_for_module_type_label,
        function(self$neg3,fmt,mt)
         {/* unknown */"(sendself self-3/1894 make_label/1702\n  (sendself self-3/1894 module_type_label/1897 0a (field 0 mt/1896)))";
-         return ps(fmt,0);
-         },
+         return ps(fmt,0)},
        latex_for_class_index,
        function(self$neg3,fmt,c)
         {var s_name=Odoc_info["Name"][1](c[1]);
          
-         /* unknown */'(sendself self-3/1899 latex_of_text/1703 fmt/1900\n  (makeblock 0\n    (makeblock 14\n      (apply (field 15 (global Pervasives!)) "\\index{"\n        (apply (field 15 (global Pervasives!))\n          (sendself self-3/1899 label/1779 0a s_name/1902)\n          (apply (field 15 (global Pervasives!)) "@\\verb`"\n            (apply (field 15 (global Pervasives!))\n              (sendself self-3/1899 label/1779 [0: 0a] s_name/1902) "`}\n")))))\n    0a))';
+         /* unknown */'(sendself self-3/1899 latex_of_text/1703 fmt/1900\n  (makeblock 0\n    (makeblock 14\n      (apply (field 15 (global Pervasives!)) "\\\\index{"\n        (apply (field 15 (global Pervasives!))\n          (sendself self-3/1899 label/1779 0a s_name/1902)\n          (apply (field 15 (global Pervasives!)) "@\\\\verb`"\n            (apply (field 15 (global Pervasives!))\n              (sendself self-3/1899 label/1779 [0: 0a] s_name/1902) "`}\\n")))))\n    0a))';
          },
        latex_for_class_type_index,
        function(self$neg3,fmt,ct)
         {var s_name=Odoc_info["Name"][1](ct[1]);
          
-         /* unknown */'(sendself self-3/1904 latex_of_text/1703 fmt/1905\n  (makeblock 0\n    (makeblock 14\n      (apply (field 15 (global Pervasives!)) "\\index{"\n        (apply (field 15 (global Pervasives!))\n          (sendself self-3/1904 label/1779 0a s_name/1907)\n          (apply (field 15 (global Pervasives!)) "@\\verb`"\n            (apply (field 15 (global Pervasives!))\n              (sendself self-3/1904 label/1779 [0: 0a] s_name/1907) "`}\n")))))\n    0a))';
+         /* unknown */'(sendself self-3/1904 latex_of_text/1703 fmt/1905\n  (makeblock 0\n    (makeblock 14\n      (apply (field 15 (global Pervasives!)) "\\\\index{"\n        (apply (field 15 (global Pervasives!))\n          (sendself self-3/1904 label/1779 0a s_name/1907)\n          (apply (field 15 (global Pervasives!)) "@\\\\verb`"\n            (apply (field 15 (global Pervasives!))\n              (sendself self-3/1904 label/1779 [0: 0a] s_name/1907) "`}\\n")))))\n    0a))';
          },
        latex_for_class_label,
        function(self$neg3,fmt,c)
         {/* unknown */"(sendself self-3/1909 make_label/1702\n  (sendself self-3/1909 class_label/1912 0a (field 0 c/1911)))";
-         return ps(fmt,0);
-         },
+         return ps(fmt,0)},
        latex_for_class_type_label,
        function(self$neg3,fmt,ct)
         {/* unknown */"(sendself self-3/1914 make_label/1702\n  (sendself self-3/1914 class_type_label/1917 0a (field 0 ct/1916)))";
-         return ps(fmt,0);
-         },
+         return ps(fmt,0)},
        latex_of_module,
        function(self$neg3,fmt,m)
         {var father=Odoc_info["Name"][5](m[1]);
@@ -2224,7 +2213,7 @@ var
          var
           t=
            /* :: */[0,
-            [/* Latex */14,"\begin{ocamldoccode}\n"],
+            [/* Latex */14,"\\begin{ocamldoccode}\n"],
             /* :: */[0,
              [/* Code */1,"module "],
              /* :: */[0,
@@ -2233,7 +2222,7 @@ var
          
          /* unknown */"(sendself self-3/1919 latex_of_text/1703 fmt/1920 t/1923)";
          
-         /* unknown */'(sendself self-3/1919 latex_of_text/1703 fmt/1920\n  [0: [14: "\\end{ocamldoccode}\n"] 0a])';
+         /* unknown */'(sendself self-3/1919 latex_of_text/1703 fmt/1920\n  [0: [14: "\\\\end{ocamldoccode}\\n"] 0a])';
          
          /* unknown */"(sendself self-3/1919 latex_for_module_label/1667 fmt/1920 m/1921)";
          
@@ -2259,7 +2248,7 @@ var
            var
             l=
              List["filter"]
-              (function(param){return param[2]!==/* None */0;},
+              (function(param){return param[2]!==/* None */0},
                Odoc_info["Module"][15]([/* Some */0,/* false */0],m));
            
            if(l)
@@ -2278,18 +2267,13 @@ var
                       
                       return /* :: */[0,
                               /* Raw */[0,param[1][1]],
-                              /* :: */[0,[/* Raw */0,": "],t$2]];
-                      },
+                              /* :: */[0,[/* Raw */0,": "],t$2]]},
                     l)],
                  /* [] */0]];
              
              /* unknown */"(sendself self-3/1919 latex_of_text/1703 fmt/1920 t/1926)";
              }
-           else
-            {}
            }
-         else
-          {}
          
          /* unknown */"(sendself self-3/1919 latex_of_text/1703 fmt/1920 [0: 0a 0a])";
          
@@ -2301,8 +2285,7 @@ var
                    [/* Formatting_lit */17,
                     /* Close_box */0,
                     /* End_of_format */0],
-                   "@]"]);
-         },
+                   "@]"])},
        latex_of_module_type,
        function(self$neg3,fmt,mt)
         {var father=Odoc_info["Name"][5](mt[1]);
@@ -2310,7 +2293,7 @@ var
          var
           t=
            /* :: */[0,
-            [/* Latex */14,"\begin{ocamldoccode}\n"],
+            [/* Latex */14,"\\begin{ocamldoccode}\n"],
             /* :: */[0,
              [/* Code */1,"module type "],
              /* :: */[0,/* Code */[1,Odoc_info["Name"][1](mt[1])],/* [] */0]]];
@@ -2327,7 +2310,7 @@ var
           {if(match$1)
             {/* unknown */'(sendself self-3/1932 latex_of_text/1703 fmt/1933 [0: [1: " = "] 0a])';
              
-             /* unknown */'(sendself self-3/1932 latex_of_text/1703 fmt/1933\n  [0: [14: "\\end{ocamldoccode}\n"] 0a])';
+             /* unknown */'(sendself self-3/1932 latex_of_text/1703 fmt/1933\n  [0: [14: "\\\\end{ocamldoccode}\\n"] 0a])';
              
              /* unknown */"(sendself self-3/1932 latex_for_module_type_label/1668 fmt/1933 mt/1934)";
              
@@ -2353,7 +2336,7 @@ var
          
          switch(exit)
           {case 42:
-            /* unknown */'(sendself self-3/1932 latex_of_text/1703 fmt/1933\n  [0: [14: "\\end{ocamldoccode}\n"] 0a])';
+            /* unknown */'(sendself self-3/1932 latex_of_text/1703 fmt/1933\n  [0: [14: "\\\\end{ocamldoccode}\\n"] 0a])';
             
             /* unknown */"(sendself self-3/1932 latex_for_module_type_index/1666 fmt/1933 mt/1934)";
             
@@ -2366,7 +2349,8 @@ var
                   [/* String_literal */11,"<h 4>",/* End_of_format */0],
                   "<h 4>"]],
                 /* End_of_format */0],
-               "@[<h 4>"])
+               "@[<h 4>"]);
+            break
            }
          
          var match$2=Odoc_info["Module"][29](mt);
@@ -2377,7 +2361,7 @@ var
            var
             l=
              List["filter"]
-              (function(param){return param[2]!==/* None */0;},
+              (function(param){return param[2]!==/* None */0},
                Odoc_info["Module"][30]([/* Some */0,/* false */0],mt));
            
            if(l)
@@ -2396,18 +2380,13 @@ var
                       
                       return /* :: */[0,
                               /* Raw */[0,param[1][1]],
-                              /* :: */[0,[/* Raw */0,": "],t$2]];
-                      },
+                              /* :: */[0,[/* Raw */0,": "],t$2]]},
                     l)],
                  /* [] */0]];
              
              /* unknown */"(sendself self-3/1932 latex_of_text/1703 fmt/1933 t/1941)";
              }
-           else
-            {}
            }
-         else
-          {}
          
          /* unknown */"(sendself self-3/1932 latex_of_text/1703 fmt/1933 [0: 0a 0a])";
          
@@ -2419,8 +2398,7 @@ var
                    [/* Formatting_lit */17,
                     /* Close_box */0,
                     /* End_of_format */0],
-                   "@]"]);
-         },
+                   "@]"])},
        latex_of_included_module,
        function(self$neg3,fmt,im)
         {/* unknown */'(sendself self-3/1947 latex_of_text/1703 fmt/1948\n  (makeblock 0 [1: "include "]\n    (makeblock 0\n      (makeblock 1\n        (let (match/2202 = (field 1 im/1949))\n          (if match/2202 (field 0 (field 0 (field 0 match/2202)))\n            (field 0 im/1949))))\n      (sendself self-3/1947 text_of_info/1692 0a (field 2 im/1949)))))';
@@ -2443,7 +2421,7 @@ var
          var
           t=
            /* :: */[0,
-            [/* Latex */14,"\begin{ocamldoccode}\n"],
+            [/* Latex */14,"\\begin{ocamldoccode}\n"],
             /* :: */[0,
              /* Code */[1,
               Printf["sprintf"]
@@ -2473,9 +2451,10 @@ var
           {case 2:
             /* unknown */"(sendself self-3/1953 latex_of_class_kind/1663 fmt/1954 father/1956\n  (field 5 c/1955))";
             
+            break;
            default:}
          
-         /* unknown */'(sendself self-3/1953 latex_of_text/1703 fmt/1954\n  [0: [14: "\\end{ocamldoccode}\n"] 0a])';
+         /* unknown */'(sendself self-3/1953 latex_of_text/1703 fmt/1954\n  [0: [14: "\\\\end{ocamldoccode}\\n"] 0a])';
          
          /* unknown */"(sendself self-3/1953 latex_for_class_label/1671 fmt/1954 c/1955)";
          
@@ -2494,7 +2473,7 @@ var
          var match$1=c[6];
          
          switch(match$1[0])
-          {case 2:
+          {case 2:break;
            default:
             /* unknown */"(sendself self-3/1953 latex_of_class_kind/1663 fmt/1954 father/1956\n  (field 5 c/1955))";
             }
@@ -2509,8 +2488,7 @@ var
                    [/* Formatting_lit */17,
                     /* Close_box */0,
                     /* End_of_format */0],
-                   "@]"]);
-         },
+                   "@]"])},
        latex_of_class_type,
        function(self$neg3,fmt,ct)
         {Odoc_info["reset_type_names"](/* () */0);
@@ -2529,7 +2507,7 @@ var
          var
           t=
            /* :: */[0,
-            [/* Latex */14,"\begin{ocamldoccode}\n"],
+            [/* Latex */14,"\\begin{ocamldoccode}\n"],
             /* :: */[0,
              /* Code */[1,
               Printf["sprintf"]
@@ -2551,7 +2529,7 @@ var
          
          /* unknown */"(sendself self-3/1962 latex_of_text/1703 fmt/1963 t/1968)";
          
-         /* unknown */'(sendself self-3/1962 latex_of_text/1703 fmt/1963\n  [0: [14: "\\end{ocamldoccode}\n"] 0a])';
+         /* unknown */'(sendself self-3/1962 latex_of_text/1703 fmt/1963\n  [0: [14: "\\\\end{ocamldoccode}\\n"] 0a])';
          
          /* unknown */"(sendself self-3/1962 latex_for_class_type_label/1672 fmt/1963 ct/1964)";
          
@@ -2579,8 +2557,7 @@ var
                    [/* Formatting_lit */17,
                     /* Close_box */0,
                     /* End_of_format */0],
-                   "@]"]);
-         },
+                   "@]"])},
        latex_of_class_element,
        function(self$neg3,fmt,class_name,class_ele)
         {/* unknown */"(sendself self-3/1970 latex_of_text/1703 fmt/1971 [0: 0a 0a])";
@@ -2589,9 +2566,11 @@ var
           {case 0:
             /* unknown */"(sendself self-3/1970 latex_of_attribute/1653 fmt/1971\n  (field 0 class_ele/1973))";
             
+            break;
            case 1:
             /* unknown */"(sendself self-3/1970 latex_of_method/1654 fmt/1971 (field 0 class_ele/1973))";
             
+            break;
            case 2:
             var t=class_ele[1];
             
@@ -2606,17 +2585,19 @@ var
                  {case 13:
                    /* unknown */"(sendself self-3/1970 latex_of_text/1703 fmt/1971 t/1976)";
                    
+                   break;
                   default:exit=28;}}
               }
             else
-             {return /* () */0;}
+             {return /* () */0}
             
             switch(exit)
              {case 28:
                /* unknown */"(sendself self-3/1970 latex_of_text/1703 fmt/1971\n  (makeblock 0\n    (makeblock 13\n      (+ (apply (field 2 (field 2 (global Odoc_info!))) class_name/1972) 2)\n      0a t/1976)\n    0a))";
                
+               break
               }
-            
+            break
            }
          },
        latex_of_module_element,
@@ -2627,33 +2608,43 @@ var
           {case 0:
             /* unknown */"(sendself self-3/1978 latex_of_module/1673 fmt/1979\n  (field 0 module_ele/1981))";
             
+            break;
            case 1:
             /* unknown */"(sendself self-3/1978 latex_of_module_type/1674 fmt/1979\n  (field 0 module_ele/1981))";
             
+            break;
            case 2:
             /* unknown */"(sendself self-3/1978 latex_of_included_module/1675 fmt/1979\n  (field 0 module_ele/1981))";
             
+            break;
            case 3:
             /* unknown */"(sendself self-3/1978 latex_of_class/1676 fmt/1979 (field 0 module_ele/1981))";
             
+            break;
            case 4:
             /* unknown */"(sendself self-3/1978 latex_of_class_type/1677 fmt/1979\n  (field 0 module_ele/1981))";
             
+            break;
            case 5:
             /* unknown */"(sendself self-3/1978 latex_of_value/1652 fmt/1979 (field 0 module_ele/1981))";
             
+            break;
            case 6:
             /* unknown */"(sendself self-3/1978 latex_of_type_extension/1658 module_name/1980 fmt/1979\n  (field 0 module_ele/1981))";
             
+            break;
            case 7:
             /* unknown */"(sendself self-3/1978 latex_of_exception/1659 fmt/1979\n  (field 0 module_ele/1981))";
             
+            break;
            case 8:
             /* unknown */"(sendself self-3/1978 latex_of_type/1657 fmt/1979 (field 0 module_ele/1981))";
             
+            break;
            case 9:
             /* unknown */"(sendself self-3/1978 latex_of_text/1703 fmt/1979 (field 0 module_ele/1981))";
             
+            break
            }
          },
        generate_inheritance_info,
@@ -2668,9 +2659,11 @@ var
                 {case 0:
                   /* unknown */"(sendself self-3/1993 class_label/1912 0a (field 0 inh/1997))";
                   
+                  break;
                  case 1:
                   /* unknown */"(sendself self-3/1993 class_type_label/1917 0a (field 0 inh/1997))";
                   
+                  break
                  }
                
                /* unknown */"(sendself self-3/1993 make_ref/2001 label/2000)";
@@ -2682,8 +2675,7 @@ var
                         /* Code */[1,Pervasives["^"]("inherit ",inh[1])],
                         /* :: */[0,
                          /* Latex */[14,Pervasives["^"](" [",Pervasives["^"](0,"]"))],
-                         match$1?/* :: */[0,/* Newline */0,match$1[1]]:/* [] */0]]];
-               }
+                         match$1?/* :: */[0,/* Newline */0,match$1[1]]:/* [] */0]]]}
              else
               {var match$2=inh[3];
                
@@ -2691,13 +2683,11 @@ var
                        /* Newline */0,
                        /* :: */[0,
                         /* Code */[1,Pervasives["^"]("inherit ",inh[1])],
-                        match$2?/* :: */[0,/* Newline */0,match$2[1]]:/* [] */0]];
-               }
+                        match$2?/* :: */[0,/* Newline */0,match$2[1]]:/* [] */0]]}
              };
          
          /* unknown */"(sendself self-3/1993 latex_of_text/1703 fmt/1994)";
-         return List["iter"](0,List["map"](f,inher_l));
-         },
+         return List["iter"](0,List["map"](f,inher_l))},
        generate_class_inheritance_info,
        function(self$neg3,fmt,cl)
         {var
@@ -2713,18 +2703,17 @@ var
                  {/* unknown */"(sendself self-3/2004 generate_inheritance_info/1680 fmt/2005 l/2009)";
                   }
                 else
-                 {return /* () */0;}
-                
-               case 1:exit=24;
-               case 2:exit=24;
-               case 3:return iter_kind(k[1]);
+                 {return /* () */0}
+                break;
+               case 1:exit=24;break;
+               case 2:exit=24;break;
+               case 3:return iter_kind(k[1])
                }
              
-             switch(exit){case 24:return /* () */0;}
+             switch(exit){case 24:return /* () */0}
              };
          
-         return iter_kind(cl[6]);
-         },
+         return iter_kind(cl[6])},
        generate_class_type_inheritance_info,
        function(self$neg3,fmt,clt)
         {var match=clt[6];
@@ -2737,9 +2726,9 @@ var
              {/* unknown */"(sendself self-3/2012 generate_inheritance_info/1680 fmt/2013 l/2015)";
               }
             else
-             {return /* () */0;}
-            
-           case 1:return /* () */0;
+             {return /* () */0}
+            break;
+           case 1:return /* () */0
            }
          },
        generate_for_top_module,
@@ -2780,41 +2769,37 @@ var
          
          /* unknown */"(sendself self-3/2017 latex_of_text/1703 fmt/2018 [0: 0a 0a])";
          
-         if(!m[11]){ps(fmt,"\ocamldocvspace{0.5cm}\n\n")}
+         if(!m[11]){ps(fmt,"\\ocamldocvspace{0.5cm}\n\n")}
          
          return List["iter"]
                  (function(ele)
                    {/* unknown */"(sendself self-3/2017 latex_of_module_element/1679 fmt/2018 (field 0 m/2019)\n  ele/2025)";
                     
-                    return ps(fmt,"\n\n");
-                    },
-                  Odoc_info["Module"][1]([/* Some */0,/* false */0],m));
-         },
+                    return ps(fmt,"\n\n")},
+                  Odoc_info["Module"][1]([/* Some */0,/* false */0],m))},
        latex_header,
        function(self$neg3,fmt,module_list)
-        {ps(fmt,"\documentclass[11pt]{article} \n");
-         ps(fmt,"\usepackage[latin1]{inputenc} \n");
-         ps(fmt,"\usepackage[T1]{fontenc} \n");
-         ps(fmt,"\usepackage{textcomp}\n");
-         ps(fmt,"\usepackage{fullpage} \n");
-         ps(fmt,"\usepackage{url} \n");
-         ps(fmt,"\usepackage{ocamldoc}\n");
+        {ps(fmt,"\\documentclass[11pt]{article} \n");
+         ps(fmt,"\\usepackage[latin1]{inputenc} \n");
+         ps(fmt,"\\usepackage[T1]{fontenc} \n");
+         ps(fmt,"\\usepackage{textcomp}\n");
+         ps(fmt,"\\usepackage{fullpage} \n");
+         ps(fmt,"\\usepackage{url} \n");
+         ps(fmt,"\\usepackage{ocamldoc}\n");
          var match=Odoc_info["Global"][6][1];
          
          if(match)
-          {ps(fmt,"\title{");
+          {ps(fmt,"\\title{");
            /* unknown */"(sendself self-3/2027 escape/2031 (field 0 match/2151))";
            ps(fmt,0);
            ps(fmt,"}\n")}
-         else
-          {}
          
-         ps(fmt,"\begin{document}\n");
+         ps(fmt,"\\begin{document}\n");
          var match$1=Odoc_info["Global"][6][1];
          
-         if(match$1){ps(fmt,"\maketitle\n")}
+         if(match$1){ps(fmt,"\\maketitle\n")}
          
-         if(Odoc_info["Global"][8][1]){ps(fmt,"\tableofcontents\n")}
+         if(Odoc_info["Global"][8][1]){ps(fmt,"\\tableofcontents\n")}
          
          var
           info$1=
@@ -2822,12 +2807,11 @@ var
             (Odoc_info["info_of_comment_file"](module_list),
              Odoc_info["Global"][7][1]);
          
-         if(info$1){ps(fmt,"\vspace{0.2cm}")}
+         if(info$1){ps(fmt,"\\vspace{0.2cm}")}
          
          /* unknown */"(sendself self-3/2027 latex_of_info/1753 fmt/2028 0a info/2032)";
          
-         return info$1?ps(fmt,"\n\n"):/* () */0;
-         },
+         return info$1?ps(fmt,"\n\n"):/* () */0},
        generate_style_file,
        function(self$neg3)
         {try
@@ -2837,8 +2821,7 @@ var
            
            if(CamlPrimitive["caml_sys_file_exists"](file))
             {return Odoc_info["verbose"]
-                     (Odoc_messages["file_exists_dont_generate"](file));
-             }
+                     (Odoc_messages["file_exists_dont_generate"](file))}
            else
             {var chanout=Pervasives["open_out"](file);
              
@@ -2846,16 +2829,14 @@ var
              Pervasives["flush"](chanout);
              Pervasives["close_out"](chanout);
              return Odoc_info["verbose"]
-                     (Odoc_messages["file_generated"](file));
-             }
+                     (Odoc_messages["file_generated"](file))}
            }
          catch(exn)
           {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
             {Pervasives["prerr_endline"](exn[2]);
-             return Odoc_info["errors"][0]++;
-             }
+             return Odoc_info["errors"][0]++}
            else
-            {throw exn;}
+            {throw exn}
            }
          },
        generate,
@@ -2882,8 +2863,7 @@ var
                  /* unknown */"(sendself self-3/2040 generate_for_top_module/1683 fmt/2047 m/2045)";
                  
                  Format["pp_print_flush"](fmt,/* () */0);
-                 return Pervasives["close_out"](chanout);
-                 }
+                 return Pervasives["close_out"](chanout)}
                catch(exn)
                 {var exit;
                  
@@ -2893,21 +2873,18 @@ var
                   {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
                     {var s=exn[2];exit=7;}
                    else
-                    {throw exn;}
+                    {throw exn}
                    }
                  
                  switch(exit)
                   {case 7:
                     Pervasives["prerr_endline"](s);
-                    return Odoc_info["errors"][0]++;
-                    
+                    return Odoc_info["errors"][0]++
                    }
                  }
                };
            
            List["iter"](f,module_list)}
-         else
-          {}
          
          try
           {var chanout=Pervasives["open_out"](main_file);
@@ -2917,8 +2894,6 @@ var
            if(Odoc_info["Global"][10][1])
             {/* unknown */"(sendself self-3/2040 latex_header/1684 fmt/2051 module_list/2041)";
              }
-           else
-            {}
            
            List["iter"]
             (function(m)
@@ -2926,19 +2901,17 @@ var
                 {return ps
                          (fmt,
                           Pervasives["^"]
-                           ("\input{",
-                            Pervasives["^"](Odoc_info["Name"][1](m[1]),".tex}\n")));
-                 }
+                           ("\\input{",
+                            Pervasives["^"](Odoc_info["Name"][1](m[1]),".tex}\n")))}
                else
                 {/* unknown */"(sendself self-3/2040 generate_for_top_module/1683 fmt/2051 m/2052)";
                  }
                },
              module_list);
-           if(Odoc_info["Global"][11][1]){ps(fmt,"\end{document}")}
+           if(Odoc_info["Global"][11][1]){ps(fmt,"\\end{document}")}
            
            Format["pp_print_flush"](fmt,/* () */0);
-           return Pervasives["close_out"](chanout);
-           }
+           return Pervasives["close_out"](chanout)}
          catch(exn)
           {var exit;
            
@@ -2948,12 +2921,12 @@ var
             {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
               {var s=exn[2];exit=2;}
              else
-              {throw exn;}
+              {throw exn}
              }
            
            switch(exit)
             {case 2:
-              Pervasives["prerr_endline"](s);return Odoc_info["errors"][0]++;
+              Pervasives["prerr_endline"](s);return Odoc_info["errors"][0]++
              }
            }
          }]);
@@ -2961,9 +2934,7 @@ var
      {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);
       
       obj_init($$self$1),obj_init$1($$self$1),obj_init$2($$self$1);
-      return CamlinternalOO["run_initializers_opt"]($$self,$$self$1,$$class);
-      };
-    };
+      return CamlinternalOO["run_initializers_opt"]($$self,$$self$1,$$class)}};
 
 var
  latex=

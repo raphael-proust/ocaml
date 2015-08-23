@@ -72,13 +72,14 @@ let implementation ppf sourcefile outputprefix =
   Env.set_unit_name modulename;
   let env = Compmisc.initial_env() in
   let finalenv = ref Env.empty in
+  let current_signature = ref [] in
   try
     let (typedtree, coercion) =
       Pparse.parse_implementation ~tool_name ppf sourcefile
       ++ print_if ppf Clflags.dump_parsetree Printast.implementation
       ++ print_if ppf Clflags.dump_source Pprintast.structure
-      ++ (fun x -> let (a,b,c) = Typemod.type_implementation_more sourcefile outputprefix modulename env x  in
-       begin finalenv:=c; a,b end)
+      ++ (fun x -> let (a,b,c,signature) = Typemod.type_implementation_more sourcefile outputprefix modulename env x  in
+       begin finalenv:=c; current_signature:= signature; a,b end)
       ++ print_if ppf Clflags.dump_typedtree
         Printtyped.implementation_with_coercion
     in
@@ -95,7 +96,9 @@ let implementation ppf sourcefile outputprefix =
           (if serialize_raw_lambda then 
             Printlambda.seriaize !finalenv (sourcefile ^ ".rawlambda") lambda;);
           (if serialize_raw_js then 
-            !Printlambda.serialize_raw_js !finalenv sourcefile  lambda 
+            !Printlambda.serialize_raw_js 
+              !finalenv !current_signature 
+              sourcefile  lambda 
           );
             lambda
            )

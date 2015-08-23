@@ -62,8 +62,7 @@ var
         [/* Formatting_lit */17,/* Flush_newline */4,/* End_of_format */0]],
        "%s@."],
       text);
-    throw Debugger_config["Toplevel"];
-    };
+    throw Debugger_config["Toplevel"]};
 
 var
  check_not_windows=
@@ -77,8 +76,7 @@ var
                  ("'",
                   Pervasives["^"]
                    (feature,"' feature not supported on Windows")));
-       
-      default:return /* () */0;}
+      default:return /* () */0}
     };
 
 var eol=Parser["end_of_line"](Lexer["lexeme"]);
@@ -87,29 +85,27 @@ var
  matching_elements=
   function(list,name,instr)
    {return List["filter"]
-            (function(a){return Primitives["isprefix"](instr,name(a));},
-             list[1]);
-    };
+            (function(a){return Primitives["isprefix"](instr,name(a))},
+             list[1])};
 
 var
  all_matching_instructions=
-  matching_elements(instruction_list,function(i){return i[1];});
+  matching_elements(instruction_list,function(i){return i[1]});
 
 var
  matching_instructions=
   function(instr)
    {var all=all_matching_instructions(instr);
     
-    var prio=List["filter"](function(i){return i[2];},all);
+    var prio=List["filter"](function(i){return i[2]},all);
     
-    return prio===/* [] */0?all:prio;
-    };
+    return prio===/* [] */0?all:prio};
 
 var
  matching_variables=
-  matching_elements(variable_list,function(v){return v[1];});
+  matching_elements(variable_list,function(v){return v[1]});
 
-var matching_infos=matching_elements(info_list,function(i){return i[1];});
+var matching_infos=matching_elements(info_list,function(i){return i[1]});
 
 var
  find_ident=
@@ -124,31 +120,28 @@ var
                 ?error
                   (Pervasives["^"]("Ambiguous ",Pervasives["^"](name,".")))
                 :action(match$1[1],ppf,lexbuf)
-              :error(Pervasives["^"]("Unknown ",Pervasives["^"](name,".")));
-      }
+              :error(Pervasives["^"]("Unknown ",Pervasives["^"](name,".")))}
     else
-     {return alternative(ppf);}
+     {return alternative(ppf)}
     };
 
 var
  find_variable=
   function(action,alternative,ppf,lexbuf)
    {return find_ident
-            ("variable name",matching_variables,action,alternative,ppf,lexbuf);
-    };
+            ("variable name",matching_variables,action,alternative,ppf,lexbuf)};
 
 var
  find_info=
   function(action,alternative,ppf,lexbuf)
    {return find_ident
-            ("info command",matching_infos,action,alternative,ppf,lexbuf);
-    };
+            ("info command",matching_infos,action,alternative,ppf,lexbuf)};
 
 var
  add_breakpoint_at_pc=
   function(pc)
    {try
-     {return Breakpoints["new_breakpoint"](Symbols["any_event_at_pc"](pc));}
+     {return Breakpoints["new_breakpoint"](Symbols["any_event_at_pc"](pc))}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {Format["eprintf"]
@@ -166,10 +159,9 @@ var
                /* End_of_format */0]]]],
            "Can't add breakpoint at pc %i: no event there.@."],
           pc);
-        throw Debugger_config["Toplevel"];
-        }
+        throw Debugger_config["Toplevel"]}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -182,31 +174,27 @@ var
        {if(n<3)
          {try
            {return Breakpoints["new_breakpoint"]
-                    (Symbols["any_event_at_pc"](pc+n*4));
-            }
+                    (Symbols["any_event_at_pc"](pc+n*4))}
           catch(exn)
            {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-             {return try_add(n+1);}
+             {return try_add(n+1)}
             else
-             {throw exn;}
+             {throw exn}
             }
           }
         else
          {return error
-                  ("Can't add breakpoint at beginning of function: no event there");
-          }
+                  ("Can't add breakpoint at beginning of function: no event there")}
         };
     
-    return try_add(0);
-    };
+    return try_add(0)};
 
 var
  module_of_longident=
   function(id)
    {return id
             ?/* Some */[0,$$String["concat"](".",Longident["flatten"](id[1]))]
-            :/* None */0;
-    };
+            :/* None */0};
 
 var
  convert_module=
@@ -217,16 +205,15 @@ var
       return $$String["capitalize"]
               (Filename["check_suffix"](m,".ml")
                 ?Filename["chop_suffix"](m,".ml")
-                :m);
-      }
+                :m)}
     else
      {try
-       {return Events["get_current_event"](/* () */0)[2];}
+       {return Events["get_current_event"](/* () */0)[2]}
       catch(exn)
        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-         {return error("Not in a module.");}
+         {return error("Not in a module.")}
         else
-         {throw exn;}
+         {throw exn}
         }
       }
     };
@@ -247,26 +234,25 @@ var
         
         if(l)
          {if(l[2])
-           {return error("Ambiguous command.");}
+           {return error("Ambiguous command.")}
           else
            {var i=l[1];
             
             i[3](ppf,lexbuf);
             Input_handling["resume_user_input"](/* () */0);
-            return i[4];
-            }
+            return i[4]}
           }
         else
-         {return error("Unknown command.");}
+         {return error("Unknown command.")}
         }
       else
-       {Input_handling["resume_user_input"](/* () */0);return /* false */0;}
+       {Input_handling["resume_user_input"](/* () */0);return /* false */0}
       }
     catch(exn)
      {var exit;
       
       if(exn===Parsing["Parse_error"])
-       {return error("Syntax error.");}
+       {return error("Syntax error.")}
       else
        {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
          {switch(exn[2])
@@ -277,7 +263,7 @@ var
          {exit=172;}
         }
       
-      switch(exit){case 172:throw exn;}
+      switch(exit){case 172:throw exn}
       }
     };
 
@@ -302,15 +288,14 @@ var
         
         previous_line="";
         
-        if(interprete_line(ppf,line)){previous_line=line;}else{}
+        if(interprete_line(ppf,line)){previous_line=line;}
         }
-      return 0;
-      }
+      return 0}
     catch(exn)
      {if(exn===Pervasives["Exit"])
-       {return Input_handling["stop_user_input"](/* () */0);}
+       {return Input_handling["stop_user_input"](/* () */0)}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -321,17 +306,16 @@ var
     
     if(Program_management["ask_kill_program"](/* () */0))
      {try
-       {return CamlPrimitive["caml_sys_chdir"](Unix_tools["expand_path"](dir));
-        }
+       {return CamlPrimitive["caml_sys_chdir"](Unix_tools["expand_path"](dir))}
       catch(exn)
        {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
-         {return error(exn[2]);}
+         {return error(exn[2])}
         else
-         {throw exn;}
+         {throw exn}
         }
       }
     else
-     {return 0;}
+     {return 0}
     };
 
 var
@@ -362,8 +346,7 @@ var
                 "Shell command %S failed with exit code %d\n%!"],
                cmd,
                err)
-            :0;
-    };
+            :0};
 
 var
  instr_env=
@@ -377,10 +360,7 @@ var
        {try
          {var eqpos=$$String["index"](cmdarg$1,61);
           
-          if(eqpos===0)
-           {throw CamlPrimitive["caml_global_data"]["Not_found"];}
-          else
-           {}
+          if(eqpos===0){throw CamlPrimitive["caml_global_data"]["Not_found"]}
           
           var name=$$String["sub"](cmdarg$1,0,eqpos);
           
@@ -392,8 +372,7 @@ var
                  /* :: */[0,
                   /* tuple */[0,name,value],
                   List["remove_assoc"](name,Debugger_config["environment"][1])],
-                 0;
-          }
+                 0}
         catch(exn)
          {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
            {return Format["eprintf"]
@@ -401,10 +380,9 @@ var
                       [/* String_literal */11,
                        "Environment variable must be in name=value format\n",
                        [/* Flush */10,/* End_of_format */0]],
-                      "Environment variable must be in name=value format\n%!"]);
-            }
+                      "Environment variable must be in name=value format\n%!"])}
           else
-           {throw exn;}
+           {throw exn}
           }
         }
       else
@@ -423,13 +401,11 @@ var
                                  [/* Flush */10,/* End_of_format */0]]]]],
                              "%s=%s\n%!"],
                             param[1],
-                            param[2]);
-                   },
-                 List["rev"](Debugger_config["environment"][1]));
-        }
+                            param[2])},
+                 List["rev"](Debugger_config["environment"][1]))}
       }
     else
-     {return 0;}
+     {return 0}
     };
 
 var
@@ -445,8 +421,7 @@ var
                 /* Flush_newline */4,
                 /* End_of_format */0]],
               "%s@."],
-             CamlPrimitive["caml_sys_getcwd"](/* () */0));
-    };
+             CamlPrimitive["caml_sys_getcwd"](/* () */0))};
 
 var
  instr_dir=
@@ -482,8 +457,7 @@ var
            {List["iter"]
              (function(x)
                {return Parameters["add_path_for"]
-                        (mdl,Unix_tools["expand_path"](x));
-                },
+                        (mdl,Unix_tools["expand_path"](x))},
               tl)}
           else
            {exit=148;}
@@ -498,8 +472,9 @@ var
        {case 148:
          List["iter"]
           (function(x)
-            {return Parameters["add_path"](Unix_tools["expand_path"](x));},
-           new_directory$prime)
+            {return Parameters["add_path"](Unix_tools["expand_path"](x))},
+           new_directory$prime);
+         break
         }
       }
     
@@ -515,10 +490,8 @@ var
                               [/* Break */0,"@ ",1,0],
                               [/* String */2,/* No_padding */0,/* End_of_format */0]],
                              "@ %s"],
-                            x);
-                   },
-                 l);
-        };
+                            x)},
+                 l)};
     
     Format["fprintf"]
      (ppf,
@@ -562,10 +535,8 @@ var
                          "@[<2>Source directories for %s: %a@]@."],
                         mdl,
                         print_dirs,
-                        dirs);
-               },
-             Debugger_config["load_path_for"]);
-    };
+                        dirs)},
+             Debugger_config["load_path_for"])};
 
 var
  instr_kill=
@@ -577,8 +548,7 @@ var
     return Question["yes_or_no"]("Kill the program being debugged")
             ?(Program_management["kill_program"](/* () */0),
               Show_source["show_no_point"](/* () */0))
-            :0;
-    };
+            :0};
 
 var
  instr_run=
@@ -587,8 +557,7 @@ var
     Program_management["ensure_loaded"](/* () */0);
     Printval["reset_named_values"](/* () */0);
     Time_travel["run"](/* () */0);
-    return Show_information["show_current_event"](ppf);
-    };
+    return Show_information["show_current_event"](ppf)};
 
 var
  instr_reverse=
@@ -598,8 +567,7 @@ var
     Program_management["ensure_loaded"](/* () */0);
     Printval["reset_named_values"](/* () */0);
     Time_travel["back_run"](/* () */0);
-    return Show_information["show_current_event"](ppf);
-    };
+    return Show_information["show_current_event"](ppf)};
 
 var
  instr_step=
@@ -611,8 +579,7 @@ var
     Program_management["ensure_loaded"](/* () */0);
     Printval["reset_named_values"](/* () */0);
     Time_travel["step"](step_count);
-    return Show_information["show_current_event"](ppf);
-    };
+    return Show_information["show_current_event"](ppf)};
 
 var
  instr_back=
@@ -625,8 +592,7 @@ var
     Program_management["ensure_loaded"](/* () */0);
     Printval["reset_named_values"](/* () */0);
     Time_travel["step"](Int64ops["--"](Int64ops["_0"],step_count));
-    return Show_information["show_current_event"](ppf);
-    };
+    return Show_information["show_current_event"](ppf)};
 
 var
  instr_finish=
@@ -635,8 +601,7 @@ var
     Program_management["ensure_loaded"](/* () */0);
     Printval["reset_named_values"](/* () */0);
     Time_travel["finish"](/* () */0);
-    return Show_information["show_current_event"](ppf);
-    };
+    return Show_information["show_current_event"](ppf)};
 
 var
  instr_next=
@@ -648,8 +613,7 @@ var
     Program_management["ensure_loaded"](/* () */0);
     Printval["reset_named_values"](/* () */0);
     Time_travel["next"](step_count);
-    return Show_information["show_current_event"](ppf);
-    };
+    return Show_information["show_current_event"](ppf)};
 
 var
  instr_start=
@@ -659,8 +623,7 @@ var
     Program_management["ensure_loaded"](/* () */0);
     Printval["reset_named_values"](/* () */0);
     Time_travel["start"](/* () */0);
-    return Show_information["show_current_event"](ppf);
-    };
+    return Show_information["show_current_event"](ppf)};
 
 var
  instr_previous=
@@ -673,8 +636,7 @@ var
     Program_management["ensure_loaded"](/* () */0);
     Printval["reset_named_values"](/* () */0);
     Time_travel["previous"](step_count);
-    return Show_information["show_current_event"](ppf);
-    };
+    return Show_information["show_current_event"](ppf)};
 
 var
  instr_goto=
@@ -684,10 +646,9 @@ var
     Program_management["ensure_loaded"](/* () */0);
     Printval["reset_named_values"](/* () */0);
     Time_travel["go_to"](time);
-    return Show_information["show_current_event"](ppf);
-    };
+    return Show_information["show_current_event"](ppf)};
 
-var instr_quit=function(param){throw Pervasives["Exit"];};
+var instr_quit=function(param){throw Pervasives["Exit"]};
 
 var
  print_variable_list=
@@ -706,9 +667,7 @@ var
                                [/* Break */0,"@ ",1,0],
                                /* End_of_format */0]],
                              "%s@ "],
-                            v[1]);
-                   });
-        };
+                            v[1])})};
     
     return Format["fprintf"]
             (ppf,
@@ -721,8 +680,7 @@ var
                  /* End_of_format */0]]],
               "List of variables: %a@."],
              pr_vars,
-             variable_list[1]);
-    };
+             variable_list[1])};
 
 var
  print_info_list=
@@ -741,9 +699,7 @@ var
                                [/* Break */0,"@ ",1,0],
                                /* End_of_format */0]],
                              "%s@ "],
-                            i[1]);
-                   });
-        };
+                            i[1])})};
     
     return Format["fprintf"]
             (ppf,
@@ -756,8 +712,7 @@ var
                  /* End_of_format */0]]],
               "List of info commands: %a@."],
              pr_infos,
-             info_list[1]);
-    };
+             info_list[1])};
 
 var
  instr_complete=
@@ -780,14 +735,11 @@ var
                                  /* Flush_newline */4,
                                  /* End_of_format */0]],
                                "%s@."],
-                              i);
-                     },
-                   l);
-          }
+                              i)},
+                   l)}
         catch(exn)
          {return Input_handling["remove_file"]
-                  (Input_handling["user_channel"][1]);
-          }
+                  (Input_handling["user_channel"][1])}
         };
     
     var
@@ -816,9 +768,8 @@ var
                else
                 {return CamlPrimitive["caml_string_equal"](x,"help")
                          ?match_list(lexbuf)
-                         :[/* :: */0,"help",/* [] */0];
-                 }
-               
+                         :[/* :: */0,"help",/* [] */0]}
+               break;
               case "info":
                if(l[2])
                 {exit=122;}
@@ -843,26 +794,23 @@ var
                          
                          return CamlPrimitive["caml_string_equal"](i$1[1],ident)
                                  ?/* [] */0
-                                 :/* :: */[0,i$1[1],/* [] */0];
-                         }
+                                 :/* :: */[0,i$1[1],/* [] */0]}
                        }
                      else
                       {exit$2=121;}
                      
                      switch(exit$2)
-                      {case 121:return List["map"](function(i){return i[1];},l$1);
-                       }
+                      {case 121:return List["map"](function(i){return i[1]},l$1)}
                      }
                    else
-                    {return List["map"](function(i){return i[1];},info_list[1]);
-                     }
+                    {return List["map"](function(i){return i[1]},info_list[1])}
                    }
                  else
-                  {return [/* :: */0,"info",/* [] */0];}
+                  {return [/* :: */0,"info",/* [] */0]}
                  }
-               
-              case "set":exit$1=123;
-              case "show":exit$1=123;
+               break;
+              case "set":exit$1=123;break;
+              case "show":exit$1=123;break;
               default:exit$1=124;}
             
             switch(exit$1)
@@ -872,9 +820,8 @@ var
                else
                 {return CamlPrimitive["caml_string_equal"](x,i[1])
                          ?/* [] */0
-                         :/* :: */[0,i[1],/* [] */0];
-                 }
-               
+                         :/* :: */[0,i[1],/* [] */0]}
+               break;
               case 123:
                if(l[2])
                 {exit=122;}
@@ -899,39 +846,35 @@ var
                          
                          return CamlPrimitive["caml_string_equal"](v[1],ident$1)
                                  ?/* [] */0
-                                 :/* :: */[0,v[1],/* [] */0];
-                         }
+                                 :/* :: */[0,v[1],/* [] */0]}
                        }
                      else
                       {exit$3=120;}
                      
                      switch(exit$3)
-                      {case 120:return List["map"](function(v){return v[1];},l$2);
-                       }
+                      {case 120:return List["map"](function(v){return v[1]},l$2)}
                      }
                    else
                     {return List["map"]
-                             (function(v){return v[1];},variable_list[1]);
-                     }
+                             (function(v){return v[1]},variable_list[1])}
                    }
                  else
-                  {return /* :: */[0,i_full,/* [] */0];}
+                  {return /* :: */[0,i_full,/* [] */0]}
                  }
-               
+               break
               }
             }
           else
            {exit=122;}
           
           switch(exit)
-           {case 122:return List["map"](function(i){return i[1];},l);}
+           {case 122:return List["map"](function(i){return i[1]},l)}
           }
         else
-         {return List["map"](function(i){return i[1];},instruction_list[1]);}
+         {return List["map"](function(i){return i[1]},instruction_list[1])}
         };
     
-    return print_list(match_list(lexbuf));
-    };
+    return print_list(match_list(lexbuf))};
 
 var
  instr_help=
@@ -950,9 +893,7 @@ var
                                [/* Break */0,"@ ",1,0],
                                /* End_of_format */0]],
                              "%s@ "],
-                            i[1]);
-                   });
-        };
+                            i[1])})};
     
     var match=Parser["identifier_or_eol"](Lexer["lexeme"],lexbuf);
     
@@ -977,8 +918,7 @@ var
                         /* End_of_format */0]]]],
                     "%s: %s@."],
                    nm,
-                   hlp);
-          };
+                   hlp)};
       
       var l=matching_instructions(x);
       
@@ -996,16 +936,14 @@ var
            else
             {return find_info
                      (function(i,param,param$1)
-                       {return print_help(Pervasives["^"]("info ",i[1]),i[3]);},
+                       {return print_help(Pervasives["^"]("info ",i[1]),i[3])},
                       function(ppf)
                        {print_help
                          ("info","display infos about the program being debugged.");
-                        return print_info_list(ppf);
-                        },
+                        return print_info_list(ppf)},
                       ppf,
-                      lexbuf);
-             }
-           
+                      lexbuf)}
+           break;
           case "set":
            if(l[2])
             {exit=114;}
@@ -1013,16 +951,13 @@ var
             {return find_variable
                      (function(v,param,param$1)
                        {return print_help
-                                (Pervasives["^"]("set ",v[1]),Pervasives["^"]("set ",v[3]));
-                        },
+                                (Pervasives["^"]("set ",v[1]),Pervasives["^"]("set ",v[3]))},
                       function(ppf)
                        {print_help("set","set debugger variable.");
-                        return print_variable_list(ppf);
-                        },
+                        return print_variable_list(ppf)},
                       ppf,
-                      lexbuf);
-             }
-           
+                      lexbuf)}
+           break;
           case "show":
            if(l[2])
             {exit=114;}
@@ -1031,20 +966,17 @@ var
                      (function(v,param,param$1)
                        {return print_help
                                 (Pervasives["^"]("show ",v[1]),
-                                 Pervasives["^"]("show ",v[3]));
-                        },
+                                 Pervasives["^"]("show ",v[3]))},
                       function(v)
                        {print_help("show","display debugger variable.");
-                        return print_variable_list(ppf);
-                        },
+                        return print_variable_list(ppf)},
                       ppf,
-                      lexbuf);
-             }
-           
+                      lexbuf)}
+           break;
           default:exit$1=115;}
         
         switch(exit$1)
-         {case 115:if(l[2]){exit=114;}else{return print_help(i[1],i[5]);}}
+         {case 115:if(l[2]){exit=114;}else{return print_help(i[1],i[5])}break}
         }
       else
        {eol(lexbuf);
@@ -1056,8 +988,7 @@ var
                    [/* Formatting_lit */17,
                     /* Flush_newline */4,
                     /* End_of_format */0]],
-                  "No matching command.@."]);
-        }
+                  "No matching command.@."])}
       
       switch(exit)
        {case 114:
@@ -1078,8 +1009,7 @@ var
                    'Ambiguous command "%s": %a@.'],
                   x,
                   pr_instrs,
-                  l);
-         
+                  l)
         }
       }
     else
@@ -1094,8 +1024,7 @@ var
                    /* End_of_format */0]]],
                 "List of commands: %a@."],
                pr_instrs,
-               instruction_list[1]);
-      }
+               instruction_list[1])}
     };
 
 var
@@ -1105,13 +1034,12 @@ var
      {var match=Eval["expression"](ev,env,expr);
       
       return Printval["print_named_value"]
-              (depth,expr,env,match[1],ppf,match[2]);
-      }
+              (depth,expr,env,match[1],ppf,match[2])}
     catch(exn)
      {if(exn[1]===Eval["Error"])
-       {Eval["report_error"](ppf,exn[2]);throw Debugger_config["Toplevel"];}
+       {Eval["report_error"](ppf,exn[2]);throw Debugger_config["Toplevel"]}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -1119,9 +1047,9 @@ var
  env_of_event=
   function(param)
    {if(param)
-     {var ev=param[1];return Envaux["env_from_summary"](ev[6],ev[7]);}
+     {var ev=param[1];return Envaux["env_from_summary"](ev[6],ev[7])}
     else
-     {return Env["empty"];}
+     {return Env["empty"]}
     };
 
 var
@@ -1135,21 +1063,20 @@ var
      {env=env_of_event(Frames["selected_event"][1]);}
     catch(exn)
      {if(exn[1]===Envaux["Error"])
-       {Envaux["report_error"](ppf,exn[2]);throw Debugger_config["Toplevel"];}
+       {Envaux["report_error"](ppf,exn[2]);throw Debugger_config["Toplevel"]}
       else
-       {throw exn;}
+       {throw exn}
       }
     
     return List["iter"]
-            (print_expr(depth,Frames["selected_event"][1],env,ppf),exprs);
-    };
+            (print_expr(depth,Frames["selected_event"][1],env,ppf),exprs)};
 
 var
  instr_print=
   function(ppf,lexbuf)
-   {return print_command(Printval["max_printer_depth"][1],ppf,lexbuf);};
+   {return print_command(Printval["max_printer_depth"][1],ppf,lexbuf)};
 
-var instr_display=function(ppf,lexbuf){return print_command(1,ppf,lexbuf);};
+var instr_display=function(ppf,lexbuf){return print_command(1,ppf,lexbuf)};
 
 var
  extract_filename=
@@ -1160,8 +1087,7 @@ var
     
     var pos2=l>0&&arg["charCodeAt"](l-1)===34?l-1:l;
     
-    return $$String["sub"](arg,pos1,pos2-pos1);
-    };
+    return $$String["sub"](arg,pos1,pos2-pos1)};
 
 var
  instr_source=
@@ -1189,9 +1115,9 @@ var
        {io_chan=error("Source file not found.");}
       else
        {if(x[1]===Unix["Unix_error"])
-         {Unix_tools["report_error"](x);throw Debugger_config["Toplevel"];}
+         {Unix_tools["report_error"](x);throw Debugger_config["Toplevel"]}
         else
-         {throw x;}
+         {throw x}
         }
       }
     
@@ -1202,27 +1128,25 @@ var
        (ppf,Lexing["from_function"](Input_handling["read_user_input"]));
       Primitives["close_io"](io_chan);
       Input_handling["interactif"][1]=old_state;
-      return Input_handling["user_channel"][1]=old_channel,0;
-      }
+      return Input_handling["user_channel"][1]=old_channel,0}
     catch(x$1)
      {Input_handling["stop_user_input"](/* () */0);
       Primitives["close_io"](io_chan);
       Input_handling["interactif"][1]=old_state;
       Input_handling["user_channel"][1]=old_channel;
-      throw x$1;
-      }
+      throw x$1}
     };
 
 var
  instr_set=
   find_variable
-   (function(param,ppf,lexbuf){return param[2][1](lexbuf);},
-    function(ppf){return error("Argument required.");});
+   (function(param,ppf,lexbuf){return param[2][1](lexbuf)},
+    function(ppf){return error("Argument required.")});
 
 var
  instr_show=
   find_variable
-   (function(param,ppf,lexbuf){eol(lexbuf);return param[2][2](ppf);},
+   (function(param,ppf,lexbuf){eol(lexbuf);return param[2][2](ppf)},
     function(ppf)
      {return List["iter"]
               (function(param)
@@ -1234,18 +1158,15 @@ var
                      [/* String_literal */11,": ",/* End_of_format */0]],
                     "%s: "],
                    param[1]);
-                 return param[2][2](ppf);
-                 },
-               variable_list[1]);
-      });
+                 return param[2][2](ppf)},
+               variable_list[1])});
 
 var
  instr_info=
   find_info
-   (function(i,ppf,lexbuf){return i[2](lexbuf);},
+   (function(i,ppf,lexbuf){return i[2](lexbuf)},
     function(ppf)
-     {return error('"info" must be followed by the name of an info command.');
-      });
+     {return error('"info" must be followed by the name of an info command.')});
 
 var
  instr_break=
@@ -1260,8 +1181,7 @@ var
          
          return match
                  ?Breakpoints["new_breakpoint"](match[1])
-                 :error("Can't add breakpoint at this point.");
-         
+                 :error("Can't add breakpoint at this point.")
         }}
     else
      {switch(argument[0])
@@ -1273,10 +1193,9 @@ var
          catch(exn)
           {if(exn[1]===Envaux["Error"])
             {Envaux["report_error"](ppf,exn[2]);
-             throw Debugger_config["Toplevel"];
-             }
+             throw Debugger_config["Toplevel"]}
            else
-            {throw exn;}
+            {throw exn}
            }
          
          try
@@ -1295,7 +1214,6 @@ var
               {case 1:
                 return add_breakpoint_after_pc
                         (Debugcom["Remote_value"][12](match$1[1]));
-                
                default:exit=75;}}
            
            switch(exit)
@@ -1308,19 +1226,17 @@ var
                    /* Flush_newline */4,
                    /* End_of_format */0]],
                  "Not a function.@."]);
-              throw Debugger_config["Toplevel"];
-              
+              throw Debugger_config["Toplevel"]
              }
            }
          catch(exn$1)
           {if(exn$1[1]===Eval["Error"])
             {Eval["report_error"](ppf,exn$1[2]);
-             throw Debugger_config["Toplevel"];
-             }
+             throw Debugger_config["Toplevel"]}
            else
-            {throw exn$1;}
+            {throw exn$1}
            }
-         
+         break;
         case 2:
          var column=argument[3];
          
@@ -1356,10 +1272,9 @@ var
                       /* End_of_format */0]]]],
                   "No source file for %s.@."],
                  module_name);
-               throw Debugger_config["Toplevel"];
-               }
+               throw Debugger_config["Toplevel"]}
              else
-              {throw exn$2;}
+              {throw exn$2}
              }
            
            $js=
@@ -1379,8 +1294,7 @@ var
                   /* Flush_newline */4,
                   /* End_of_format */0]],
                 "Can't find any event there.@."]);
-             throw Debugger_config["Toplevel"];
-             }
+             throw Debugger_config["Toplevel"]}
            else
             {if(exn$3===Primitives["Out_of_range"])
               {Format["eprintf"]
@@ -1391,21 +1305,18 @@ var
                     /* Flush_newline */4,
                     /* End_of_format */0]],
                   "Position out of range.@."]);
-               throw Debugger_config["Toplevel"];
-               }
+               throw Debugger_config["Toplevel"]}
              else
-              {throw exn$3;}
+              {throw exn$3}
              }
            }
          return Breakpoints["new_breakpoint"]($js);
-         
         case 3:
          try
           {return Breakpoints["new_breakpoint"]
                    (Symbols["event_near_pos"]
                      (convert_module(module_of_longident(argument[1])),
-                      argument[2]));
-           }
+                      argument[2]))}
          catch(exn$4)
           {if(exn$4===CamlPrimitive["caml_global_data"]["Not_found"])
             {return Format["eprintf"]
@@ -1415,12 +1326,11 @@ var
                         [/* Formatting_lit */17,
                          /* Flush_newline */4,
                          /* End_of_format */0]],
-                       "Can't find any event there.@."]);
-             }
+                       "Can't find any event there.@."])}
            else
-            {throw exn$4;}
+            {throw exn$4}
            }
-         
+         break
         }}
     };
 
@@ -1433,12 +1343,12 @@ var
             ?List["iter"]
               (function(x)
                 {try
-                  {return Breakpoints["remove_breakpoint"](x);}
+                  {return Breakpoints["remove_breakpoint"](x)}
                  catch(exn)
                   {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-                    {return /* () */0;}
+                    {return /* () */0}
                    else
-                    {throw exn;}
+                    {throw exn}
                    }
                  },
                breakpoints)
@@ -1446,8 +1356,7 @@ var
               0&&
               Question["yes_or_no"]("Delete all breakpoints")
               ?Breakpoints["remove_all_breakpoints"](/* () */0)
-              :0;
-    };
+              :0};
 
 var
  instr_frame=
@@ -1459,18 +1368,16 @@ var
     Program_management["ensure_loaded"](/* () */0);
     try
      {Frames["select_frame"](frame_number);
-      return Show_information["show_current_frame"](ppf,/* true */1);
-      }
+      return Show_information["show_current_frame"](ppf,/* true */1)}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {return error
                 (Pervasives["^"]
                   ("No frame number ",
                    Pervasives["^"]
-                    (Pervasives["string_of_int"](frame_number),".")));
-        }
+                    (Pervasives["string_of_int"](frame_number),".")))}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -1517,8 +1424,7 @@ var
                        /* End_of_format */0]],
                      "(More frames follow)@."])}
                 
-                return frame_counter[1]<last_frame;
-                }
+                return frame_counter[1]<last_frame}
               else
                {Format["fprintf"]
                  (ppf,
@@ -1529,8 +1435,7 @@ var
                      /* Flush_newline */4,
                      /* End_of_format */0]],
                    "(Encountered a function with no debugging information)@."]);
-                return /* false */0;
-                }
+                return /* false */0}
               };
           
           Format["fprintf"]
@@ -1544,11 +1449,10 @@ var
              "Backtrace:@."]);
           if(number===0)
            {return Frames["do_backtrace"]
-                    (print_frame(0,Pervasives["max_int"]));
-            }
+                    (print_frame(0,Pervasives["max_int"]))}
           else
            {if(number>0)
-             {return Frames["do_backtrace"](print_frame(0,number));}
+             {return Frames["do_backtrace"](print_frame(0,number))}
             else
              {var num_frames=Frames["stack_depth"](/* () */0);
               
@@ -1563,20 +1467,19 @@ var
                             /* End_of_format */0]],
                           "(Encountered a function with no debugging information)@."])
                       :Frames["do_backtrace"]
-                        (print_frame(num_frames+number,Pervasives["max_int"]));
-              }
+                        (print_frame(num_frames+number,Pervasives["max_int"]))}
             }
           }
         }
       else
        {exit$1=64;}
       
-      switch(exit$1){case 64:exit=63;}
+      switch(exit$1){case 64:exit=63;break}
       }
     else
      {exit=63;}
     
-    switch(exit){case 63:return /* () */0;}
+    switch(exit){case 63:return /* () */0}
     };
 
 var
@@ -1589,13 +1492,12 @@ var
     Program_management["ensure_loaded"](/* () */0);
     try
      {Frames["select_frame"](Frames["current_frame"][1]+offset);
-      return Show_information["show_current_frame"](ppf,/* true */1);
-      }
+      return Show_information["show_current_frame"](ppf,/* true */1)}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-       {return error("No such frame.");}
+       {return error("No such frame.")}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -1609,13 +1511,12 @@ var
     Program_management["ensure_loaded"](/* () */0);
     try
      {Frames["select_frame"](Frames["current_frame"][1]-offset);
-      return Show_information["show_current_frame"](ppf,/* true */1);
-      }
+      return Show_information["show_current_frame"](ppf,/* true */1)}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-       {return error("No such frame.");}
+       {return error("No such frame.")}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -1629,8 +1530,7 @@ var
     check_not_windows("last");
     Printval["reset_named_values"](/* () */0);
     Time_travel["go_to"](History["previous_time"](count));
-    return Show_information["show_current_event"](ppf);
-    };
+    return Show_information["show_current_event"](ppf)};
 
 var
  instr_list=
@@ -1650,7 +1550,7 @@ var
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
        {match$1=[/* tuple */0,"",-1,-1];}
       else
-       {throw exn;}
+       {throw exn}
       }
     
     var column=match$1[3];
@@ -1671,7 +1571,7 @@ var
          (Pervasives["^"]("No source file for ",Pervasives["^"](mdle,".")));
         }
       else
-       {throw exn$1;}
+       {throw exn$1}
       }
     
     var point=column!==-1?Source["point_of_coord"](buffer,line,1)+column:-1;
@@ -1689,7 +1589,7 @@ var
          {if(exn$2===Primitives["Out_of_range"])
            {beginning=1;}
           else
-           {throw exn$2;}
+           {throw exn$2}
           }
         }
       }
@@ -1704,8 +1604,7 @@ var
                en,
                point,
                Events["current_event_is_before"](/* () */0))
-            :Show_source["show_listing"](pos,mdle,beginning,en,-1,/* true */1);
-    };
+            :Show_source["show_listing"](pos,mdle,beginning,en,-1,/* true */1)};
 
 var
  raw_variable=
@@ -1716,8 +1615,7 @@ var
               
               return !kill||Program_management["ask_kill_program"](/* () */0)
                       ?(name[1]=argument,0)
-                      :0;
-              },
+                      :0},
             function(ppf)
              {return Format["fprintf"]
                       (ppf,
@@ -1728,9 +1626,7 @@ var
                           /* Flush_newline */4,
                           /* End_of_format */0]],
                         "%s@."],
-                       name[1]);
-              }];
-    };
+                       name[1])}]};
 
 var
  raw_line_variable=
@@ -1743,8 +1639,7 @@ var
               
               return !kill||Program_management["ask_kill_program"](/* () */0)
                       ?(name[1]=argument,0)
-                      :0;
-              },
+                      :0},
             function(ppf)
              {return Format["fprintf"]
                       (ppf,
@@ -1755,9 +1650,7 @@ var
                           /* Flush_newline */4,
                           /* End_of_format */0]],
                         "%s@."],
-                       name[1]);
-              }];
-    };
+                       name[1])}]};
 
 var
  integer_variable=
@@ -1770,8 +1663,7 @@ var
                       ?Pervasives["print_endline"](msg)
                       :!kill||Program_management["ask_kill_program"](/* () */0)
                         ?(name[1]=argument,0)
-                        :0;
-              },
+                        :0},
             function(ppf)
              {return Format["fprintf"]
                       (ppf,
@@ -1784,9 +1676,7 @@ var
                           /* Flush_newline */4,
                           /* End_of_format */0]],
                         "%i@."],
-                       name[1]);
-              }];
-    };
+                       name[1])}]};
 
 var
  int64_variable=
@@ -1799,8 +1689,7 @@ var
                       ?Pervasives["print_endline"](msg)
                       :!kill||Program_management["ask_kill_program"](/* () */0)
                         ?(name[1]=argument,0)
-                        :0;
-              },
+                        :0},
             function(ppf)
              {return Format["fprintf"]
                       (ppf,
@@ -1813,9 +1702,7 @@ var
                           /* Flush_newline */4,
                           /* End_of_format */0]],
                         "%Li@."],
-                       name[1]);
-              }];
-    };
+                       name[1])}]};
 
 var
  boolean_variable=
@@ -1827,20 +1714,19 @@ var
               var exit;
               
               switch(match)
-               {case "of":exit=28;
-                case "off":exit=28;
-                case "on":var argument=/* true */1;
+               {case "of":exit=28;break;
+                case "off":exit=28;break;
+                case "on":var argument=/* true */1;break;
                 default:exit=29;}
               
               switch(exit)
-               {case 29:var argument=error("Syntax error.");
-                case 28:var argument=/* false */0;
+               {case 29:var argument=error("Syntax error.");break;
+                case 28:var argument=/* false */0;break
                 }
               
               return !kill||Program_management["ask_kill_program"](/* () */0)
                       ?(name[1]=argument,0)
-                      :0;
-              },
+                      :0},
             function(ppf)
              {return Format["fprintf"]
                       (ppf,
@@ -1851,9 +1737,7 @@ var
                           /* Flush_newline */4,
                           /* End_of_format */0]],
                         "%s@."],
-                       name[1]?"on":"off");
-              }];
-    };
+                       name[1]?"on":"off")}]};
 
 var
  path_variable=
@@ -1867,8 +1751,7 @@ var
                         Unix_tools["make_absolute"]
                          (Unix_tools["expand_path"](argument)),
                         0)
-                      :0;
-              },
+                      :0},
             function(ppf)
              {return Format["fprintf"]
                       (ppf,
@@ -1879,9 +1762,7 @@ var
                           /* Flush_newline */4,
                           /* End_of_format */0]],
                         "%s@."],
-                       name[1]);
-              }];
-    };
+                       name[1])}]};
 
 var
  loading_mode_variable=
@@ -1891,12 +1772,11 @@ var
              ("loading mode",
               matching_elements
                ([0,Program_loading["loading_modes"]],
-                function(prim){return prim[1];}),
+                function(prim){return prim[1]}),
               function(param,ppf,lexbuf)
                {eol(lexbuf);
-                return Program_loading["set_launching_function"](param[2]);
-                },
-              function(ppf){return error("Syntax error.");},
+                return Program_loading["set_launching_function"](param[2])},
+              function(ppf){return error("Syntax error.")},
               ppf),
             function(ppf)
              {var
@@ -1912,10 +1792,9 @@ var
                                 [/* String */2,/* No_padding */0,/* End_of_format */0],
                                 "%s"],
                                match[1])
-                            :find(param[2]);
-                    }
+                            :find(param[2])}
                   else
-                   {return /* () */0;}
+                   {return /* () */0}
                   };
               
               find(Program_loading["loading_modes"]);
@@ -1925,9 +1804,7 @@ var
                         [/* Formatting_lit */17,
                          /* Flush_newline */4,
                          /* End_of_format */0],
-                        "@."]);
-              }];
-    };
+                        "@."])}]};
 
 var
  follow_fork_variable=
@@ -1938,17 +1815,16 @@ var
      var exit;
      
      switch(match)
-      {case "child":var mode=/* Fork_child */0;
-       case "parent":var mode=/* Fork_parent */1;
+      {case "child":var mode=/* Fork_child */0;break;
+       case "parent":var mode=/* Fork_parent */1;break;
        default:exit=22;}
      
-     switch(exit){case 22:var mode=error("Syntax error.");}
+     switch(exit){case 22:var mode=error("Syntax error.");break}
      
      Debugcom["fork_mode"][1]=mode;
      return Program_management["loaded"][1]
              ?Debugcom["update_follow_fork_mode"](/* () */0)
-             :0;
-     },
+             :0},
    function(ppf)
     {var match=Debugcom["fork_mode"][1];
      
@@ -1961,8 +1837,7 @@ var
                  /* Flush_newline */4,
                  /* End_of_format */0]],
                "%s@."],
-              match!==0?"parent":"child");
-     }];
+              match!==0?"parent":"child")}];
 
 var
  pr_modules=
@@ -1981,9 +1856,7 @@ var
                                [/* Break */0,"@ ",1,0],
                                /* End_of_format */0]],
                              "%s@ "],
-                            x);
-                   });
-        };
+                            x)})};
     
     return Format["fprintf"]
             (ppf,
@@ -1996,16 +1869,14 @@ var
                  [/* Formatting_lit */17,/* FFlush */2,/* End_of_format */0]]]],
               "Used modules: @.%a@?"],
              pr_mods,
-             mods);
-    };
+             mods)};
 
 var
  info_modules=
   function(ppf,lexbuf)
    {eol(lexbuf);
     Program_management["ensure_loaded"](/* () */0);
-    return pr_modules(ppf,Symbols["modules"][1]);
-    };
+    return pr_modules(ppf,Symbols["modules"][1])};
 
 var
  info_checkpoints=
@@ -2054,8 +1925,7 @@ var
                               "%19Ld %5d %d\n"],
                              time,
                              pid,
-                             version);
-                    },
+                             version)},
                   Checkpoints["checkpoints"][1]))
               :(Pervasives["print_endline"]("               Time   Pid"),
                 List["iter"]
@@ -2079,10 +1949,8 @@ var
                                  [/* Char_literal */12,10,/* End_of_format */0]]]],
                               "%19Ld %5d\n"],
                              time,
-                             pid);
-                    },
-                  Checkpoints["checkpoints"][1]));
-    };
+                             pid)},
+                  Checkpoints["checkpoints"][1]))};
 
 var
  info_one_breakpoint=
@@ -2112,8 +1980,7 @@ var
               "%3d %10d  %s@."],
              param[1],
              ev[1],
-             Pos["get_desc"](ev));
-    };
+             Pos["get_desc"](ev))};
 
 var
  info_breakpoints=
@@ -2140,8 +2007,7 @@ var
                  "Num    Address  Where@."]),
               List["iter"]
                (info_one_breakpoint(ppf),
-                List["rev"](Breakpoints["breakpoints"][1])));
-    };
+                List["rev"](Breakpoints["breakpoints"][1])))};
 
 var
  info_events=
@@ -2177,11 +2043,11 @@ var
                
                var $js;
                if(typeof match$3==="number")
-                {switch(match$3){case 0:$js="";}}
+                {switch(match$3){case 0:$js="";break}}
                else
                 {switch(match$3[0])
-                  {case 0:$js="(repr)";
-                   case 1:$js=Pervasives["string_of_int"](match$3[1][1]);
+                  {case 0:$js="(repr)";break;
+                   case 1:$js=Pervasives["string_of_int"](match$3[1][1]);break
                    }}
                return Printf["printf"]
                        ([/* Format */0,
@@ -2219,10 +2085,8 @@ var
                            ?match$1!==0?"pseudo":"before"
                            :"after",
                           typeof match$2==="number"?match$2!==0?"":"/fun":"/ret"),
-                        $js);
-               },
-             Symbols["events_in_module"](mdle));
-    };
+                        $js)},
+             Symbols["events_in_module"](mdle))};
 
 var
  instr_load_printer=
@@ -2232,14 +2096,13 @@ var
       extract_filename(Parser["argument_eol"](Lexer["argument"],lexbuf));
     
     try
-     {return Loadprinter["loadfile"](ppf,filename);}
+     {return Loadprinter["loadfile"](ppf,filename)}
     catch(exn)
      {if(exn[1]===Loadprinter["Error"])
        {Loadprinter["report_error"](ppf,exn[2]);
-        throw Debugger_config["Toplevel"];
-        }
+        throw Debugger_config["Toplevel"]}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -2249,14 +2112,13 @@ var
    {var lid=Parser["longident_eol"](Lexer["lexeme"],lexbuf);
     
     try
-     {return Loadprinter["install_printer"](ppf,lid);}
+     {return Loadprinter["install_printer"](ppf,lid)}
     catch(exn)
      {if(exn[1]===Loadprinter["Error"])
        {Loadprinter["report_error"](ppf,exn[2]);
-        throw Debugger_config["Toplevel"];
-        }
+        throw Debugger_config["Toplevel"]}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -2266,14 +2128,13 @@ var
    {var lid=Parser["longident_eol"](Lexer["lexeme"],lexbuf);
     
     try
-     {return Loadprinter["remove_printer"](lid);}
+     {return Loadprinter["remove_printer"](lid)}
     catch(exn)
      {if(exn[1]===Loadprinter["Error"])
        {Loadprinter["report_error"](ppf,exn[2]);
-        throw Debugger_config["Toplevel"];
-        }
+        throw Debugger_config["Toplevel"]}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -2636,8 +2497,7 @@ var
                 info_events(ppf),
                 "list events in MODULE (default is current module)."],
                /* [] */0]]]],
-           0;
-    };
+           0};
 
 init(Format["std_formatter"]);
 module["exports"]={"interprete_line":interprete_line,"line_loop":line_loop};

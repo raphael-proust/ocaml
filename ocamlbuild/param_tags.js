@@ -25,21 +25,18 @@ var
     return function(param)
      {return StringSet[3](param,instances[1])
               ?/* () */0
-              :(instances[1]=StringSet[4](param,instances[1]),f(param));
-      };
-    };
+              :(instances[1]=StringSet[4](param,instances[1]),f(param))}};
 
 var
  declare=
   function(name,action)
-   {return Hashtbl["add"](declared_tags,name,only_once(action));};
+   {return Hashtbl["add"](declared_tags,name,only_once(action))};
 
 var
  parse=
   function(source,tag)
    {return Lexers["tag_gen"]
-            (source,My_std["lexbuf_of_string"](/* None */0,tag));
-    };
+            (source,My_std["lexbuf_of_string"](/* None */0,tag))};
 
 var
  acknowledge=
@@ -48,8 +45,7 @@ var
            /* :: */[0,
             /* tuple */[0,parse(source,tag),maybe_loc],
             acknowledged_tags[1]],
-           0;
-    };
+           0};
 
 var
  really_acknowledge=
@@ -86,8 +82,7 @@ var
           name,
           param$2)}
       
-      return My_std["List"][14](function(f){return f(param$2);},actions);
-      }
+      return My_std["List"][14](function(f){return f(param$2)},actions)}
     else
      {return Hashtbl["mem"](declared_tags,name)&&!quiet
               ?Log["eprintf"]
@@ -104,8 +99,7 @@ var
                  Loc["print_loc_option"],
                  maybe_loc,
                  name)
-              :0;
-      }
+              :0}
     };
 
 var
@@ -113,20 +107,18 @@ var
   function(quiet,source,tags)
    {var
      parse_noloc=
-      function(tag){return /* tuple */[0,parse(source,tag),/* None */0];};
+      function(tag){return /* tuple */[0,parse(source,tag),/* None */0]};
     
     return Tags["iter"]
-            (function(tag){return really_acknowledge(quiet,parse_noloc(tag));},
-             tags);
-    };
+            (function(tag){return really_acknowledge(quiet,parse_noloc(tag))},
+             tags)};
 
 var
  init=
   function(param)
    {return My_std["List"][14]
-            (function(eta){return really_acknowledge(/* None */0,eta);},
-             My_std["List"][4](acknowledged_tags[1]));
-    };
+            (function(eta){return really_acknowledge(/* None */0,eta)},
+             My_std["List"][4](acknowledged_tags[1]))};
 
 var
  make=

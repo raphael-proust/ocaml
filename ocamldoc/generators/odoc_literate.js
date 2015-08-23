@@ -203,7 +203,7 @@ if(match)
  {var match$1=match[1];
   
   switch(match$1[0])
-   {case 0:Html=match$1[1];
+   {case 0:Html=match$1[1];break;
     default:
      Html=
      Pervasives["failwith"]
@@ -271,14 +271,14 @@ var
                 text[2]
                  ?[/* tuple */0,/* false */0,/* true */1]
                  :[/* tuple */0,/* false */0,/* false */0];
-                
+                break;
                default:exit=2;}}
            }
          else
           {exit=2;}
          
          switch(exit)
-          {case 2:var match$2=[/* tuple */0,/* true */1,/* true */1];}
+          {case 2:var match$2=[/* tuple */0,/* true */1,/* true */1];break}
          
          if(match$2[1])
           {p
@@ -295,8 +295,7 @@ var
                     [/* Format */0,
                      [/* String_literal */11,"<br/><br/>\n",/* End_of_format */0],
                      "<br/><br/>\n"])
-                 :0;
-         },
+                 :0},
        html_of_Title,
        function(self$neg1,b,n,l_opt,t)
         {/* unknown */"(sendself self-1/1390 create_title_label/1396\n  (makeblock 0 n/1392 l_opt/1393 t/1394))";
@@ -336,8 +335,7 @@ var
                      /* No_precision */0,
                      [/* Char_literal */12,62,/* End_of_format */0]]],
                    "</h%d>"],
-                  n);
-         },
+                  n)},
        code_block,
        function(self$neg1,b,code)
         {self$neg1[code_id+1]=self$neg1[code_id+1]+1;
@@ -389,8 +387,7 @@ var
                  (b,
                   [/* Format */0,
                    [/* String_literal */11,"</div>",/* End_of_format */0],
-                   "</div>"]);
-         },
+                   "</div>"])},
        html_of_value,
        function(self$neg1,b,v)
         {Odoc_info["reset_type_names"](/* () */0);
@@ -429,7 +426,7 @@ var
           {/* unknown */"(sendself self-1/1442 code_block/1374 b/1443 (field 0 match/1486))";
            }
          else
-          {return /* () */0;}
+          {return /* () */0}
          }]);
     CamlinternalOO["add_initializer"]
      ($$class,
@@ -567,15 +564,12 @@ var
                                                    ("span.code_expand { color: blue; text-decoration: underline; cursor: pointer; ",
                                                     "margin-left: 1em ; } "),
                                                   /* [] */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]],
-               0;
-        });
+               0});
     return function(env,$$self)
      {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);
       
       obj_init($$self$1),$$self$1[code_id+1]=0;
-      return CamlinternalOO["run_initializers_opt"]($$self,$$self$1,$$class);
-      };
-    };
+      return CamlinternalOO["run_initializers_opt"]($$self,$$self$1,$$class)}};
 
 var
  html=

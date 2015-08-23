@@ -33,19 +33,16 @@ var
           
           var match=Odoc_parser["see_info"](Odoc_see_lexer["main"],lexbuf);
           
-          return /* tuple */[0,match[1],MyTexter[1](match[2])];
-          }
+          return /* tuple */[0,match[1],MyTexter[1](match[2])]}
         catch(exn)
          {if(exn[1]===Odoc_text["Text_syntax"])
            {throw [0,
                    CamlPrimitive["caml_global_data"]["Failure"],
-                   Odoc_messages["text_parse_error"](exn[2],exn[3],exn[4])];
-            }
+                   Odoc_messages["text_parse_error"](exn[2],exn[3],exn[4])]}
           else
            {throw [0,
                    CamlPrimitive["caml_global_data"]["Failure"],
-                   Pervasives["^"]("Unknown error while parsing @see tag: ",s)];
-            }
+                   Pervasives["^"]("Unknown error while parsing @see tag: ",s)]}
           }
         };
     
@@ -80,7 +77,7 @@ var
              {match$3=/* () */0;}
             
             switch(desc)
-             {case "":var $js=/* None */0;
+             {case "":var $js=/* None */0;break;
               default:var $js=/* Some */[0,MyTexter[1](desc)];}
             var match$4=Odoc_comments_global["deprecated"][1];
             
@@ -98,25 +95,24 @@ var
                       Odoc_merge["merge_before_tags"]
                        (List["map"]
                          (function(param)
-                           {return /* tuple */[0,param[1],MyTexter[1](param[2])];},
+                           {return /* tuple */[0,param[1],MyTexter[1](param[2])]},
                           Odoc_comments_global["before"][1])),
                       match$4?/* Some */[0,MyTexter[1](match$4[1])]:/* None */0,
                       List["map"]
                        (function(param)
-                         {return /* tuple */[0,param[1],MyTexter[1](param[2])];},
+                         {return /* tuple */[0,param[1],MyTexter[1](param[2])]},
                         Odoc_comments_global["params"][1]),
                       List["map"]
                        (function(param)
-                         {return /* tuple */[0,param[1],MyTexter[1](param[2])];},
+                         {return /* tuple */[0,param[1],MyTexter[1](param[2])]},
                         Odoc_comments_global["raised_exceptions"][1]),
                       match$5?/* Some */[0,MyTexter[1](match$5[1])]:/* None */0,
                       List["map"]
                        (function(param)
-                         {return /* tuple */[0,param[1],MyTexter[1](param[2])];},
-                        Odoc_comments_global["customs"][1])]]];
-            }
+                         {return /* tuple */[0,param[1],MyTexter[1](param[2])]},
+                        Odoc_comments_global["customs"][1])]]]}
           else
-           {return [/* tuple */0,0,/* None */0];}
+           {return [/* tuple */0,0,/* None */0]}
           }
         catch(exn)
          {return exn[1]===CamlPrimitive["caml_global_data"]["Failure"]
@@ -160,15 +156,14 @@ var
                          (file,
                           Pervasives["^"]
                            (" : ",Pervasives["^"](Odoc_messages["parse_error"],"\n")))),
-                      [/* tuple */0,0,/* None */0]);
-          }
+                      [/* tuple */0,0,/* None */0])}
         };
     
     var
      nothing_before_simple_comment=
       function(s)
        {try
-         {var pos=Str["search_forward"](Str["regexp"]("(\*"),s,0);
+         {var pos=Str["search_forward"](Str["regexp"]("(\\*"),s,0);
           
           var next_char=s["length"]>=pos+1?s["charCodeAt"](pos+2):95;
           
@@ -191,15 +186,14 @@ var
            {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
              {$js=/* true */1;}
             else
-             {throw exn;}
+             {throw exn}
             }
-          return next_char!==42&&$js;
-          }
+          return next_char!==42&&$js}
         catch(exn$1)
          {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
-           {return /* false */0;}
+           {return /* false */0}
           else
-           {throw exn$1;}
+           {throw exn$1}
           }
         };
     
@@ -216,19 +210,18 @@ var
               s,
               0);
           
-          return /* true */1;
-          }
+          return /* true */1}
         catch(exn)
          {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-           {return /* false */0;}
+           {return /* false */0}
           else
-           {throw exn;}
+           {throw exn}
           }
         };
     
     var
      retrieve_info_special=
-      function(file,s){return retrieve_info(Odoc_lexer["main"],file,s);};
+      function(file,s){return retrieve_info(Odoc_lexer["main"],file,s)};
     
     var
      retrieve_info_simple=
@@ -244,8 +237,7 @@ var
                 ?/* tuple */[0,
                   Odoc_comments_global["nb_chars"][1],
                   /* Some */[0,Odoc_types["dummy_info"]]]
-                :[/* tuple */0,0,/* None */0];
-        };
+                :[/* tuple */0,0,/* None */0]};
     
     var
      blank_line_outside_simple=
@@ -267,21 +259,19 @@ var
                 
                 var s_after=$$String["sub"](s2,len,s2["length"]-len);
                 
-                return blank_line(s_before)||iter(s_after);
-                }
+                return blank_line(s_before)||iter(s_after)}
               catch(exn)
                {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-                 {return /* false */0;}
+                 {return /* false */0}
                 else
-                 {throw exn;}
+                 {throw exn}
                 }
               }
             else
-             {return blank_line(s2);}
+             {return blank_line(s2)}
             };
         
-        return iter(s);
-        };
+        return iter(s)};
     
     var
      retrieve_first_info_simple=
@@ -296,8 +286,7 @@ var
                 ?!strict||nothing_before_simple_comment(s)
                   ?/* tuple */[0,match[1],/* Some */[0,match$1[1]]]
                   :[/* tuple */0,0,/* None */0]
-                :[/* tuple */0,0,/* None */0];
-        };
+                :[/* tuple */0,0,/* None */0]};
     
     var
      retrieve_last_info_simple=
@@ -316,13 +305,11 @@ var
               
               return match$1
                       ?f(len+cur_len,/* Some */[0,match$1[1]])
-                      :/* tuple */[0,cur_len+len,cur_d];
-              }
-            catch(exn){return /* tuple */[0,cur_len,cur_d];}
+                      :/* tuple */[0,cur_len+len,cur_d]}
+            catch(exn){return /* tuple */[0,cur_len,cur_d]}
             };
         
-        return f(0,/* None */0);
-        };
+        return f(0,/* None */0)};
     
     var
      retrieve_last_special_no_blank_after=
@@ -341,13 +328,11 @@ var
               
               return match$1
                       ?f(len+cur_len,/* Some */[0,match$1[1]])
-                      :/* tuple */[0,cur_len+len,cur_d];
-              }
-            catch(exn){return /* tuple */[0,cur_len,cur_d];}
+                      :/* tuple */[0,cur_len+len,cur_d]}
+            catch(exn){return /* tuple */[0,cur_len,cur_d]}
             };
         
-        return f(0,/* None */0);
-        };
+        return f(0,/* None */0)};
     
     var
      all_special=
@@ -367,14 +352,12 @@ var
               return iter
                       (Pervasives["@"](acc,/* :: */[0,match$1[1],/* [] */0]),
                        n+n2,
-                       new_s);
-              }
+                       new_s)}
             else
-             {return /* tuple */[0,n,acc];}
+             {return /* tuple */[0,n,acc]}
             };
         
-        return iter(/* [] */0,0,s);
-        };
+        return iter(/* [] */0,0,s)};
     
     var
      just_after_special=
@@ -391,7 +374,7 @@ var
           var match$2=retrieve_info_simple(file,$$String["sub"](s,0,len));
           
           if(match$2[2])
-           {return [/* tuple */0,0,/* None */0];}
+           {return [/* tuple */0,0,/* None */0]}
           else
            {try
              {var pos=Str["search_forward"](Str["regexp_string"]("(**"),s,0);
@@ -400,21 +383,20 @@ var
                       CamlPrimitive["caml_equal"]
                        (d[1],[/* Some */0,[/* :: */0,[/* Raw */0,"/*"],/* [] */0]])
                       ?[/* tuple */0,0,/* None */0]
-                      :/* tuple */[0,len,/* Some */[0,d]];
-              }
+                      :/* tuple */[0,len,/* Some */[0,d]]}
             catch(exn)
              {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-               {return [/* tuple */0,0,/* None */0];}
+               {return [/* tuple */0,0,/* None */0]}
               else
-               {throw exn;}
+               {throw exn}
               }
             }
           }
         else
-         {return [/* tuple */0,0,/* None */0];}
+         {return [/* tuple */0,0,/* None */0]}
         };
     
-    var first_special=function(file,s){return retrieve_info_special(file,s);};
+    var first_special=function(file,s){return retrieve_info_special(file,s)};
     
     var
      get_comments=
@@ -451,13 +433,11 @@ var
               return match$3
                       ?Pervasives["@"]
                         (acc,/* :: */[0,f_create_ele(match$3[1]),/* [] */0])
-                      :acc;
-              },
+                      :acc},
             /* [] */0,
             match$2[2]);
         
-        return /* tuple */[0,match$2[1],ele_comments];
-        };
+        return /* tuple */[0,match$2[1],ele_comments]};
     
     return [0,
             create_see,
@@ -473,8 +453,7 @@ var
             all_special,
             just_after_special,
             first_special,
-            get_comments];
-    };
+            get_comments]};
 
 var $$let=Odoc_text["Texter"];
 
@@ -514,8 +493,7 @@ var
     
     var i_opt=match[2];
     
-    return i_opt?i_opt[1]:dummy;
-    };
+    return i_opt?i_opt[1]:dummy};
 
 var
  info_of_comment_file=
@@ -525,13 +503,12 @@ var
       
       var i=info_of_string(s);
       
-      return Odoc_cross["assoc_comments_info"]("",modlist,i);
-      }
+      return Odoc_cross["assoc_comments_info"]("",modlist,i)}
     catch(exn)
      {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
-       {return Pervasives["failwith"](exn[2]);}
+       {return Pervasives["failwith"](exn[2])}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 

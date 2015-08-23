@@ -41,9 +41,8 @@ var
       
       debugger_symtable[1]=/* Some */[0,Symtable["current_state"](/* () */0)];
       Symtable["restore_state"](old_symtable);
-      return result;
-      }
-    catch(exn){Symtable["restore_state"](old_symtable);throw exn;}
+      return result}
+    catch(exn){Symtable["restore_state"](old_symtable);throw exn}
     };
 
 var
@@ -73,8 +72,7 @@ var
             [/* Formatting_lit */17,/* Flush_newline */4,/* End_of_format */0]]]],
          "File %s loaded@."],
         filename);
-      return /* true */1;
-      }
+      return /* true */1}
     catch(exn)
      {var exit;
       
@@ -90,7 +88,6 @@ var
                      (ppf,
                       Pervasives["^"]($$String["uncapitalize"](match[1]),".cmo"))&&
                     loadfiles(ppf,name);
-             
             default:exit=26;}}
         }
       else
@@ -111,20 +108,19 @@ var
                  /* End_of_format */0]]],
               "Cannot find file %s@."],
              name);
-           return /* false */0;
-           }
+           return /* false */0}
          else
           {if(exn[1]===Dynlink["Error"])
-            {throw [0,$$Error,/* Load_failure */[0,exn[2]]];}
+            {throw [0,$$Error,/* Load_failure */[0,exn[2]]]}
            else
-            {throw exn;}
+            {throw exn}
            }
-         
+         break
         }
       }
     };
 
-var loadfile=function(ppf,name){return loadfiles(ppf,name);};
+var loadfile=function(ppf,name){return loadfiles(ppf,name)};
 
 var
  eval_path=
@@ -132,7 +128,7 @@ var
    {switch(param[0])
      {case 0:return Symtable["get_global_value"](param[1]);
       case 1:return eval_path(param[1])[param[3]+1];
-      case 2:return Misc["fatal_error"]("Loadprinter.eval_path");
+      case 2:return Misc["fatal_error"]("Loadprinter.eval_path")
       }
     };
 
@@ -158,10 +154,9 @@ var
        {throw [0,
                $$Error,
                /* Unbound_identifier */[1,
-                /* Ldot */[1,[/* Lident */0,"Topdirs"],typename]]];
-        }
+                /* Ldot */[1,[/* Lident */0,"Topdirs"],typename]]]}
       else
-       {throw exn;}
+       {throw exn}
       }
     
     Ctype["init_def"](Ident["current_time"](/* () */0));
@@ -174,8 +169,7 @@ var
       Ctype["instance"](/* None */0,Env["empty"],desc[1]));
     Ctype["end_def"](/* () */0);
     Ctype["generalize"](ty_arg);
-    return ty_arg;
-    };
+    return ty_arg};
 
 var
  find_printer_type=
@@ -200,19 +194,18 @@ var
            /* true */1];
           }
         else
-         {throw exn;}
+         {throw exn}
         }
       
-      return /* tuple */[0,match$2[1],match$1[1],match$2[2]];
-      }
+      return /* tuple */[0,match$2[1],match$1[1],match$2[2]]}
     catch(exn$1)
      {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
-       {throw [0,$$Error,/* Unbound_identifier */[1,lid]];}
+       {throw [0,$$Error,/* Unbound_identifier */[1,lid]]}
       else
        {if(exn$1[1]===Ctype["Unify"])
-         {throw [0,$$Error,/* Wrong_type */[3,lid]];}
+         {throw [0,$$Error,/* Wrong_type */[3,lid]]}
         else
-         {throw exn$1;}
+         {throw exn$1}
         }
       }
     };
@@ -240,17 +233,16 @@ var
       else
        {exit=6;}
       
-      switch(exit){case 6:throw exn;}
+      switch(exit){case 6:throw exn}
       }
     
     var
      print_function=
       match$1[3]
-       ?function(formatter,repr){return v(repr);}
-       :function(formatter,repr){return v(formatter,repr);};
+       ?function(formatter,repr){return v(repr)}
+       :function(formatter,repr){return v(formatter,repr)};
     
-    return Printval["install_printer"](path,match$1[1],ppf,print_function);
-    };
+    return Printval["install_printer"](path,match$1[1],ppf,print_function)};
 
 var
  remove_printer=
@@ -258,12 +250,12 @@ var
    {var match$1=find_printer_type(lid);
     
     try
-     {return Printval["remove_printer"](match$1[2]);}
+     {return Printval["remove_printer"](match$1[2])}
     catch(exn)
      {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-       {throw [0,$$Error,/* No_active_printer */[4,lid]];}
+       {throw [0,$$Error,/* No_active_printer */[4,lid]]}
       else
-       {throw exn;}
+       {throw exn}
       }
     };
 
@@ -288,7 +280,6 @@ var
                       /* End_of_format */0]]]]],
                  "@[Error during code loading: %s@]@."],
                 Dynlink["error_message"](param[1]));
-       
       case 1:
        return Format["fprintf"]
                (ppf,
@@ -306,7 +297,6 @@ var
                  "@[Unbound identifier %a@]@."],
                 Printtyp["longident"],
                 param[1]);
-       
       case 2:
        return Format["fprintf"]
                (ppf,
@@ -337,7 +327,6 @@ var
                 Printtyp["longident"],
                 param[2],
                 param[1]);
-       
       case 3:
        return Format["fprintf"]
                (ppf,
@@ -355,7 +344,6 @@ var
                  "@[%a has the wrong type for a printing function.@]@."],
                 Printtyp["longident"],
                 param[1]);
-       
       case 4:
        return Format["fprintf"]
                (ppf,
@@ -372,8 +360,7 @@ var
                       /* End_of_format */0]]]]],
                  "@[%a is not currently active as a printing function.@]@."],
                 Printtyp["longident"],
-                param[1]);
-       
+                param[1])
       }
     };
 

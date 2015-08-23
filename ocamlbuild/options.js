@@ -65,9 +65,11 @@ var
    {var exit;
     
     switch(param)
-     {case "menhir":exit=102;case "ocamlfind":exit=102;default:exit=103;}
+     {case "menhir":exit=102;break;
+      case "ocamlfind":exit=102;break;
+      default:exit=103;}
     
-    switch(exit){case 103:return /* true */1;case 102:return /* false */0;}
+    switch(exit){case 103:return /* true */1;case 102:return /* false */0}
     };
 
 var
@@ -92,14 +94,12 @@ var
          function(param)
           {return Command["file_or_exe_exists"](long_opt)
                    ?/* Some */[0,long_opt]
-                   :/* None */0;
-           },
+                   :/* None */0},
          /* :: */[0,
           function(param)
            {return Command["file_or_exe_exists"]($$long)
                     ?/* Some */[0,$$long]
-                    :/* None */0;
-            },
+                    :/* None */0},
           /* [] */0]];
       
       var
@@ -107,12 +107,12 @@ var
         /* :: */[0,
          function(param)
           {try
-            {var match=search_in_path(opt);return /* Some */[0,opt];}
+            {var match=search_in_path(opt);return /* Some */[0,opt]}
            catch(exn)
             {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
-              {return /* Some */[0,cmd];}
+              {return /* Some */[0,cmd]}
              else
-              {throw exn;}
+              {throw exn}
              }
            },
          /* [] */0];
@@ -127,14 +127,14 @@ var
        {var
          match=
           My_std["List"][32]
-           (function(choice){return !(choice(/* () */0)===/* None */0);},
+           (function(choice){return !(choice(/* () */0)===/* None */0)},
             choices$1,
             /* () */0);
         
         if(match)
-         {return match[1];}
+         {return match[1]}
         else
-         {throw CamlPrimitive["caml_global_data"]["Not_found"];}
+         {throw CamlPrimitive["caml_global_data"]["Not_found"]}
         }
       catch(exn)
        {if(exn===CamlPrimitive["caml_global_data"]["Not_found"])
@@ -145,20 +145,19 @@ var
                        "Can't find tool: ",
                        [/* String */2,/* No_padding */0,/* End_of_format */0]],
                       "Can't find tool: %s"],
-                     cmd));
-          }
+                     cmd))}
         else
-         {throw exn;}
+         {throw exn}
         }
       }
     else
      {try
-       {var match$1=search_in_path(opt);return opt;}
+       {var match$1=search_in_path(opt);return opt}
       catch(exn$1)
        {if(exn$1===CamlPrimitive["caml_global_data"]["Not_found"])
-         {return cmd;}
+         {return cmd}
         else
-         {throw exn$1;}
+         {throw exn$1}
         }
       }
     };
@@ -167,11 +166,10 @@ var
  mk_virtual_solvers=
   My_std["List"][14]
    (function(cmd)
-     {var solver=function(param){return /* A */[1,find_tool(cmd)];};
+     {var solver=function(param){return /* A */[1,find_tool(cmd)]};
       
       return Command["setup_virtual_command_solver"]
-              (My_std["String"][36](cmd),solver);
-      });
+              (My_std["String"][36](cmd),solver)});
 
 var
  match=
@@ -217,7 +215,7 @@ var ocamlfind_cmd=[0,[/* V */6,"OCAMLFIND"]];
 var
  ocamlfind=
   function(arg)
-   {return /* S */[0,/* :: */[0,ocamlfind_cmd[1],/* :: */[0,arg,/* [] */0]]];};
+   {return /* S */[0,/* :: */[0,ocamlfind_cmd[1],/* :: */[0,arg,/* [] */0]]]};
 
 var program_to_execute=[0,/* false */0];
 
@@ -293,8 +291,7 @@ var
     ocamllex[1]=[/* A */1,"jocamllex"];
     ocamlmklib[1]=[/* A */1,"jocamlmklib"];
     ocamlmktop[1]=[/* A */1,"jocamlmktop"];
-    return ocamlrun[1]=[/* A */1,"jocamlrun"],0;
-    };
+    return ocamlrun[1]=[/* A */1,"jocamlrun"],0};
 
 var
  add_to=
@@ -304,21 +301,19 @@ var
       Lexers["comma_or_blank_sep_strings"]
        (Const["Source"][2],Lexing["from_string"](x));
     
-    return rxs[1]=/* :: */[0,xs,rxs[1]],0;
-    };
+    return rxs[1]=/* :: */[0,xs,rxs[1]],0};
 
 var
  add_to$prime=
   function(rxs,x)
    {return CamlPrimitive["caml_string_notequal"](x,dummy)
             ?(rxs[1]=/* :: */[0,/* :: */[0,x,/* [] */0],rxs[1]],0)
-            :/* () */0;
-    };
+            :/* () */0};
 
 var
  set_cmd=
   function(rcmd)
-   {return /* String */[4,function(s){return rcmd[1]=/* Sh */[4,s],0;}];};
+   {return /* String */[4,function(s){return rcmd[1]=/* Sh */[4,s],0}]};
 
 var
  set_build_dir=
@@ -329,8 +324,7 @@ var
               Filename["concat"]
                (CamlPrimitive["caml_sys_getcwd"](/* () */0),s),
               0)
-            :(build_dir[1]=s,0);
-    };
+            :(build_dir[1]=s,0)};
 
 var
  spec=
@@ -342,7 +336,7 @@ var
        "-version",
        /* Unit */[0,
         function(param)
-         {Pervasives["print_endline"](version);throw My_std["Exit_OK"];}],
+         {Pervasives["print_endline"](version);throw My_std["Exit_OK"]}],
        " Display the version"],
       /* :: */[0,
        /* tuple */[0,
@@ -350,13 +344,12 @@ var
         /* Unit */[0,
          function(param)
           {Pervasives["print_endline"](Sys["ocaml_version"]);
-           throw My_std["Exit_OK"];
-           }],
+           throw My_std["Exit_OK"]}],
         " Display the version number"],
        /* :: */[0,
         /* tuple */[0,
          "-quiet",
-         /* Unit */[0,function(param){return Log["level"][1]=0,0;}],
+         /* Unit */[0,function(param){return Log["level"][1]=0,0}],
          " Make as quiet as possible"],
         /* :: */[0,
          /* tuple */[0,
@@ -364,8 +357,7 @@ var
           /* Int */[6,
            function(i)
             {Log["classic_display"][1]=/* true */1;
-             return Log["level"][1]=i+2,0;
-             }],
+             return Log["level"][1]=i+2,0}],
           "<level> Set the verbosity level"],
          /* :: */[0,
           /* tuple */[0,
@@ -380,7 +372,7 @@ var
            /* :: */[0,
             /* tuple */[0,
              "-no-log",
-             /* Unit */[0,function(param){return log_file_internal[1]="",0;}],
+             /* Unit */[0,function(param){return log_file_internal[1]="",0}],
              " No log file"],
             /* :: */[0,
              /* tuple */[0,
@@ -452,7 +444,7 @@ var
                            "-syntax",
                            /* String */[4,
                             function(syntax)
-                             {return ocaml_syntax[1]=/* Some */[0,syntax],0;}],
+                             {return ocaml_syntax[1]=/* Some */[0,syntax],0}],
                            "<syntax> Specify syntax using ocamlfind"],
                           /* :: */[0,
                            /* tuple */[0,
@@ -592,7 +584,7 @@ var
                                                      /* :: */[0,
                                                       /* tuple */[0,
                                                        "-plugin-option",
-                                                       /* String */[4,function(prim){return prim;}],
+                                                       /* String */[4,function(prim){return prim}],
                                                        " Use the option only when plugin is run"],
                                                       /* :: */[0,
                                                        /* tuple */[0,
@@ -660,8 +652,7 @@ var
                                                                     /* Unit */[0,
                                                                      function(param)
                                                                       {Pervasives["print_endline"](Ocamlbuild_where["libdir"][1]);
-                                                                       throw My_std["Exit_OK"];
-                                                                       }],
+                                                                       throw My_std["Exit_OK"]}],
                                                                     " Display the install library directory"],
                                                                    /* :: */[0,
                                                                     /* tuple */[0,
@@ -669,8 +660,7 @@ var
                                                                      /* String */[4,
                                                                       function(cmd)
                                                                        {Pervasives["print_endline"](find_tool(cmd));
-                                                                        throw My_std["Exit_OK"];
-                                                                        }],
+                                                                        throw My_std["Exit_OK"]}],
                                                                      "<command> Display path to the tool command"],
                                                                     /* :: */[0,
                                                                      /* tuple */[0,
@@ -728,15 +718,14 @@ var
                                                                                 /* Rest */[12,
                                                                                  function(x)
                                                                                   {program_to_execute[1]=/* true */1;
-                                                                                   return add_to$prime(program_args_internal,x);
-                                                                                   }],
+                                                                                   return add_to$prime(program_args_internal,x)}],
                                                                                 " Stop argument processing, remaining arguments are given to the user program"],
                                                                                /* [] */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]])];
 
 var
  add=
   function(x)
-   {return spec[1]=Pervasives["@"](spec[1],/* :: */[0,x,/* [] */0]),0;};
+   {return spec[1]=Pervasives["@"](spec[1],/* :: */[0,x,/* [] */0]),0};
 
 var targets=[0,/* [] */0];
 
@@ -834,7 +823,7 @@ var
          {Pervasives["failwith"]
            ("ocamlfind not found on path, but -no-ocamlfind not used")}
         else
-         {throw exn;}
+         {throw exn}
         }
       
       var
@@ -851,14 +840,13 @@ var
            {switch(match$2){}}
           else
            {switch(match$2[0])
-             {case 4:$js=My_std["&"](ocamlfind,/* Sh */[4,match$2[1]]);
+             {case 4:$js=My_std["&"](ocamlfind,/* Sh */[4,match$2[1]]);break;
               default:exit=8;}}
           
           var $js$1;
           switch(exit)
-           {case 8:$js$1=My_std["&"](ocamlfind,/* A */[1,param$1[1]]);}
-          return command_ref[1]=$js$1,0;
-          };
+           {case 8:$js$1=My_std["&"](ocamlfind,/* A */[1,param$1[1]]);break}
+          return command_ref[1]=$js$1,0};
       
       My_std["List"][14]
        (with_ocamlfind,
@@ -873,8 +861,6 @@ var
             /* :: */[0,
              /* tuple */[0,"ocamlmklib",ocamlmklib],
              /* :: */[0,/* tuple */[0,"ocamlmktop",ocamlmktop],/* [] */0]]]]]])}
-    else
-     {}
     
     var
      reorder=
@@ -882,8 +868,7 @@ var
        {return x[1]=
                Pervasives["@"]
                 (x[1],My_std["List"][12](My_std["List"][9](y[1]))),
-               0;
-        };
+               0};
     
     reorder(targets,targets_internal);
     reorder(ocaml_libs,ocaml_libs_internal);
@@ -915,8 +900,7 @@ var
                         /* No_padding */0,
                         [/* Char_literal */12,41,/* End_of_format */0]]],
                       "Included or excluded directories must be implicit (not %S)"],
-                     dir));
-        };
+                     dir))};
     
     var
      dir_reorder=
@@ -926,15 +910,13 @@ var
         reorder(dir,my);
         return dir[1]=
                My_std["List"][33](check_dir,Pervasives["@"](dir[1],d)),
-               0;
-        };
+               0};
     
     dir_reorder(my_include_dirs,include_dirs);
     dir_reorder(my_exclude_dirs,exclude_dirs);
     return ignore_list[1]=
            My_std["List"][16](My_std["String"][38],ignore_list[1]),
-           0;
-    };
+           0};
 
 var
  ocamlbuild_project_heuristic=
@@ -945,11 +927,10 @@ var
      root_dir=
       match$1?match$1[1]:CamlPrimitive["caml_sys_getcwd"](/* () */0);
     
-    var at_root=function(file){return Filename["concat"](root_dir,file);};
+    var at_root=function(file){return Filename["concat"](root_dir,file)};
     
     return CamlPrimitive["caml_sys_file_exists"](at_root("_tags"))||
-           CamlPrimitive["caml_sys_file_exists"](at_root("myocamlbuild.ml"));
-    };
+           CamlPrimitive["caml_sys_file_exists"](at_root("myocamlbuild.ml"))};
 
 module["exports"]=
 {"build_dir":build_dir,

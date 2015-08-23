@@ -122,7 +122,7 @@ catch(exn)
    {throw exn}
   }
 
-var quote=generic_quote("'\''");
+var quote=generic_quote("'\\''");
 
 var basename=generic_basename(is_dir_sep,current_dir_name);
 
@@ -147,7 +147,7 @@ var current_dir_name$1=".";
 
 var parent_dir_name$1="..";
 
-var dir_sep$1="\";
+var dir_sep$1="\\";
 
 var
  is_dir_sep$1=
@@ -169,7 +169,8 @@ var
             CamlPrimitive["caml_string_notequal"]($$String["sub"](n,0,2),"./"))&&
            (n["length"]<
             2||
-            CamlPrimitive["caml_string_notequal"]($$String["sub"](n,0,2),".\"))&&
+            CamlPrimitive["caml_string_notequal"]
+             ($$String["sub"](n,0,2),".\\"))&&
            (n["length"]<
             3||
             CamlPrimitive["caml_string_notequal"]
@@ -177,7 +178,7 @@ var
            (n["length"]<
             3||
             CamlPrimitive["caml_string_notequal"]
-             ($$String["sub"](n,0,3),"..\"))};
+             ($$String["sub"](n,0,3),"..\\"))};
 
 var
  check_suffix$1=
@@ -343,56 +344,54 @@ var
 
 var match=Sys["os_type"];
 
+var match$1;
 var exit;
 
 switch(match)
  {case "Cygwin":
-   var
-    match$1=
-     /* tuple */[0,
-      Cygwin[1],
-      Cygwin[2],
-      Cygwin[3],
-      Cygwin[4],
-      Cygwin[5],
-      Cygwin[6],
-      Cygwin[7],
-      Cygwin[8],
-      Cygwin[9],
-      Cygwin[10],
-      Cygwin[11]];
+   match$1=
+   /* tuple */[0,
+    Cygwin[1],
+    Cygwin[2],
+    Cygwin[3],
+    Cygwin[4],
+    Cygwin[5],
+    Cygwin[6],
+    Cygwin[7],
+    Cygwin[8],
+    Cygwin[9],
+    Cygwin[10],
+    Cygwin[11]];
    break;
   case "Unix":
-   var
-    match$1=
-     /* tuple */[0,
-      Unix[1],
-      Unix[2],
-      Unix[3],
-      Unix[4],
-      Unix[5],
-      Unix[6],
-      Unix[7],
-      Unix[8],
-      Unix[9],
-      Unix[10],
-      Unix[11]];
+   match$1=
+   /* tuple */[0,
+    Unix[1],
+    Unix[2],
+    Unix[3],
+    Unix[4],
+    Unix[5],
+    Unix[6],
+    Unix[7],
+    Unix[8],
+    Unix[9],
+    Unix[10],
+    Unix[11]];
    break;
   case "Win32":
-   var
-    match$1=
-     /* tuple */[0,
-      Win32[1],
-      Win32[2],
-      Win32[3],
-      Win32[4],
-      Win32[5],
-      Win32[6],
-      Win32[7],
-      Win32[8],
-      Win32[9],
-      Win32[13],
-      Win32[12]];
+   match$1=
+   /* tuple */[0,
+    Win32[1],
+    Win32[2],
+    Win32[3],
+    Win32[4],
+    Win32[5],
+    Win32[6],
+    Win32[7],
+    Win32[8],
+    Win32[9],
+    Win32[13],
+    Win32[12]];
    break;
   default:exit=21;}
 
@@ -527,14 +526,12 @@ var
 
 var
  open_temp_file=
-  function($staropt$star,$staropt$star,prefix,suffix)
+  function($staropt$star,$staropt$star$1,prefix,suffix)
    {var
      mode=
-      $staropt$star$1
-       ?$staropt$star$1[1]
-       :[/* :: */0,/* Open_text */7,/* [] */0];
+      $staropt$star?$staropt$star[1]:[/* :: */0,/* Open_text */7,/* [] */0];
     
-    var temp_dir=$staropt$star?$staropt$star[1]:current_temp_dir_name[1];
+    var temp_dir=$staropt$star$1?$staropt$star$1[1]:current_temp_dir_name[1];
     
     var
      try_name=

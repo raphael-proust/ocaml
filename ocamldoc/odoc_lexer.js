@@ -18,13 +18,13 @@ var string_buffer=Buffer["create"](32);
 
 var
  reset_string_buffer=
-  function(param){return Buffer["reset"](string_buffer);};
+  function(param){return Buffer["reset"](string_buffer)};
 
 var ajout_char_string=Buffer["add_char"](string_buffer);
 
 var ajout_string=Buffer["add_string"](string_buffer);
 
-var lecture_string=function(param){return Buffer["contents"](string_buffer);};
+var lecture_string=function(param){return Buffer["contents"](string_buffer)};
 
 var description=[0,""];
 
@@ -52,10 +52,9 @@ var
           
           return CamlPrimitive["caml_string_equal"](h2,"")
                   ?iter(q)
-                  :/* :: */[0,h2,q];
-          }
+                  :/* :: */[0,h2,q]}
         else
-         {return /* [] */0;}
+         {return /* [] */0}
         };
     
     var l2=iter(l);
@@ -73,34 +72,31 @@ var
           
           return CamlPrimitive["caml_string_equal"](h2,"")
                   ?iter$1(q)
-                  :/* :: */[0,h2,q];
-          }
+                  :/* :: */[0,h2,q]}
         else
-         {return /* [] */0;}
+         {return /* [] */0}
         };
     
     var l3=List["rev"](iter$1(List["rev"](l2)));
     
-    return $$String["concat"]("\n",l3);
-    };
+    return $$String["concat"]("\n",l3)};
 
 var
  remove_stars=
   function(s)
    {return Str["global_replace"]
-            (Str["regexp"](Pervasives["^"]("^",Pervasives["^"](blank,"*\*"))),
+            (Str["regexp"](Pervasives["^"]("^",Pervasives["^"](blank,"*\\*"))),
              "",
-             s);
-    };
+             s)};
 
 var
  __ocaml_lex_tables=
   [/* record */0,
-   "\0\0öÿ\0\0ùÿ\x01\0þÿ\x02\0\x02\0\x04\0\x06\0ýÿüÿ\b\0øÿ\x0b\0ûÿ\t\0\0\0\n\0\r\0ÿÿþÿýÿ-\0$\0ýÿ\r\0\x0f\0ÿÿþÿ$\x01úÿ\t\0\n\0m\0m\0e\x01a\x012\0÷ÿ\x10\0ùÿ\x10\0þÿ\x07\0\x13\0\x18\0üÿ\x1a\0øÿ",
-   "ÿÿÿÿ\t\0ÿÿ\t\0ÿÿ\0\0\b\0\x05\0\x04\0ÿÿÿÿÿÿÿÿÿÿÿÿ\x04\0\x04\0\x04\0\x04\0ÿÿÿÿÿÿ\x03\0ÿÿÿÿ\x02\0\x02\0ÿÿÿÿÿÿÿÿ\x04\0\x04\0\x02\0\x01\0\0\0\x03\0ÿÿÿÿ\b\0ÿÿ\b\0ÿÿ\0\0\x05\0\x04\0ÿÿ\x02\0ÿÿ",
-   "\x01\0\0\0ÿÿ\0\0ÿÿ\0\0ÿÿÿÿÿÿÿÿ\0\0\0\0ÿÿ\0\0\x0f\0\0\0ÿÿÿÿÿÿÿÿ\0\0\0\0\0\0ÿÿ\x19\0\0\0ÿÿÿÿ\0\0\0\0 \0\0\0 \0 \0ÿÿ \0 \0ÿÿ'\0\0\0ÿÿ\0\0ÿÿ\0\0ÿÿÿÿÿÿ\0\0ÿÿ\0\0",
-   '\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x06\0\x05\0\x06\0\x06\0\x06\0\x06\0\x06\0,\0\0\0\0\0,\0,\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x06\0\0\0\x06\0\0\0\0\0\0\0\0\0,\0\x04\0\r\0\x02\0\x07\0\b\0\n\0\t\0\x0b\0\f\0\x0b\0\f\0\x12\0\x15\0\x13\0\x14\0\x1d\0\x1c\x001\0-\0,\0+\0.\0,\0,\0\x16\0/\x000\0/\x000\0\0\0\0\0\0\0\0\0ÿÿ\0\0\x10\0\x1a\0\0\0\x1b\0\0\0\0\0\0\0,\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0*\0\0\0(\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0!\0!\0\x11\0\x17\0\0\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x17\0\0\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\0\0\0\0\0\0\0\0\0\0ÿÿ\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0!\0\0\0\0\0%\0\0\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x03\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0ÿÿÿÿÿÿ\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0ÿÿ\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0$\0#\0\0\0$\0$\0)\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0$\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0"\0%\0%\0%\0%\0%\0%\0%\0%\0ÿÿ$\0\0\0\0\0$\0$\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0!\0\0\0\0\0\0\0\0\0$\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0ÿÿ\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0%\0!\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x1f\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0\0\0%\0%\0%\0%\0%\0%\0%\0%\0\0\0\0\0\0\0\0\0ÿÿ',
-   'ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\0\0\0\0\x06\0\0\0\0\0\x06\0\x06\0,\0ÿÿÿÿ,\0,\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\0\0ÿÿ\x06\0ÿÿÿÿÿÿÿÿ,\0\0\0\x02\0\0\0\x04\0\x07\0\b\0\b\0\t\0\t\0\f\0\f\0\x0e\0\x12\0\x0e\0\x13\0\x1a\0\x1b\0(\0*\0&\0&\0-\0&\0&\0\x11\0.\0.\x000\x000\0ÿÿÿÿÿÿÿÿ \0ÿÿ\x0e\0\x18\0ÿÿ\x18\0ÿÿÿÿÿÿ&\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿ&\0ÿÿ&\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ \0!\0\x0e\0\x10\0ÿÿ\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\x17\0ÿÿ\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0ÿÿÿÿÿÿÿÿÿÿ#\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ#\0ÿÿÿÿ"\0ÿÿ"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\0\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0 \0!\0\x0e\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x18\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x1e\0\x1e\0ÿÿ\x1e\0\x1e\0&\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\x1e\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿ"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0\x1e\0"\0"\0"\0"\0"\0"\0"\0"\0#\0$\0ÿÿÿÿ$\0$\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\x1e\0ÿÿÿÿÿÿÿÿ$\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ$\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ%\0$\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\x1e\0ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0ÿÿ%\0%\0%\0%\0%\0%\0%\0%\0ÿÿÿÿÿÿÿÿ$\0',
+   "\0\0\xf6\xff\0\0\xf9\xff\x01\0\xfe\xff\x02\0\x02\0\x04\0\x06\0\xfd\xff\xfc\xff\b\0\xf8\xff\x0b\0\xfb\xff\t\0\0\0\n\0\r\0\xff\xff\xfe\xff\xfd\xff-\0$\0\xfd\xff\r\0\x0f\0\xff\xff\xfe\xff$\x01\xfa\xff\t\0\n\0m\0m\0e\x01a\x012\0\xf7\xff\x10\0\xf9\xff\x10\0\xfe\xff\x07\0\x13\0\x18\0\xfc\xff\x1a\0\xf8\xff",
+   "\xff\xff\xff\xff\t\0\xff\xff\t\0\xff\xff\0\0\b\0\x05\0\x04\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\x04\0\x04\0\x04\0\x04\0\xff\xff\xff\xff\xff\xff\x03\0\xff\xff\xff\xff\x02\0\x02\0\xff\xff\xff\xff\xff\xff\xff\xff\x04\0\x04\0\x02\0\x01\0\0\0\x03\0\xff\xff\xff\xff\b\0\xff\xff\b\0\xff\xff\0\0\x05\0\x04\0\xff\xff\x02\0\xff\xff",
+   "\x01\0\0\0\xff\xff\0\0\xff\xff\0\0\xff\xff\xff\xff\xff\xff\xff\xff\0\0\0\0\xff\xff\0\0\x0f\0\0\0\xff\xff\xff\xff\xff\xff\xff\xff\0\0\0\0\0\0\xff\xff\x19\0\0\0\xff\xff\xff\xff\0\0\0\0 \0\0\0 \0 \0\xff\xff \0 \0\xff\xff'\0\0\0\xff\xff\0\0\xff\xff\0\0\xff\xff\xff\xff\xff\xff\0\0\xff\xff\0\0",
+   '\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x06\0\x05\0\x06\0\x06\0\x06\0\x06\0\x06\0,\0\0\0\0\0,\0,\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x06\0\0\0\x06\0\0\0\0\0\0\0\0\0,\0\x04\0\r\0\x02\0\x07\0\b\0\n\0\t\0\x0b\0\f\0\x0b\0\f\0\x12\0\x15\0\x13\0\x14\0\x1d\0\x1c\x001\0-\0,\0+\0.\0,\0,\0\x16\0/\x000\0/\x000\0\0\0\0\0\0\0\0\0\xff\xff\0\0\x10\0\x1a\0\0\0\x1b\0\0\0\0\0\0\0,\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0*\0\0\0(\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0!\0!\0\x11\0\x17\0\0\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x17\0\0\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\0\0\0\0\0\0\0\0\0\0\xff\xff\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0!\0\0\0\0\0%\0\0\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x03\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\xff\xff\xff\xff\xff\xff\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\xff\xff\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0$\0#\0\0\0$\0$\0)\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0$\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0"\0%\0%\0%\0%\0%\0%\0%\0%\0\xff\xff$\0\0\0\0\0$\0$\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0!\0\0\0\0\0\0\0\0\0$\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\xff\xff\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0%\0!\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x1f\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0\0\0%\0%\0%\0%\0%\0%\0%\0%\0\0\0\0\0\0\0\0\0\xff\xff',
+   '\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\0\0\0\0\x06\0\0\0\0\0\x06\0\x06\0,\0\xff\xff\xff\xff,\0,\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\0\0\xff\xff\x06\0\xff\xff\xff\xff\xff\xff\xff\xff,\0\0\0\x02\0\0\0\x04\0\x07\0\b\0\b\0\t\0\t\0\f\0\f\0\x0e\0\x12\0\x0e\0\x13\0\x1a\0\x1b\0(\0*\0&\0&\0-\0&\0&\0\x11\0.\0.\x000\x000\0\xff\xff\xff\xff\xff\xff\xff\xff \0\xff\xff\x0e\0\x18\0\xff\xff\x18\0\xff\xff\xff\xff\xff\xff&\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff&\0\xff\xff&\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff \0!\0\x0e\0\x10\0\xff\xff\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\x17\0\xff\xff\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff#\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff#\0\xff\xff\xff\xff"\0\xff\xff"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\0\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0\x10\0 \0!\0\x0e\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x18\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x17\0\x1e\0\x1e\0\xff\xff\x1e\0\x1e\0&\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\x1e\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0"\0\x1e\0"\0"\0"\0"\0"\0"\0"\0"\0#\0$\0\xff\xff\xff\xff$\0$\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\x1e\0\xff\xff\xff\xff\xff\xff\xff\xff$\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff$\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff%\0$\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\x1e\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0%\0\xff\xff%\0%\0%\0%\0%\0%\0%\0%\0\xff\xff\xff\xff\xff\xff\xff\xff$\0',
    "",
    "",
    "",
@@ -108,7 +104,7 @@ var
    "",
    ""];
 
-var main=function(lexbuf){return __ocaml_lex_main_rec(lexbuf,0);};
+var main=function(lexbuf){return __ocaml_lex_main_rec(lexbuf,0)};
 
 var
  __ocaml_lex_main_rec=
@@ -121,24 +117,21 @@ var
     
     if(9<__ocaml_lex_state$1>>>0)
      {lexbuf[1](lexbuf);
-      return __ocaml_lex_main_rec(lexbuf,__ocaml_lex_state$1);
-      }
+      return __ocaml_lex_main_rec(lexbuf,__ocaml_lex_state$1)}
     else
      {switch(__ocaml_lex_state$1)
-       {case 0:exit=2;
+       {case 0:exit=2;break;
         case 1:
          line_number[0]++;
          Odoc_comments_global["nb_chars"][0]++;
          return main(lexbuf);
-         
         case 2:
          Odoc_comments_global["nb_chars"][1]=
          Odoc_comments_global["nb_chars"][1]+
          Lexing["lexeme"](lexbuf)["length"];
          return [/* Description */0,[/* tuple */0,"",/* None */0]];
-         
-        case 3:exit=2;
-        case 4:exit=3;
+        case 3:exit=2;break;
+        case 4:exit=3;break;
         case 5:
          Odoc_comments_global["nb_chars"][1]=
          Odoc_comments_global["nb_chars"][1]+
@@ -150,7 +143,6 @@ var
                    "",
                    special_comment(lexbuf))
                  :main(lexbuf);
-         
         case 6:return /* EOF */9;
         case 7:
          Odoc_comments_global["nb_chars"][1]=
@@ -158,9 +150,8 @@ var
          Lexing["lexeme"](lexbuf)["length"];
          comments_level[0]--;
          return main(lexbuf);
-         
-        case 8:exit=3;
-        case 9:Odoc_comments_global["nb_chars"][0]++;return main(lexbuf);
+        case 8:exit=3;break;
+        case 9:Odoc_comments_global["nb_chars"][0]++;return main(lexbuf)
         }
       }
     
@@ -170,20 +161,18 @@ var
        Odoc_comments_global["nb_chars"][1]+
        Lexing["lexeme"](lexbuf)["length"];
        return main(lexbuf);
-       
       case 3:
        Odoc_comments_global["nb_chars"][1]=
        Odoc_comments_global["nb_chars"][1]+
        Lexing["lexeme"](lexbuf)["length"];
        comments_level[0]++;
-       return main(lexbuf);
-       
+       return main(lexbuf)
       }
     };
 
 var
  special_comment=
-  function(lexbuf){return __ocaml_lex_special_comment_rec(lexbuf,14);};
+  function(lexbuf){return __ocaml_lex_special_comment_rec(lexbuf,14)};
 
 var
  __ocaml_lex_special_comment_rec=
@@ -194,8 +183,7 @@ var
     
     if(4<__ocaml_lex_state$1>>>0)
      {lexbuf[1](lexbuf);
-      return __ocaml_lex_special_comment_rec(lexbuf,__ocaml_lex_state$1);
-      }
+      return __ocaml_lex_special_comment_rec(lexbuf,__ocaml_lex_state$1)}
     else
      {switch(__ocaml_lex_state$1)
        {case 0:
@@ -211,14 +199,10 @@ var
            
            var s4=Odoc_global["remove_stars"][1]?remove_stars(s3):s3;
            
-           return /* Description */[0,/* tuple */[0,s4,/* None */0]];
-           }
+           return /* Description */[0,/* tuple */[0,s4,/* None */0]]}
          else
-          {ajout_string(s);
-           comments_level[0]--;
-           return special_comment(lexbuf);
-           }
-         
+          {ajout_string(s);comments_level[0]--;return special_comment(lexbuf)}
+         break;
         case 1:
          var s$1=Lexing["lexeme"](lexbuf);
          
@@ -228,7 +212,6 @@ var
          comments_level[0]++;
          ajout_string(s$1);
          return special_comment(lexbuf);
-         
         case 2:
          var s$2=Lexing["lexeme"](lexbuf);
          
@@ -239,7 +222,6 @@ var
          Odoc_comments_global["nb_chars"][1]+
          s$2["length"];
          return special_comment(lexbuf);
-         
         case 3:
          var s$3=lecture_string(/* () */0);
          
@@ -252,7 +234,6 @@ var
          
          lexbuf[12]=/* record */[0,init[1],init[2],init[3],lexbuf[12][4]-len];
          return special_comment_part2(lexbuf);
-         
         case 4:
          var c$1=Lexing["lexeme_char"](lexbuf,0);
          
@@ -260,15 +241,14 @@ var
          if(c$1===10){line_number[0]++}
          
          Odoc_comments_global["nb_chars"][0]++;
-         return special_comment(lexbuf);
-         
+         return special_comment(lexbuf)
         }
       }
     };
 
 var
  special_comment_part2=
-  function(lexbuf){return __ocaml_lex_special_comment_part2_rec(lexbuf,24);};
+  function(lexbuf){return __ocaml_lex_special_comment_part2_rec(lexbuf,24)};
 
 var
  __ocaml_lex_special_comment_part2_rec=
@@ -279,8 +259,7 @@ var
     
     if(2<__ocaml_lex_state$1>>>0)
      {lexbuf[1](lexbuf);
-      return __ocaml_lex_special_comment_part2_rec(lexbuf,__ocaml_lex_state$1);
-      }
+      return __ocaml_lex_special_comment_part2_rec(lexbuf,__ocaml_lex_state$1)}
     else
      {switch(__ocaml_lex_state$1)
        {case 0:
@@ -303,14 +282,12 @@ var
              Odoc_global["remove_stars"][1]?remove_stars(remain):remain;
            
            return /* Description */[0,
-                   /* tuple */[0,desc,/* Some */[0,remain2]]];
-           }
+                   /* tuple */[0,desc,/* Some */[0,remain2]]]}
          else
           {ajout_string(s);
            comments_level[0]--;
-           return special_comment_part2(lexbuf);
-           }
-         
+           return special_comment_part2(lexbuf)}
+         break;
         case 1:
          var s$1=Lexing["lexeme"](lexbuf);
          
@@ -320,7 +297,6 @@ var
          ajout_string(s$1);
          comments_level[0]++;
          return special_comment_part2(lexbuf);
-         
         case 2:
          var c=Lexing["lexeme_char"](lexbuf,0);
          
@@ -328,13 +304,12 @@ var
          if(c===10){line_number[0]++}
          
          Odoc_comments_global["nb_chars"][0]++;
-         return special_comment_part2(lexbuf);
-         
+         return special_comment_part2(lexbuf)
         }
       }
     };
 
-var elements=function(lexbuf){return __ocaml_lex_elements_rec(lexbuf,30);};
+var elements=function(lexbuf){return __ocaml_lex_elements_rec(lexbuf,30)};
 
 var
  __ocaml_lex_elements_rec=
@@ -345,8 +320,7 @@ var
     
     if(6<__ocaml_lex_state$1>>>0)
      {lexbuf[1](lexbuf);
-      return __ocaml_lex_elements_rec(lexbuf,__ocaml_lex_state$1);
-      }
+      return __ocaml_lex_elements_rec(lexbuf,__ocaml_lex_state$1)}
     else
      {switch(__ocaml_lex_state$1)
        {case 0:
@@ -354,17 +328,14 @@ var
          Odoc_comments_global["nb_chars"][1]+
          Lexing["lexeme"](lexbuf)["length"];
          return elements(lexbuf);
-         
         case 1:
          line_number[0]++;
          Odoc_comments_global["nb_chars"][0]++;
          return elements(lexbuf);
-         
         case 2:
          throw [0,
                 CamlPrimitive["caml_global_data"]["Failure"],
                 Odoc_messages["should_escape_at_sign"]];
-         
         case 3:
          var s=Lexing["lexeme"](lexbuf);
          
@@ -392,38 +363,35 @@ var
             if(Odoc_global["no_custom_tags"][1])
              {throw [0,
                      CamlPrimitive["caml_global_data"]["Failure"],
-                     Odoc_messages["not_a_valid_tag"](s2)];
-              }
+                     Odoc_messages["not_a_valid_tag"](s2)]}
             else
-             {return /* T_CUSTOM */[4,s2];}
-            
+             {return /* T_CUSTOM */[4,s2]}
+            break
            }
-         
+         break;
         case 4:
          Odoc_comments_global["nb_chars"][1]=
          Odoc_comments_global["nb_chars"][1]+
          Lexing["lexeme"](lexbuf)["length"];
          var s$1=Lexing["lexeme"](lexbuf);
          
-         var s$2=Str["global_replace"](Str["regexp_string"]("\@"),"@",s$1);
+         var s$2=Str["global_replace"](Str["regexp_string"]("\\@"),"@",s$1);
          
          var s$3=remove_blanks(s$2);
          
          return /* Desc */[5,s$3];
-         
         case 5:return /* EOF */9;
         case 6:
          var s$4=Lexing["lexeme"](lexbuf);
          
          return Pervasives["failwith"]
                  (Pervasives["^"]
-                   ("Unexpected character '",Pervasives["^"](s$4,"'")));
-         
+                   ("Unexpected character '",Pervasives["^"](s$4,"'")))
         }
       }
     };
 
-var simple=function(lexbuf){return __ocaml_lex_simple_rec(lexbuf,38);};
+var simple=function(lexbuf){return __ocaml_lex_simple_rec(lexbuf,38)};
 
 var
  __ocaml_lex_simple_rec=
@@ -434,8 +402,7 @@ var
     
     if(8<__ocaml_lex_state$1>>>0)
      {lexbuf[1](lexbuf);
-      return __ocaml_lex_simple_rec(lexbuf,__ocaml_lex_state$1);
-      }
+      return __ocaml_lex_simple_rec(lexbuf,__ocaml_lex_state$1)}
     else
      {switch(__ocaml_lex_state$1)
        {case 0:
@@ -443,19 +410,16 @@ var
          Odoc_comments_global["nb_chars"][1]+
          Lexing["lexeme"](lexbuf)["length"];
          return simple(lexbuf);
-         
         case 1:
          line_number[0]++;
          Odoc_comments_global["nb_chars"][0]++;
          return simple(lexbuf);
-         
         case 2:
          Odoc_comments_global["nb_chars"][1]=
          Odoc_comments_global["nb_chars"][1]+
          Lexing["lexeme"](lexbuf)["length"];
          comments_level[0]++;
          return simple(lexbuf);
-         
         case 3:
          var s=Lexing["lexeme"](lexbuf);
          
@@ -463,7 +427,6 @@ var
          Odoc_comments_global["nb_chars"][1]+
          s["length"];
          return simple(lexbuf);
-         
         case 4:
          var s$1=Lexing["lexeme"](lexbuf);
          
@@ -472,7 +435,6 @@ var
          s$1["length"];
          comments_level[0]++;
          return simple(lexbuf);
-         
         case 5:
          var s$2=Lexing["lexeme"](lexbuf);
          
@@ -486,7 +448,6 @@ var
                    "",
                    special_comment(lexbuf))
                  :(ajout_string(s$2),simple(lexbuf));
-         
         case 6:return /* EOF */9;
         case 7:
          var s$3=Lexing["lexeme"](lexbuf);
@@ -496,8 +457,7 @@ var
          s$3["length"];
          comments_level[0]--;
          return simple(lexbuf);
-         
-        case 8:Odoc_comments_global["nb_chars"][0]++;return simple(lexbuf);
+        case 8:Odoc_comments_global["nb_chars"][0]++;return simple(lexbuf)
         }
       }
     };

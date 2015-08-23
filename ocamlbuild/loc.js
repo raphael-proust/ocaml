@@ -4,11 +4,11 @@ var $$String=require("./string.js");
 var Format=require("./format.js");
 
 
-var file=function(loc){return loc[1];};
+var file=function(loc){return loc[1]};
 
-var line=function(loc){return loc[2];};
+var line=function(loc){return loc[2]};
 
-var $$char=function(loc){return loc[4]-loc[3];};
+var $$char=function(loc){return loc[4]-loc[3]};
 
 var
  print_loc=
@@ -53,8 +53,7 @@ var
                         /* End_of_format */0]]]],
                     "s %d-%d"],
                    start_num,
-                   param$1[2]);
-        };
+                   param$1[2])};
     
     return Format["fprintf"]
             (ppf,
@@ -82,16 +81,15 @@ var
              print(line(start)===line(end_)),
              /* tuple */[0,line(start),line(end_)],
              print(line(start)===line(end_)&&$$char(start)===$$char(end_)),
-             /* tuple */[0,$$char(start),$$char(end_)]);
-    };
+             /* tuple */[0,$$char(start),$$char(end_)])};
 
 var
  of_lexbuf=
-  function(source,lexbuf){return /* tuple */[0,source,lexbuf[11],lexbuf[12]];};
+  function(source,lexbuf){return /* tuple */[0,source,lexbuf[11],lexbuf[12]]};
 
 var
  print_loc_option=
-  function(ppf,param){return param?print_loc(ppf,param[1]):/* () */0;};
+  function(ppf,param){return param?print_loc(ppf,param[1]):/* () */0};
 
 module["exports"]=
 {"print_loc":print_loc,

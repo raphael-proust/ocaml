@@ -248,7 +248,7 @@ if(match)
  {var match$1=match[1];
   
   switch(match$1[0])
-   {case 0:Html=match$1[1];
+   {case 0:Html=match$1[1];break;
     default:
      Html=
      Pervasives["failwith"]
@@ -362,11 +362,10 @@ var
                              
                              return /* :: */[0,
                                      /* tuple */[0,/* Some */[0,n],/* :: */[0,head,text[2]]],
-                                     acc];
-                             }
+                                     acc]}
                            catch(exn)
-                            {return /* :: */[0,/* tuple */[0,/* None */0,text],acc];}
-                           
+                            {return /* :: */[0,/* tuple */[0,/* None */0,text],acc]}
+                           break;
                           default:exit=12;}}
                       }
                     else
@@ -374,10 +373,10 @@ var
                     
                     switch(exit)
                      {case 12:
-                       return /* :: */[0,/* tuple */[0,/* None */0,text],acc];
+                       return /* :: */[0,/* tuple */[0,/* None */0,text],acc]
                       }
-                    
-                   default:return acc;}
+                    break;
+                   default:return acc}
                  },
                /* [] */0,
                info_opt[1][11]);
@@ -394,10 +393,9 @@ var
                      
                      return match$3
                              ?CamlPrimitive["caml_int_compare"](match$2[1],match$3[1])
-                             :1;
-                     }
+                             :1}
                    else
-                    {return -1;}
+                    {return -1}
                    },
                  l);
              
@@ -437,18 +435,17 @@ var
                                  /* No_precision */0,
                                  [/* String_literal */11,"0000",/* End_of_format */0]]],
                                "#%2x0000"],
-                              170-n*16);
-                     }
+                              170-n*16)}
                    else
                     {switch(switcher)
                       {case 0:return "#FF0000";
                        case 1:return "#AA5555";
-                       case 2:return "#44BB00";
+                       case 2:return "#44BB00"
                        }
                      }
                    }
                  else
-                  {return "#000000";}
+                  {return "#000000"}
                  };
              
              List["iter"]
@@ -471,20 +468,18 @@ var
                            [/* String_literal */11,
                             "</span><br/>\n",
                             /* End_of_format */0],
-                           "</span><br/>\n"]);
-                 },
+                           "</span><br/>\n"])},
                l$1);
              return p
                      (self$neg1[b+1],
                       [/* Format */0,
                        [/* String_literal */11,"</div>",/* End_of_format */0],
-                       "</div>"]);
-             }
+                       "</div>"])}
            else
-            {return /* () */0;}
+            {return /* () */0}
            }
          else
-          {return /* () */0;}
+          {return /* () */0}
          },
        scan_value,
        function(self$neg1,v)
@@ -518,63 +513,68 @@ var
                      {case 0:
                        /* unknown */"(sendself self-1/1342 scan_module/1355 (field 0 ele/1344))";
                        
+                       break;
                       case 1:
                        /* unknown */"(sendself self-1/1342 scan_module_type/1356 (field 0 ele/1344))";
                        
+                       break;
                       case 2:
                        /* unknown */"(sendself self-1/1342 scan_included_module/1293 (field 0 ele/1344))";
                        
+                       break;
                       case 3:
                        /* unknown */"(sendself self-1/1342 scan_class/1357 (field 0 ele/1344))";
                        
+                       break;
                       case 4:
                        /* unknown */"(sendself self-1/1342 scan_class_type/1358 (field 0 ele/1344))";
                        
+                       break;
                       case 5:
                        /* unknown */"(sendself self-1/1342 scan_value/1286 (field 0 ele/1344))";
                        
+                       break;
                       case 6:
                        /* unknown */"(sendself self-1/1342 scan_type_extension/1359 (field 0 ele/1344))";
                        
+                       break;
                       case 7:
                        /* unknown */"(sendself self-1/1342 scan_exception/1289 (field 0 ele/1344))";
                        
+                       break;
                       case 8:
                        /* unknown */"(sendself self-1/1342 scan_type/1287 (field 0 ele/1344))";
                        
+                       break;
                       case 9:
                        /* unknown */"(sendself self-1/1342 scan_module_comment/1360 (field 0 ele/1344))";
                        
+                       break
                       }
                     },
-                  Odoc_module["module_elements"]([/* Some */0,/* false */0],m));
-         },
+                  Odoc_module["module_elements"]([/* Some */0,/* false */0],m))},
        scan_included_module,
-       function(self$neg1,param){return /* () */0;},
+       function(self$neg1,param){return /* () */0},
        scan_class_pre,
        function(self$neg1,c)
         {/* unknown */"(sendself self-1/1364 gen_if_tag/1285 (field 0 c/1365)\n  (field 0 (apply (field 10 (field 6 (global Odoc_html!))) (field 0 c/1365)))\n  (field 1 c/1365))";
          
-         return /* true */1;
-         },
+         return /* true */1},
        scan_class_type_pre,
        function(self$neg1,ct)
         {/* unknown */"(sendself self-1/1367 gen_if_tag/1285 (field 0 ct/1368)\n  (field 0\n    (apply (field 10 (field 6 (global Odoc_html!))) (field 0 ct/1368)))\n  (field 1 ct/1368))";
          
-         return /* true */1;
-         },
+         return /* true */1},
        scan_module_pre,
        function(self$neg1,m)
         {/* unknown */"(sendself self-1/1370 gen_if_tag/1285 (field 0 m/1371)\n  (field 0 (apply (field 10 (field 6 (global Odoc_html!))) (field 0 m/1371)))\n  (field 2 m/1371))";
          
-         return /* true */1;
-         },
+         return /* true */1},
        scan_module_type_pre,
        function(self$neg1,mt)
         {/* unknown */"(sendself self-1/1373 gen_if_tag/1285 (field 0 mt/1374)\n  (field 0\n    (apply (field 10 (field 6 (global Odoc_html!))) (field 0 mt/1374)))\n  (field 1 mt/1374))";
          
-         return /* true */1;
-         }]);
+         return /* true */1}]);
     return function(env,$$self,html)
      {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);
       
@@ -583,9 +583,7 @@ var
       obj_init($$self$1),
       $$self$1[b+1]=
       Buffer["create"](256);
-      return CamlinternalOO["run_initializers_opt"]($$self,$$self$1,$$class);
-      };
-    };
+      return CamlinternalOO["run_initializers_opt"]($$self,$$self$1,$$class)}};
 
 var
  scanner=
@@ -649,7 +647,7 @@ var
       function(self$neg2,modules)
        {self$neg2[tag_functions+1]=
         /* :: */[0,
-         /* tuple */[0,"todo",function(param){return "";}],
+         /* tuple */[0,"todo",function(param){return ""}],
          self$neg2[tag_functions+1]];
         generate$1(self$neg2,modules);
         var match$2=Odoc_info["Global"][6][1];
@@ -685,19 +683,16 @@ var
            (Filename["concat"](Odoc_info["Global"][5][1],"todo.html"));
         
         Buffer["output_buffer"](oc,b);
-        return Pervasives["close_out"](oc);
-        });
+        return Pervasives["close_out"](oc)});
     CamlinternalOO["add_initializer"]
      ($$class,
       function(self$neg2)
-       {return self$neg2[scanner$1+1]=scanner[1](0,self$neg2),0;});
+       {return self$neg2[scanner$1+1]=scanner[1](0,self$neg2),0});
     return function(env,$$self)
      {var $$self$1=CamlinternalOO["create_object_opt"]($$self,$$class);
       
       obj_init($$self$1),$$self$1[scanner$1+1]=scanner[1](0,Html[1][1](0));
-      return CamlinternalOO["run_initializers_opt"]($$self,$$self$1,$$class);
-      };
-    };
+      return CamlinternalOO["run_initializers_opt"]($$self,$$self$1,$$class)}};
 
 var
  html=

@@ -37,8 +37,7 @@ var
     params[1]=/* [] */0;
     raised_exceptions[1]=/* [] */0;
     return_value[1]=/* None */0;
-    return customs[1]=/* [] */0,0;
-    };
+    return customs[1]=/* [] */0,0};
 
 module["exports"]=
 {"nb_chars":nb_chars,

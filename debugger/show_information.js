@@ -57,8 +57,8 @@ var
       var exit;
       
       switch(match$2[1])
-       {case 0:exit=10;
-        case 1:exit=10;
+       {case 0:exit=10;break;
+        case 1:exit=10;break;
         case 2:
          Format["fprintf"]
           (ppf,
@@ -72,7 +72,6 @@ var
                /* End_of_format */0]]],
             "@.Program exit.@."]);
          return Show_source["show_no_point"](/* () */0);
-         
         case 3:
          return Misc["fatal_error"]("Show_information.show_current_event");
         case 4:
@@ -100,8 +99,7 @@ var
             "@.Program end.@.@[Uncaught exception:@ %a@]@."],
            Printval["print_exception"],
            Debugcom["Remote_value"][11](/* () */0));
-         return Show_source["show_no_point"](/* () */0);
-         
+         return Show_source["show_no_point"](/* () */0)
         }
       
       switch(exit)
@@ -146,13 +144,11 @@ var
                                        /* No_precision */0,
                                        [/* Char_literal */12,32,/* End_of_format */0]],
                                       "%i "],
-                                     x);
-                            },
-                          l);
-                 },
+                                     x)},
+                          l)},
                List["sort"]
                 (function(prim,prim$1)
-                  {return CamlPrimitive["caml_compare"](prim,prim$1);},
+                  {return CamlPrimitive["caml_compare"](prim,prim$1)},
                  breakpoints))
             :Format["fprintf"]
               (ppf,
@@ -169,8 +165,7 @@ var
                 "Breakpoint: %i@."],
                breakpoints[1])}
          
-         return Show_source["show_point"](ev,/* true */1);
-         
+         return Show_source["show_point"](ev,/* true */1)
         }
       }
     else
@@ -183,8 +178,7 @@ var
            "Beginning of program.",
            [/* Formatting_lit */17,/* Flush_newline */4,/* End_of_format */0]]],
          "@.Beginning of program.@."]);
-      return Show_source["show_no_point"](/* () */0);
-      }
+      return Show_source["show_no_point"](/* () */0)}
     };
 
 var
@@ -271,8 +265,7 @@ var
                $$event[2],
                pos[1],
                pos[2],
-               pos[4]-pos[3]+1);
-    };
+               pos[4]-pos[3]+1)};
 
 var
  show_current_frame=
@@ -309,13 +302,11 @@ var
                                     /* No_precision */0,
                                     [/* Char_literal */12,32,/* End_of_format */0]],
                                    "%i "],
-                                  x);
-                         },
-                       l);
-              },
+                                  x)},
+                       l)},
             List["sort"]
              (function(prim,prim$1)
-               {return CamlPrimitive["caml_compare"](prim,prim$1);},
+               {return CamlPrimitive["caml_compare"](prim,prim$1)},
               breakpoints))
          :Format["fprintf"]
            (ppf,
@@ -332,8 +323,7 @@ var
              "Breakpoint: %i@."],
             breakpoints[1])}
       
-      return Show_source["show_point"](sel_ev,selected);
-      }
+      return Show_source["show_point"](sel_ev,selected)}
     else
      {return Format["fprintf"]
               (ppf,
@@ -345,8 +335,7 @@ var
                   [/* Formatting_lit */17,
                    /* Flush_newline */4,
                    /* End_of_format */0]]],
-                "@.No frame selected.@."]);
-      }
+                "@.No frame selected.@."])}
     };
 
 module["exports"]=

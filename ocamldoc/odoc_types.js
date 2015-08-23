@@ -47,18 +47,17 @@ var
 
 var magic=Odoc_messages["magic"];
 
-var make_dump=function(a){return /* Dump */[0,magic,a];};
+var make_dump=function(a){return /* Dump */[0,magic,a]};
 
 var
  open_dump=
   function(param)
    {if(CamlPrimitive["caml_string_equal"](param[1],magic))
-     {return param[2];}
+     {return param[2]}
     else
      {throw [0,
              CamlPrimitive["caml_global_data"]["Failure"],
-             Odoc_messages["bad_magic_number"]];
-      }
+             Odoc_messages["bad_magic_number"]]}
     };
 
 module["exports"]=

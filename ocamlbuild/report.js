@@ -28,7 +28,6 @@ var
          Resource["print"],
          bt[1]);
        return /* false */0;
-       
       case 1:return My_std["List"][26](analyze(f),bt[1]);
       case 2:
        var r=bt[1];
@@ -48,8 +47,7 @@ var
                    r),
                  /* false */0)
                :analyze(f,bt[2]);
-       
-      case 3:return analyze(f,bt[2]);
+      case 3:return analyze(f,bt[2])
       }
     };
 
@@ -79,7 +77,6 @@ var
                  "@\n- @[<2>Building %a@]"],
                 Resource["print"],
                 param[1]);
-       
       case 1:
        var backtraces=param[1];
        
@@ -89,7 +86,7 @@ var
         {if(backtraces[2])
           {exit=2;}
          else
-          {return print_backtrace(f,backtraces[1]);}
+          {return print_backtrace(f,backtraces[1])}
          }
        else
         {exit=2;}
@@ -119,10 +116,9 @@ var
                     [/* Formatting_lit */17,
                      /* Close_box */0,
                      /* End_of_format */0],
-                    "@]"]);
-          
+                    "@]"])
          }
-       
+       break;
       case 2:
        return Format["fprintf"]
                (f,
@@ -150,7 +146,6 @@ var
                 param[1],
                 print_backtrace,
                 param[2]);
-       
       case 3:
        return Format["fprintf"]
                (f,
@@ -175,12 +170,11 @@ var
                  "@\n- @[<2>Failed to build the target %s%a@]"],
                 param[1],
                 print_backtrace,
-                param[2]);
-       
+                param[2])
       }
     };
 
-var print_backtrace_analyze=function(f,bt){return analyze(f,bt);};
+var print_backtrace_analyze=function(f,bt){return analyze(f,bt)};
 
 module["exports"]=
 {"print_backtrace_analyze":print_backtrace_analyze,

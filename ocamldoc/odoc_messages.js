@@ -98,8 +98,7 @@ var
                 /* No_padding */0,
                 [/* Char_literal */12,41,/* End_of_format */0]]],
               "<s> Add information about character encoding being s\n\t\t(default is %s)"],
-             c);
-    };
+             c)};
 
 var generate_html=" Generate HTML documentation";
 
@@ -116,8 +115,7 @@ var
   function(op)
    {return Pervasives["^"]
             ("Option ",
-             Pervasives["^"](op," not available in native code version."));
-    };
+             Pervasives["^"](op," not available in native code version."))};
 
 var default_out_file="ocamldoc.out";
 
@@ -282,10 +280,8 @@ var
                                         [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
                                      " %d -> %s"],
                                     param[1],
-                                    param[2]);
-                           },
-                         ref_titles[1])))))));
-    };
+                                    param[2])},
+                         ref_titles[1])))))))};
 
 var default_latex_value_prefix="val:";
 
@@ -489,11 +485,9 @@ var
                          ("\n\t\t",
                           Pervasives["^"]
                            ($$String["make"](1,param[1]),
-                            Pervasives["^"]("  ",param[2]))));
-               },
+                            Pervasives["^"]("  ",param[2]))))},
              "",
-             l);
-    };
+             l)};
 
 var
  merge_options=
@@ -536,27 +530,25 @@ var
 
 var
  not_a_module_name=
-  function(s){return Pervasives["^"](s," is not a valid module name");};
+  function(s){return Pervasives["^"](s," is not a valid module name")};
 
 var
  load_file_error=
   function(f,e)
    {return Pervasives["^"]
             ("Error while loading file ",
-             Pervasives["^"](f,Pervasives["^"](":\n",e)));
-    };
+             Pervasives["^"](f,Pervasives["^"](":\n",e)))};
 
 var
  wrong_format=
   function(s)
-   {return Pervasives["^"]('Wrong format for "',Pervasives["^"](s,'"'));};
+   {return Pervasives["^"]('Wrong format for "',Pervasives["^"](s,'"'))};
 
 var
  errors_occured=
   function(n)
    {return Pervasives["^"]
-            (Pervasives["string_of_int"](n)," error(s) encountered");
-    };
+            (Pervasives["string_of_int"](n)," error(s) encountered")};
 
 var parse_error="Parse error";
 
@@ -584,8 +576,7 @@ var
                            Pervasives["^"]
                             (List["nth"](lines,l),
                              Pervasives["^"]
-                              ("\n",Pervasives["^"]($$String["make"](c,32),"^")))))))))));
-    };
+                              ("\n",Pervasives["^"]($$String["make"](c,32),"^")))))))))))};
 
 var
  file_not_found_in_paths=
@@ -601,49 +592,44 @@ var
                  [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
               "No file %s found in the load paths: \n%s"],
              name,
-             $$String["concat"]("\n",paths));
-    };
+             $$String["concat"]("\n",paths))};
 
 var
  tag_not_handled=
   function(tag)
    {return Pervasives["^"]
-            ("Tag @",Pervasives["^"](tag," not handled by this generator"));
-    };
+            ("Tag @",Pervasives["^"](tag," not handled by this generator"))};
 
 var
  should_escape_at_sign=
-  "The character @ has a special meaning in ocamldoc comments, for commands such as @raise or @since. If you want to write a single @, you must escape it as \@.";
+  "The character @ has a special meaning in ocamldoc comments, for commands such as @raise or @since. If you want to write a single @, you must escape it as \\@.";
 
 var bad_tree="Incorrect tree structure.";
 
 var
  not_a_valid_tag=
-  function(s){return Pervasives["^"](s," is not a valid tag.");};
+  function(s){return Pervasives["^"](s," is not a valid tag.")};
 
 var
  fun_without_param=
   function(f)
    {return Pervasives["^"]
-            ("Function ",Pervasives["^"](f," has no parameter."));
-    };
+            ("Function ",Pervasives["^"](f," has no parameter."))};
 
 var
  method_without_param=
   function(f)
-   {return Pervasives["^"]("Method ",Pervasives["^"](f," has no parameter."));
-    };
+   {return Pervasives["^"]("Method ",Pervasives["^"](f," has no parameter."))};
 
 var
  anonymous_parameters=
   function(f)
    {return Pervasives["^"]
-            ("Function ",Pervasives["^"](f," has anonymous parameters."));
-    };
+            ("Function ",Pervasives["^"](f," has anonymous parameters."))};
 
 var
  function_colon=
-  function(f){return Pervasives["^"]("Function ",Pervasives["^"](f,": "));};
+  function(f){return Pervasives["^"]("Function ",Pervasives["^"](f,": "))};
 
 var
  implicit_match_in_parameter=
@@ -653,31 +639,27 @@ var
  unknown_extension=
   function(f)
    {return Pervasives["^"]
-            ("Unknown extension for file ",Pervasives["^"](f,"."));
-    };
+            ("Unknown extension for file ",Pervasives["^"](f,"."))};
 
 var
  two_implementations=
   function(name)
    {return Pervasives["^"]
             ("There are two implementations of module ",
-             Pervasives["^"](name,"."));
-    };
+             Pervasives["^"](name,"."))};
 
 var
  two_interfaces=
   function(name)
    {return Pervasives["^"]
-            ("There are two interfaces of module ",Pervasives["^"](name,"."));
-    };
+            ("There are two interfaces of module ",Pervasives["^"](name,"."))};
 
 var
  too_many_module_objects=
   function(name)
    {return Pervasives["^"]
             ("There are too many interfaces/implementation of module ",
-             Pervasives["^"](name,"."));
-    };
+             Pervasives["^"](name,"."))};
 
 var
  extension_not_found_in_implementation=
@@ -688,8 +670,7 @@ var
               (ext,
                Pervasives["^"]
                 (" was not found in implementation of module ",
-                 Pervasives["^"](m,"."))));
-    };
+                 Pervasives["^"](m,"."))))};
 
 var
  exception_not_found_in_implementation=
@@ -700,8 +681,7 @@ var
               (exc,
                Pervasives["^"]
                 (" was not found in implementation of module ",
-                 Pervasives["^"](m,"."))));
-    };
+                 Pervasives["^"](m,"."))))};
 
 var
  type_not_found_in_implementation=
@@ -712,8 +692,7 @@ var
               (exc,
                Pervasives["^"]
                 (" was not found in implementation of module ",
-                 Pervasives["^"](m,"."))));
-    };
+                 Pervasives["^"](m,"."))))};
 
 var
  module_not_found_in_implementation=
@@ -724,8 +703,7 @@ var
               (m,
                Pervasives["^"]
                 (" was not found in implementation of module ",
-                 Pervasives["^"](m2,"."))));
-    };
+                 Pervasives["^"](m2,"."))))};
 
 var
  value_not_found_in_implementation=
@@ -736,8 +714,7 @@ var
               (v,
                Pervasives["^"]
                 (" was not found in implementation of module ",
-                 Pervasives["^"](m,"."))));
-    };
+                 Pervasives["^"](m,"."))))};
 
 var
  class_not_found_in_implementation=
@@ -748,8 +725,7 @@ var
               (c,
                Pervasives["^"]
                 (" was not found in implementation of module ",
-                 Pervasives["^"](m,"."))));
-    };
+                 Pervasives["^"](m,"."))))};
 
 var
  attribute_not_found_in_implementation=
@@ -760,8 +736,7 @@ var
               (a,
                Pervasives["^"]
                 (" was not found in implementation of class ",
-                 Pervasives["^"](c,"."))));
-    };
+                 Pervasives["^"](c,"."))))};
 
 var
  method_not_found_in_implementation=
@@ -772,8 +747,7 @@ var
               (m,
                Pervasives["^"]
                 (" was not found in implementation of class ",
-                 Pervasives["^"](c,"."))));
-    };
+                 Pervasives["^"](c,"."))))};
 
 var
  different_types=
@@ -781,8 +755,7 @@ var
    {return Pervasives["^"]
             ("Definition of type ",
              Pervasives["^"]
-              (t," doesn't match from interface to implementation."));
-    };
+              (t," doesn't match from interface to implementation."))};
 
 var
  attribute_type_not_found=
@@ -793,8 +766,7 @@ var
               (att,
                Pervasives["^"]
                 (" could not be found in the signature of class ",
-                 Pervasives["^"](cl,"."))));
-    };
+                 Pervasives["^"](cl,"."))))};
 
 var
  method_type_not_found=
@@ -805,8 +777,7 @@ var
               (met,
                Pervasives["^"]
                 (" could not be found in the signature of class ",
-                 Pervasives["^"](cl,"."))));
-    };
+                 Pervasives["^"](cl,"."))))};
 
 var
  module_not_found=
@@ -817,8 +788,7 @@ var
               (m2,
                Pervasives["^"]
                 (" could not be found in the signature of module ",
-                 Pervasives["^"](m,"."))));
-    };
+                 Pervasives["^"](m,"."))))};
 
 var
  module_type_not_found=
@@ -829,8 +799,7 @@ var
               (mt,
                Pervasives["^"]
                 (" could not be found in the signature of module ",
-                 Pervasives["^"](m,"."))));
-    };
+                 Pervasives["^"](m,"."))))};
 
 var
  value_not_found=
@@ -841,8 +810,7 @@ var
               (v,
                Pervasives["^"]
                 (" could not be found in the signature of module ",
-                 Pervasives["^"](m,"."))));
-    };
+                 Pervasives["^"](m,"."))))};
 
 var
  extension_not_found=
@@ -853,8 +821,7 @@ var
               (e,
                Pervasives["^"]
                 (" could not be found in the signature of module ",
-                 Pervasives["^"](m,"."))));
-    };
+                 Pervasives["^"](m,"."))))};
 
 var
  exception_not_found=
@@ -865,8 +832,7 @@ var
               (e,
                Pervasives["^"]
                 (" could not be found in the signature of module ",
-                 Pervasives["^"](m,"."))));
-    };
+                 Pervasives["^"](m,"."))))};
 
 var
  type_not_found=
@@ -877,8 +843,7 @@ var
               (t,
                Pervasives["^"]
                 (" could not be found in the signature of module ",
-                 Pervasives["^"](m,"."))));
-    };
+                 Pervasives["^"](m,"."))))};
 
 var
  class_not_found=
@@ -889,8 +854,7 @@ var
               (c,
                Pervasives["^"]
                 (" could not be found in the signature of module ",
-                 Pervasives["^"](m,"."))));
-    };
+                 Pervasives["^"](m,"."))))};
 
 var
  class_type_not_found=
@@ -901,59 +865,51 @@ var
               (c,
                Pervasives["^"]
                 (" could not be found in the signature of module ",
-                 Pervasives["^"](m,"."))));
-    };
+                 Pervasives["^"](m,"."))))};
 
 var
  type_not_found_in_typedtree=
   function(t)
    {return Pervasives["^"]
-            ("Type ",Pervasives["^"](t," was not found in typed tree."));
-    };
+            ("Type ",Pervasives["^"](t," was not found in typed tree."))};
 
 var
  extension_not_found_in_typedtree=
   function(x)
    {return Pervasives["^"]
-            ("Extension ",Pervasives["^"](x," was not found in typed tree."));
-    };
+            ("Extension ",Pervasives["^"](x," was not found in typed tree."))};
 
 var
  exception_not_found_in_typedtree=
   function(e)
    {return Pervasives["^"]
-            ("Exception ",Pervasives["^"](e," was not found in typed tree."));
-    };
+            ("Exception ",Pervasives["^"](e," was not found in typed tree."))};
 
 var
  module_type_not_found_in_typedtree=
   function(mt)
    {return Pervasives["^"]
             ("Module type ",
-             Pervasives["^"](mt," was not found in typed tree."));
-    };
+             Pervasives["^"](mt," was not found in typed tree."))};
 
 var
  module_not_found_in_typedtree=
   function(m)
    {return Pervasives["^"]
-            ("Module ",Pervasives["^"](m," was not found in typed tree."));
-    };
+            ("Module ",Pervasives["^"](m," was not found in typed tree."))};
 
 var
  class_not_found_in_typedtree=
   function(c)
    {return Pervasives["^"]
-            ("Class ",Pervasives["^"](c," was not found in typed tree."));
-    };
+            ("Class ",Pervasives["^"](c," was not found in typed tree."))};
 
 var
  class_type_not_found_in_typedtree=
   function(ct)
    {return Pervasives["^"]
             ("Class type ",
-             Pervasives["^"](ct," was not found in typed tree."));
-    };
+             Pervasives["^"](ct," was not found in typed tree."))};
 
 var
  inherit_classexp_not_found_in_typedtree=
@@ -961,24 +917,21 @@ var
    {return Pervasives["^"]
             ("Inheritance class expression number ",
              Pervasives["^"]
-              (Pervasives["string_of_int"](n)," was not found in typed tree."));
-    };
+              (Pervasives["string_of_int"](n)," was not found in typed tree."))};
 
 var
  attribute_not_found_in_typedtree=
   function(att)
    {return Pervasives["^"]
             ("Class attribute ",
-             Pervasives["^"](att," was not found in typed tree."));
-    };
+             Pervasives["^"](att," was not found in typed tree."))};
 
 var
  method_not_found_in_typedtree=
   function(met)
    {return Pervasives["^"]
             ("Class method ",
-             Pervasives["^"](met," was not found in typed tree."));
-    };
+             Pervasives["^"](met," was not found in typed tree."))};
 
 var
  misplaced_comment=
@@ -998,82 +951,78 @@ var
                   [/* Char_literal */12,46,/* End_of_format */0]]]]],
               "Misplaced special comment in file %s, character %d."],
              file,
-             pos);
-    };
+             pos)};
 
 var
  cross_module_not_found=
   function(n)
-   {return Pervasives["^"]("Module ",Pervasives["^"](n," not found"));};
+   {return Pervasives["^"]("Module ",Pervasives["^"](n," not found"))};
 
 var
  cross_module_type_not_found=
   function(n)
-   {return Pervasives["^"]("Module type ",Pervasives["^"](n," not found"));};
+   {return Pervasives["^"]("Module type ",Pervasives["^"](n," not found"))};
 
 var
  cross_module_or_module_type_not_found=
   function(n)
    {return Pervasives["^"]
-            ("Module or module type ",Pervasives["^"](n," not found"));
-    };
+            ("Module or module type ",Pervasives["^"](n," not found"))};
 
 var
  cross_class_not_found=
   function(n)
-   {return Pervasives["^"]("Class ",Pervasives["^"](n," not found"));};
+   {return Pervasives["^"]("Class ",Pervasives["^"](n," not found"))};
 
 var
  cross_class_type_not_found=
   function(n)
-   {return Pervasives["^"]("class type ",Pervasives["^"](n," not found"));};
+   {return Pervasives["^"]("class type ",Pervasives["^"](n," not found"))};
 
 var
  cross_class_or_class_type_not_found=
   function(n)
    {return Pervasives["^"]
-            ("Class or class type ",Pervasives["^"](n," not found"));
-    };
+            ("Class or class type ",Pervasives["^"](n," not found"))};
 
 var
  cross_extension_not_found=
   function(n)
-   {return Pervasives["^"]("Extension ",Pervasives["^"](n," not found"));};
+   {return Pervasives["^"]("Extension ",Pervasives["^"](n," not found"))};
 
 var
  cross_exception_not_found=
   function(n)
-   {return Pervasives["^"]("Exception ",Pervasives["^"](n," not found"));};
+   {return Pervasives["^"]("Exception ",Pervasives["^"](n," not found"))};
 
 var
  cross_element_not_found=
   function(n)
-   {return Pervasives["^"]("Element ",Pervasives["^"](n," not found"));};
+   {return Pervasives["^"]("Element ",Pervasives["^"](n," not found"))};
 
 var
  cross_method_not_found=
   function(n)
-   {return Pervasives["^"]("Method ",Pervasives["^"](n," not found"));};
+   {return Pervasives["^"]("Method ",Pervasives["^"](n," not found"))};
 
 var
  cross_attribute_not_found=
   function(n)
-   {return Pervasives["^"]("Attribute ",Pervasives["^"](n," not found"));};
+   {return Pervasives["^"]("Attribute ",Pervasives["^"](n," not found"))};
 
 var
  cross_section_not_found=
   function(n)
-   {return Pervasives["^"]("Section ",Pervasives["^"](n," not found"));};
+   {return Pervasives["^"]("Section ",Pervasives["^"](n," not found"))};
 
 var
  cross_value_not_found=
   function(n)
-   {return Pervasives["^"]("Value ",Pervasives["^"](n," not found"));};
+   {return Pervasives["^"]("Value ",Pervasives["^"](n," not found"))};
 
 var
  cross_type_not_found=
-  function(n)
-   {return Pervasives["^"]("Type ",Pervasives["^"](n," not found"));};
+  function(n){return Pervasives["^"]("Type ",Pervasives["^"](n," not found"))};
 
 var
  cross_recfield_not_found=
@@ -1086,8 +1035,7 @@ var
                 /* No_padding */0,
                 [/* String_literal */11," not found",/* End_of_format */0]]],
               "Record field %s not found"],
-             n);
-    };
+             n)};
 
 var
  cross_const_not_found=
@@ -1100,8 +1048,7 @@ var
                 /* No_padding */0,
                 [/* String_literal */11," not found",/* End_of_format */0]]],
               "Constructor %s not found"],
-             n);
-    };
+             n)};
 
 var object_end="object ... end";
 
@@ -1120,13 +1067,12 @@ var
                 /* No_padding */0,
                 [/* String_literal */11," generator",/* End_of_format */0]]],
               "Current generator is not a %s generator"],
-             kind);
-    };
+             kind)};
 
 var
  analysing=
   function(f)
-   {return Pervasives["^"]("Analysing file ",Pervasives["^"](f,"..."));};
+   {return Pervasives["^"]("Analysing file ",Pervasives["^"](f,"..."))};
 
 var merging="Merging...";
 
@@ -1136,19 +1082,18 @@ var generating_doc="Generating documentation...";
 
 var
  loading=
-  function(f){return Pervasives["^"]("Loading ",Pervasives["^"](f,"..."));};
+  function(f){return Pervasives["^"]("Loading ",Pervasives["^"](f,"..."))};
 
 var
  file_generated=
   function(f)
-   {return Pervasives["^"]("File ",Pervasives["^"](f," generated."));};
+   {return Pervasives["^"]("File ",Pervasives["^"](f," generated."))};
 
 var
  file_exists_dont_generate=
   function(f)
    {return Pervasives["^"]
-            ("File ",Pervasives["^"](f," exists, we don't generate it."));
-    };
+            ("File ",Pervasives["^"](f," exists, we don't generate it."))};
 
 var modul="Module";
 

@@ -15,22 +15,21 @@ var
            /* :: */[0,
             /* tuple */[0,file[3],/* tuple */[0,controller,file]],
             active_files[1]],
-           0;
-    };
+           0};
 
 var
  remove_file=
   function(file)
-   {return active_files[1]=List["remove_assoc"](file[3],active_files[1]),0;};
+   {return active_files[1]=List["remove_assoc"](file[3],active_files[1]),0};
 
 var
  change_controller=
   function(file,controller)
-   {remove_file(file);return add_file(file,controller);};
+   {remove_file(file);return add_file(file,controller)};
 
 var
  current_controller=
-  function(file){return List["assoc"](file[3],active_files[1])[1];};
+  function(file){return List["assoc"](file[3],active_files[1])[1]};
 
 var
  execute_with_other_controller=
@@ -42,16 +41,15 @@ var
      {var result=funct(/* () */0);
       
       change_controller(file,old_controller);
-      return result;
-      }
-    catch(x){change_controller(file,old_controller);throw x;}
+      return result}
+    catch(x){change_controller(file,old_controller);throw x}
     };
 
 var continue_main_loop=[0,/* true */1];
 
 var
  exit_main_loop=
-  function(param){return continue_main_loop[1]=/* false */0,0;};
+  function(param){return continue_main_loop[1]=/* false */0,0};
 
 var
  main_loop=
@@ -65,7 +63,7 @@ var
          {var
            match=
             Unix["select"]
-             (List["map"](function(prim){return prim[1];},active_files[1]),
+             (List["map"](function(prim){return prim[1]},active_files[1]),
               /* [] */0,
               /* [] */0,
               -1);
@@ -74,8 +72,7 @@ var
            (function(fd)
              {var match$1=List["assoc"](fd,active_files[1]);
               
-              return match$1[1](match$1[2]);
-              },
+              return match$1[1](match$1[2])},
             match[1])}
         catch(exn)
          {var exit;
@@ -84,20 +81,19 @@ var
            {var match$1=exn[2];
             
             if(typeof match$1==="number")
-             {if(match$1!==11){exit=8;}else{}}
+             {if(match$1!==11){exit=8;}}
             else
              {exit=8;}
             }
           else
            {exit=8;}
           
-          switch(exit){case 8:throw exn;}
+          switch(exit){case 8:throw exn}
           }
         }
       
-      return continue_main_loop[1]=old_state,0;
-      }
-    catch(x){continue_main_loop[1]=old_state;throw x;}
+      return continue_main_loop[1]=old_state,0}
+    catch(x){continue_main_loop[1]=old_state;throw x}
     };
 
 var interactif=[0,/* true */1];
@@ -110,10 +106,9 @@ var
  read_user_input=
   function(buffer,length)
    {main_loop(/* () */0);
-    return Pervasives["input"](user_channel[1][1],buffer,0,length);
-    };
+    return Pervasives["input"](user_channel[1][1],buffer,0,length)};
 
-var stop_user_input=function(param){return remove_file(user_channel[1]);};
+var stop_user_input=function(param){return remove_file(user_channel[1])};
 
 var
  resume_user_input=
@@ -123,10 +118,9 @@ var
        {Pervasives["print_string"](current_prompt[1]),
         Pervasives["flush"](Pervasives["stdout"])}
       
-      return add_file(user_channel[1],exit_main_loop);
-      }
+      return add_file(user_channel[1],exit_main_loop)}
     else
-     {return 0;}
+     {return 0}
     };
 
 module["exports"]=

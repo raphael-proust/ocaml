@@ -21,7 +21,7 @@ var
      loop=
       function(pos)
        {if(pos>=ls)
-         {return /* true */1;}
+         {return /* true */1}
         else
          {var match=s["charCodeAt"](pos);
           
@@ -40,13 +40,11 @@ var
              {if(match>=43){exit=16;}else{exit=17;}}
             }
           
-          switch(exit)
-           {case 17:return /* false */0;case 16:return loop(pos+1);}
+          switch(exit){case 17:return /* false */0;case 16:return loop(pos+1)}
           }
         };
     
-    return ls!==0&&loop(0);
-    };
+    return ls!==0&&loop(0)};
 
 var
  quote_filename_if_needed=
@@ -63,15 +61,13 @@ var
                     [/* Char_literal */12,39,/* End_of_format */0]]],
                   "'%s'"],
                  s)
-              :Filename["quote"](s);
-    };
+              :Filename["quote"](s)};
 
 var
  chdir=
   function(dir)
    {My_std["reset_filesys_cache"](/* () */0);
-    return CamlPrimitive["caml_sys_chdir"](dir);
-    };
+    return CamlPrimitive["caml_sys_chdir"](dir)};
 
 var
  run=
@@ -106,8 +102,7 @@ var
                     "Error during command `%s'.\nExit code %d.\n"],
                    cmd,
                    st))
-              :/* () */0;
-      }
+              :/* () */0}
     else
      {var
        match=
@@ -117,7 +112,7 @@ var
           /* None */0,
           /* Some */[0,Log["display"]],
           /* :: */[0,
-           /* :: */[0,function(param){return cmd;},/* [] */0],
+           /* :: */[0,function(param){return cmd},/* [] */0],
            /* [] */0]);
       
       return match
@@ -134,32 +129,29 @@ var
                     "Error during command %S: %s"],
                    cmd,
                    Printexc["to_string"](match[1][2])))
-              :/* () */0;
-      }
+              :/* () */0}
     };
 
 var rm=My_std["sys_remove"];
 
-var rm_f=function(x){return My_std["sys_file_exists"](x)?rm(x):0;};
+var rm_f=function(x){return My_std["sys_file_exists"](x)?rm(x):0};
 
 var
  mkdir=
   function(dir)
    {My_std["reset_filesys_cache_for_file"](dir);
-    return run(/* :: */[0,"mkdir",/* :: */[0,dir,/* [] */0]],dir);
-    };
+    return run(/* :: */[0,"mkdir",/* :: */[0,dir,/* [] */0]],dir)};
 
 var
  try_mkdir=
-  function(dir){return !My_std["sys_file_exists"](dir)?mkdir(dir):0;};
+  function(dir){return !My_std["sys_file_exists"](dir)?mkdir(dir):0};
 
 var
  mkdir_p=
   function(dir)
    {return My_std["sys_file_exists"](dir)
             ?/* () */0
-            :(mkdir_p(Filename["dirname"](dir)),mkdir(dir));
-    };
+            :(mkdir_p(Filename["dirname"](dir)),mkdir(dir))};
 
 var
  cp_pf=
@@ -169,8 +161,7 @@ var
             (/* :: */[0,
               "cp",
               /* :: */[0,"-pf",/* :: */[0,src,/* :: */[0,dest,/* [] */0]]]],
-             dest);
-    };
+             dest)};
 
 var
  cp=
@@ -178,8 +169,7 @@ var
    {return Filename["check_suffix"](src,".a")&&
             Filename["check_suffix"](dst,".a")
             ?cp_pf(src,dst)
-            :My_std["copy_file"](src,dst);
-    };
+            :My_std["copy_file"](src,dst)};
 
 var readlink=My_unix["readlink"];
 
@@ -189,8 +179,7 @@ var
  rm_rf=
   function(x)
    {My_std["reset_filesys_cache"](/* () */0);
-    return run(/* :: */[0,"rm",/* :: */[0,"-Rf",/* :: */[0,x,/* [] */0]]],x);
-    };
+    return run(/* :: */[0,"rm",/* :: */[0,"-Rf",/* :: */[0,x,/* [] */0]]],x)};
 
 var
  mv=
@@ -198,8 +187,7 @@ var
    {My_std["reset_filesys_cache_for_file"](src);
     My_std["reset_filesys_cache_for_file"](dest);
     return run
-            (/* :: */[0,"mv",/* :: */[0,src,/* :: */[0,dest,/* [] */0]]],dest);
-    };
+            (/* :: */[0,"mv",/* :: */[0,src,/* :: */[0,dest,/* [] */0]]],dest)};
 
 module["exports"]=
 {"is_simple_filename":is_simple_filename,

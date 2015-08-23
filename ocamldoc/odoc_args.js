@@ -42,11 +42,10 @@ var
        {case 0:return match$1[1];
         default:
          return Pervasives["failwith"]
-                 (Odoc_messages["current_generator_is_not"]("html"));
-         }
+                 (Odoc_messages["current_generator_is_not"]("html"))}
       }
     else
-     {return Odoc_html["Generator"];}
+     {return Odoc_html["Generator"]}
     };
 
 var
@@ -61,11 +60,10 @@ var
        {case 1:return match$1[1];
         default:
          return Pervasives["failwith"]
-                 (Odoc_messages["current_generator_is_not"]("latex"));
-         }
+                 (Odoc_messages["current_generator_is_not"]("latex"))}
       }
     else
-     {return Odoc_latex["Generator"];}
+     {return Odoc_latex["Generator"]}
     };
 
 var
@@ -80,11 +78,10 @@ var
        {case 2:return match$1[1];
         default:
          return Pervasives["failwith"]
-                 (Odoc_messages["current_generator_is_not"]("texi"));
-         }
+                 (Odoc_messages["current_generator_is_not"]("texi"))}
       }
     else
-     {return Odoc_texi["Generator"];}
+     {return Odoc_texi["Generator"]}
     };
 
 var
@@ -99,11 +96,10 @@ var
        {case 3:return match$1[1];
         default:
          return Pervasives["failwith"]
-                 (Odoc_messages["current_generator_is_not"]("man"));
-         }
+                 (Odoc_messages["current_generator_is_not"]("man"))}
       }
     else
-     {return Odoc_man["Generator"];}
+     {return Odoc_man["Generator"]}
     };
 
 var
@@ -118,11 +114,10 @@ var
        {case 4:return match$1[1];
         default:
          return Pervasives["failwith"]
-                 (Odoc_messages["current_generator_is_not"]("dot"));
-         }
+                 (Odoc_messages["current_generator_is_not"]("dot"))}
       }
     else
-     {return Odoc_dot["Generator"];}
+     {return Odoc_dot["Generator"]}
     };
 
 var
@@ -137,11 +132,10 @@ var
        {case 5:return match$1[1];
         default:
          return Pervasives["failwith"]
-                 (Odoc_messages["current_generator_is_not"]("base"));
-         }
+                 (Odoc_messages["current_generator_is_not"]("base"))}
       }
     else
-     {return Odoc_gen["Base_generator"];}
+     {return Odoc_gen["Base_generator"]}
     };
 
 var
@@ -151,8 +145,7 @@ var
     
     var M=f(current);
     
-    return current_generator[1]=/* Some */[0,/* Html */[0,M]],0;
-    };
+    return current_generator[1]=/* Some */[0,/* Html */[0,M]],0};
 
 var
  extend_latex_generator=
@@ -161,8 +154,7 @@ var
     
     var M=f(current);
     
-    return current_generator[1]=/* Some */[0,/* Latex */[1,M]],0;
-    };
+    return current_generator[1]=/* Some */[0,/* Latex */[1,M]],0};
 
 var
  extend_texi_generator=
@@ -171,8 +163,7 @@ var
     
     var M=f(current);
     
-    return current_generator[1]=/* Some */[0,/* Texi */[2,M]],0;
-    };
+    return current_generator[1]=/* Some */[0,/* Texi */[2,M]],0};
 
 var
  extend_man_generator=
@@ -181,8 +172,7 @@ var
     
     var M=f(current);
     
-    return current_generator[1]=/* Some */[0,/* Man */[3,M]],0;
-    };
+    return current_generator[1]=/* Some */[0,/* Man */[3,M]],0};
 
 var
  extend_dot_generator=
@@ -191,8 +181,7 @@ var
     
     var M=f(current);
     
-    return current_generator[1]=/* Some */[0,/* Dot */[4,M]],0;
-    };
+    return current_generator[1]=/* Some */[0,/* Dot */[4,M]],0};
 
 var
  extend_base_generator=
@@ -201,8 +190,7 @@ var
     
     var M=f(current);
     
-    return current_generator[1]=/* Some */[0,/* Base */[5,M]],0;
-    };
+    return current_generator[1]=/* Some */[0,/* Base */[5,M]],0};
 
 var
  analyse_option_string=
@@ -211,11 +199,9 @@ var
             (function(acc,param)
               {return $$String["contains"](s,param[1][1])
                        ?Pervasives["@"](acc,param[2])
-                       :acc;
-               },
+                       :acc},
              /* [] */0,
-             l);
-    };
+             l)};
 
 var
  analyse_merge_options=
@@ -272,8 +258,7 @@ var
                    Odoc_types["all_merge_options"]],
                   /* [] */0]]]]]]]]]]]];
     
-    return analyse_option_string(l,s);
-    };
+    return analyse_option_string(l,s)};
 
 var
  f_latex_title=
@@ -293,8 +278,7 @@ var
              /* :: */[0,
               /* tuple */[0,n,command],
               Odoc_latex["latex_titles"][1]],
-             0;
-      }
+             0}
     catch(exn)
      {var exit;
       
@@ -304,14 +288,13 @@ var
        {if(exn[1]===CamlPrimitive["caml_global_data"]["Invalid_argument"])
          {exit=66;}
         else
-         {throw exn;}
+         {throw exn}
         }
       
       switch(exit)
        {case 66:
          Odoc_global["errors"][0]++;
-         return Pervasives["prerr_endline"](Odoc_messages["wrong_format"](s));
-         
+         return Pervasives["prerr_endline"](Odoc_messages["wrong_format"](s))
         }
       }
     };
@@ -338,13 +321,11 @@ var
                              (Odoc_messages["not_a_module_name"](name)))
                           :(Odoc_global["hidden_modules"][1]=
                             /* :: */[0,name,Odoc_global["hidden_modules"][1]],
-                            0);
-                  }
+                            0)}
                },
-             l);
-    };
+             l)};
 
-var set_generator=function(g){return current_generator[1]=/* Some */[0,g],0;};
+var set_generator=function(g){return current_generator[1]=/* Some */[0,g],0};
 
 var
  anonymous=
@@ -361,12 +342,11 @@ var
     
     return Odoc_global["files"][1]=
            Pervasives["@"](Odoc_global["files"][1],/* :: */[0,sf,/* [] */0]),
-           0;
-    };
+           0};
 
-var set=function(r,param){return r[1]=/* true */1,0;};
+var set=function(r,param){return r[1]=/* true */1,0};
 
-var unset=function(r,param){return r[1]=/* false */0,0;};
+var unset=function(r,param){return r[1]=/* false */0,0};
 
 var _absname=set(Location["absname"]);
 
@@ -377,8 +357,7 @@ var
            /* :: */[0,
             Misc["expand_directory"](Config["standard_library"],s),
             Odoc_global["include_dirs"][1]],
-           0;
-    };
+           0};
 
 var
  _impl=
@@ -387,8 +366,7 @@ var
            Pervasives["@"]
             (Odoc_global["files"][1],
              /* :: */[0,/* Impl_file */[0,s],/* [] */0]),
-           0;
-    };
+           0};
 
 var
  _intf=
@@ -397,10 +375,9 @@ var
            Pervasives["@"]
             (Odoc_global["files"][1],
              /* :: */[0,/* Intf_file */[1,s],/* [] */0]),
-           0;
-    };
+           0};
 
-var _intf_suffix=function(s){return Config["interface_suffix"][1]=s,0;};
+var _intf_suffix=function(s){return Config["interface_suffix"][1]=s,0};
 
 var _labels=unset(Clflags["classic"]);
 
@@ -419,15 +396,14 @@ var
   function(s)
    {return Clflags["open_modules"][1]=
            /* :: */[0,s,Clflags["open_modules"][1]],
-           0;
-    };
+           0};
 
-var _pp=function(s){return Clflags["preprocessor"][1]=/* Some */[0,s],0;};
+var _pp=function(s){return Clflags["preprocessor"][1]=/* Some */[0,s],0};
 
 var
  _ppx=
   function(s)
-   {return Clflags["all_ppx"][1]=/* :: */[0,s,Clflags["all_ppx"][1]],0;};
+   {return Clflags["all_ppx"][1]=/* :: */[0,s,Clflags["all_ppx"][1]],0};
 
 var _principal=set(Clflags["principal"]);
 
@@ -450,15 +426,14 @@ var
   function(param)
    {throw [0,
            CamlPrimitive["caml_global_data"]["Assert_failure"],
-           [0,"odoc_args.ml",216,19]];
-    };
+           [0,"odoc_args.ml",216,19]]};
 
 var _unsafe_string=set(Clflags["unsafe_string"]);
 
 var
  _v=
   function(param)
-   {return Compenv["print_version_and_library"]("documentation generator");};
+   {return Compenv["print_version_and_library"]("documentation generator")};
 
 var _version=Compenv["print_version_string"];
 
@@ -471,16 +446,14 @@ var
   function(param)
    {throw [0,
            CamlPrimitive["caml_global_data"]["Assert_failure"],
-           [0,"odoc_args.ml",222,22]];
-    };
+           [0,"odoc_args.ml",222,22]]};
 
 var
  _warn_help=
   function(param)
    {throw [0,
            CamlPrimitive["caml_global_data"]["Assert_failure"],
-           [0,"odoc_args.ml",223,21]];
-    };
+           [0,"odoc_args.ml",223,21]]};
 
 var _where=Compenv["print_standard_library"];
 
@@ -555,8 +528,7 @@ var
                 Pervasives["@"]
                  (Odoc_global["files"][1],
                   /* :: */[0,/* Text_file */[2,s],/* [] */0]),
-                0;
-         }],
+                0}],
       Odoc_messages["option_text"]],
      /* :: */[0,
       /* tuple */[0,
@@ -571,20 +543,19 @@ var
        /* :: */[0,
         /* tuple */[0,
          "-o",
-         /* String */[4,function(s){return Odoc_global["out_file"][1]=s,0;}],
+         /* String */[4,function(s){return Odoc_global["out_file"][1]=s,0}],
          Odoc_messages["out_file"]],
         /* :: */[0,
          /* tuple */[0,
           "-d",
-          /* String */[4,
-           function(s){return Odoc_global["target_dir"][1]=s,0;}],
+          /* String */[4,function(s){return Odoc_global["target_dir"][1]=s,0}],
           Odoc_messages["target_dir"]],
          /* :: */[0,
           /* tuple */[0,
            "-sort",
            /* Unit */[0,
             function(param)
-             {return Odoc_global["sort_modules"][1]=/* true */1,0;}],
+             {return Odoc_global["sort_modules"][1]=/* true */1,0}],
            Odoc_messages["sort_modules"]],
           /* :: */[0,
            /* tuple */[0,
@@ -620,8 +591,7 @@ var
                  /* tuple */[0,
                   "-dump",
                   /* String */[4,
-                   function(s)
-                    {return Odoc_global["dump"][1]=/* Some */[0,s],0;}],
+                   function(s){return Odoc_global["dump"][1]=/* Some */[0,s],0}],
                   Odoc_messages["dump"]],
                  /* :: */[0,
                   /* tuple */[0,
@@ -631,22 +601,21 @@ var
                      {return Odoc_global["load"][1]=
                              Pervasives["@"]
                               (Odoc_global["load"][1],/* :: */[0,s,/* [] */0]),
-                             0;
-                      }],
+                             0}],
                    Pervasives["^"](Odoc_messages["load"],"\n")],
                   /* :: */[0,
                    /* tuple */[0,
                     "-t",
                     /* String */[4,
                      function(s)
-                      {return Odoc_global["title"][1]=/* Some */[0,s],0;}],
+                      {return Odoc_global["title"][1]=/* Some */[0,s],0}],
                     Odoc_messages["option_title"]],
                    /* :: */[0,
                     /* tuple */[0,
                      "-intro",
                      /* String */[4,
                       function(s)
-                       {return Odoc_global["intro_file"][1]=/* Some */[0,s],0;}],
+                       {return Odoc_global["intro_file"][1]=/* Some */[0,s],0}],
                      Odoc_messages["option_intro"]],
                     /* :: */[0,
                      /* tuple */[0,
@@ -661,8 +630,7 @@ var
                          {return Odoc_global["merge_options"][1]=
                                  Pervasives["@"]
                                   (Odoc_global["merge_options"][1],analyse_merge_options(s)),
-                                 0;
-                          }],
+                                 0}],
                        Pervasives["^"]
                         (Odoc_messages["merge_options"],
                          "\n\n *** choosing a generator ***\n")],
@@ -671,8 +639,7 @@ var
                         "-html",
                         /* Unit */[0,
                          function(param)
-                          {return set_generator(/* Html */[0,Odoc_html["Generator"]]);
-                           }],
+                          {return set_generator(/* Html */[0,Odoc_html["Generator"]])}],
                         Odoc_messages["generate_html"]],
                        /* :: */[0,
                         /* tuple */[0,
@@ -680,30 +647,28 @@ var
                          /* Unit */[0,
                           function(param)
                            {return set_generator
-                                    (/* Latex */[1,Odoc_latex["Generator"]]);
-                            }],
+                                    (/* Latex */[1,Odoc_latex["Generator"]])}],
                          Odoc_messages["generate_latex"]],
                         /* :: */[0,
                          /* tuple */[0,
                           "-texi",
                           /* Unit */[0,
                            function(param)
-                            {return set_generator(/* Texi */[2,Odoc_texi["Generator"]]);
-                             }],
+                            {return set_generator(/* Texi */[2,Odoc_texi["Generator"]])}],
                           Odoc_messages["generate_texinfo"]],
                          /* :: */[0,
                           /* tuple */[0,
                            "-man",
                            /* Unit */[0,
                             function(param)
-                             {return set_generator(/* Man */[3,Odoc_man["Generator"]]);}],
+                             {return set_generator(/* Man */[3,Odoc_man["Generator"]])}],
                            Odoc_messages["generate_man"]],
                           /* :: */[0,
                            /* tuple */[0,
                             "-dot",
                             /* Unit */[0,
                              function(param)
-                              {return set_generator(/* Dot */[4,Odoc_dot["Generator"]]);}],
+                              {return set_generator(/* Dot */[4,Odoc_dot["Generator"]])}],
                             Odoc_messages["generate_dot"]],
                            /* :: */[0,
                             /* tuple */[0,
@@ -717,18 +682,17 @@ var
                                     [/* Char_literal */12,10,/* End_of_format */0]],
                                    "%s\n"],
                                   Odoc_config["custom_generators_path"]);
-                                return Pervasives["exit"](0);
-                                }],
+                                return Pervasives["exit"](0)}],
                              Odoc_messages["display_custom_generators_dir"]],
                             /* :: */[0,
                              /* tuple */[0,
                               "-i",
-                              /* String */[4,function(s){return /* () */0;}],
+                              /* String */[4,function(s){return /* () */0}],
                               Odoc_messages["add_load_dir"]],
                              /* :: */[0,
                               /* tuple */[0,
                                "-g",
-                               /* String */[4,function(s){return /* () */0;}],
+                               /* String */[4,function(s){return /* () */0}],
                                Pervasives["^"]
                                 (Odoc_messages["load_file"],"\n\n *** HTML options ***\n")],
                               /* :: */[0,
@@ -741,7 +705,7 @@ var
                                  "-css-style",
                                  /* String */[4,
                                   function(s)
-                                   {return Odoc_html["css_style"][1]=/* Some */[0,s],0;}],
+                                   {return Odoc_html["css_style"][1]=/* Some */[0,s],0}],
                                  Odoc_messages["css_style"]],
                                 /* :: */[0,
                                  /* tuple */[0,
@@ -770,14 +734,14 @@ var
                                       "-noheader",
                                       /* Unit */[0,
                                        function(param)
-                                        {return Odoc_global["with_header"][1]=/* false */0,0;}],
+                                        {return Odoc_global["with_header"][1]=/* false */0,0}],
                                       Odoc_messages["no_header"]],
                                      /* :: */[0,
                                       /* tuple */[0,
                                        "-notrailer",
                                        /* Unit */[0,
                                         function(param)
-                                         {return Odoc_global["with_trailer"][1]=/* false */0,0;}],
+                                         {return Odoc_global["with_trailer"][1]=/* false */0,0}],
                                        Odoc_messages["no_trailer"]],
                                       /* :: */[0,
                                        /* tuple */[0,
@@ -793,68 +757,66 @@ var
                                          /* tuple */[0,
                                           "-latex-value-prefix",
                                           /* String */[4,
-                                           function(s){return Odoc_latex["latex_value_prefix"][1]=s,0;}],
+                                           function(s){return Odoc_latex["latex_value_prefix"][1]=s,0}],
                                           Odoc_messages["latex_value_prefix"]],
                                          /* :: */[0,
                                           /* tuple */[0,
                                            "-latex-type-prefix",
                                            /* String */[4,
-                                            function(s){return Odoc_latex["latex_type_prefix"][1]=s,0;}],
+                                            function(s){return Odoc_latex["latex_type_prefix"][1]=s,0}],
                                            Odoc_messages["latex_type_prefix"]],
                                           /* :: */[0,
                                            /* tuple */[0,
                                             "-latex-exception-prefix",
                                             /* String */[4,
                                              function(s)
-                                              {return Odoc_latex["latex_exception_prefix"][1]=s,0;}],
+                                              {return Odoc_latex["latex_exception_prefix"][1]=s,0}],
                                             Odoc_messages["latex_exception_prefix"]],
                                            /* :: */[0,
                                             /* tuple */[0,
                                              "-latex-attribute-prefix",
                                              /* String */[4,
                                               function(s)
-                                               {return Odoc_latex["latex_attribute_prefix"][1]=s,0;}],
+                                               {return Odoc_latex["latex_attribute_prefix"][1]=s,0}],
                                              Odoc_messages["latex_attribute_prefix"]],
                                             /* :: */[0,
                                              /* tuple */[0,
                                               "-latex-method-prefix",
                                               /* String */[4,
-                                               function(s)
-                                                {return Odoc_latex["latex_method_prefix"][1]=s,0;}],
+                                               function(s){return Odoc_latex["latex_method_prefix"][1]=s,0}],
                                               Odoc_messages["latex_method_prefix"]],
                                              /* :: */[0,
                                               /* tuple */[0,
                                                "-latex-module-prefix",
                                                /* String */[4,
-                                                function(s)
-                                                 {return Odoc_latex["latex_module_prefix"][1]=s,0;}],
+                                                function(s){return Odoc_latex["latex_module_prefix"][1]=s,0}],
                                                Odoc_messages["latex_module_prefix"]],
                                               /* :: */[0,
                                                /* tuple */[0,
                                                 "-latex-module-type-prefix",
                                                 /* String */[4,
                                                  function(s)
-                                                  {return Odoc_latex["latex_module_type_prefix"][1]=s,0;}],
+                                                  {return Odoc_latex["latex_module_type_prefix"][1]=s,0}],
                                                 Odoc_messages["latex_module_type_prefix"]],
                                                /* :: */[0,
                                                 /* tuple */[0,
                                                  "-latex-class-prefix",
                                                  /* String */[4,
-                                                  function(s){return Odoc_latex["latex_class_prefix"][1]=s,0;}],
+                                                  function(s){return Odoc_latex["latex_class_prefix"][1]=s,0}],
                                                  Odoc_messages["latex_class_prefix"]],
                                                 /* :: */[0,
                                                  /* tuple */[0,
                                                   "-latex-class-type-prefix",
                                                   /* String */[4,
                                                    function(s)
-                                                    {return Odoc_latex["latex_class_type_prefix"][1]=s,0;}],
+                                                    {return Odoc_latex["latex_class_type_prefix"][1]=s,0}],
                                                   Odoc_messages["latex_class_type_prefix"]],
                                                  /* :: */[0,
                                                   /* tuple */[0,
                                                    "-notoc",
                                                    /* Unit */[0,
                                                     function(param)
-                                                     {return Odoc_global["with_toc"][1]=/* false */0,0;}],
+                                                     {return Odoc_global["with_toc"][1]=/* false */0,0}],
                                                    Pervasives["^"]
                                                     (Odoc_messages["no_toc"],"\n\n *** texinfo options ***\n")],
                                                   /* :: */[0,
@@ -871,7 +833,7 @@ var
                                                      /* tuple */[0,
                                                       "-info-section",
                                                       /* String */[4,
-                                                       function(prim,prim$1){return prim[1]=prim$1,0;}
+                                                       function(prim,prim$1){return prim[1]=prim$1,0}
                                                         (Odoc_texi["info_section"])],
                                                       Odoc_messages["info_section"]],
                                                      /* :: */[0,
@@ -882,8 +844,7 @@ var
                                                          {return Odoc_texi["info_entry"][1]=
                                                                  Pervasives["@"]
                                                                   (Odoc_texi["info_entry"][1],/* :: */[0,s,/* [] */0]),
-                                                                 0;
-                                                          }],
+                                                                 0}],
                                                        Pervasives["^"]
                                                         (Odoc_messages["info_entry"],"\n\n *** dot options ***\n")],
                                                       /* :: */[0,
@@ -893,8 +854,7 @@ var
                                                          function(s)
                                                           {return Odoc_dot["dot_colors"][1]=
                                                                   Str["split"](Str["regexp_string"](","),s),
-                                                                  0;
-                                                           }],
+                                                                  0}],
                                                         Odoc_messages["dot_colors"]],
                                                        /* :: */[0,
                                                         /* tuple */[0,
@@ -922,19 +882,19 @@ var
                                                             /* tuple */[0,
                                                              "-man-suffix",
                                                              /* String */[4,
-                                                              function(s){return Odoc_man["man_suffix"][1]=s,0;}],
+                                                              function(s){return Odoc_man["man_suffix"][1]=s,0}],
                                                              Odoc_messages["man_suffix"]],
                                                             /* :: */[0,
                                                              /* tuple */[0,
                                                               "-man-section",
                                                               /* String */[4,
-                                                               function(s){return Odoc_man["man_section"][1]=s,0;}],
+                                                               function(s){return Odoc_man["man_section"][1]=s,0}],
                                                               Odoc_messages["man_section"]],
                                                              /* [] */0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]);
 
 var options=[0,default_options];
 
-var modified_options=function(param){return options[1]!==default_options;};
+var modified_options=function(param){return options[1]!==default_options};
 
 var
  append_last_doc=
@@ -952,10 +912,9 @@ var
                  match$1[2],
                  Pervasives["^"](match$1[3],suffix)],
                 match[2]]),
-             0;
-      }
+             0}
     else
-     {return /* () */0;}
+     {return /* () */0}
     };
 
 var help_options=[0,/* [] */0];
@@ -969,8 +928,7 @@ var
        (Pervasives["@"](options[1],help_options[1]),
         Pervasives["^"](Odoc_messages["usage"],Odoc_messages["options_are"]));
     
-    return Pervasives["print_string"](msg);
-    };
+    return Pervasives["print_string"](msg)};
 
 var
  match=
@@ -1002,14 +960,12 @@ var
           
           return CamlPrimitive["caml_string_equal"](s,s2)
                   ?/* :: */[0,o,q]
-                  :/* :: */[0,/* tuple */[0,s2,match$1[2],match$1[3]],iter(q)];
-          }
+                  :/* :: */[0,/* tuple */[0,s2,match$1[2],match$1[3]],iter(q)]}
         else
-         {return /* :: */[0,o,/* [] */0];}
+         {return /* :: */[0,o,/* [] */0]}
         };
     
-    return options[1]=iter(options[1]),0;
-    };
+    return options[1]=iter(options[1]),0};
 
 var
  parse=
@@ -1027,10 +983,9 @@ var
     
     return Odoc_global["hidden_modules"][1]=
            List["sort"]
-            (function(a,b){return -CamlPrimitive["caml_string_compare"](a,b);},
+            (function(a,b){return -CamlPrimitive["caml_string_compare"](a,b)},
              Odoc_global["hidden_modules"][1]),
-           0;
-    };
+           0};
 
 module["exports"]=
 {"current_generator":current_generator,

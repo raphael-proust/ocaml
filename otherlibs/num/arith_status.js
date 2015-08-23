@@ -6,59 +6,57 @@ var Arith_flags=require("./arith_flags.js");
 
 var
  get_error_when_null_denominator=
-  function(param){return Arith_flags["error_when_null_denominator_flag"][1];};
+  function(param){return Arith_flags["error_when_null_denominator_flag"][1]};
 
 var
  set_error_when_null_denominator=
   function(choice)
-   {return Arith_flags["error_when_null_denominator_flag"][1]=choice,0;};
+   {return Arith_flags["error_when_null_denominator_flag"][1]=choice,0};
 
 var
  get_normalize_ratio=
-  function(param){return Arith_flags["normalize_ratio_flag"][1];};
+  function(param){return Arith_flags["normalize_ratio_flag"][1]};
 
 var
  set_normalize_ratio=
-  function(choice){return Arith_flags["normalize_ratio_flag"][1]=choice,0;};
+  function(choice){return Arith_flags["normalize_ratio_flag"][1]=choice,0};
 
 var
  get_normalize_ratio_when_printing=
-  function(param)
-   {return Arith_flags["normalize_ratio_when_printing_flag"][1];};
+  function(param){return Arith_flags["normalize_ratio_when_printing_flag"][1]};
 
 var
  set_normalize_ratio_when_printing=
   function(choice)
-   {return Arith_flags["normalize_ratio_when_printing_flag"][1]=choice,0;};
+   {return Arith_flags["normalize_ratio_when_printing_flag"][1]=choice,0};
 
 var
  get_floating_precision=
-  function(param){return Arith_flags["floating_precision"][1];};
+  function(param){return Arith_flags["floating_precision"][1]};
 
 var
  set_floating_precision=
-  function(i){return Arith_flags["floating_precision"][1]=i,0;};
+  function(i){return Arith_flags["floating_precision"][1]=i,0};
 
 var
  get_approx_printing=
-  function(param){return Arith_flags["approx_printing_flag"][1];};
+  function(param){return Arith_flags["approx_printing_flag"][1]};
 
 var
  set_approx_printing=
-  function(b){return Arith_flags["approx_printing_flag"][1]=b,0;};
+  function(b){return Arith_flags["approx_printing_flag"][1]=b,0};
 
 var
  arith_print_string=
   function(s)
-   {Pervasives["print_string"](s);return Pervasives["print_string"](" --> ");};
+   {Pervasives["print_string"](s);return Pervasives["print_string"](" --> ")};
 
 var
  arith_print_bool=
   function(param)
    {return param!==0
             ?Pervasives["print_string"]("ON")
-            :Pervasives["print_string"]("OFF");
-    };
+            :Pervasives["print_string"]("OFF")};
 
 var
  arith_status=
@@ -113,8 +111,7 @@ var
     Pervasives["print_newline"](/* () */0);
     Pervasives["print_string"]
      ("     (modifiable with set_error_when_null_denominator <your choice>)");
-    return Pervasives["print_newline"](/* () */0);
-    };
+    return Pervasives["print_newline"](/* () */0)};
 
 module["exports"]=
 {"arith_status":arith_status,

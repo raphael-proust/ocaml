@@ -33,7 +33,7 @@ var CamlPrimitive=require("./camlPrimitive.js");
 
 var line_buffer=Lexing["from_function"](Input_handling["read_user_input"]);
 
-var loop=function(ppf){return Command_line["line_loop"](ppf,line_buffer);};
+var loop=function(ppf){return Command_line["line_loop"](ppf,line_buffer)};
 
 var current_duration=[0,-1];
 
@@ -41,7 +41,7 @@ var
  protect=
   function(ppf,restart,loop)
    {try
-     {return loop(ppf);}
+     {return loop(ppf)}
     catch(x)
      {if(x===CamlPrimitive["caml_global_data"]["End_of_file"])
        {return protect
@@ -53,9 +53,7 @@ var
                      Checkpoints["current_checkpoint"][1][2]);
                    Format["pp_print_flush"](ppf,/* () */0);
                    Input_handling["stop_user_input"](/* () */0);
-                   return restart(ppf);
-                   });
-        }
+                   return restart(ppf)})}
       else
        {if(x===Debugger_config["Toplevel"])
          {return protect
@@ -64,9 +62,7 @@ var
                    function(ppf)
                     {Format["pp_print_flush"](ppf,/* () */0);
                      Input_handling["stop_user_input"](/* () */0);
-                     return restart(ppf);
-                     });
-          }
+                     return restart(ppf)})}
         else
          {if(x===Sys["Break"])
            {return protect
@@ -88,11 +84,8 @@ var
                            return Program_management["loaded"][1]
                                    ?(Frames["try_select_frame"](0),
                                      Show_information["show_current_event"](ppf))
-                                   :0;
-                           });
-                       return restart(ppf);
-                       });
-            }
+                                   :0});
+                       return restart(ppf)})}
           else
            {if(x===Time_travel["Current_checkpoint_lost"])
              {return protect
@@ -112,9 +105,7 @@ var
                          Time_travel["recover"](/* () */0);
                          Frames["try_select_frame"](0);
                          Show_information["show_current_event"](ppf);
-                         return restart(ppf);
-                         });
-              }
+                         return restart(ppf)})}
             else
              {if(x[1]===Time_travel["Current_checkpoint_lost_start_at"])
                {var init_duration=x[3];
@@ -158,24 +149,20 @@ var
                              if(current_duration[1]>0)
                               {while(/* true */1)
                                 {Time_travel["step"](current_duration[1])}
-                               return 0;
-                               }
+                               return 0}
                              else
                               {current_duration[1]=-1;
                                Input_handling["stop_user_input"](/* () */0);
                                Show_information["show_current_event"](ppf);
-                               return restart(ppf);
-                               }
+                               return restart(ppf)}
                              }
                            else
                             {Time_travel["recover"](/* () */0);
                              Show_information["show_current_event"](ppf);
-                             return restart(ppf);
-                             }
-                           });
-                }
+                             return restart(ppf)}
+                           })}
               else
-               {Program_management["kill_program"](/* () */0);throw x;}
+               {Program_management["kill_program"](/* () */0);throw x}
               }
             }
           }
@@ -227,10 +214,9 @@ var
      {var commands=Buffer["sub"](buffer,0,-1+len);
       
       return Command_line["line_loop"]
-              (Format["std_formatter"],Lexing["from_string"](commands));
-      }
+              (Format["std_formatter"],Lexing["from_string"](commands))}
     else
-     {return 0;}
+     {return 0}
     };
 
 var
@@ -241,8 +227,7 @@ var
     execute_file_if_any(/* () */0);
     Input_handling["interactif"][1]=/* true */1;
     Input_handling["current_prompt"][1]=Debugger_config["debugger_prompt"];
-    return protect(Format["std_formatter"],loop,loop);
-    };
+    return protect(Format["std_formatter"],loop,loop)};
 
 var
  Found_program_name=
@@ -252,8 +237,7 @@ var
  anonymous=
   function(s)
    {Parameters["program_name"][1]=Unix_tools["make_absolute"](s);
-    throw Found_program_name;
-    };
+    throw Found_program_name};
 
 var
  add_include=
@@ -262,16 +246,15 @@ var
            /* :: */[0,
             Misc["expand_directory"](Config["standard_library"],d),
             Parameters["default_load_path"][1]],
-           0;
-    };
+           0};
 
-var set_socket=function(s){return Parameters["socket_name"][1]=s,0;};
+var set_socket=function(s){return Parameters["socket_name"][1]=s,0};
 
 var
  set_checkpoints=
-  function(n){return Debugger_config["checkpoint_max_count"][1]=n,0;};
+  function(n){return Debugger_config["checkpoint_max_count"][1]=n,0};
 
-var set_directory=function(dir){return CamlPrimitive["caml_sys_chdir"](dir);};
+var set_directory=function(dir){return CamlPrimitive["caml_sys_chdir"](dir)};
 
 var
  print_version=
@@ -285,8 +268,7 @@ var
          [/* Formatting_lit */17,/* Flush_newline */4,/* End_of_format */0]]],
        "The OCaml debugger, version %s@."],
       Sys["ocaml_version"]);
-    return Pervasives["exit"](0);
-    };
+    return Pervasives["exit"](0)};
 
 var
  print_version_num=
@@ -298,8 +280,7 @@ var
         [/* Formatting_lit */17,/* Flush_newline */4,/* End_of_format */0]],
        "%s@."],
       Sys["ocaml_version"]);
-    return Pervasives["exit"](0);
-    };
+    return Pervasives["exit"](0)};
 
 var
  speclist=
@@ -350,7 +331,7 @@ var
 
 var
  function_placeholder=
-  function(param){throw CamlPrimitive["caml_global_data"]["Not_found"];};
+  function(param){throw CamlPrimitive["caml_global_data"]["Not_found"]};
 
 var
  main=
@@ -368,7 +349,7 @@ var
              Pervasives["^"]
               (":",
                Pervasives["string_of_int"](1e4+Unix["getpid"](/* () */0)%1e4)));
-         
+         break;
         default:
          var
           $js=
@@ -400,7 +381,7 @@ var
               Pervasives["^"](" ",Filename["quote"](Sys["argv"][j+1])))}
           }
         else
-         {throw exn;}
+         {throw exn}
         }
       
       Format["printf"]
@@ -418,11 +399,10 @@ var
       Clflags["recursive_types"][1]=/* true */1;
       toplevel_loop(/* () */0);
       Program_management["kill_program"](/* () */0);
-      return Pervasives["exit"](0);
-      }
+      return Pervasives["exit"](0)}
     catch(exn$1)
      {if(exn$1===Debugger_config["Toplevel"])
-       {return Pervasives["exit"](2);}
+       {return Pervasives["exit"](2)}
       else
        {if(exn$1[1]===Env["Error"])
          {Format["eprintf"]
@@ -451,8 +431,7 @@ var
                /* Flush_newline */4,
                /* End_of_format */0]],
              "@]@."]);
-          return Pervasives["exit"](2);
-          }
+          return Pervasives["exit"](2)}
         else
          {if(exn$1[1]===Cmi_format["Error"])
            {Format["eprintf"]
@@ -481,10 +460,9 @@ var
                  /* Flush_newline */4,
                  /* End_of_format */0]],
                "@]@."]);
-            return Pervasives["exit"](2);
-            }
+            return Pervasives["exit"](2)}
           else
-           {throw exn$1;}
+           {throw exn$1}
           }
         }
       }

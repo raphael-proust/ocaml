@@ -20,15 +20,13 @@ var
       function(t,s,v)
        {return P[13](s,v)
                 ?/* :: */[0,/* Res_section */[10,s,t],/* [] */0]
-                :/* [] */0;
-        };
+                :/* [] */0};
     
     var
      search_text=
       function(root,t,v)
        {return List["flatten"]
-                (List["map"](function(e){return search_text_ele(root,e,v);},t));
-        };
+                (List["map"](function(e){return search_text_ele(root,e,v)},t))};
     
     var
      search_text_ele=
@@ -38,15 +36,15 @@ var
         var exit;
         
         if(typeof e==="number")
-         {switch(e){case 0:exit=274;case 1:exit=274;}}
+         {switch(e){case 0:exit=274;break;case 1:exit=274;break}}
         else
          {switch(e[0])
-           {case 0:exit=271;
-            case 1:exit=271;
-            case 2:exit=271;
-            case 3:exit=271;
-            case 10:exit=276;
-            case 11:exit=276;
+           {case 0:exit=271;break;
+            case 1:exit=271;break;
+            case 2:exit=271;break;
+            case 3:exit=271;break;
+            case 10:exit=276;break;
+            case 11:exit=276;break;
             case 13:
              var t=e[3];
              
@@ -57,25 +55,22 @@ var
                        ?search_section(t,Odoc_name["concat"](root,l_opt[1]),v)
                        :/* [] */0,
                       search_text(root,t,v));
-             
-            case 14:exit=271;
-            case 15:exit=277;
-            case 16:exit=271;
-            case 19:exit=274;
-            case 20:exit=277;
+            case 14:exit=271;break;
+            case 15:exit=277;break;
+            case 16:exit=271;break;
+            case 19:exit=274;break;
+            case 20:exit=277;break;
             case 21:return /* [] */0;
             default:var t$1=e[1];exit=272;}}
         
         switch(exit)
          {case 276:
            return List["flatten"]
-                   (List["map"]
-                     (function(t){return search_text(root,t,v);},e[1]));
-           
-          case 277:var t$1=e[2];exit=272;
+                   (List["map"](function(t){return search_text(root,t,v)},e[1]));
+          case 277:var t$1=e[2];exit=272;break;
           case 271:return /* [] */0;
           case 272:return search_text(root,t$1,v);
-          case 274:return /* [] */0;
+          case 274:return /* [] */0
           }
         };
     
@@ -84,24 +79,21 @@ var
       function(va,v)
        {return P[5](va,v)
                 ?/* :: */[0,/* Res_value */[4,va],/* [] */0]
-                :/* [] */0;
-        };
+                :/* [] */0};
     
     var
      search_recfield=
       function(t,f,v)
        {return P[6](t,f,v)
                 ?/* :: */[0,/* Res_recfield */[11,t,f],/* [] */0]
-                :/* [] */0;
-        };
+                :/* [] */0};
     
     var
      search_const=
       function(t,f,v)
        {return P[7](t,f,v)
                 ?/* :: */[0,/* Res_const */[12,t,f],/* [] */0]
-                :/* [] */0;
-        };
+                :/* [] */0};
     
     var
      search_type=
@@ -115,38 +107,36 @@ var
           var exit;
           
           if(typeof match$1==="number")
-           {switch(match$1){case 0:exit=264;case 1:exit=264;}}
+           {switch(match$1){case 0:exit=264;break;case 1:exit=264;break}}
           else
            {switch(match$1[0])
              {case 0:
                l=
                List["flatten"]
                 (List["map"]
-                  (function(rf){return search_const(t,rf,v);},match$1[1]));
-               
+                  (function(rf){return search_const(t,rf,v)},match$1[1]));
+               break;
               case 1:
                l=
                List["flatten"]
                 (List["map"]
-                  (function(rf){return search_recfield(t,rf,v);},match$1[1]));
-               
+                  (function(rf){return search_recfield(t,rf,v)},match$1[1]));
+               break
               }}
           
-          switch(exit){case 264:l=/* [] */0;}
+          switch(exit){case 264:l=/* [] */0;break}
           }
         else
          {l=/* [] */0;}
         
-        return match[2]?/* :: */[0,/* Res_type */[5,t],l]:l;
-        };
+        return match[2]?/* :: */[0,/* Res_type */[5,t],l]:l};
     
     var
      search_extension_constructor=
       function(xt,v)
        {return P[9](xt,v)
                 ?/* :: */[0,/* Res_extension */[6,xt],/* [] */0]
-                :/* [] */0;
-        };
+                :/* [] */0};
     
     var
      search_type_extension=
@@ -154,35 +144,30 @@ var
        {return List["fold_left"]
                 (function(acc,xt)
                   {return Pervasives["@"]
-                           (acc,search_extension_constructor(xt,v));
-                   },
+                           (acc,search_extension_constructor(xt,v))},
                  /* [] */0,
-                 Odoc_extension["extension_constructors"](te));
-        };
+                 Odoc_extension["extension_constructors"](te))};
     
     var
      search_exception=
       function(e,v)
        {return P[10](e,v)
                 ?/* :: */[0,/* Res_exception */[7,e],/* [] */0]
-                :/* [] */0;
-        };
+                :/* [] */0};
     
     var
      search_attribute=
       function(a,v)
        {return P[11](a,v)
                 ?/* :: */[0,/* Res_attribute */[8,a],/* [] */0]
-                :/* [] */0;
-        };
+                :/* [] */0};
     
     var
      search_method=
       function(m,v)
        {return P[12](m,v)
                 ?/* :: */[0,/* Res_method */[9,m],/* [] */0]
-                :/* [] */0;
-        };
+                :/* [] */0};
     
     var
      search_class=
@@ -195,14 +180,14 @@ var
            res_att=
             List["fold_left"]
              (function(acc,att)
-               {return Pervasives["@"](acc,search_attribute(att,v));},
+               {return Pervasives["@"](acc,search_attribute(att,v))},
               /* [] */0,
               Odoc_class["class_attributes"](/* None */0,c));
           
           var
            res_met=
             List["fold_left"]
-             (function(acc,m){return Pervasives["@"](acc,search_method(m,v));},
+             (function(acc,m){return Pervasives["@"](acc,search_method(m,v))},
               /* [] */0,
               Odoc_class["class_methods"](/* None */0,c));
           
@@ -210,7 +195,7 @@ var
            res_sec=
             List["fold_left"]
              (function(acc,t)
-               {return Pervasives["@"](acc,search_text(c[1],t,v));},
+               {return Pervasives["@"](acc,search_text(c[1],t,v))},
               /* [] */0,
               Odoc_class["class_comments"](/* None */0,c));
           
@@ -219,8 +204,7 @@ var
         else
          {l=/* [] */0;}
         
-        return match[2]?/* :: */[0,/* Res_class */[2,c],l]:l;
-        };
+        return match[2]?/* :: */[0,/* Res_class */[2,c],l]:l};
     
     var
      search_class_type=
@@ -233,14 +217,14 @@ var
            res_att=
             List["fold_left"]
              (function(acc,att)
-               {return Pervasives["@"](acc,search_attribute(att,v));},
+               {return Pervasives["@"](acc,search_attribute(att,v))},
               /* [] */0,
               Odoc_class["class_type_attributes"](/* None */0,ct));
           
           var
            res_met=
             List["fold_left"]
-             (function(acc,m){return Pervasives["@"](acc,search_method(m,v));},
+             (function(acc,m){return Pervasives["@"](acc,search_method(m,v))},
               /* [] */0,
               Odoc_class["class_type_methods"](/* None */0,ct));
           
@@ -248,7 +232,7 @@ var
            res_sec=
             List["fold_left"]
              (function(acc,t)
-               {return Pervasives["@"](acc,search_text(ct[1],t,v));},
+               {return Pervasives["@"](acc,search_text(ct[1],t,v))},
               /* [] */0,
               Odoc_class["class_type_comments"](/* None */0,ct));
           
@@ -257,8 +241,7 @@ var
         else
          {l=/* [] */0;}
         
-        return match[2]?/* :: */[0,/* Res_class_type */[3,ct],l]:l;
-        };
+        return match[2]?/* :: */[0,/* Res_class_type */[3,ct],l]:l};
     
     var
      search_module_type=
@@ -270,15 +253,14 @@ var
          {var
            res_val=
             List["fold_left"]
-             (function(acc,va)
-               {return Pervasives["@"](acc,search_value(va,v));},
+             (function(acc,va){return Pervasives["@"](acc,search_value(va,v))},
               /* [] */0,
               Odoc_module["module_type_values"](/* None */0,mt));
           
           var
            res_typ=
             List["fold_left"]
-             (function(acc,t){return Pervasives["@"](acc,search_type(t,v));},
+             (function(acc,t){return Pervasives["@"](acc,search_type(t,v))},
               /* [] */0,
               Odoc_module["module_type_types"](/* None */0,mt));
           
@@ -286,7 +268,7 @@ var
            res_ext=
             List["fold_left"]
              (function(acc,te)
-               {return Pervasives["@"](acc,search_type_extension(te,v));},
+               {return Pervasives["@"](acc,search_type_extension(te,v))},
               /* [] */0,
               Odoc_module["module_type_type_extensions"](/* None */0,mt));
           
@@ -294,7 +276,7 @@ var
            res_exc=
             List["fold_left"]
              (function(acc,e)
-               {return Pervasives["@"](acc,search_exception(e,v));},
+               {return Pervasives["@"](acc,search_exception(e,v))},
               /* [] */0,
               Odoc_module["module_type_exceptions"](/* None */0,mt));
           
@@ -306,15 +288,14 @@ var
            res_modtyp=
             List["fold_left"]
              (function(acc,mt)
-               {return Pervasives["@"](acc,search_module_type(mt,v));},
+               {return Pervasives["@"](acc,search_module_type(mt,v))},
               /* [] */0,
               Odoc_module["module_type_module_types"](/* None */0,mt));
           
           var
            res_cl=
             List["fold_left"]
-             (function(acc,cl)
-               {return Pervasives["@"](acc,search_class(cl,v));},
+             (function(acc,cl){return Pervasives["@"](acc,search_class(cl,v))},
               /* [] */0,
               Odoc_module["module_type_classes"](/* None */0,mt));
           
@@ -322,7 +303,7 @@ var
            res_cltyp=
             List["fold_left"]
              (function(acc,clt)
-               {return Pervasives["@"](acc,search_class_type(clt,v));},
+               {return Pervasives["@"](acc,search_class_type(clt,v))},
               /* [] */0,
               Odoc_module["module_type_class_types"](/* None */0,mt));
           
@@ -330,7 +311,7 @@ var
            res_sec=
             List["fold_left"]
              (function(acc,t)
-               {return Pervasives["@"](acc,search_text(mt[1],t,v));},
+               {return Pervasives["@"](acc,search_text(mt[1],t,v))},
               /* [] */0,
               Odoc_module["module_type_comments"](/* None */0,mt));
           
@@ -352,8 +333,7 @@ var
         else
          {l=/* [] */0;}
         
-        return match[2]?/* :: */[0,/* Res_module_type */[1,mt],l]:l;
-        };
+        return match[2]?/* :: */[0,/* Res_module_type */[1,mt],l]:l};
     
     var
      search_module=
@@ -365,15 +345,14 @@ var
          {var
            res_val=
             List["fold_left"]
-             (function(acc,va)
-               {return Pervasives["@"](acc,search_value(va,v));},
+             (function(acc,va){return Pervasives["@"](acc,search_value(va,v))},
               /* [] */0,
               Odoc_module["module_values"](/* None */0,m));
           
           var
            res_typ=
             List["fold_left"]
-             (function(acc,t){return Pervasives["@"](acc,search_type(t,v));},
+             (function(acc,t){return Pervasives["@"](acc,search_type(t,v))},
               /* [] */0,
               Odoc_module["module_types"](/* None */0,m));
           
@@ -381,7 +360,7 @@ var
            res_ext=
             List["fold_left"]
              (function(acc,te)
-               {return Pervasives["@"](acc,search_type_extension(te,v));},
+               {return Pervasives["@"](acc,search_type_extension(te,v))},
               /* [] */0,
               Odoc_module["module_type_extensions"](/* None */0,m));
           
@@ -389,7 +368,7 @@ var
            res_exc=
             List["fold_left"]
              (function(acc,e)
-               {return Pervasives["@"](acc,search_exception(e,v));},
+               {return Pervasives["@"](acc,search_exception(e,v))},
               /* [] */0,
               Odoc_module["module_exceptions"](/* None */0,m));
           
@@ -399,15 +378,14 @@ var
            res_modtyp=
             List["fold_left"]
              (function(acc,mt)
-               {return Pervasives["@"](acc,search_module_type(mt,v));},
+               {return Pervasives["@"](acc,search_module_type(mt,v))},
               /* [] */0,
               Odoc_module["module_module_types"](/* None */0,m));
           
           var
            res_cl=
             List["fold_left"]
-             (function(acc,cl)
-               {return Pervasives["@"](acc,search_class(cl,v));},
+             (function(acc,cl){return Pervasives["@"](acc,search_class(cl,v))},
               /* [] */0,
               Odoc_module["module_classes"](/* None */0,m));
           
@@ -415,7 +393,7 @@ var
            res_cltyp=
             List["fold_left"]
              (function(acc,clt)
-               {return Pervasives["@"](acc,search_class_type(clt,v));},
+               {return Pervasives["@"](acc,search_class_type(clt,v))},
               /* [] */0,
               Odoc_module["module_class_types"](/* None */0,m));
           
@@ -423,7 +401,7 @@ var
            res_sec=
             List["fold_left"]
              (function(acc,t)
-               {return Pervasives["@"](acc,search_text(m[1],t,v));},
+               {return Pervasives["@"](acc,search_text(m[1],t,v))},
               /* [] */0,
               Odoc_module["module_comments"](/* None */0,m));
           
@@ -445,8 +423,7 @@ var
         else
          {l=/* [] */0;}
         
-        return match[2]?/* :: */[0,/* Res_module */[0,m],l]:l;
-        };
+        return match[2]?/* :: */[0,/* Res_module */[0,m],l]:l};
     
     var
      search=
@@ -457,14 +434,11 @@ var
                            (function(acc2,ele)
                              {return List["mem"](ele,acc2)
                                       ?acc2
-                                      :Pervasives["@"](acc2,/* :: */[0,ele,/* [] */0]);
-                              },
+                                      :Pervasives["@"](acc2,/* :: */[0,ele,/* [] */0])},
                             acc,
-                            search_module(m,v));
-                   },
+                            search_module(m,v))},
                  /* [] */0,
-                 module_list);
-        };
+                 module_list)};
     
     return [0,
             search_section,
@@ -483,30 +457,29 @@ var
             search_class_type,
             search_module_type,
             search_module,
-            search];
-    };
+            search]};
 
 var
  $eq$unknown=
-  function(name,regexp){return Str["string_match"](regexp,name,0);};
+  function(name,regexp){return Str["string_match"](regexp,name,0)};
 
 var
  p_module=
-  function(m,r){return /* tuple */[0,/* true */1,$eq$unknown(m[1],r)];};
+  function(m,r){return /* tuple */[0,/* true */1,$eq$unknown(m[1],r)]};
 
 var
  p_module_type=
-  function(mt,r){return /* tuple */[0,/* true */1,$eq$unknown(mt[1],r)];};
+  function(mt,r){return /* tuple */[0,/* true */1,$eq$unknown(mt[1],r)]};
 
 var
  p_class=
-  function(c,r){return /* tuple */[0,/* true */1,$eq$unknown(c[1],r)];};
+  function(c,r){return /* tuple */[0,/* true */1,$eq$unknown(c[1],r)]};
 
 var
  p_class_type=
-  function(ct,r){return /* tuple */[0,/* true */1,$eq$unknown(ct[1],r)];};
+  function(ct,r){return /* tuple */[0,/* true */1,$eq$unknown(ct[1],r)]};
 
-var p_value=function(v,r){return $eq$unknown(v[1],r);};
+var p_value=function(v,r){return $eq$unknown(v[1],r)};
 
 var
  p_recfield=
@@ -524,8 +497,7 @@ var
         t[1],
         f[1]);
     
-    return $eq$unknown(name,r);
-    };
+    return $eq$unknown(name,r)};
 
 var
  p_const=
@@ -543,22 +515,21 @@ var
         t[1],
         f[1]);
     
-    return $eq$unknown(name,r);
-    };
+    return $eq$unknown(name,r)};
 
 var
  p_type=
-  function(t,r){return /* tuple */[0,/* true */1,$eq$unknown(t[1],r)];};
+  function(t,r){return /* tuple */[0,/* true */1,$eq$unknown(t[1],r)]};
 
-var p_extension=function(x,r){return $eq$unknown(x[1],r);};
+var p_extension=function(x,r){return $eq$unknown(x[1],r)};
 
-var p_exception=function(e,r){return $eq$unknown(e[1],r);};
+var p_exception=function(e,r){return $eq$unknown(e[1],r)};
 
-var p_attribute=function(a,r){return $eq$unknown(a[1][1],r);};
+var p_attribute=function(a,r){return $eq$unknown(a[1][1],r)};
 
-var p_method=function(m,r){return $eq$unknown(m[1][1],r);};
+var p_method=function(m,r){return $eq$unknown(m[1][1],r)};
 
-var p_section=function(s,r){return $eq$unknown(s,r);};
+var p_section=function(s,r){return $eq$unknown(s,r)};
 
 var
  P_name=
@@ -598,39 +569,39 @@ var
 
 var
  p_module$1=
-  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0]};
 
 var
  p_module_type$1=
-  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0]};
 
 var
  p_class$1=
-  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0]};
 
 var
  p_class_type$1=
-  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0]};
 
-var p_value$1=function(param,param$1){return /* true */1;};
+var p_value$1=function(param,param$1){return /* true */1};
 
-var p_recfield$1=function(param,param$1,param$2){return /* false */0;};
+var p_recfield$1=function(param,param$1,param$2){return /* false */0};
 
-var p_const$1=function(param,param$1,param$2){return /* false */0;};
+var p_const$1=function(param,param$1,param$2){return /* false */0};
 
 var
  p_type$1=
-  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0]};
 
-var p_extension$1=function(param,param$1){return /* false */0;};
+var p_extension$1=function(param,param$1){return /* false */0};
 
-var p_exception$1=function(param,param$1){return /* false */0;};
+var p_exception$1=function(param,param$1){return /* false */0};
 
-var p_attribute$1=function(param,param$1){return /* false */0;};
+var p_attribute$1=function(param,param$1){return /* false */0};
 
-var p_method$1=function(param,param$1){return /* false */0;};
+var p_method$1=function(param,param$1){return /* false */0};
 
-var p_section$1=function(param,param$1){return /* false */0;};
+var p_section$1=function(param,param$1){return /* false */0};
 
 var
  P_values=
@@ -658,7 +629,7 @@ var
     
     var
      p=
-      function(v1,v2){return CamlPrimitive["caml_string_equal"](v1[1],v2[1]);};
+      function(v1,v2){return CamlPrimitive["caml_string_equal"](v1[1],v2[1])};
     
     var
      iter=
@@ -675,51 +646,49 @@ var
              return List["exists"](p(v),acc)
                      ?iter(acc,q)
                      :iter(/* :: */[0,v,acc],q);
-             
-            default:return iter(acc,param[2]);}
+            default:return iter(acc,param[2])}
           }
         else
-         {return acc;}
+         {return acc}
         };
     
-    return iter(/* [] */0,l_ele);
-    };
+    return iter(/* [] */0,l_ele)};
 
 var
  p_module$2=
-  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0]};
 
 var
  p_module_type$2=
-  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0]};
 
 var
  p_class$2=
-  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0]};
 
 var
  p_class_type$2=
-  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0]};
 
-var p_value$2=function(param,param$1){return /* false */0;};
+var p_value$2=function(param,param$1){return /* false */0};
 
-var p_recfield$2=function(param,param$1,param$2){return /* false */0;};
+var p_recfield$2=function(param,param$1,param$2){return /* false */0};
 
-var p_const$2=function(param,param$1,param$2){return /* false */0;};
+var p_const$2=function(param,param$1,param$2){return /* false */0};
 
 var
  p_type$2=
-  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0]};
 
-var p_extension$2=function(param,param$1){return /* true */1;};
+var p_extension$2=function(param,param$1){return /* true */1};
 
-var p_exception$2=function(param,param$1){return /* false */0;};
+var p_exception$2=function(param,param$1){return /* false */0};
 
-var p_attribute$2=function(param,param$1){return /* false */0;};
+var p_attribute$2=function(param,param$1){return /* false */0};
 
-var p_method$2=function(param,param$1){return /* false */0;};
+var p_method$2=function(param,param$1){return /* false */0};
 
-var p_section$2=function(param,param$1){return /* false */0;};
+var p_section$2=function(param,param$1){return /* false */0};
 
 var
  P_extensions=
@@ -747,7 +716,7 @@ var
     
     var
      p=
-      function(x1,x2){return CamlPrimitive["caml_string_equal"](x1[1],x2[1]);};
+      function(x1,x2){return CamlPrimitive["caml_string_equal"](x1[1],x2[1])};
     
     var
      iter=
@@ -764,51 +733,49 @@ var
              return List["exists"](p(x),acc)
                      ?iter(acc,q)
                      :iter(/* :: */[0,x,acc],q);
-             
-            default:return iter(acc,param[2]);}
+            default:return iter(acc,param[2])}
           }
         else
-         {return acc;}
+         {return acc}
         };
     
-    return iter(/* [] */0,l_ele);
-    };
+    return iter(/* [] */0,l_ele)};
 
 var
  p_module$3=
-  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0]};
 
 var
  p_module_type$3=
-  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0]};
 
 var
  p_class$3=
-  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0]};
 
 var
  p_class_type$3=
-  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0]};
 
-var p_value$3=function(param,param$1){return /* false */0;};
+var p_value$3=function(param,param$1){return /* false */0};
 
-var p_recfield$3=function(param,param$1,param$2){return /* false */0;};
+var p_recfield$3=function(param,param$1,param$2){return /* false */0};
 
-var p_const$3=function(param,param$1,param$2){return /* false */0;};
+var p_const$3=function(param,param$1,param$2){return /* false */0};
 
 var
  p_type$3=
-  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0]};
 
-var p_extension$3=function(param,param$1){return /* false */0;};
+var p_extension$3=function(param,param$1){return /* false */0};
 
-var p_exception$3=function(param,param$1){return /* true */1;};
+var p_exception$3=function(param,param$1){return /* true */1};
 
-var p_attribute$3=function(param,param$1){return /* false */0;};
+var p_attribute$3=function(param,param$1){return /* false */0};
 
-var p_method$3=function(param,param$1){return /* false */0;};
+var p_method$3=function(param,param$1){return /* false */0};
 
-var p_section$3=function(param,param$1){return /* false */0;};
+var p_section$3=function(param,param$1){return /* false */0};
 
 var
  P_exceptions=
@@ -836,7 +803,7 @@ var
     
     var
      p=
-      function(e1,e2){return CamlPrimitive["caml_string_equal"](e1[1],e2[1]);};
+      function(e1,e2){return CamlPrimitive["caml_string_equal"](e1[1],e2[1])};
     
     var
      iter=
@@ -853,51 +820,49 @@ var
              return List["exists"](p(t),acc)
                      ?iter(acc,q)
                      :iter(/* :: */[0,t,acc],q);
-             
-            default:return iter(acc,param[2]);}
+            default:return iter(acc,param[2])}
           }
         else
-         {return acc;}
+         {return acc}
         };
     
-    return iter(/* [] */0,l_ele);
-    };
+    return iter(/* [] */0,l_ele)};
 
 var
  p_module$4=
-  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0]};
 
 var
  p_module_type$4=
-  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0]};
 
 var
  p_class$4=
-  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0]};
 
 var
  p_class_type$4=
-  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0]};
 
-var p_value$4=function(param,param$1){return /* false */0;};
+var p_value$4=function(param,param$1){return /* false */0};
 
-var p_recfield$4=function(param,param$1,param$2){return /* false */0;};
+var p_recfield$4=function(param,param$1,param$2){return /* false */0};
 
-var p_const$4=function(param,param$1,param$2){return /* false */0;};
+var p_const$4=function(param,param$1,param$2){return /* false */0};
 
 var
  p_type$4=
-  function(param,param$1){return [/* tuple */0,/* false */0,/* true */1];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* true */1]};
 
-var p_extension$4=function(param,param$1){return /* false */0;};
+var p_extension$4=function(param,param$1){return /* false */0};
 
-var p_exception$4=function(param,param$1){return /* false */0;};
+var p_exception$4=function(param,param$1){return /* false */0};
 
-var p_attribute$4=function(param,param$1){return /* false */0;};
+var p_attribute$4=function(param,param$1){return /* false */0};
 
-var p_method$4=function(param,param$1){return /* false */0;};
+var p_method$4=function(param,param$1){return /* false */0};
 
-var p_section$4=function(param,param$1){return /* false */0;};
+var p_section$4=function(param,param$1){return /* false */0};
 
 var
  P_types=
@@ -925,7 +890,7 @@ var
     
     var
      p=
-      function(t1,t2){return CamlPrimitive["caml_string_equal"](t1[1],t2[1]);};
+      function(t1,t2){return CamlPrimitive["caml_string_equal"](t1[1],t2[1])};
     
     var
      iter=
@@ -942,51 +907,49 @@ var
              return List["exists"](p(t),acc)
                      ?iter(acc,q)
                      :iter(/* :: */[0,t,acc],q);
-             
-            default:return iter(acc,param[2]);}
+            default:return iter(acc,param[2])}
           }
         else
-         {return acc;}
+         {return acc}
         };
     
-    return iter(/* [] */0,l_ele);
-    };
+    return iter(/* [] */0,l_ele)};
 
 var
  p_module$5=
-  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0]};
 
 var
  p_module_type$5=
-  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0]};
 
 var
  p_class$5=
-  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0]};
 
 var
  p_class_type$5=
-  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0]};
 
-var p_value$5=function(param,param$1){return /* false */0;};
+var p_value$5=function(param,param$1){return /* false */0};
 
-var p_recfield$5=function(param,param$1,param$2){return /* false */0;};
+var p_recfield$5=function(param,param$1,param$2){return /* false */0};
 
-var p_const$5=function(param,param$1,param$2){return /* false */0;};
+var p_const$5=function(param,param$1,param$2){return /* false */0};
 
 var
  p_type$5=
-  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0]};
 
-var p_extension$5=function(param,param$1){return /* false */0;};
+var p_extension$5=function(param,param$1){return /* false */0};
 
-var p_exception$5=function(param,param$1){return /* false */0;};
+var p_exception$5=function(param,param$1){return /* false */0};
 
-var p_attribute$5=function(param,param$1){return /* true */1;};
+var p_attribute$5=function(param,param$1){return /* true */1};
 
-var p_method$5=function(param,param$1){return /* false */0;};
+var p_method$5=function(param,param$1){return /* false */0};
 
-var p_section$5=function(param,param$1){return /* false */0;};
+var p_section$5=function(param,param$1){return /* false */0};
 
 var
  P_attributes=
@@ -1015,7 +978,7 @@ var
     var
      p=
       function(a1,a2)
-       {return CamlPrimitive["caml_string_equal"](a1[1][1],a2[1][1]);};
+       {return CamlPrimitive["caml_string_equal"](a1[1][1],a2[1][1])};
     
     var
      iter=
@@ -1032,51 +995,49 @@ var
              return List["exists"](p(t),acc)
                      ?iter(acc,q)
                      :iter(/* :: */[0,t,acc],q);
-             
-            default:return iter(acc,param[2]);}
+            default:return iter(acc,param[2])}
           }
         else
-         {return acc;}
+         {return acc}
         };
     
-    return iter(/* [] */0,l_ele);
-    };
+    return iter(/* [] */0,l_ele)};
 
 var
  p_module$6=
-  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0]};
 
 var
  p_module_type$6=
-  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0]};
 
 var
  p_class$6=
-  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0]};
 
 var
  p_class_type$6=
-  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0]};
 
-var p_value$6=function(param,param$1){return /* false */0;};
+var p_value$6=function(param,param$1){return /* false */0};
 
-var p_recfield$6=function(param,param$1,param$2){return /* false */0;};
+var p_recfield$6=function(param,param$1,param$2){return /* false */0};
 
-var p_const$6=function(param,param$1,param$2){return /* false */0;};
+var p_const$6=function(param,param$1,param$2){return /* false */0};
 
 var
  p_type$6=
-  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0]};
 
-var p_extension$6=function(param,param$1){return /* false */0;};
+var p_extension$6=function(param,param$1){return /* false */0};
 
-var p_exception$6=function(param,param$1){return /* false */0;};
+var p_exception$6=function(param,param$1){return /* false */0};
 
-var p_attribute$6=function(param,param$1){return /* false */0;};
+var p_attribute$6=function(param,param$1){return /* false */0};
 
-var p_method$6=function(param,param$1){return /* true */1;};
+var p_method$6=function(param,param$1){return /* true */1};
 
-var p_section$6=function(param,param$1){return /* true */1;};
+var p_section$6=function(param,param$1){return /* true */1};
 
 var
  P_methods=
@@ -1105,7 +1066,7 @@ var
     var
      p=
       function(m1,m2)
-       {return CamlPrimitive["caml_string_equal"](m1[1][1],m2[1][1]);};
+       {return CamlPrimitive["caml_string_equal"](m1[1][1],m2[1][1])};
     
     var
      iter=
@@ -1122,51 +1083,49 @@ var
              return List["exists"](p(t),acc)
                      ?iter(acc,q)
                      :iter(/* :: */[0,t,acc],q);
-             
-            default:return iter(acc,param[2]);}
+            default:return iter(acc,param[2])}
           }
         else
-         {return acc;}
+         {return acc}
         };
     
-    return iter(/* [] */0,l_ele);
-    };
+    return iter(/* [] */0,l_ele)};
 
 var
  p_module$7=
-  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0]};
 
 var
  p_module_type$7=
-  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0]};
 
 var
  p_class$7=
-  function(param,param$1){return [/* tuple */0,/* false */0,/* true */1];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* true */1]};
 
 var
  p_class_type$7=
-  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0]};
 
-var p_value$7=function(param,param$1){return /* false */0;};
+var p_value$7=function(param,param$1){return /* false */0};
 
-var p_recfield$7=function(param,param$1,param$2){return /* false */0;};
+var p_recfield$7=function(param,param$1,param$2){return /* false */0};
 
-var p_const$7=function(param,param$1,param$2){return /* false */0;};
+var p_const$7=function(param,param$1,param$2){return /* false */0};
 
 var
  p_type$7=
-  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0]};
 
-var p_extension$7=function(param,param$1){return /* false */0;};
+var p_extension$7=function(param,param$1){return /* false */0};
 
-var p_exception$7=function(param,param$1){return /* false */0;};
+var p_exception$7=function(param,param$1){return /* false */0};
 
-var p_attribute$7=function(param,param$1){return /* false */0;};
+var p_attribute$7=function(param,param$1){return /* false */0};
 
-var p_method$7=function(param,param$1){return /* false */0;};
+var p_method$7=function(param,param$1){return /* false */0};
 
-var p_section$7=function(param,param$1){return /* false */0;};
+var p_section$7=function(param,param$1){return /* false */0};
 
 var
  P_classes=
@@ -1194,7 +1153,7 @@ var
     
     var
      p=
-      function(c1,c2){return CamlPrimitive["caml_string_equal"](c1[1],c2[1]);};
+      function(c1,c2){return CamlPrimitive["caml_string_equal"](c1[1],c2[1])};
     
     var
      iter=
@@ -1211,51 +1170,49 @@ var
              return List["exists"](p(c),acc)
                      ?iter(acc,q)
                      :iter(/* :: */[0,c,acc],q);
-             
-            default:return iter(acc,param[2]);}
+            default:return iter(acc,param[2])}
           }
         else
-         {return acc;}
+         {return acc}
         };
     
-    return iter(/* [] */0,l_ele);
-    };
+    return iter(/* [] */0,l_ele)};
 
 var
  p_module$8=
-  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0]};
 
 var
  p_module_type$8=
-  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0]};
 
 var
  p_class$8=
-  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0]};
 
 var
  p_class_type$8=
-  function(param,param$1){return [/* tuple */0,/* false */0,/* true */1];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* true */1]};
 
-var p_value$8=function(param,param$1){return /* false */0;};
+var p_value$8=function(param,param$1){return /* false */0};
 
-var p_recfield$8=function(param,param$1,param$2){return /* false */0;};
+var p_recfield$8=function(param,param$1,param$2){return /* false */0};
 
-var p_const$8=function(param,param$1,param$2){return /* false */0;};
+var p_const$8=function(param,param$1,param$2){return /* false */0};
 
 var
  p_type$8=
-  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0]};
 
-var p_extension$8=function(param,param$1){return /* false */0;};
+var p_extension$8=function(param,param$1){return /* false */0};
 
-var p_exception$8=function(param,param$1){return /* false */0;};
+var p_exception$8=function(param,param$1){return /* false */0};
 
-var p_attribute$8=function(param,param$1){return /* false */0;};
+var p_attribute$8=function(param,param$1){return /* false */0};
 
-var p_method$8=function(param,param$1){return /* false */0;};
+var p_method$8=function(param,param$1){return /* false */0};
 
-var p_section$8=function(param,param$1){return /* false */0;};
+var p_section$8=function(param,param$1){return /* false */0};
 
 var
  P_class_types=
@@ -1283,7 +1240,7 @@ var
     
     var
      p=
-      function(c1,c2){return CamlPrimitive["caml_string_equal"](c1[1],c2[1]);};
+      function(c1,c2){return CamlPrimitive["caml_string_equal"](c1[1],c2[1])};
     
     var
      iter=
@@ -1300,51 +1257,49 @@ var
              return List["exists"](p(c),acc)
                      ?iter(acc,q)
                      :iter(/* :: */[0,c,acc],q);
-             
-            default:return iter(acc,param[2]);}
+            default:return iter(acc,param[2])}
           }
         else
-         {return acc;}
+         {return acc}
         };
     
-    return iter(/* [] */0,l_ele);
-    };
+    return iter(/* [] */0,l_ele)};
 
 var
  p_module$9=
-  function(param,param$1){return [/* tuple */0,/* true */1,/* true */1];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* true */1]};
 
 var
  p_module_type$9=
-  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0]};
 
 var
  p_class$9=
-  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0]};
 
 var
  p_class_type$9=
-  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0]};
 
-var p_value$9=function(param,param$1){return /* false */0;};
+var p_value$9=function(param,param$1){return /* false */0};
 
-var p_recfield$9=function(param,param$1,param$2){return /* false */0;};
+var p_recfield$9=function(param,param$1,param$2){return /* false */0};
 
-var p_const$9=function(param,param$1,param$2){return /* false */0;};
+var p_const$9=function(param,param$1,param$2){return /* false */0};
 
 var
  p_type$9=
-  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0]};
 
-var p_extension$9=function(param,param$1){return /* false */0;};
+var p_extension$9=function(param,param$1){return /* false */0};
 
-var p_exception$9=function(param,param$1){return /* false */0;};
+var p_exception$9=function(param,param$1){return /* false */0};
 
-var p_attribute$9=function(param,param$1){return /* false */0;};
+var p_attribute$9=function(param,param$1){return /* false */0};
 
-var p_method$9=function(param,param$1){return /* false */0;};
+var p_method$9=function(param,param$1){return /* false */0};
 
-var p_section$9=function(param,param$1){return /* false */0;};
+var p_section$9=function(param,param$1){return /* false */0};
 
 var
  P_modules=
@@ -1372,7 +1327,7 @@ var
     
     var
      p=
-      function(m1,m2){return CamlPrimitive["caml_string_equal"](m1[1],m2[1]);};
+      function(m1,m2){return CamlPrimitive["caml_string_equal"](m1[1],m2[1])};
     
     var
      iter=
@@ -1389,51 +1344,49 @@ var
              return List["exists"](p(m),acc)
                      ?iter(acc,q)
                      :iter(/* :: */[0,m,acc],q);
-             
-            default:return iter(acc,param[2]);}
+            default:return iter(acc,param[2])}
           }
         else
-         {return acc;}
+         {return acc}
         };
     
-    return iter(/* [] */0,l_ele);
-    };
+    return iter(/* [] */0,l_ele)};
 
 var
  p_module$10=
-  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* false */0]};
 
 var
  p_module_type$10=
-  function(param,param$1){return [/* tuple */0,/* true */1,/* true */1];};
+  function(param,param$1){return [/* tuple */0,/* true */1,/* true */1]};
 
 var
  p_class$10=
-  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0]};
 
 var
  p_class_type$10=
-  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0]};
 
-var p_value$10=function(param,param$1){return /* false */0;};
+var p_value$10=function(param,param$1){return /* false */0};
 
-var p_recfield$10=function(param,param$1,param$2){return /* false */0;};
+var p_recfield$10=function(param,param$1,param$2){return /* false */0};
 
-var p_const$10=function(param,param$1,param$2){return /* false */0;};
+var p_const$10=function(param,param$1,param$2){return /* false */0};
 
 var
  p_type$10=
-  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0];};
+  function(param,param$1){return [/* tuple */0,/* false */0,/* false */0]};
 
-var p_extension$10=function(param,param$1){return /* false */0;};
+var p_extension$10=function(param,param$1){return /* false */0};
 
-var p_exception$10=function(param,param$1){return /* false */0;};
+var p_exception$10=function(param,param$1){return /* false */0};
 
-var p_attribute$10=function(param,param$1){return /* false */0;};
+var p_attribute$10=function(param,param$1){return /* false */0};
 
-var p_method$10=function(param,param$1){return /* false */0;};
+var p_method$10=function(param,param$1){return /* false */0};
 
-var p_section$10=function(param,param$1){return /* false */0;};
+var p_section$10=function(param,param$1){return /* false */0};
 
 var
  P_module_types=
@@ -1461,7 +1414,7 @@ var
     
     var
      p=
-      function(m1,m2){return CamlPrimitive["caml_string_equal"](m1[1],m2[1]);};
+      function(m1,m2){return CamlPrimitive["caml_string_equal"](m1[1],m2[1])};
     
     var
      iter=
@@ -1478,15 +1431,13 @@ var
              return List["exists"](p(m),acc)
                      ?iter(acc,q)
                      :iter(/* :: */[0,m,acc],q);
-             
-            default:return iter(acc,param[2]);}
+            default:return iter(acc,param[2])}
           }
         else
-         {return acc;}
+         {return acc}
         };
     
-    return iter(/* [] */0,l_ele);
-    };
+    return iter(/* [] */0,l_ele)};
 
 var
  type_exists=
@@ -1496,10 +1447,9 @@ var
     return List["exists"]
             (function(param)
               {switch(param[0])
-                {case 5:return /* true */1;default:return /* false */0;}
+                {case 5:return /* true */1;default:return /* false */0}
                },
-             l);
-    };
+             l)};
 
 var
  value_exists=
@@ -1509,10 +1459,9 @@ var
     return List["exists"]
             (function(param)
               {switch(param[0])
-                {case 4:return /* true */1;default:return /* false */0;}
+                {case 4:return /* true */1;default:return /* false */0}
                },
-             l);
-    };
+             l)};
 
 var
  class_exists=
@@ -1522,10 +1471,9 @@ var
     return List["exists"]
             (function(param)
               {switch(param[0])
-                {case 2:return /* true */1;default:return /* false */0;}
+                {case 2:return /* true */1;default:return /* false */0}
                },
-             l);
-    };
+             l)};
 
 var
  class_type_exists=
@@ -1535,10 +1483,9 @@ var
     return List["exists"]
             (function(param)
               {switch(param[0])
-                {case 3:return /* true */1;default:return /* false */0;}
+                {case 3:return /* true */1;default:return /* false */0}
                },
-             l);
-    };
+             l)};
 
 var
  module_exists=
@@ -1548,10 +1495,9 @@ var
     return List["exists"]
             (function(param)
               {switch(param[0])
-                {case 0:return /* true */1;default:return /* false */0;}
+                {case 0:return /* true */1;default:return /* false */0}
                },
-             l);
-    };
+             l)};
 
 var
  module_type_exists=
@@ -1561,10 +1507,9 @@ var
     return List["exists"]
             (function(param)
               {switch(param[0])
-                {case 1:return /* true */1;default:return /* false */0;}
+                {case 1:return /* true */1;default:return /* false */0}
                },
-             l);
-    };
+             l)};
 
 var
  extension_exists=
@@ -1574,10 +1519,9 @@ var
     return List["exists"]
             (function(param)
               {switch(param[0])
-                {case 6:return /* true */1;default:return /* false */0;}
+                {case 6:return /* true */1;default:return /* false */0}
                },
-             l);
-    };
+             l)};
 
 var
  exception_exists=
@@ -1587,10 +1531,9 @@ var
     return List["exists"]
             (function(param)
               {switch(param[0])
-                {case 7:return /* true */1;default:return /* false */0;}
+                {case 7:return /* true */1;default:return /* false */0}
                },
-             l);
-    };
+             l)};
 
 var
  attribute_exists=
@@ -1600,10 +1543,9 @@ var
     return List["exists"]
             (function(param)
               {switch(param[0])
-                {case 8:return /* true */1;default:return /* false */0;}
+                {case 8:return /* true */1;default:return /* false */0}
                },
-             l);
-    };
+             l)};
 
 var
  method_exists=
@@ -1613,10 +1555,9 @@ var
     return List["exists"]
             (function(param)
               {switch(param[0])
-                {case 9:return /* true */1;default:return /* false */0;}
+                {case 9:return /* true */1;default:return /* false */0}
                },
-             l);
-    };
+             l)};
 
 var
  find_section=
@@ -1628,7 +1569,7 @@ var
       List["find"]
        (function(param)
          {switch(param[0])
-           {case 10:return /* true */1;default:return /* false */0;}
+           {case 10:return /* true */1;default:return /* false */0}
           },
         l);
     
@@ -1637,8 +1578,7 @@ var
       default:
        throw [0,
               CamlPrimitive["caml_global_data"]["Assert_failure"],
-              [0,"odoc_search.ml",752,9]];
-       }
+              [0,"odoc_search.ml",752,9]]}
     };
 
 module["exports"]=
@@ -1661,8 +1601,7 @@ module["exports"]=
            $$let[14],
            $$let[15],
            $$let[16],
-           $$let[17]];
-   },
+           $$let[17]]},
  "P_name":
  [0,
   P_name[1],

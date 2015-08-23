@@ -104,9 +104,7 @@ var string_gen_tables=[0,0,0,0];
 var
  Generator=
   function(G)
-   {if(string_gen_tables[1])
-     {}
-    else
+   {if(!string_gen_tables[1])
      {var
        string_gen_init=
         function($$class)
@@ -157,12 +155,11 @@ var
                          {switch(param[1])
                            {case "test_types_display":
                              return /* :: */[0,/* Types_display */0,acc];
-                            default:return acc;}
+                            default:return acc}
                           },
                         /* [] */0,
                         match?match[1][11]:/* [] */0),
-                      0;
-               },
+                      0},
              scan_type,
              function(self$neg1,t)
               {var match=self$neg1[test_kinds+1];
@@ -187,8 +184,9 @@ var
                     {var match$2=match$1[1];
                      
                      switch(match$2[0])
-                      {case 0:$js=Odoc_info["string_of_type_expr"](match$2[1]);
-                       case 1:$js="< object type >";
+                      {case 0:
+                        $js=Odoc_info["string_of_type_expr"](match$2[1]);break;
+                       case 1:$js="< object type >";break
                        }
                      }
                    else
@@ -202,13 +200,12 @@ var
                                /* No_padding */0,
                                [/* String_literal */11,"]>\n",/* End_of_format */0]]],
                              "# manifest :\n<[%s]>\n"],
-                            $js);
-                   }
+                            $js)}
                  else
-                  {return 0;}
+                  {return 0}
                  }
                else
-                {return /* () */0;}
+                {return /* () */0}
                },
              scan_module_pre,
              function(self$neg1,m)
@@ -246,8 +243,7 @@ var
                    Odoc_info["string_of_module_type"]
                     (/* None */0,[/* Some */0,/* true */1],m[2]))}
                
-               return /* true */1;
-               },
+               return /* true */1},
              scan_module_type_pre,
              function(self$neg1,m)
               {p
@@ -292,11 +288,8 @@ var
                     ?Odoc_info["string_of_module_type"]
                       (/* None */0,[/* Some */0,/* true */1],match$1[1])
                     :"None")}
-               else
-                {}
                
-               return /* true */1;
-               },
+               return /* true */1},
              generate,
              function(self$neg1,module_list)
               {var oc=Pervasives["open_out"](Odoc_info["Global"][3][1]);
@@ -313,8 +306,7 @@ var
                catch(e){Pervasives["prerr_endline"](Printexc["to_string"](e))}
                
                Format["pp_print_flush"](self$neg1[fmt+1],/* () */0);
-               return Pervasives["close_out"](oc);
-               }]);
+               return Pervasives["close_out"](oc)}]);
           return function(env)
            {return function($$self)
              {var
@@ -327,10 +319,7 @@ var
               $$self$1[fmt+1]=
               Format["str_formatter"];
               return CamlinternalOO["run_initializers_opt"]
-                      ($$self,$$self$1,$$class);
-              };
-            };
-          };
+                      ($$self,$$self$1,$$class)}}};
       
       CamlinternalOO["make_class_store"]
        (shared,string_gen_init,string_gen_tables)}
@@ -349,9 +338,7 @@ var
     
     var cached=CamlinternalOO["lookup_tables"](generator_tables,[0,G[1][2]]);
     
-    if(cached[1])
-     {}
-    else
+    if(!cached[1])
      {var
        generator_init=
         function($$class)
@@ -382,10 +369,7 @@ var
               
               $$self$1[g$1+1]=env$1[2],obj_init(env[2],$$self$1);
               return CamlinternalOO["run_initializers_opt"]
-                      ($$self,$$self$1,$$class);
-              };
-            };
-          };
+                      ($$self,$$self$1,$$class)}}};
       
       CamlinternalOO["make_class_store"](shared$2,generator_init,cached)}
     
@@ -393,10 +377,9 @@ var
     
     var generator=[0,cached[1](envs$1),cached[2],cached[1],envs$1];
     
-    return [0,string_gen,generator];
-    };
+    return [0,string_gen,generator]};
 
 Odoc_args["extend_base_generator"]
- (function(funarg){var $$let=Generator(funarg);return [0,$$let[2]];});
+ (function(funarg){var $$let=Generator(funarg);return [0,$$let[2]]});
 module["exports"]={"p":p,"Generator":Generator};
 

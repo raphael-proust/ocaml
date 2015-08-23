@@ -1,94 +1,93 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
+var List=require("./list.js");
 
 
-var include=List;
+var length=List["length"];
 
-var length=include[1];
+var hd=List["hd"];
 
-var hd=include[2];
+var tl=List["tl"];
 
-var tl=include[3];
+var nth=List["nth"];
 
-var nth=include[4];
+var rev=List["rev"];
 
-var rev=include[5];
+var append=List["append"];
 
-var append=include[6];
+var rev_append=List["rev_append"];
 
-var rev_append=include[7];
+var concat=List["concat"];
 
-var concat=include[8];
+var flatten=List["flatten"];
 
-var flatten=include[9];
+var iter=List["iter"];
 
-var iter=include[10];
+var iteri=List["iteri"];
 
-var iteri=include[11];
+var map=List["map"];
 
-var map=include[12];
+var mapi=List["mapi"];
 
-var mapi=include[13];
+var rev_map=List["rev_map"];
 
-var rev_map=include[14];
+var fold_left=List["fold_left"];
 
-var fold_left=include[15];
+var fold_right=List["fold_right"];
 
-var fold_right=include[16];
+var iter2=List["iter2"];
 
-var iter2=include[17];
+var map2=List["map2"];
 
-var map2=include[18];
+var rev_map2=List["rev_map2"];
 
-var rev_map2=include[19];
+var fold_left2=List["fold_left2"];
 
-var fold_left2=include[20];
+var fold_right2=List["fold_right2"];
 
-var fold_right2=include[21];
+var for_all=List["for_all"];
 
-var for_all=include[22];
+var exists=List["exists"];
 
-var exists=include[23];
+var for_all2=List["for_all2"];
 
-var for_all2=include[24];
+var exists2=List["exists2"];
 
-var exists2=include[25];
+var mem=List["mem"];
 
-var mem=include[26];
+var memq=List["memq"];
 
-var memq=include[27];
+var find=List["find"];
 
-var find=include[28];
+var filter=List["filter"];
 
-var filter=include[29];
+var find_all=List["find_all"];
 
-var find_all=include[30];
+var partition=List["partition"];
 
-var partition=include[31];
+var assoc=List["assoc"];
 
-var assoc=include[32];
+var assq=List["assq"];
 
-var assq=include[33];
+var mem_assoc=List["mem_assoc"];
 
-var mem_assoc=include[34];
+var mem_assq=List["mem_assq"];
 
-var mem_assq=include[35];
+var remove_assoc=List["remove_assoc"];
 
-var remove_assoc=include[36];
+var remove_assq=List["remove_assq"];
 
-var remove_assq=include[37];
+var split=List["split"];
 
-var split=include[38];
+var combine=List["combine"];
 
-var combine=include[39];
+var sort=List["sort"];
 
-var sort=include[40];
+var stable_sort=List["stable_sort"];
 
-var stable_sort=include[41];
+var fast_sort=List["fast_sort"];
 
-var fast_sort=include[42];
-
-var merge=include[44];
+var merge=List["merge"];
 
 module["exports"]=
 {"length":length,
