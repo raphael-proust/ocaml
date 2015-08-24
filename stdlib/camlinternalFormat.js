@@ -2404,20 +2404,21 @@ var
 var
  format_of_aconv=
   function(iconv,c)
-   {switch(iconv)
-     {case 0:var seps=[/* :: */0,"%",[/* :: */0,"d",/* [] */0]];break;
-      case 1:var seps=[/* :: */0,"%+",[/* :: */0,"d",/* [] */0]];break;
-      case 2:var seps=[/* :: */0,"% ",[/* :: */0,"d",/* [] */0]];break;
-      case 3:var seps=[/* :: */0,"%",[/* :: */0,"i",/* [] */0]];break;
-      case 4:var seps=[/* :: */0,"%+",[/* :: */0,"i",/* [] */0]];break;
-      case 5:var seps=[/* :: */0,"% ",[/* :: */0,"i",/* [] */0]];break;
-      case 6:var seps=[/* :: */0,"%",[/* :: */0,"x",/* [] */0]];break;
-      case 7:var seps=[/* :: */0,"%#",[/* :: */0,"x",/* [] */0]];break;
-      case 8:var seps=[/* :: */0,"%",[/* :: */0,"X",/* [] */0]];break;
-      case 9:var seps=[/* :: */0,"%#",[/* :: */0,"X",/* [] */0]];break;
-      case 10:var seps=[/* :: */0,"%",[/* :: */0,"o",/* [] */0]];break;
-      case 11:var seps=[/* :: */0,"%#",[/* :: */0,"o",/* [] */0]];break;
-      case 12:var seps=[/* :: */0,"%",[/* :: */0,"u",/* [] */0]];break
+   {var seps;
+    switch(iconv)
+     {case 0:seps=[/* :: */0,"%",[/* :: */0,"d",/* [] */0]];break;
+      case 1:seps=[/* :: */0,"%+",[/* :: */0,"d",/* [] */0]];break;
+      case 2:seps=[/* :: */0,"% ",[/* :: */0,"d",/* [] */0]];break;
+      case 3:seps=[/* :: */0,"%",[/* :: */0,"i",/* [] */0]];break;
+      case 4:seps=[/* :: */0,"%+",[/* :: */0,"i",/* [] */0]];break;
+      case 5:seps=[/* :: */0,"% ",[/* :: */0,"i",/* [] */0]];break;
+      case 6:seps=[/* :: */0,"%",[/* :: */0,"x",/* [] */0]];break;
+      case 7:seps=[/* :: */0,"%#",[/* :: */0,"x",/* [] */0]];break;
+      case 8:seps=[/* :: */0,"%",[/* :: */0,"X",/* [] */0]];break;
+      case 9:seps=[/* :: */0,"%#",[/* :: */0,"X",/* [] */0]];break;
+      case 10:seps=[/* :: */0,"%",[/* :: */0,"o",/* [] */0]];break;
+      case 11:seps=[/* :: */0,"%#",[/* :: */0,"o",/* [] */0]];break;
+      case 12:seps=[/* :: */0,"%",[/* :: */0,"u",/* [] */0]];break
       }
     
     return $$String["concat"]($$String["make"](1,c),seps)};
