@@ -2328,7 +2328,7 @@ module rec
                           (let exports = Translmod.get_export_identifiers () in
                            let () = Translmod.reset () in
                            let () = Compile_of_env.reset () in
-                           let (lam,side_effects) =
+                           let (lam,side_effects,meta) =
                              (Optimizer.simplify_alias exports) @@
                                ((Optimizer.simplify_lets exports) @@
                                   (Simplif.simplify_exits lam)) in
@@ -2547,11 +2547,36 @@ module rec
                                                    Ident.t list ->
                                                      Lambda.lambda ->
                                                        Lambda.lambda
+                                                 type function_arities =
+                                                   | Approximate of bool* int
+                                                   list[@ocaml.doc
+                                                         " when the first argument is true, it is for sure \n      approximation sound but not complete "]
+                                                   |
+                                                   NA[@ocaml.doc
+                                                       " The first argument is a function application\n    First we need know the arity of [fn] : int list \n    If we return a lambda back, we still need mark some information about such lambda, \n    unless we guarantee that the returned lambda is wel-formed\n    {[\n    (if x > 3 then (fun x -> x + 3 )\n    else (fun x -> x - 3)) (3) \n    ]}\n "]
+                                                 type arities_tbl =
+                                                   (Ident.t,function_arities
+                                                              ref)
+                                                     Hashtbl.t
+                                                 type alias_tbl =
+                                                   (Ident.t,Ident.t)
+                                                     Hashtbl.t
+                                                 type meta =
+                                                   {
+                                                   alias_tbl: alias_tbl;
+                                                   arities_tbl:
+                                                     arities_tbl[@ocaml.doc
+                                                                  " we don't need count arities for all identifiers, for identifiers\n        for sure it's not a function, there is no need to count them\n     "];}
+                                                 val pp_arities_tbl :
+                                                   Format.formatter ->
+                                                     (Ident.t,function_arities
+                                                                ref)
+                                                       Hashtbl.t -> unit
                                                  val simplify_alias :
                                                    Ident.t list ->
                                                      Lambda.lambda ->
                                                        (Lambda.lambda*
-                                                         Ident.t list)
+                                                         Ident.t list* meta)
                                                end =
                                      struct
                                        open Asttypes
@@ -3048,12 +3073,238 @@ module rec
                                                 then simplif l
                                                 else lambda_unit in
                                           simplif lam)
-                                       let count_alias_globals
+                                       type function_arities =
+                                         | Approximate of bool* int
+                                         list[@ocaml.doc
+                                               " when the first argument is true, it is for sure \n      approximation sound but not complete "]
+                                         |
+                                         NA[@ocaml.doc
+                                             " The first argument is a function application\n    First we need know the arity of [fn] : int list \n    If we return a lambda back, we still need mark some information about such lambda, \n    unless we guarantee that the returned lambda is wel-formed\n    {[\n    (if x > 3 then (fun x -> x + 3 )\n    else (fun x -> x - 3)) (3) \n    ]}\n "]
+                                       let pp = Format.fprintf
+                                       let pp_arities
+                                         (fmt : Format.formatter)
+                                         (x : function_arities) =
+                                         match x with
+                                         | NA  -> pp fmt "?"
+                                         | Approximate (b,ls) ->
+                                             (pp fmt "@[";
+                                              if not b then pp fmt "~";
+                                              pp fmt "[";
+                                              Format.pp_print_list
+                                                ~pp_sep:(fun fmt  ->
+                                                           fun ()  ->
+                                                             pp fmt ",")
+                                                Format.pp_print_int fmt ls;
+                                              pp fmt "]@]")
+                                       let pp_arities_tbl
+                                         (fmt : Format.formatter)
+                                         (arities_tbl :
+                                           (Ident.t,function_arities ref)
+                                             Hashtbl.t)
+                                         =
+                                         Hashtbl.fold
+                                           (fun (i : Ident.t)  ->
+                                              fun (v : function_arities ref) 
+                                                ->
+                                                fun _  ->
+                                                  pp Format.err_formatter
+                                                    "@[%s -> %a@]@." 
+                                                    i.name pp_arities (
+                                                    !v)) arities_tbl ()
+                                       type arities_tbl =
+                                         (Ident.t,function_arities ref)
+                                           Hashtbl.t
+                                       type alias_tbl =
+                                         (Ident.t,Ident.t) Hashtbl.t
+                                       type meta =
+                                         {
+                                         alias_tbl: alias_tbl;
+                                         arities_tbl:
+                                           arities_tbl[@ocaml.doc
+                                                        " we don't need count arities for all identifiers, for identifiers\n        for sure it's not a function, there is no need to count them\n     "];}
+                                       let rec get_arity
+                                         (tbl :
+                                           (Ident.t,function_arities ref)
+                                             Hashtbl.t)
                                          (lam : Lambda.lambda) =
-                                         (let tbl = Hashtbl.create 31 in
+                                         (match lam with
+                                          | Lconst _ ->
+                                              Approximate (true, [])
+                                          | Lvar v ->
+                                              (try !(Hashtbl.find tbl v)
+                                               with | Not_found  -> NA)
+                                          | Llet (_,_,_,l) -> get_arity tbl l
+                                          | Lprim (Pccall _,_) ->
+                                              Approximate (false, [])
+                                          | Lprim _ -> Approximate (true, [])
+                                          | Lletrec (_,body) ->
+                                              get_arity tbl body
+                                          | Lapply (app,args,_info) ->
+                                              let fn = get_arity tbl app in
+                                              (match fn with
+                                               | NA  -> NA
+                                               | Approximate (b,xs) ->
+                                                   let rec take
+                                                     (xs : int list)
+                                                     arg_length =
+                                                     match xs with
+                                                     | x::xs ->
+                                                         if arg_length = x
+                                                         then xs
+                                                         else
+                                                           if arg_length > x
+                                                           then
+                                                             take xs
+                                                               (arg_length -
+                                                                  x)
+                                                           else
+                                                             (x - arg_length)
+                                                             :: xs
+                                                     | _ ->
+                                                         failwith
+                                                           (Lambda_util.string_of_lambda
+                                                              lam) in
+                                                   Approximate
+                                                     (b,
+                                                       (take xs
+                                                          (List.length args))))
+                                          | Lfunction (kind,params,l) ->
+                                              let n = List.length params in
+                                              let v = get_arity tbl l in
+                                              (match v with
+                                               | NA  ->
+                                                   Approximate (false, [n])
+                                               | Approximate (b,xs) ->
+                                                   Approximate (b, (n :: xs)))
+                                          | Lswitch
+                                              (l,{ sw_failaction; sw_consts;
+                                                   sw_blocks;
+                                                   sw_numblocks = _;
+                                                   sw_numconsts = _ })
+                                              ->
+                                              all_lambdas tbl
+                                                (let rest =
+                                                   (sw_consts |>
+                                                      (List.map snd))
+                                                     @
+                                                     (sw_blocks |>
+                                                        (List.map snd)) in
+                                                 match sw_failaction with
+                                                 | None  -> rest
+                                                 | Some x -> x :: rest)
+                                          | Lstringswitch (l,sw,d) ->
+                                              (match d with
+                                               | None  ->
+                                                   all_lambdas tbl
+                                                     (List.map snd sw)
+                                               | Some v ->
+                                                   all_lambdas tbl (v ::
+                                                     (List.map snd sw)))
+                                          | Lstaticraise _ -> NA
+                                          | Lstaticcatch (_,_,handler) ->
+                                              get_arity tbl handler
+                                          | Ltrywith (l1,_,l2) ->
+                                              all_lambdas tbl [l1; l2]
+                                          | Lifthenelse (l1,l2,l3) ->
+                                              all_lambdas tbl [l2; l3]
+                                          | Lsequence (_,l2) ->
+                                              get_arity tbl l2
+                                          | Lsend (u,m,o,ll,v) -> NA
+                                          | Levent (l,event) -> NA
+                                          | Lifused (v,l) -> NA
+                                          | Lwhile _|Lfor _|Lassign _ ->
+                                              Approximate (true, []) : 
+                                         function_arities)[@@ocaml.doc
+                                                            " we need record all aliases -- since not all aliases are eliminated, \n    mostly are toplevel bindings\n    We will keep iterating such environment\n"]
+                                       and all_lambdas tbl
+                                         (xs : Lambda.lambda list) =
+                                         match xs with
+                                         | y::ys ->
+                                             let arity = get_arity tbl y in
+                                             List.fold_left
+                                               (fun exist  ->
+                                                  fun (v : Lambda.lambda)  ->
+                                                    match exist with
+                                                    | NA  -> NA
+                                                    | Approximate (b,xs) ->
+                                                        (match get_arity tbl
+                                                                 v
+                                                         with
+                                                         | NA  -> NA
+                                                         | Approximate 
+                                                             (u,ys) ->
+                                                             let rec aux
+                                                               (b,acc) xs ys
+                                                               =
+                                                               match (xs, ys)
+                                                               with
+                                                               | ([],[]) ->
+                                                                   (b,
+                                                                    (List.rev
+                                                                    acc))
+                                                               | (x::xs,y::ys)
+                                                                   when 
+                                                                   x = y ->
+                                                                   aux
+                                                                    (b, (x ::
+                                                                    acc)) xs
+                                                                    ys
+                                                               | (_,_) ->
+                                                                   (false,
+                                                                    (List.rev
+                                                                    acc)) in
+                                                             let (b,acc) =
+                                                               aux
+                                                                 ((u && b),
+                                                                   []) xs ys in
+                                                             Approximate
+                                                               (b, acc)))
+                                               arity ys
+                                         | _ -> assert false
+                                       let merge (n : int)
+                                         (x : function_arities) =
+                                         match x with
+                                         | NA  -> Approximate (false, [n])
+                                         | Approximate (b,xs) ->
+                                             Approximate (b, (n :: xs))
+                                       let count_alias_globals export_idents
+                                         (lam : Lambda.lambda) =
+                                         (let meta =
+                                            {
+                                              alias_tbl = (Hashtbl.create 31);
+                                              arities_tbl =
+                                                (Hashtbl.create 31)
+                                            } in
                                           let alias (k : Ident.t)
-                                            (v : Ident.t) =
-                                            Hashtbl.add tbl k v in
+                                            (v : Ident.t)
+                                            (kind : Lambda.let_kind) =
+                                            (match Hashtbl.find
+                                                     meta.arities_tbl v
+                                             with
+                                             | exception Not_found  -> ()
+                                             | v_arity ->
+                                                 Hashtbl.add meta.arities_tbl
+                                                   k v_arity);
+                                            (match kind with
+                                             | Alias  ->
+                                                 if
+                                                   not @@
+                                                     (List.mem k
+                                                        export_idents)
+                                                 then
+                                                   Hashtbl.add meta.alias_tbl
+                                                     k v
+                                             | Strict |StrictOpt |Variable 
+                                                 -> ()) in
+                                          let annotate (k : Ident.t)
+                                            (v : function_arities) =
+                                            match Hashtbl.find
+                                                    meta.arities_tbl k
+                                            with
+                                            | exception Not_found  ->
+                                                Hashtbl.add meta.arities_tbl
+                                                  k (ref v)
+                                            | old -> old := v in
                                           let rec count =
                                             function
                                             | Lconst cst -> ()
@@ -3063,25 +3314,54 @@ module rec
                                             | Lfunction (_kind,params,l) ->
                                                 count l
                                             | Llet
-                                                (_,k,Lprim
+                                                (kind,k,Lprim
                                                  (Pgetglobal v,[]),body)
-                                                -> (alias k v; count body)
-                                            | Llet (_,k,Lvar v,l2) ->
-                                                (if Ident.global v
-                                                 then alias k v
-                                                 else ();
-                                                 count l2)
+                                                ->
+                                                (alias k v kind; count body)
+                                            | Llet (kind,k,Lvar v,l2) ->
+                                                (alias k v kind; count l2)
+                                            | Llet
+                                                (str,v,(Lfunction
+                                                          (_,params,l) as u),body)
+                                                ->
+                                                (annotate v
+                                                   (get_arity
+                                                      meta.arities_tbl u);
+                                                 count l;
+                                                 count body)
                                             | Llet (str,v,l1,l2) ->
-                                                (count l1; count l2)
+                                                (if List.mem v export_idents
+                                                 then
+                                                   annotate v
+                                                     (get_arity
+                                                        meta.arities_tbl l1);
+                                                 count l1;
+                                                 count l2)
                                             | Lletrec (bindings,body) ->
                                                 (List.iter
                                                    (function
                                                     | x ->
                                                         (match x with
-                                                         | (k,Lvar v) when
-                                                             Ident.global v
-                                                             -> alias k v
-                                                         | (k,l) -> count l))
+                                                         | (k,Lvar v) ->
+                                                             alias k v Strict
+                                                         | (k,l) ->
+                                                             ((match l with
+                                                               | Lfunction _
+                                                                   ->
+                                                                   annotate k
+                                                                    (get_arity
+                                                                    meta.arities_tbl
+                                                                    l)
+                                                               | _ when
+                                                                   List.mem k
+                                                                    export_idents
+                                                                   ->
+                                                                   annotate k
+                                                                    (get_arity
+                                                                    meta.arities_tbl
+                                                                    l)
+                                                               | _ -> ());
+                                                              count l)))
                                                    bindings;
                                                  count body)
                                             | Lprim (_p,ll) ->
@@ -3127,11 +3407,13 @@ module rec
                                                   ll)
                                             | Levent (l,_evnt) -> count l
                                             | Lifused (v,l) -> count l in
-                                          count lam; tbl : (Ident.t,Ident.t)
-                                                             Hashtbl.t)
+                                          count lam; meta : meta)[@@ocaml.doc
+                                                                   " here alias inference is not for substitution, it is for analyze which module is \n    actually a global module or an exception, so it can be relaxed a bit\n    (without relying on strict analysis)\n "]
                                        let simplify_alias export_idents
                                          (lam : Lambda.lambda) =
-                                         (let tbl = count_alias_globals lam in
+                                         (let { alias_tbl = tbl } as meta =
+                                            count_alias_globals export_idents
+                                              lam in
                                           let required_modules = ref [] in
                                           let record_module id =
                                             required_modules := (id ::
@@ -3266,19 +3548,10 @@ module rec
                                                 Levent ((simpl l), event)
                                             | Lifused (v,l) ->
                                                 Lifused (v, (simpl l)) in
-                                          ((simpl lam), (!required_modules)) : 
-                                         (Lambda.lambda* Ident.t list))
-                                         [@@ocaml.doc
-                                           " \n    we should guarantee that all global aliases *would be removed*, it will not be aliased \n    So the only remaining place for globals is either just  Pgetglobal in functor application or \n    `Lprim (Pfield( i ), [Pgetglobal])`\n"]
-                                       type function_arities =
-                                         | Approximate of int
-                                         list[@ocaml.doc
-                                               " approximation sound but not complete "]
-                                         | Determine of int
-                                         list[@ocaml.doc " correct result "]
-                                         |
-                                         NA[@ocaml.doc
-                                             " The first argument is a function application\n    First we need know the arity of [fn] : int list \n    If we return a lambda back, we still need mark some information about such lambda, \n    unless we guarantee that the returned lambda is wel-formed\n    {[\n    (if x > 3 then (fun x -> x + 3 )\n    else (fun x -> x - 3)) (3) \n    ]}\n "]
+                                          ((simpl lam), (!required_modules),
+                                            meta) : (Lambda.lambda* Ident.t
+                                                      list* meta))[@@ocaml.doc
+                                                                    " \n    we should guarantee that all global aliases *would be removed*, it will not be aliased \n    So the only remaining place for globals is either just  Pgetglobal in functor application or \n    `Lprim (Pfield( i ), [Pgetglobal])`\n"]
                                        let alpha (fn : Lambda.lambda)
                                          (args : Lambda.lambda list)
                                          (loc : Location.t) =
