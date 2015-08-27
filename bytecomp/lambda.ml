@@ -195,10 +195,20 @@ type meth_kind = Self | Public | Cached
 
 type shared_code = (int * int) list
 
+type apply_status = 
+  | NA
+  | Full 
+
+type apply_info = {
+    apply_loc : Location.t;
+    apply_status : apply_status;
+  }
+let default_apply_info ?(loc=Location.none) () = 
+  {apply_loc = loc; apply_status = NA}
 type lambda =
     Lvar of Ident.t
   | Lconst of structured_constant
-  | Lapply of lambda * lambda list * Location.t
+  | Lapply of lambda * lambda list * apply_info
   | Lfunction of function_kind * Ident.t list * lambda
   | Llet of let_kind * Ident.t * lambda * lambda
   | Lletrec of (Ident.t * lambda) list * lambda
@@ -267,7 +277,7 @@ let make_key e =
         raise Not_simple
     | Lconst _ -> e
     | Lapply (e,es,loc) ->
-        Lapply (tr_rec env e,tr_recs env es,Location.none)
+        Lapply (tr_rec env e,tr_recs env es, default_apply_info ())
     | Llet (Alias,x,ex,e) -> (* Ignore aliases -> substitute *)
         let ex = tr_rec env ex in
         tr_rec (Ident.add x ex env) e

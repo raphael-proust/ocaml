@@ -206,10 +206,19 @@ type meth_kind = Self | Public | Cached
 
 type shared_code = (int * int) list     (* stack size -> code label *)
 
+type apply_status = 
+  | NA
+  | Full 
+
+type apply_info = {
+    apply_loc : Location.t;
+    apply_status : apply_status;
+  }
+val default_apply_info :  ?loc:Location.t -> unit ->  apply_info
 type lambda =
     Lvar of Ident.t
   | Lconst of structured_constant
-  | Lapply of lambda * lambda list * Location.t
+  | Lapply of lambda * lambda list * apply_info
   | Lfunction of function_kind * Ident.t list * lambda
   | Llet of let_kind * Ident.t * lambda * lambda
   | Lletrec of (Ident.t * lambda) list * lambda

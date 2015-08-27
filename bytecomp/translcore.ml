@@ -845,7 +845,7 @@ and transl_exp0 e =
       event_after e lam
   | Texp_new (cl, {Location.loc=loc}, _) ->
       Lapply(Lprim(Pfield 0, [transl_path ~loc e.exp_env cl]),
-             [lambda_unit], Location.none)
+             [lambda_unit], Lambda.default_apply_info ())
   | Texp_instvar(path_self, path, _) ->
       Lprim(Parrayrefu Paddrarray,
             [transl_normal_path path_self; transl_normal_path path])
@@ -855,7 +855,7 @@ and transl_exp0 e =
       let cpy = Ident.create "copy" in
       Llet(Strict, cpy,
            Lapply(Translobj.oo_prim "copy", [transl_normal_path path_self],
-                  Location.none),
+                  Lambda.default_apply_info ()),
            List.fold_right
              (fun (path, _, expr) rem ->
                 Lsequence(transl_setinstvar (Lvar cpy) path expr, rem))
@@ -973,9 +973,9 @@ and transl_apply lam sargs loc =
     | Levent(Lsend(k, lmet, lobj, largs, loc), _) ->
         Lsend(k, lmet, lobj, largs @ args, loc)
     | Lapply(lexp, largs, _) ->
-        Lapply(lexp, largs @ args, loc)
+        Lapply(lexp, largs @ args, Lambda.default_apply_info ~loc ())
     | lexp ->
-        Lapply(lexp, args, loc)
+        Lapply(lexp, args, Lambda.default_apply_info ~loc ())
   in
   let rec build_apply lam args = function
       (None, optional) :: l ->

@@ -204,14 +204,14 @@ let simplify_exits lam =
         (* Simplify %revapply, for n-ary functions with n > 1 *)
       | Prevapply loc, [x; Lapply(f, args, _)]
       | Prevapply loc, [x; Levent (Lapply(f, args, _),_)] ->
-        Lapply(f, args@[x], loc)
-      | Prevapply loc, [x; f] -> Lapply(f, [x], loc)
+        Lapply(f, args@[x], Lambda.default_apply_info ~loc ())
+      | Prevapply loc, [x; f] -> Lapply(f, [x], Lambda.default_apply_info ~loc ())
 
         (* Simplify %apply, for n-ary functions with n > 1 *)
       | Pdirapply loc, [Lapply(f, args, _); x]
       | Pdirapply loc, [Levent (Lapply(f, args, _),_); x] ->
-        Lapply(f, args@[x], loc)
-      | Pdirapply loc, [f; x] -> Lapply(f, [x], loc)
+        Lapply(f, args@[x], Lambda.default_apply_info ~loc ())
+      | Pdirapply loc, [f; x] -> Lapply(f, [x], Lambda.default_apply_info ~loc ())
 
       | _ -> Lprim(p, ll)
      end
@@ -516,7 +516,7 @@ let rec emit_tail_infos is_tail lambda =
   match lambda with
   | Lvar _ -> ()
   | Lconst _ -> ()
-  | Lapply (func, l, loc) ->
+  | Lapply (func, l, {apply_loc = loc; }) ->
       list_emit_tail_infos false l;
       Stypes.record (Stypes.An_call (loc, call_kind l))
   | Lfunction (_, _, lam) ->

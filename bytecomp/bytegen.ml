@@ -561,7 +561,7 @@ let rec comp_expr env exp sz cont =
       comp_expr env arg sz (add_const_unit cont)
   | Lprim(Pdirapply loc, [func;arg])
   | Lprim(Prevapply loc, [arg;func]) ->
-      let exp = Lapply(func, [arg], loc) in
+      let exp = Lapply(func, [arg], Lambda.default_apply_info ~loc ()) in
       comp_expr env exp sz cont
   | Lprim(Pnot, [arg]) ->
       let newcont =

@@ -119,7 +119,7 @@ let split_default_wrapper fun_id kind params body =
         let inner_id = Ident.create (Ident.name fun_id ^ "_inner") in
         let map_param p = try List.assoc p map with Not_found -> p in
         let args = List.map (fun p -> Lvar (map_param p)) params in
-        let wrapper_body = Lapply (Lvar inner_id, args, Location.none) in
+        let wrapper_body = Lapply (Lvar inner_id, args, Lambda.default_apply_info ()) in
 
         let inner_params = List.map map_param params in
         let new_ids = List.map Ident.rename inner_params in
@@ -915,7 +915,7 @@ let rec close fenv cenv = function
       end
   | Lprim(Pdirapply loc,[funct;arg])
   | Lprim(Prevapply loc,[arg;funct]) ->
-      close fenv cenv (Lapply(funct, [arg], loc))
+      close fenv cenv (Lapply(funct, [arg], Lambda.default_apply_info ~loc ()))
   | Lprim(Pgetglobal id, []) as lam ->
       check_constant_result lam
                             (getglobal id)
