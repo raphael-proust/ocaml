@@ -43,7 +43,7 @@ var
     var exit$1;
     
     if(typeof match==="number")
-     {switch(match){}}
+     {switch(match){default:exit$1=20;}}
     else
      {switch(match[0])
        {case 0:return /* tuple */[0,match[1],match[2],match[3]];
@@ -105,7 +105,7 @@ var
     var exit$1;
     
     if(typeof match==="number")
-     {switch(match){}}
+     {switch(match){default:exit$1=9;}}
     else
      {switch(match[0])
        {case 1:return /* tuple */[0,match[1],match[2]];default:exit$1=9;}}

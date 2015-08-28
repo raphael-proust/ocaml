@@ -382,9 +382,9 @@ var
                     
                     var match$2=t[1][i+1+1][l+1][1];
                     
+                    var les$1;
                     var exit;
                     
-                    var les$1;
                     if(typeof match$1==="number")
                      {exit=334;}
                     else
@@ -464,14 +464,13 @@ var
                     
                     switch(exit)
                      {case 334:
-                       var
-                        les$1=
-                         /* :: */[0,
-                          /* tuple */[0,
-                           colspan+2,
-                           /* LeftA */0,
-                           [/* TDstring */0,"&nbsp;"]],
-                          les];
+                       les$1=
+                       /* :: */[0,
+                        /* tuple */[0,
+                         colspan+2,
+                         /* LeftA */0,
+                         [/* TDstring */0,"&nbsp;"]],
+                        les];
                        break
                       }
                     

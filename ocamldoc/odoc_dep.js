@@ -1,10 +1,12 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
+var Odoc_type=require("./odoc_type.js");
 var List=require("./list.js");
 var Set=require("./set.js");
 var Depend=require("./depend.js");
 var Odoc_print=require("./odoc_print.js");
 var Str=require("./str.js");
+var Odoc_module=require("./odoc_module.js");
 var CamlPrimitive=require("./camlPrimitive.js");
 
 
@@ -156,9 +158,7 @@ var
 var
  type_deps=
   function(t)
-   {var T=Odoc_type;
-    
-    var l=[0,/* [] */0];
+   {var l=[0,/* [] */0];
     
     var
      re=

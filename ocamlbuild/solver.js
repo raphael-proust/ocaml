@@ -125,10 +125,10 @@ var
                                      target,
                                      /* Choice */[1,/* :: */[0,backtrace,backtraces]]])}
                          else
-                          {switch(backtrace[0])
-                            {case 2:
-                              var match$1=Resource["Cache"][12](backtrace[1]);break;
-                             default:var match$1=/* () */0;}
+                          {var match$1;
+                           switch(backtrace[0])
+                            {case 2:match$1=Resource["Cache"][12](backtrace[1]);break;
+                             default:match$1=/* () */0;}
                            
                            return until_works(rs$1,/* :: */[0,backtrace,backtraces])}
                          }

@@ -27,8 +27,8 @@ var Printexc=require("./printexc.js");
 var Input_handling=require("./input_handling.js");
 var Time_travel=require("./time_travel.js");
 var Config=require("./config.js");
-var Sys=require("./sys.js");
 var CamlPrimitive=require("./camlPrimitive.js");
+var Sys=require("./sys.js");
 
 
 var line_buffer=Lexing["from_function"](Input_handling["read_user_input"]);

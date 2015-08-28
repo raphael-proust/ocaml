@@ -94,7 +94,7 @@ var
                      {var exit;
                       
                       if(typeof param$1==="number")
-                       {switch(param$1){}}
+                       {switch(param$1){default:exit=14;}}
                       else
                        {switch(param$1[0])
                          {case 1:
@@ -113,7 +113,7 @@ var
                                           {var exit$1;
                                            
                                            if(typeof param$2==="number")
-                                            {switch(param$2){}}
+                                            {switch(param$2){default:exit$1=10;}}
                                            else
                                             {switch(param$2[0])
                                               {case 1:
@@ -167,7 +167,7 @@ var
                      {var exit;
                       
                       if(typeof param$1==="number")
-                       {switch(param$1){}}
+                       {switch(param$1){default:exit=8;}}
                       else
                        {switch(param$1[0])
                          {case 1:
@@ -217,7 +217,7 @@ var
        {var exit;
         
         if(typeof param==="number")
-         {switch(param){}}
+         {switch(param){default:exit=6;}}
         else
          {switch(param[0])
            {case 0:

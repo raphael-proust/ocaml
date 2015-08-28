@@ -837,7 +837,7 @@ var
           
           var $js;
           if(typeof match$2==="number")
-           {switch(match$2){}}
+           {switch(match$2){default:exit=8;}}
           else
            {switch(match$2[0])
              {case 4:$js=My_std["&"](ocamlfind,/* Sh */[4,match$2[1]]);break;

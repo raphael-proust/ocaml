@@ -12,8 +12,8 @@ var Misc=require("./misc.js");
 var Parameters=require("./parameters.js");
 var Show_source=require("./show_source.js");
 var Source=require("./source.js");
-var CamlPrimitive=require("./camlPrimitive.js");
 var Debugcom=require("./debugcom.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var

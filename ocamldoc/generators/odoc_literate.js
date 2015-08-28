@@ -257,13 +257,13 @@ var
       [0,
        html_of_module_comment,
        function(self$neg1,b,text)
-        {var exit;
+        {var match$2;
+         var exit;
          
-         var match$2;
          if(text)
           {var $js=text[1];
            if(typeof $js==="number")
-            {switch($js){}}
+            {switch($js){default:exit=2;}}
            else
             {switch($js[0])
               {case 13:
@@ -278,7 +278,7 @@ var
           {exit=2;}
          
          switch(exit)
-          {case 2:var match$2=[/* tuple */0,/* true */1,/* true */1];break}
+          {case 2:match$2=[/* tuple */0,/* true */1,/* true */1];break}
          
          if(match$2[1])
           {p

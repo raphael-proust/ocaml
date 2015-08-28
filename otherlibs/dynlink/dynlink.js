@@ -19,42 +19,40 @@ var
      {if(param[1]===$$Error)
        {var err=param[2];
         
+        var msg;
         if(typeof err==="number")
-         {switch(err){case 0:var msg="Unsafe_file";break}}
+         {switch(err){case 0:msg="Unsafe_file";break}}
         else
          {switch(err[0])
            {case 0:
-             var
-              msg=
-               Printf["sprintf"]
-                ([/* Format */0,
-                  [/* String_literal */11,
-                   "Not_a_bytecode_file ",
-                   [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
-                  "Not_a_bytecode_file %S"],
-                 err[1]);
+             msg=
+             Printf["sprintf"]
+              ([/* Format */0,
+                [/* String_literal */11,
+                 "Not_a_bytecode_file ",
+                 [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
+                "Not_a_bytecode_file %S"],
+               err[1]);
              break;
             case 1:
-             var
-              msg=
-               Printf["sprintf"]
-                ([/* Format */0,
-                  [/* String_literal */11,
-                   "Inconsistent_import ",
-                   [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
-                  "Inconsistent_import %S"],
-                 err[1]);
+             msg=
+             Printf["sprintf"]
+              ([/* Format */0,
+                [/* String_literal */11,
+                 "Inconsistent_import ",
+                 [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
+                "Inconsistent_import %S"],
+               err[1]);
              break;
             case 2:
-             var
-              msg=
-               Printf["sprintf"]
-                ([/* Format */0,
-                  [/* String_literal */11,
-                   "Unavailable_unit ",
-                   [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
-                  "Unavailable_unit %S"],
-                 err[1]);
+             msg=
+             Printf["sprintf"]
+              ([/* Format */0,
+                [/* String_literal */11,
+                 "Unavailable_unit ",
+                 [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
+                "Unavailable_unit %S"],
+               err[1]);
              break;
             case 3:
              var match$1=err[2];
@@ -63,104 +61,97 @@ var
              
              switch(match$1[0])
               {case 0:
-                var
-                 msg=
-                  Printf["sprintf"]
-                   ([/* Format */0,
+                msg=
+                Printf["sprintf"]
+                 ([/* Format */0,
+                   [/* String_literal */11,
+                    "Linking_error (",
+                    [/* Caml_string */3,
+                     /* No_padding */0,
                      [/* String_literal */11,
-                      "Linking_error (",
+                      ", Dynlink.Undefined_global ",
                       [/* Caml_string */3,
                        /* No_padding */0,
-                       [/* String_literal */11,
-                        ", Dynlink.Undefined_global ",
-                        [/* Caml_string */3,
-                         /* No_padding */0,
-                         [/* Char_literal */12,41,/* End_of_format */0]]]]],
-                     "Linking_error (%S, Dynlink.Undefined_global %S)"],
-                    s,
-                    match$1[1]);
+                       [/* Char_literal */12,41,/* End_of_format */0]]]]],
+                   "Linking_error (%S, Dynlink.Undefined_global %S)"],
+                  s,
+                  match$1[1]);
                 break;
                case 1:
-                var
-                 msg=
-                  Printf["sprintf"]
-                   ([/* Format */0,
+                msg=
+                Printf["sprintf"]
+                 ([/* Format */0,
+                   [/* String_literal */11,
+                    "Linking_error (",
+                    [/* Caml_string */3,
+                     /* No_padding */0,
                      [/* String_literal */11,
-                      "Linking_error (",
+                      ", Dynlink.Unavailable_primitive ",
                       [/* Caml_string */3,
                        /* No_padding */0,
-                       [/* String_literal */11,
-                        ", Dynlink.Unavailable_primitive ",
-                        [/* Caml_string */3,
-                         /* No_padding */0,
-                         [/* Char_literal */12,41,/* End_of_format */0]]]]],
-                     "Linking_error (%S, Dynlink.Unavailable_primitive %S)"],
-                    s,
-                    match$1[1]);
+                       [/* Char_literal */12,41,/* End_of_format */0]]]]],
+                   "Linking_error (%S, Dynlink.Unavailable_primitive %S)"],
+                  s,
+                  match$1[1]);
                 break;
                case 2:
-                var
-                 msg=
-                  Printf["sprintf"]
-                   ([/* Format */0,
+                msg=
+                Printf["sprintf"]
+                 ([/* Format */0,
+                   [/* String_literal */11,
+                    "Linking_error (",
+                    [/* Caml_string */3,
+                     /* No_padding */0,
                      [/* String_literal */11,
-                      "Linking_error (",
+                      ", Dynlink.Uninitialized_global ",
                       [/* Caml_string */3,
                        /* No_padding */0,
-                       [/* String_literal */11,
-                        ", Dynlink.Uninitialized_global ",
-                        [/* Caml_string */3,
-                         /* No_padding */0,
-                         [/* Char_literal */12,41,/* End_of_format */0]]]]],
-                     "Linking_error (%S, Dynlink.Uninitialized_global %S)"],
-                    s,
-                    match$1[1]);
+                       [/* Char_literal */12,41,/* End_of_format */0]]]]],
+                   "Linking_error (%S, Dynlink.Uninitialized_global %S)"],
+                  s,
+                  match$1[1]);
                 break
                }
              break;
             case 4:
-             var
-              msg=
-               Printf["sprintf"]
-                ([/* Format */0,
-                  [/* String_literal */11,
-                   "Corrupted_interface ",
-                   [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
-                  "Corrupted_interface %S"],
-                 err[1]);
+             msg=
+             Printf["sprintf"]
+              ([/* Format */0,
+                [/* String_literal */11,
+                 "Corrupted_interface ",
+                 [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
+                "Corrupted_interface %S"],
+               err[1]);
              break;
             case 5:
-             var
-              msg=
-               Printf["sprintf"]
-                ([/* Format */0,
-                  [/* String_literal */11,
-                   "File_not_found ",
-                   [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
-                  "File_not_found %S"],
-                 err[1]);
+             msg=
+             Printf["sprintf"]
+              ([/* Format */0,
+                [/* String_literal */11,
+                 "File_not_found ",
+                 [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
+                "File_not_found %S"],
+               err[1]);
              break;
             case 6:
-             var
-              msg=
-               Printf["sprintf"]
-                ([/* Format */0,
-                  [/* String_literal */11,
-                   "Cannot_open_dll ",
-                   [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
-                  "Cannot_open_dll %S"],
-                 err[1]);
+             msg=
+             Printf["sprintf"]
+              ([/* Format */0,
+                [/* String_literal */11,
+                 "Cannot_open_dll ",
+                 [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
+                "Cannot_open_dll %S"],
+               err[1]);
              break;
             case 7:
-             var
-              msg=
-               Printf["sprintf"]
-                ([/* Format */0,
-                  [/* String_literal */11,
-                   "Inconsistent_implementation ",
-                   [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
-                  "Inconsistent_implementation %S"],
-                 err[1]);
+             msg=
+             Printf["sprintf"]
+              ([/* Format */0,
+                [/* String_literal */11,
+                 "Inconsistent_implementation ",
+                 [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
+                "Inconsistent_implementation %S"],
+               err[1]);
              break
             }}
         
@@ -328,9 +319,9 @@ var
       Pervasives["close_in"](ic);
       var match$1=cmi[3];
       
+      var crc;
       var exit;
       
-      var crc;
       if(match$1)
        {var match$2=match$1[1][2];if(match$2){crc=match$2[1];}else{exit=35;}}
       else
@@ -411,14 +402,15 @@ var
      {if(exn[1]===Dynlinkaux["Symtable"][22])
        {var error=exn[2];
         
+        var new_error;
         switch(error[0])
-         {case 0:var new_error=/* Undefined_global */[0,error[1]];break;
-          case 1:var new_error=/* Unavailable_primitive */[1,error[1]];break;
+         {case 0:new_error=/* Undefined_global */[0,error[1]];break;
+          case 1:new_error=/* Unavailable_primitive */[1,error[1]];break;
           case 2:
            throw [0,
                   CamlPrimitive["caml_global_data"]["Assert_failure"],
                   [0,"dynlink.ml",232,13]];
-          case 3:var new_error=/* Uninitialized_global */[2,error[1]];break
+          case 3:new_error=/* Uninitialized_global */[2,error[1]];break
           }
         
         throw [0,$$Error,/* Linking_error */[3,file_name,new_error]]}

@@ -31,12 +31,14 @@ var
     var
      search_text_ele=
       function(root,e,v)
-       {var T=Odoc_types;
-        
-        var exit;
+       {var exit;
+        var t;
         
         if(typeof e==="number")
-         {switch(e){case 0:exit=274;break;case 1:exit=274;break}}
+         {switch(e)
+           {case 0:exit=274;break;
+            case 1:exit=274;break;
+            default:t=e[1];exit=272;}}
         else
          {switch(e[0])
            {case 0:exit=271;break;
@@ -46,30 +48,30 @@ var
             case 10:exit=276;break;
             case 11:exit=276;break;
             case 13:
-             var t=e[3];
+             var t$1=e[3];
              
              var l_opt=e[2];
              
              return Pervasives["@"]
                      (l_opt
-                       ?search_section(t,Odoc_name["concat"](root,l_opt[1]),v)
+                       ?search_section(t$1,Odoc_name["concat"](root,l_opt[1]),v)
                        :/* [] */0,
-                      search_text(root,t,v));
+                      search_text(root,t$1,v));
             case 14:exit=271;break;
             case 15:exit=277;break;
             case 16:exit=271;break;
             case 19:exit=274;break;
             case 20:exit=277;break;
             case 21:return /* [] */0;
-            default:var t$1=e[1];exit=272;}}
+            default:t=e[1];exit=272;}}
         
         switch(exit)
          {case 276:
            return List["flatten"]
                    (List["map"](function(t){return search_text(root,t,v)},e[1]));
-          case 277:var t$1=e[2];exit=272;break;
+          case 277:t=e[2];exit=272;break;
           case 271:return /* [] */0;
-          case 272:return search_text(root,t$1,v);
+          case 272:return search_text(root,t,v);
           case 274:return /* [] */0
           }
         };

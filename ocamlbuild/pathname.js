@@ -4,6 +4,7 @@ var Options=require("./options.js");
 var Pervasives=require("./pervasives.js");
 var Format=require("./format.js");
 var Shell=require("./shell.js");
+var Filename=require("./filename.js");
 var My_std=require("./my_std.js");
 var My_unix=require("./my_unix.js");
 var Hashtbl=require("./hashtbl.js");
@@ -12,21 +13,19 @@ var CamlPrimitive=require("./camlPrimitive.js");
 
 
 
-var include=Filename;
+var current_dir_name=Filename["current_dir_name"];
 
-var current_dir_name=include[1];
+var parent_dir_name=Filename["parent_dir_name"];
 
-var parent_dir_name=include[2];
+var is_relative=Filename["is_relative"];
 
-var is_relative=include[5];
+var is_implicit=Filename["is_implicit"];
 
-var is_implicit=include[6];
+var chop_extension=Filename["chop_extension"];
 
-var chop_extension=include[9];
+var basename=Filename["basename"];
 
-var basename=include[10];
-
-var dirname=include[11];
+var dirname=Filename["dirname"];
 
 var print_strings=My_std["List"][1](My_std["String"][1]);
 

@@ -1208,7 +1208,7 @@ var
            var exit;
            
            if(typeof match$2==="number")
-            {switch(match$2){}}
+            {switch(match$2){default:exit=75;}}
            else
             {switch(match$2[0])
               {case 1:
@@ -1711,17 +1711,18 @@ var
             function(lexbuf)
              {var match=Parser["identifier_eol"](Lexer["lexeme"],lexbuf);
               
+              var argument;
               var exit;
               
               switch(match)
                {case "of":exit=28;break;
                 case "off":exit=28;break;
-                case "on":var argument=/* true */1;break;
+                case "on":argument=/* true */1;break;
                 default:exit=29;}
               
               switch(exit)
-               {case 29:var argument=error("Syntax error.");break;
-                case 28:var argument=/* false */0;break
+               {case 29:argument=error("Syntax error.");break;
+                case 28:argument=/* false */0;break
                 }
               
               return !kill||Program_management["ask_kill_program"](/* () */0)
@@ -1812,14 +1813,15 @@ var
    function(lexbuf)
     {var match=Parser["identifier_eol"](Lexer["lexeme"],lexbuf);
      
+     var mode;
      var exit;
      
      switch(match)
-      {case "child":var mode=/* Fork_child */0;break;
-       case "parent":var mode=/* Fork_parent */1;break;
+      {case "child":mode=/* Fork_child */0;break;
+       case "parent":mode=/* Fork_parent */1;break;
        default:exit=22;}
      
-     switch(exit){case 22:var mode=error("Syntax error.");break}
+     switch(exit){case 22:mode=error("Syntax error.");break}
      
      Debugcom["fork_mode"][1]=mode;
      return Program_management["loaded"][1]

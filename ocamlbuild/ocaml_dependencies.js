@@ -196,20 +196,20 @@ var
      caml_transitive_closure=
       function
        ($staropt$star,
-        $staropt$star,
-        $staropt$star,
-        $staropt$star,
-        $staropt$star,
+        $staropt$star$1,
+        $staropt$star$2,
+        $staropt$star$3,
+        $staropt$star$4,
         fns)
-       {var caml_obj_ext=$staropt$star$1?$staropt$star$1[1]:"cmo";
+       {var caml_obj_ext=$staropt$star?$staropt$star[1]:"cmo";
         
-        var caml_lib_ext=$staropt$star$2?$staropt$star$2[1]:"cma";
+        var caml_lib_ext=$staropt$star$1?$staropt$star$1[1]:"cma";
         
-        var pack_mode=$staropt$star$3?$staropt$star$3[1]:/* false */0;
+        var pack_mode=$staropt$star$2?$staropt$star$2[1]:/* false */0;
         
-        var used_libraries=$staropt$star$4?$staropt$star$4[1]:/* [] */0;
+        var used_libraries=$staropt$star$3?$staropt$star$3[1]:/* [] */0;
         
-        var hidden_packages=$staropt$star?$staropt$star[1]:/* [] */0;
+        var hidden_packages=$staropt$star$4?$staropt$star$4[1]:/* [] */0;
         
         var
          valid_link_exts=

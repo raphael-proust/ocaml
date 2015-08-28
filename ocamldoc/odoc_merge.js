@@ -1,5 +1,6 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
+var Odoc_name=require("./odoc_name.js");
 var Odoc_global=require("./odoc_global.js");
 var Odoc_class=require("./odoc_class.js");
 var Odoc_value=require("./odoc_value.js");
@@ -58,9 +59,10 @@ var
     
     var match$1=m2[1];
     
-    var exit;
-    
     var new_desc_opt;
+    var exit;
+    var d;
+    
     if(match)
      {var d1=match[1];
       
@@ -72,28 +74,28 @@ var
          :/* Some */[0,d1];
         }
       else
-       {var d=d1;exit=152;}
+       {d=d1;exit=152;}
       }
     else
-     {if(match$1){var d=match$1[1];exit=152;}else{new_desc_opt=/* None */0;}}
+     {if(match$1){d=match$1[1];exit=152;}else{new_desc_opt=/* None */0;}}
     
-    switch(exit){case 152:var new_desc_opt=/* Some */[0,d];break}
+    switch(exit){case 152:new_desc_opt=/* Some */[0,d];break}
     
     var match$2=m1[2];
     
     var match$3=m2[2];
     
-    var exit$1;
-    
     var new_authors;
+    var exit$1;
+    var l;
+    
     if(match$2)
-     {if(match$3){exit$1=149;}else{var l=match$2;exit$1=147;}}
+     {if(match$3){exit$1=149;}else{l=match$2;exit$1=147;}}
     else
      {if(match$3){exit$1=149;}else{new_authors=/* [] */0;}}
     
     switch(exit$1)
      {case 149:
-       var new_authors;
        if(match$2)
         {new_authors=
          List["mem"](/* Merge_author */1,merge_options)
@@ -101,18 +103,19 @@ var
           :match$2;
          }
        else
-        {var l=match$3;exit$1=147;}
+        {l=match$3;exit$1=147;}
        break;
-      case 147:var new_authors=l;break
+      case 147:new_authors=l;break
       }
     
     var match$4=m1[3];
     
     var match$5=m2[3];
     
-    var exit$2;
-    
     var new_version;
+    var exit$2;
+    var v;
+    
     if(match$4)
      {var v1=match$4[1];
       
@@ -123,28 +126,28 @@ var
          :/* Some */[0,v1];
         }
       else
-       {var v=v1;exit$2=145;}
+       {v=v1;exit$2=145;}
       }
     else
-     {if(match$5){var v=match$5[1];exit$2=145;}else{new_version=/* None */0;}}
+     {if(match$5){v=match$5[1];exit$2=145;}else{new_version=/* None */0;}}
     
-    switch(exit$2){case 145:var new_version=/* Some */[0,v];break}
+    switch(exit$2){case 145:new_version=/* Some */[0,v];break}
     
     var match$6=m1[4];
     
     var match$7=m2[4];
     
-    var exit$3;
-    
     var new_sees;
+    var exit$3;
+    var l$1;
+    
     if(match$6)
-     {if(match$7){exit$3=142;}else{var l$1=match$6;exit$3=140;}}
+     {if(match$7){exit$3=142;}else{l$1=match$6;exit$3=140;}}
     else
      {if(match$7){exit$3=142;}else{new_sees=/* [] */0;}}
     
     switch(exit$3)
      {case 142:
-       var new_sees;
        if(match$6)
         {new_sees=
          List["mem"](/* Merge_see */3,merge_options)
@@ -152,18 +155,19 @@ var
           :match$6;
          }
        else
-        {var l$1=match$7;exit$3=140;}
+        {l$1=match$7;exit$3=140;}
        break;
-      case 140:var new_sees=l$1;break
+      case 140:new_sees=l$1;break
       }
     
     var match$8=m1[5];
     
     var match$9=m2[5];
     
-    var exit$4;
-    
     var new_since;
+    var exit$4;
+    var v$1;
+    
     if(match$8)
      {var v1$1=match$8[1];
       
@@ -174,28 +178,28 @@ var
          :/* Some */[0,v1$1];
         }
       else
-       {var v$1=v1$1;exit$4=138;}
+       {v$1=v1$1;exit$4=138;}
       }
     else
-     {if(match$9){var v$1=match$9[1];exit$4=138;}else{new_since=/* None */0;}}
+     {if(match$9){v$1=match$9[1];exit$4=138;}else{new_since=/* None */0;}}
     
-    switch(exit$4){case 138:var new_since=/* Some */[0,v$1];break}
+    switch(exit$4){case 138:new_since=/* Some */[0,v$1];break}
     
     var match$10=m1[6];
     
     var match$11=m2[6];
     
-    var exit$5;
-    
     var new_before;
+    var exit$5;
+    var l$2;
+    
     if(match$10)
-     {if(match$11){exit$5=135;}else{var l$2=match$10;exit$5=133;}}
+     {if(match$11){exit$5=135;}else{l$2=match$10;exit$5=133;}}
     else
      {if(match$11){exit$5=135;}else{new_before=/* [] */0;}}
     
     switch(exit$5)
      {case 135:
-       var new_before;
        if(match$10)
         {new_before=
          List["mem"](/* Merge_before */5,merge_options)
@@ -203,9 +207,9 @@ var
           :match$10;
          }
        else
-        {var l$2=match$11;exit$5=133;}
+        {l$2=match$11;exit$5=133;}
        break;
-      case 133:var new_before=l$2;break
+      case 133:new_before=l$2;break
       }
     
     var
@@ -236,9 +240,10 @@ var
     
     var match$13=m2[7];
     
-    var exit$6;
-    
     var new_dep;
+    var exit$6;
+    var t;
+    
     if(match$12)
      {var t1=match$12[1];
       
@@ -250,28 +255,28 @@ var
          :/* Some */[0,t1];
         }
       else
-       {var t=t1;exit$6=128;}
+       {t=t1;exit$6=128;}
       }
     else
-     {if(match$13){var t=match$13[1];exit$6=128;}else{new_dep=/* None */0;}}
+     {if(match$13){t=match$13[1];exit$6=128;}else{new_dep=/* None */0;}}
     
-    switch(exit$6){case 128:var new_dep=/* Some */[0,t];break}
+    switch(exit$6){case 128:new_dep=/* Some */[0,t];break}
     
     var match$14=m1[8];
     
     var match$15=m2[8];
     
-    var exit$7;
-    
     var new_params;
+    var exit$7;
+    var l$3;
+    
     if(match$14)
-     {if(match$15){exit$7=125;}else{var l$3=match$14;exit$7=123;}}
+     {if(match$15){exit$7=125;}else{l$3=match$14;exit$7=123;}}
     else
      {if(match$15){exit$7=125;}else{new_params=/* [] */0;}}
     
     switch(exit$7)
      {case 125:
-       var new_params;
        if(match$14)
         {if(List["mem"](/* Merge_param */7,merge_options))
           {var
@@ -308,26 +313,26 @@ var
           {new_params=match$14;}
          }
        else
-        {var l$3=match$15;exit$7=123;}
+        {l$3=match$15;exit$7=123;}
        break;
-      case 123:var new_params=l$3;break
+      case 123:new_params=l$3;break
       }
     
     var match$17=m1[9];
     
     var match$18=m2[9];
     
-    var exit$8;
-    
     var new_raised_exceptions;
+    var exit$8;
+    var l$4;
+    
     if(match$17)
-     {if(match$18){exit$8=117;}else{var l$4=match$17;exit$8=115;}}
+     {if(match$18){exit$8=117;}else{l$4=match$17;exit$8=115;}}
     else
      {if(match$18){exit$8=117;}else{new_raised_exceptions=/* [] */0;}}
     
     switch(exit$8)
      {case 117:
-       var new_raised_exceptions;
        if(match$17)
         {if(List["mem"](/* Merge_raised_exception */8,merge_options))
           {var
@@ -364,18 +369,19 @@ var
           {new_raised_exceptions=match$17;}
          }
        else
-        {var l$4=match$18;exit$8=115;}
+        {l$4=match$18;exit$8=115;}
        break;
-      case 115:var new_raised_exceptions=l$4;break
+      case 115:new_raised_exceptions=l$4;break
       }
     
     var match$20=m1[10];
     
     var match$21=m2[10];
     
-    var exit$9;
-    
     var new_rv;
+    var exit$9;
+    var t$1;
+    
     if(match$20)
      {var t1$1=match$20[1];
       
@@ -387,20 +393,21 @@ var
          :/* Some */[0,t1$1];
         }
       else
-       {var t$1=t1$1;exit$9=110;}
+       {t$1=t1$1;exit$9=110;}
       }
     else
-     {if(match$21){var t$1=match$21[1];exit$9=110;}else{new_rv=/* None */0;}}
+     {if(match$21){t$1=match$21[1];exit$9=110;}else{new_rv=/* None */0;}}
     
-    switch(exit$9){case 110:var new_rv=/* Some */[0,t$1];break}
+    switch(exit$9){case 110:new_rv=/* Some */[0,t$1];break}
     
     var match$22=m1[11];
     
     var match$23=m2[11];
     
-    var exit$10;
-    
     var new_custom;
+    var exit$10;
+    var l$5;
+    
     if(match$22)
      {if(match$23)
        {new_custom=
@@ -409,12 +416,12 @@ var
          :match$22;
         }
       else
-       {var l$5=match$22;exit$10=105;}
+       {l$5=match$22;exit$10=105;}
       }
     else
-     {if(match$23){var l$5=match$23;exit$10=105;}else{new_custom=/* [] */0;}}
+     {if(match$23){l$5=match$23;exit$10=105;}else{new_custom=/* [] */0;}}
     
-    switch(exit$10){case 105:var new_custom=l$5;break}
+    switch(exit$10){case 105:new_custom=l$5;break}
     
     return /* record */[0,
             new_desc_opt,
@@ -472,7 +479,7 @@ var
      {switch(match$1[0])
        {case 0:
          if(typeof match$2==="number")
-          {switch(match$2){}}
+          {switch(match$2){default:exit=101;}}
          else
           {switch(match$2[0])
             {case 0:
@@ -493,9 +500,10 @@ var
                     
                     var match$4=cons2[4];
                     
-                    var exit$1;
-                    
                     var new_desc;
+                    var exit$1;
+                    var d;
+                    
                     if(match$3)
                      {var d1=match$3[1];
                       
@@ -506,16 +514,16 @@ var
                          :/* Some */[0,d1];
                         }
                       else
-                       {var d=d1;exit$1=92;}
+                       {d=d1;exit$1=92;}
                       }
                     else
                      {if(match$4)
-                       {var d=match$4[1];exit$1=92;}
+                       {d=match$4[1];exit$1=92;}
                       else
                        {new_desc=/* None */0;}
                       }
                     
-                    switch(exit$1){case 92:var new_desc=/* Some */[0,d];break}
+                    switch(exit$1){case 92:new_desc=/* Some */[0,d];break}
                     
                     return cons[4]=new_desc,0}
                   catch(exn)
@@ -537,7 +545,7 @@ var
          break;
         case 1:
          if(typeof match$2==="number")
-          {switch(match$2){}}
+          {switch(match$2){default:exit=101;}}
          else
           {switch(match$2[0])
             {case 1:
@@ -558,9 +566,10 @@ var
                     
                     var match$4=record2[4];
                     
-                    var exit$1;
-                    
                     var new_desc;
+                    var exit$1;
+                    var d;
+                    
                     if(match$3)
                      {var d1=match$3[1];
                       
@@ -571,16 +580,16 @@ var
                          :/* Some */[0,d1];
                         }
                       else
-                       {var d=d1;exit$1=97;}
+                       {d=d1;exit$1=97;}
                       }
                     else
                      {if(match$4)
-                       {var d=match$4[1];exit$1=97;}
+                       {d=match$4[1];exit$1=97;}
                       else
                        {new_desc=/* None */0;}
                       }
                     
-                    switch(exit$1){case 97:var new_desc=/* Some */[0,d];break}
+                    switch(exit$1){case 97:new_desc=/* Some */[0,d];break}
                     
                     return record[4]=new_desc,0}
                   catch(exn)
@@ -632,9 +641,10 @@ var
     
     var match$1=ml[7];
     
-    var exit;
-    
     var new_desc;
+    var exit;
+    var d;
+    
     if(match)
      {var d1=match[1];
       
@@ -645,12 +655,12 @@ var
          :/* Some */[0,d1];
         }
       else
-       {var d=d1;exit=86;}
+       {d=d1;exit=86;}
       }
     else
-     {if(match$1){var d=match$1[1];exit=86;}else{new_desc=/* None */0;}}
+     {if(match$1){d=match$1[1];exit=86;}else{new_desc=/* None */0;}}
     
-    switch(exit){case 86:var new_desc=/* Some */[0,d];break}
+    switch(exit){case 86:new_desc=/* Some */[0,d];break}
     
     return mli[7]=new_desc,0};
 
@@ -699,6 +709,7 @@ var
  merge_parameters=
   function(param_mli,param_ml)
    {var exit;
+    var l;
     
     if(param_mli)
      {if(param_ml)
@@ -706,10 +717,10 @@ var
                 merge_param_info(param_mli[1],param_ml[1]),
                 merge_parameters(param_mli[2],param_ml[2])]}
       else
-       {var l=param_mli;exit=82;}
+       {l=param_mli;exit=82;}
       }
     else
-     {if(param_ml){var l=param_ml;exit=82;}else{return /* [] */0}}
+     {if(param_ml){l=param_ml;exit=82;}else{return /* [] */0}}
     
     switch(exit){case 82:return l}
     };

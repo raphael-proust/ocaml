@@ -5,8 +5,6 @@ var Format=require("./format.js");
 var Set=require("./set.js");
 
 
-var $$let=$$String;
-
 var include=Set["Make"]([0,$$let[25]]);
 
 var empty=include[1];

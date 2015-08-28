@@ -27,8 +27,8 @@ var Location=require("./location.js");
 var Pparse=require("./pparse.js");
 var Config=require("./config.js");
 var Odoc_ast=require("./odoc_ast.js");
-var Odoc_messages=require("./odoc_messages.js");
 var CamlPrimitive=require("./camlPrimitive.js");
+var Odoc_messages=require("./odoc_messages.js");
 
 
 var
@@ -228,15 +228,16 @@ var
  process_file=
   function(ppf,sourcefile)
    {if(Odoc_global["verbose"][1])
-     {var exit;
+     {var f;
+      var exit;
       
       switch(sourcefile[0])
        {case 0:exit=50;break;
         case 1:exit=50;break;
-        case 2:var f=sourcefile[1];break
+        case 2:f=sourcefile[1];break
         }
       
-      switch(exit){case 50:var f=sourcefile[1];break}
+      switch(exit){case 50:f=sourcefile[1];break}
       
       Format["print_string"](Odoc_messages["analysing"](f)),
       Format["print_newline"](/* () */0)}
@@ -273,12 +274,13 @@ var
          }
        catch(e)
         {var exit$1;
+         var s;
          
          if(e[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
-          {var s=e[2];exit$1=28;}
+          {s=e[2];exit$1=28;}
          else
           {if(e[1]===CamlPrimitive["caml_global_data"]["Failure"])
-            {var s=e[2];exit$1=28;}
+            {s=e[2];exit$1=28;}
            else
             {process_error(e);Odoc_global["errors"][0]++;return /* None */0}
            }
@@ -314,12 +316,13 @@ var
          return /* Some */[0,file_module$1]}
        catch(e$1)
         {var exit$2;
+         var s$1;
          
          if(e$1[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
-          {var s$1=e$1[2];exit$2=34;}
+          {s$1=e$1[2];exit$2=34;}
          else
           {if(e$1[1]===CamlPrimitive["caml_global_data"]["Failure"])
-            {var s$1=e$1[2];exit$2=34;}
+            {s$1=e$1[2];exit$2=34;}
            else
             {process_error(e$1);Odoc_global["errors"][0]++;return /* None */0}
            }
@@ -378,12 +381,13 @@ var
          return /* Some */[0,m]}
        catch(e$2)
         {var exit$3;
+         var s$3;
          
          if(e$2[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
-          {var s$3=e$2[2];exit$3=40;}
+          {s$3=e$2[2];exit$3=40;}
          else
           {if(e$2[1]===CamlPrimitive["caml_global_data"]["Failure"])
-            {var s$3=e$2[2];exit$3=40;}
+            {s$3=e$2[2];exit$3=40;}
            else
             {process_error(e$2);Odoc_global["errors"][0]++;return /* None */0}
            }
@@ -419,7 +423,7 @@ var
           {var match$1=match[1];
            
            if(typeof match$1==="number")
-            {switch(match$1){}}
+            {switch(match$1){default:exit=25;}}
            else
             {switch(match$1[0])
               {case 0:
@@ -547,7 +551,7 @@ var
           {var match$1=match[1];
            
            if(typeof match$1==="number")
-            {switch(match$1){}}
+            {switch(match$1){default:exit=20;}}
            else
             {switch(match$1[0])
               {case 0:

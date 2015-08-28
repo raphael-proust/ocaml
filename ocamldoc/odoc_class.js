@@ -1,8 +1,10 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
+var Odoc_name=require("./odoc_name.js");
 var List=require("./list.js");
 var Pervasives=require("./pervasives.js");
 var Odoc_parameter=require("./odoc_parameter.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 

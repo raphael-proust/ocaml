@@ -137,7 +137,7 @@ var
            
            var $js;
            if(typeof match$3==="number")
-            {switch(match$3){}}
+            {switch(match$3){default:exit$1=6;}}
            else
             {switch(match$3[0])
               {case 1:
@@ -191,7 +191,7 @@ var
          var exit$2;
          
          if(typeof match$6==="number")
-          {switch(match$6){}}
+          {switch(match$6){default:exit$2=12;}}
          else
           {switch(match$6[0])
             {case 2:
@@ -276,7 +276,7 @@ var
          var exit$3;
          
          if(typeof match$9==="number")
-          {switch(match$9){}}
+          {switch(match$9){default:exit$3=17;}}
          else
           {switch(match$9[0])
             {case 3:
@@ -289,7 +289,7 @@ var
               var exit$4;
               
               if(typeof match$10==="number")
-               {switch(match$10){}}
+               {switch(match$10){default:exit$4=15;}}
               else
                {switch(match$10[0])
                  {case 0:

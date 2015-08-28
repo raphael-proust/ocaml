@@ -1,9 +1,11 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
+var Odoc_name=require("./odoc_name.js");
 var Odoc_value=require("./odoc_value.js");
 var List=require("./list.js");
 var Pervasives=require("./pervasives.js");
 var Odoc_types=require("./odoc_types.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 
@@ -148,6 +150,7 @@ var
      iter_kind=
       function(param)
        {var exit;
+        var k;
         
         switch(param[0])
          {case 0:return param[1];
@@ -169,8 +172,8 @@ var
            else
             {return /* [] */0}
            break;
-          case 2:var k=param[2];exit=66;break;
-          case 3:var k=param[1];exit=66;break;
+          case 2:k=param[2];exit=66;break;
+          case 3:k=param[1];exit=66;break;
           case 4:
            return module_type_elements
                    (/* Some */[0,trans],

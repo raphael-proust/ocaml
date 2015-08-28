@@ -80,7 +80,7 @@ var
        {var match=exn[2];
         
         if(typeof match==="number")
-         {switch(match){}}
+         {switch(match){default:exit=26;}}
         else
          {switch(match[0])
            {case 2:

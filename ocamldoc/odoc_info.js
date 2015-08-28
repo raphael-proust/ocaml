@@ -2,7 +2,10 @@
 
 var Odoc_name=require("./odoc_name.js");
 var Odoc_global=require("./odoc_global.js");
+var Odoc_class=require("./odoc_class.js");
+var Odoc_type=require("./odoc_type.js");
 var Odoc_dep=require("./odoc_dep.js");
+var Odoc_value=require("./odoc_value.js");
 var Printtyp=require("./printtyp.js");
 var Pervasives=require("./pervasives.js");
 var List=require("./list.js");
@@ -11,26 +14,17 @@ var Odoc_search=require("./odoc_search.js");
 var Printf=require("./printf.js");
 var Odoc_str=require("./odoc_str.js");
 var Odoc_analyse=require("./odoc_analyse.js");
+var Odoc_exception=require("./odoc_exception.js");
 var Odoc_extension=require("./odoc_extension.js");
 var Odoc_print=require("./odoc_print.js");
 var Buffer=require("./buffer.js");
 var Odoc_config=require("./odoc_config.js");
+var Odoc_module=require("./odoc_module.js");
 var Odoc_misc=require("./odoc_misc.js");
 var Odoc_text=require("./odoc_text.js");
 var Odoc_scan=require("./odoc_scan.js");
+var Odoc_parameter=require("./odoc_parameter.js");
 var CamlPrimitive=require("./camlPrimitive.js");
-
-var $$let=Odoc_name;
-
-var $$let$1=Odoc_parameter;
-
-var $$let$2=Odoc_value;
-
-var $$let$3=Odoc_class;
-
-var $$let$4=Odoc_module;
-
-var $$let$5=Odoc_global;
 
 
 
@@ -42,23 +36,23 @@ var
  analyse_files=
   function
    ($staropt$star,
-    $staropt$star,
-    $staropt$star,
-    $staropt$star,
-    $staropt$star,
-    $staropt$star,
+    $staropt$star$1,
+    $staropt$star$2,
+    $staropt$star$3,
+    $staropt$star$4,
+    $staropt$star$5,
     files)
-   {var merge_options=$staropt$star$1?$staropt$star$1[1]:/* [] */0;
+   {var merge_options=$staropt$star?$staropt$star[1]:/* [] */0;
     
-    var include_dirs=$staropt$star$2?$staropt$star$2[1]:/* [] */0;
+    var include_dirs=$staropt$star$1?$staropt$star$1[1]:/* [] */0;
     
-    var labels=$staropt$star$3?$staropt$star$3[1]:/* false */0;
+    var labels=$staropt$star$2?$staropt$star$2[1]:/* false */0;
     
-    var sort_modules=$staropt$star$4?$staropt$star$4[1]:/* false */0;
+    var sort_modules=$staropt$star$3?$staropt$star$3[1]:/* false */0;
     
-    var no_stop=$staropt$star$5?$staropt$star$5[1]:/* false */0;
+    var no_stop=$staropt$star$4?$staropt$star$4[1]:/* false */0;
     
-    var init=$staropt$star?$staropt$star[1]:/* [] */0;
+    var init=$staropt$star$5?$staropt$star$5[1]:/* [] */0;
     
     Odoc_global["merge_options"][1]=merge_options;
     Odoc_global["include_dirs"][1]=include_dirs;
@@ -460,57 +454,70 @@ var Dep=[0,kernel_deps_of_modules,deps_of_types];
 module["exports"]=
 {"Text_syntax":Text_syntax,
  "dummy_loc":dummy_loc,
- "Name":[0,$$let[2],$$let[4],$$let[7],$$let[9],$$let[3]],
- "Parameter":[0,$$let$1[1],$$let$1[2],$$let$1[5],$$let$1[4],$$let$1[6]],
+ "Name":
+ [0,
+  Odoc_name["simple"],
+  Odoc_name["concat"],
+  Odoc_name["depth"],
+  Odoc_name["get_relative"],
+  Odoc_name["father"]],
+ "Parameter":
+ [0,
+  Odoc_parameter["complete_name"],
+  Odoc_parameter["typ"],
+  Odoc_parameter["names"],
+  Odoc_parameter["desc_by_name"],
+  Odoc_parameter["type_by_name"]],
  "Extension":[0,Odoc_extension["extension_constructors"]],
  "Exception":[0],
  "Type":[0],
- "Value":[0,$$let$2[6],$$let$2[2]],
+ "Value":
+ [0,Odoc_value["is_function"],Odoc_value["value_parameter_text_by_name"]],
  "Class":
  [0,
-  $$let$3[3],
-  $$let$3[5],
-  $$let$3[2],
-  $$let$3[6],
-  $$let$3[7],
-  $$let$3[4],
-  $$let$3[9],
-  $$let$3[12],
-  $$let$3[10],
-  $$let$3[11]],
+  Odoc_class["class_elements"],
+  Odoc_class["class_attributes"],
+  Odoc_class["class_parameter_text_by_name"],
+  Odoc_class["class_methods"],
+  Odoc_class["class_comments"],
+  Odoc_class["class_type_elements"],
+  Odoc_class["class_type_attributes"],
+  Odoc_class["class_type_parameter_text_by_name"],
+  Odoc_class["class_type_methods"],
+  Odoc_class["class_type_comments"]],
  "Module":
  [0,
-  $$let$4[12],
-  $$let$4[22],
-  $$let$4[23],
-  $$let$4[24],
-  $$let$4[18],
-  $$let$4[19],
-  $$let$4[17],
-  $$let$4[14],
-  $$let$4[15],
-  $$let$4[16],
-  $$let$4[20],
-  $$let$4[21],
-  $$let$4[43],
-  $$let$4[30],
-  $$let$4[27],
-  $$let$4[25],
-  $$let$4[13],
-  $$let$4[37],
-  $$let$4[38],
-  $$let$4[39],
-  $$let$4[34],
-  $$let$4[32],
-  $$let$4[31],
-  $$let$4[41],
-  $$let$4[42],
-  $$let$4[35],
-  $$let$4[36],
-  $$let$4[44],
-  $$let$4[29],
-  $$let$4[26],
-  $$let$4[40]],
+  Odoc_module["module_elements"],
+  Odoc_module["module_modules"],
+  Odoc_module["module_module_types"],
+  Odoc_module["module_included_modules"],
+  Odoc_module["module_type_extensions"],
+  Odoc_module["module_exceptions"],
+  Odoc_module["module_types"],
+  Odoc_module["module_values"],
+  Odoc_module["module_functions"],
+  Odoc_module["module_simple_values"],
+  Odoc_module["module_classes"],
+  Odoc_module["module_class_types"],
+  Odoc_module["module_all_classes"],
+  Odoc_module["module_is_functor"],
+  Odoc_module["module_parameters"],
+  Odoc_module["module_comments"],
+  Odoc_module["module_type_elements"],
+  Odoc_module["module_type_modules"],
+  Odoc_module["module_type_module_types"],
+  Odoc_module["module_type_included_modules"],
+  Odoc_module["module_type_exceptions"],
+  Odoc_module["module_type_types"],
+  Odoc_module["module_type_values"],
+  Odoc_module["module_type_functions"],
+  Odoc_module["module_type_simple_values"],
+  Odoc_module["module_type_classes"],
+  Odoc_module["module_type_class_types"],
+  Odoc_module["module_type_all_classes"],
+  Odoc_module["module_type_is_functor"],
+  Odoc_module["module_type_parameters"],
+  Odoc_module["module_type_comments"]],
  "reset_type_names":reset_type_names,
  "string_of_variance":string_of_variance,
  "string_of_type_expr":string_of_type_expr,
@@ -556,17 +563,17 @@ module["exports"]=
  "Dep":Dep,
  "Global":
  [0,
-  $$let$5[15],
-  $$let$5[16],
-  $$let$5[18],
-  $$let$5[19],
-  $$let$5[22],
-  $$let$5[21],
-  $$let$5[20],
-  $$let$5[23],
-  $$let$5[24],
-  $$let$5[25],
-  $$let$5[26]],
+  Odoc_global["errors"],
+  Odoc_global["warn_error"],
+  Odoc_global["out_file"],
+  Odoc_global["verbose"],
+  Odoc_global["target_dir"],
+  Odoc_global["title"],
+  Odoc_global["intro_file"],
+  Odoc_global["with_toc"],
+  Odoc_global["with_index"],
+  Odoc_global["with_header"],
+  Odoc_global["with_trailer"]],
  "analyse_files":analyse_files,
  "dump_modules":dump_modules,
  "load_modules":load_modules};

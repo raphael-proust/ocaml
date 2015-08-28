@@ -209,7 +209,10 @@ var
       
       if(typeof r==="number")
        {switch(r)
-         {case 0:exit=136;break;case 1:exit=136;break;case 2:exit=136;break}}
+         {case 0:exit=136;break;
+          case 1:exit=136;break;
+          case 2:exit=136;break;
+          default:return first(r)}}
       else
        {switch(r[0])
          {case 5:return Charset[7](first(r[1]),first_seq(param[2]));
@@ -225,14 +228,15 @@ var
 var
  charclass_of_regexp=
   function(fold_case,re)
-   {var exit;
+   {var match;
+    var exit;
     
     if(typeof re==="number")
-     {switch(re){}}
+     {switch(re){default:exit=133;}}
     else
      {switch(re[0])
-       {case 0:var match=/* tuple */[0,Charset[5](re[1]),/* false */0];break;
-        case 2:var match=/* tuple */[0,re[1],re[2]];break;
+       {case 0:match=/* tuple */[0,Charset[5](re[1]),/* false */0];break;
+        case 2:match=/* tuple */[0,re[1],re[2]];break;
         default:exit=133;}}
     
     switch(exit)
@@ -465,7 +469,7 @@ var
           var exit;
           
           if(typeof r==="number")
-           {switch(r){}}
+           {switch(r){default:exit=107;}}
           else
            {switch(r[0])
              {case 5:
@@ -474,7 +478,7 @@ var
                var exit$1;
                
                if(typeof r$1==="number")
-                {switch(r$1){}}
+                {switch(r$1){default:exit=107;}}
                else
                 {switch(r$1[0])
                   {case 0:exit$1=108;break;
@@ -501,7 +505,7 @@ var
                var exit$2;
                
                if(typeof r$2==="number")
-                {switch(r$2){}}
+                {switch(r$2){default:exit=107;}}
                else
                 {switch(r$2[0])
                   {case 0:exit$2=109;break;
@@ -528,7 +532,7 @@ var
                var exit$3;
                
                if(typeof r$3==="number")
-                {switch(r$3){}}
+                {switch(r$3){default:exit=107;}}
                else
                 {switch(r$3[0])
                   {case 0:exit$3=110;break;
@@ -612,7 +616,7 @@ var
    {var exit;
     
     if(typeof re==="number")
-     {switch(re){}}
+     {switch(re){default:exit=79;}}
     else
      {switch(re[0])
        {case 0:return Buffer["add_char"](buf[1],re[1]);default:exit=79;}}

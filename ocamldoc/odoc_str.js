@@ -44,7 +44,7 @@ var
     var exit;
     
     if(typeof match==="number")
-     {switch(match){}}
+     {switch(match){default:exit=50;}}
     else
      {switch(match[0])
        {case 1:return /* true */1;
@@ -71,7 +71,7 @@ var
         var exit;
         
         if(typeof match==="number")
-         {switch(match){}}
+         {switch(match){default:exit=44;}}
         else
          {switch(match[0])
            {case 1:exit=42;break;
@@ -197,12 +197,12 @@ var
   function(t)
    {var match=t[3];
     
+    var par;
     var exit;
     
-    var par;
     if(match){if(match[2]){par=/* true */1;}else{exit=32;}}else{exit=32;}
     
-    switch(exit){case 32:var par=/* false */0;break}
+    switch(exit){case 32:par=/* false */0;break}
     
     return Printf["sprintf"]
             ([/* Format */0,
@@ -228,12 +228,12 @@ var
   function(te)
    {var match=te[3];
     
+    var par;
     var exit;
     
-    var par;
     if(match){if(match[2]){par=/* true */1;}else{exit=28;}}else{exit=28;}
     
-    switch(exit){case 28:var par=/* false */0;break}
+    switch(exit){case 28:par=/* false */0;break}
     
     return Printf["sprintf"]
             ([/* Format */0,
@@ -252,12 +252,12 @@ var
 var
  string_of_class_type_param_list=
   function(l)
-   {var exit;
+   {var par;
+    var exit;
     
-    var par;
     if(l){if(l[2]){par=/* true */1;}else{exit=24;}}else{exit=24;}
     
-    switch(exit){case 24:var par=/* false */0;break}
+    switch(exit){case 24:par=/* false */0;break}
     
     return Printf["sprintf"]
             ([/* Format */0,
@@ -330,11 +330,7 @@ var
 var
  string_of_type=
   function(t)
-   {var M=Odoc_type;
-    
-    var P=Printf;
-    
-    var
+   {var
      field_doc_str=
       function(param)
        {return param
@@ -423,139 +419,136 @@ var
     
     var match$2=t[4];
     
+    var type_kind_str;
     if(typeof match$2==="number")
      {switch(match$2)
-       {case 0:var type_kind_str="";break;
-        case 1:var type_kind_str="= ..";break
-        }}
+       {case 0:type_kind_str="";break;case 1:type_kind_str="= ..";break}}
     else
      {switch(match$2[0])
        {case 0:
-         var
-          type_kind_str=
-           P[4]
-            ([/* Format */0,
+         type_kind_str=
+         P[4]
+          ([/* Format */0,
+            [/* Char_literal */12,
+             61,
+             [/* String */2,
+              /* No_padding */0,
               [/* Char_literal */12,
-               61,
+               10,
                [/* String */2,
                 /* No_padding */0,
-                [/* Char_literal */12,
-                 10,
-                 [/* String */2,
-                  /* No_padding */0,
-                  [/* Char_literal */12,10,/* End_of_format */0]]]]],
-              "=%s\n%s\n"],
-             priv?" private":"",
-             $$String["concat"]
-              ("\n",
-               List["map"]
-                (function(cons)
-                  {var match$3=cons[4];
-                   
-                   var
-                    comment=
-                     match$3
-                      ?P[4]
-                        ([/* Format */0,
-                          [/* String_literal */11,
-                           "(* ",
-                           [/* String */2,
-                            /* No_padding */0,
-                            [/* String_literal */11," *)",/* End_of_format */0]]],
-                          "(* %s *)"],
-                         Odoc_misc["string_of_info"](match$3[1]))
-                      :"";
-                   
-                   var
-                    string_of_parameters=
-                     function(lst)
-                      {return $$String["concat"]
-                               (" * ",
-                                List["map"]
-                                 (function(t)
-                                   {return Pervasives["^"]
-                                            ("(",
-                                             Pervasives["^"](Odoc_print["string_of_type_expr"](t),")"))},
-                                  lst))};
-                   
-                   var match$4=cons[2];
-                   
-                   var match$5=cons[3];
-                   
-                   return P[4]
-                           ([/* Format */0,
-                             [/* String_literal */11,
-                              "  | ",
-                              [/* String */2,
-                               /* No_padding */0,
-                               [/* String */2,
-                                /* No_padding */0,
-                                [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
-                             "  | %s%s%s"],
-                            cons[1],
-                            match$4
-                             ?match$5
-                               ?P[4]
-                                 ([/* Format */0,
+                [/* Char_literal */12,10,/* End_of_format */0]]]]],
+            "=%s\n%s\n"],
+           priv?" private":"",
+           $$String["concat"]
+            ("\n",
+             List["map"]
+              (function(cons)
+                {var match$3=cons[4];
+                 
+                 var
+                  comment=
+                   match$3
+                    ?P[4]
+                      ([/* Format */0,
+                        [/* String_literal */11,
+                         "(* ",
+                         [/* String */2,
+                          /* No_padding */0,
+                          [/* String_literal */11," *)",/* End_of_format */0]]],
+                        "(* %s *)"],
+                       Odoc_misc["string_of_info"](match$3[1]))
+                    :"";
+                 
+                 var
+                  string_of_parameters=
+                   function(lst)
+                    {return $$String["concat"]
+                             (" * ",
+                              List["map"]
+                               (function(t)
+                                 {return Pervasives["^"]
+                                          ("(",
+                                           Pervasives["^"](Odoc_print["string_of_type_expr"](t),")"))},
+                                lst))};
+                 
+                 var match$4=cons[2];
+                 
+                 var match$5=cons[3];
+                 
+                 return P[4]
+                         ([/* Format */0,
+                           [/* String_literal */11,
+                            "  | ",
+                            [/* String */2,
+                             /* No_padding */0,
+                             [/* String */2,
+                              /* No_padding */0,
+                              [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
+                           "  | %s%s%s"],
+                          cons[1],
+                          match$4
+                           ?match$5
+                             ?P[4]
+                               ([/* Format */0,
+                                 [/* String_literal */11,
+                                  " : ",
+                                  [/* String */2,
+                                   /* No_padding */0,
                                    [/* String_literal */11,
-                                    " : ",
-                                    [/* String */2,
-                                     /* No_padding */0,
-                                     [/* String_literal */11,
-                                      " -> ",
-                                      [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
-                                   " : %s -> %s"],
-                                  string_of_parameters(match$4),
-                                  Odoc_print["string_of_type_expr"](match$5[1]))
-                               :Pervasives["^"](" of ",string_of_parameters(match$4))
-                             :match$5
-                               ?Pervasives["^"]
-                                 (" : ",Odoc_print["string_of_type_expr"](match$5[1]))
-                               :"",
-                            comment)},
-                 match$2[1])));
+                                    " -> ",
+                                    [/* String */2,/* No_padding */0,/* End_of_format */0]]]],
+                                 " : %s -> %s"],
+                                string_of_parameters(match$4),
+                                Odoc_print["string_of_type_expr"](match$5[1]))
+                             :Pervasives["^"](" of ",string_of_parameters(match$4))
+                           :match$5
+                             ?Pervasives["^"]
+                               (" : ",Odoc_print["string_of_type_expr"](match$5[1]))
+                             :"",
+                          comment)},
+               match$2[1])));
          break;
         case 1:
-         var
-          type_kind_str=
-           P[4]
-            ([/* Format */0,
+         type_kind_str=
+         P[4]
+          ([/* Format */0,
+            [/* String_literal */11,
+             "= ",
+             [/* String */2,
+              /* No_padding */0,
               [/* String_literal */11,
-               "= ",
+               "{\n",
                [/* String */2,
                 /* No_padding */0,
-                [/* String_literal */11,
-                 "{\n",
-                 [/* String */2,
-                  /* No_padding */0,
-                  [/* String_literal */11,"\n}\n",/* End_of_format */0]]]]],
-              "= %s{\n%s\n}\n"],
-             priv?"private ":"",
-             $$String["concat"]
-              ("\n",
-               List["map"]
-                (function(field)
-                  {return P[4]
-                           ([/* Format */0,
-                             [/* String_literal */11,
-                              "   ",
-                              [/* String */2,
-                               /* No_padding */0,
+                [/* String_literal */11,"\n}\n",/* End_of_format */0]]]]],
+            "= %s{\n%s\n}\n"],
+           priv?"private ":"",
+           $$String["concat"]
+            ("\n",
+             List["map"]
+              (function(field)
+                {return P[4]
+                         ([/* Format */0,
+                           [/* String_literal */11,
+                            "   ",
+                            [/* String */2,
+                             /* No_padding */0,
+                             [/* String */2,
+                              /* No_padding */0,
+                              [/* String_literal */11,
+                               " : ",
                                [/* String */2,
                                 /* No_padding */0,
-                                [/* String_literal */11,
-                                 " : ",
-                                 [/* String */2,
-                                  /* No_padding */0,
-                                  [/* Char_literal */12,
-                                   59,
-                                   [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]]],
-                             "   %s%s : %s;%s"],
-                            field[2]?"mutable ":"",
-                            field[1],
-                            Odoc_print["string_of_type_expr"](field[3]),
-                            field_doc_str(field[4]))},
-                 match$2[1])));
+                                [/* Char_literal */12,
+                                 59,
+                                 [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]]],
+                           "   %s%s : %s;%s"],
+                          field[2]?"mutable ":"",
+                          field[1],
+                          Odoc_print["string_of_type_expr"](field[3]),
+                          field_doc_str(field[4]))},
+               match$2[1])));
          break
         }}
     
@@ -588,9 +581,7 @@ var
 var
  string_of_type_extension=
   function(te)
-   {var M=Odoc_extension;
-    
-    var match=te[1];
+   {var match=te[1];
     
     return Pervasives["^"]
             ("type ",
@@ -683,9 +674,7 @@ var
 var
  string_of_exception=
   function(e)
-   {var M=Odoc_exception;
-    
-    var match=e[3];
+   {var match=e[3];
     
     var match$1=e[4];
     
@@ -745,9 +734,7 @@ var
 var
  string_of_value=
   function(v)
-   {var M=Odoc_value;
-    
-    var match=v[2];
+   {var match=v[2];
     
     return Pervasives["^"]
             ("val ",
@@ -763,9 +750,7 @@ var
 var
  string_of_attribute=
   function(a)
-   {var M=Odoc_value;
-    
-    var match=a[1][2];
+   {var match=a[1][2];
     
     return Pervasives["^"]
             ("val ",
@@ -785,9 +770,7 @@ var
 var
  string_of_method=
   function(m)
-   {var M=Odoc_value;
-    
-    var match=m[1][2];
+   {var match=m[1][2];
     
     return Pervasives["^"]
             ("method ",

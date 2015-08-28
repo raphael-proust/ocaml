@@ -1,5 +1,6 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
+var Odoc_name=require("./odoc_name.js");
 var $$String=require("./string.js");
 var Printtyp=require("./printtyp.js");
 var List=require("./list.js");
@@ -51,7 +52,7 @@ var
         var exit;
         
         if(typeof match==="number")
-         {switch(match){}}
+         {switch(match){default:exit=12;}}
         else
          {switch(match[0])
            {case 1:
@@ -97,7 +98,7 @@ var
         var exit;
         
         if(typeof match==="number")
-         {switch(match){}}
+         {switch(match){default:exit=4;}}
         else
          {switch(match[0])
            {case 2:
@@ -133,7 +134,7 @@ var
         var exit;
         
         if(typeof match==="number")
-         {switch(match){}}
+         {switch(match){default:exit=1;}}
         else
          {switch(match[0])
            {case 1:return /* true */1;

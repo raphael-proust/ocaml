@@ -7,6 +7,7 @@ var Printf=require("./printf.js");
 var Checkpoints=require("./checkpoints.js");
 var Pos=require("./pos.js");
 var Exec=require("./exec.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 var Debugcom=require("./debugcom.js");
 
 

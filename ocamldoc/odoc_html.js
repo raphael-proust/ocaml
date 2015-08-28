@@ -1220,9 +1220,9 @@ var
               function(name)
                {return /* Code */[1,Odoc_info["use_hidden_modules"](name)]};
             
+            var match;
             var exit;
             
-            var match;
             if(typeof kind==="number")
              {switch(kind)
                {case 0:exit=223;break;
@@ -1265,7 +1265,7 @@ var
              {case 223:
                var match$1=Naming[11](name);
                
-               var match=/* tuple */[0,match$1[1],h(name)];
+               match=/* tuple */[0,match$1[1],h(name)];
                break
               }
             
@@ -1602,23 +1602,21 @@ var
           
           var see_ref=param[1];
           
+          var t_ref;
           switch(see_ref[0])
            {case 0:
-             var t_ref=/* :: */[0,/* Link */[15,see_ref[1],t],/* [] */0];
-             break;
+             t_ref=/* :: */[0,/* Link */[15,see_ref[1],t],/* [] */0];break;
             case 1:
-             var
-              t_ref=
-               /* :: */[0,
-                /* Code */[1,see_ref[1]],
-                /* :: */[0,[/* Raw */0," "],t]];
+             t_ref=
+             /* :: */[0,
+              /* Code */[1,see_ref[1]],
+              /* :: */[0,[/* Raw */0," "],t]];
              break;
             case 2:
-             var
-              t_ref=
-               /* :: */[0,
-                /* Italic */[5,/* :: */[0,/* Raw */[0,see_ref[1]],/* [] */0]],
-                /* :: */[0,[/* Raw */0," "],t]];
+             t_ref=
+             /* :: */[0,
+              /* Italic */[5,/* :: */[0,/* Raw */[0,see_ref[1]],/* [] */0]],
+              /* :: */[0,[/* Raw */0," "],t]];
              break
             }
           
@@ -1703,15 +1701,13 @@ var
                      },
                    l)},
         html_of_info,
-        function(self$neg3,$staropt$star,$staropt$star,b,info_opt)
-         {var cls=$staropt$star$1?$staropt$star$1[1]:"";
+        function(self$neg3,$staropt$star,$staropt$star$1,b,info_opt)
+         {var cls=$staropt$star?$staropt$star[1]:"";
           
-          var indent=$staropt$star?$staropt$star[1]:/* true */1;
+          var indent=$staropt$star$1?$staropt$star$1[1]:/* true */1;
           
           if(info_opt)
            {var info$1=info_opt[1];
-            
-            var M=Odoc_info;
             
             if(indent)
              {bs
@@ -1766,8 +1762,6 @@ var
         function(self$neg3,b,info_opt)
          {if(info_opt)
            {var info$1=info_opt[1];
-            
-            var M=Odoc_info;
             
             var dep=info$1[7]!==/* None */0;
             
@@ -2306,10 +2300,10 @@ var
        function(self$neg4,module_list)
         {var
           f=
-           function(b,$staropt$star,$staropt$star,t)
-            {var nav=$staropt$star$1?$staropt$star$1[1]:/* None */0;
+           function(b,$staropt$star,$staropt$star$1,t)
+            {var nav=$staropt$star?$staropt$star[1]:/* None */0;
              
-             var comments=$staropt$star?$staropt$star[1]:/* [] */0;
+             var comments=$staropt$star$1?$staropt$star$1[1]:/* [] */0;
              
              var
               link_if_not_empty=
@@ -3876,12 +3870,12 @@ var
                    bs(b,"</table>\n</td>\n</tr>\n</table>\n"))
                  :/* () */0},
        html_of_module,
-       function(self$neg4,b,$staropt$star,$staropt$star,$staropt$star,m)
-        {var info$1=$staropt$star$1?$staropt$star$1[1]:/* true */1;
+       function(self$neg4,b,$staropt$star,$staropt$star$1,$staropt$star$2,m)
+        {var info$1=$staropt$star?$staropt$star[1]:/* true */1;
          
-         var complete=$staropt$star$2?$staropt$star$2[1]:/* true */1;
+         var complete=$staropt$star$1?$staropt$star$1[1]:/* true */1;
          
-         var with_link=$staropt$star?$staropt$star[1]:/* true */1;
+         var with_link=$staropt$star$2?$staropt$star$2[1]:/* true */1;
          
          var match=Naming[11](m[1]);
          
@@ -3933,12 +3927,12 @@ var
           {return /* () */0}
          },
        html_of_modtype,
-       function(self$neg4,b,$staropt$star,$staropt$star,$staropt$star,mt)
-        {var info$1=$staropt$star$1?$staropt$star$1[1]:/* true */1;
+       function(self$neg4,b,$staropt$star,$staropt$star$1,$staropt$star$2,mt)
+        {var info$1=$staropt$star?$staropt$star[1]:/* true */1;
          
-         var complete=$staropt$star$2?$staropt$star$2[1]:/* true */1;
+         var complete=$staropt$star$1?$staropt$star$1[1]:/* true */1;
          
-         var with_link=$staropt$star?$staropt$star[1]:/* true */1;
+         var with_link=$staropt$star$2?$staropt$star$2[1]:/* true */1;
          
          var match=Naming[11](mt[1]);
          
@@ -4152,10 +4146,10 @@ var
            }
          },
        html_of_class,
-       function(self$neg4,b,$staropt$star,$staropt$star,c)
-        {var complete=$staropt$star$1?$staropt$star$1[1]:/* true */1;
+       function(self$neg4,b,$staropt$star,$staropt$star$1,c)
+        {var complete=$staropt$star?$staropt$star[1]:/* true */1;
          
-         var with_link=$staropt$star?$staropt$star[1]:/* true */1;
+         var with_link=$staropt$star$1?$staropt$star$1[1]:/* true */1;
          
          var father=Odoc_info["Name"][5](c[1]);
          
@@ -4229,10 +4223,10 @@ var
            }
          return $js(b,c[2])},
        html_of_class_type,
-       function(self$neg4,b,$staropt$star,$staropt$star,ct)
-        {var complete=$staropt$star$1?$staropt$star$1[1]:/* true */1;
+       function(self$neg4,b,$staropt$star,$staropt$star$1,ct)
+        {var complete=$staropt$star?$staropt$star[1]:/* true */1;
          
-         var with_link=$staropt$star?$staropt$star[1]:/* true */1;
+         var with_link=$staropt$star$1?$staropt$star$1[1]:/* true */1;
          
          Odoc_info["reset_type_names"](/* () */0);
          var father=Odoc_info["Name"][5](ct[1]);
@@ -4350,14 +4344,14 @@ var
          return bs(b,"<br>\n")},
        html_of_class_comment,
        function(self$neg4,b,text)
-        {var exit;
+        {var text2;
+         var exit;
          
-         var text2;
          if(text)
           {var match=text[1];
            
            if(typeof match==="number")
-            {switch(match){}}
+            {switch(match){default:exit=63;}}
            else
             {switch(match[0])
               {case 0:
@@ -4374,7 +4368,7 @@ var
          else
           {exit=63;}
          
-         switch(exit){case 63:var text2=text;break}
+         switch(exit){case 63:text2=text;break}
          
          /* unknown */"(sendself self-4/2472 html_of_text/2177 b/2473 text2/2475)";
          },
@@ -5282,10 +5276,10 @@ var
       $$self$1[list_class_types$1+1]=
       /* [] */0,
       $$self$1[header+1]=
-      function(b,$staropt$star,$staropt$star,param)
-       {var nav=$staropt$star$1?$staropt$star$1[1]:/* None */0;
+      function(b,$staropt$star,$staropt$star$1,param)
+       {var nav=$staropt$star?$staropt$star[1]:/* None */0;
         
-        var comments=$staropt$star?$staropt$star[1]:/* [] */0;
+        var comments=$staropt$star$1?$staropt$star$1[1]:/* [] */0;
         
         return /* () */0};
       return CamlinternalOO["run_initializers_opt"]($$self,$$self$1,$$class)}};

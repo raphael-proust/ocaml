@@ -4,6 +4,7 @@ var Pervasives=require("./pervasives.js");
 var Symbols=require("./symbols.js");
 var Events=require("./events.js");
 var Misc=require("./misc.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 var Debugcom=require("./debugcom.js");
 
 

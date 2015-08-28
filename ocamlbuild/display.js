@@ -123,23 +123,23 @@ var
  create=
   function
    ($staropt$star,
-    $staropt$star,
-    $staropt$star,
-    $staropt$star,
+    $staropt$star$1,
+    $staropt$star$2,
+    $staropt$star$3,
     log_file,
-    $staropt$star,
+    $staropt$star$4,
     param)
-   {var channel=$staropt$star$1?$staropt$star$1[1]:Pervasives["stdout"];
+   {var channel=$staropt$star?$staropt$star[1]:Pervasives["stdout"];
     
-    var mode=$staropt$star$2?$staropt$star$2[1]:/* Sophisticated */-369468030;
+    var mode=$staropt$star$1?$staropt$star$1[1]:/* Sophisticated */-369468030;
     
-    var _columns=$staropt$star$3?$staropt$star$3[1]:75;
+    var _columns=$staropt$star$2?$staropt$star$2[1]:75;
     
     var
      description=
-      $staropt$star$4?$staropt$star$4[1]:default_tagline_description;
+      $staropt$star$3?$staropt$star$3[1]:default_tagline_description;
     
-    var log_level=$staropt$star?$staropt$star[1]:1;
+    var log_level=$staropt$star$4?$staropt$star$4[1]:1;
     
     var log_channel;
     if(log_file)

@@ -3,6 +3,7 @@
 var $$String=require("./string.js");
 var List=require("./list.js");
 var Pervasives=require("./pervasives.js");
+var Digest=require("./digest.js");
 var Format=require("./format.js");
 var Set=require("./set.js");
 var Buffer=require("./buffer.js");
@@ -216,13 +217,11 @@ var
 
 var Set=[0,Make];
 
-var include=List;
+var rev=List["rev"];
 
-var rev=include[5];
+var fold_left=List["fold_left"];
 
-var fold_left=include[15];
-
-var mem=include[26];
+var mem=List["mem"];
 
 var
  print=
@@ -327,61 +326,59 @@ var
 var
  List=
   [0,
-   include[1],
-   include[2],
-   include[3],
-   include[4],
+   List["length"],
+   List["hd"],
+   List["tl"],
+   List["nth"],
    rev,
-   include[6],
-   include[7],
-   include[8],
-   include[9],
-   include[10],
-   include[11],
-   include[12],
-   include[13],
-   include[14],
+   List["append"],
+   List["rev_append"],
+   List["concat"],
+   List["flatten"],
+   List["iter"],
+   List["iteri"],
+   List["map"],
+   List["mapi"],
+   List["rev_map"],
    fold_left,
-   include[16],
-   include[17],
-   include[18],
-   include[19],
-   include[20],
-   include[21],
-   include[22],
-   include[23],
-   include[24],
-   include[25],
+   List["fold_right"],
+   List["iter2"],
+   List["map2"],
+   List["rev_map2"],
+   List["fold_left2"],
+   List["fold_right2"],
+   List["for_all"],
+   List["exists"],
+   List["for_all2"],
+   List["exists2"],
    mem,
-   include[27],
-   include[28],
-   include[29],
-   include[30],
-   include[31],
-   include[32],
-   include[33],
-   include[34],
-   include[35],
-   include[36],
-   include[37],
-   include[38],
-   include[39],
-   include[40],
-   include[41],
-   include[42],
-   include[43],
-   include[44],
+   List["memq"],
+   List["find"],
+   List["filter"],
+   List["find_all"],
+   List["partition"],
+   List["assoc"],
+   List["assq"],
+   List["mem_assoc"],
+   List["mem_assq"],
+   List["remove_assoc"],
+   List["remove_assq"],
+   List["split"],
+   List["combine"],
+   List["sort"],
+   List["stable_sort"],
+   List["fast_sort"],
+   List["sort_uniq"],
+   List["merge"],
    print,
    filter_opt,
    rev_append_uniq,
    union,
    ordered_unique];
 
-var include$1=$$String;
+var sub=$$String["sub"];
 
-var sub=include$1[4];
-
-var index_from=include$1[16];
+var index_from=$$String["index_from"];
 
 var
  print$1=
@@ -561,31 +558,31 @@ var
 var
  $$String=
   [0,
-   include$1[1],
-   include$1[2],
-   include$1[3],
+   $$String["make"],
+   $$String["init"],
+   $$String["copy"],
    sub,
-   include$1[5],
-   include$1[6],
-   include$1[7],
-   include$1[8],
-   include$1[9],
-   include$1[10],
-   include$1[11],
-   include$1[12],
-   include$1[13],
-   include$1[14],
-   include$1[15],
+   $$String["fill"],
+   $$String["blit"],
+   $$String["concat"],
+   $$String["iter"],
+   $$String["iteri"],
+   $$String["map"],
+   $$String["mapi"],
+   $$String["trim"],
+   $$String["escaped"],
+   $$String["index"],
+   $$String["rindex"],
    index_from,
-   include$1[17],
-   include$1[18],
-   include$1[19],
-   include$1[20],
-   include$1[21],
-   include$1[22],
-   include$1[23],
-   include$1[24],
-   include$1[25],
+   $$String["rindex_from"],
+   $$String["contains"],
+   $$String["contains_from"],
+   $$String["rcontains_from"],
+   $$String["uppercase"],
+   $$String["lowercase"],
+   $$String["capitalize"],
+   $$String["uncapitalize"],
+   $$String["compare"],
    print$1,
    chomp,
    before,
@@ -842,9 +839,7 @@ var $unknown$great=function(x,f){return f(x)};
 
 var print_string_list=List[45]($$String[26]);
 
-var include$2=Digest;
-
-var file=include$2[6];
+var file=Digest["file"];
 
 var digest_cache=Hashtbl["create"](/* None */0,103);
 
@@ -870,15 +865,15 @@ var
 var
  Digest=
   [0,
-   include$2[1],
-   include$2[2],
-   include$2[3],
-   include$2[4],
-   include$2[5],
-   include$2[7],
-   include$2[8],
-   include$2[9],
-   include$2[10],
+   Digest["compare"],
+   Digest["string"],
+   Digest["bytes"],
+   Digest["substring"],
+   Digest["subbytes"],
+   Digest["output"],
+   Digest["input"],
+   Digest["to_hex"],
+   Digest["from_hex"],
    digest_cache,
    reset_digest_cache,
    reset_digest_cache_for,

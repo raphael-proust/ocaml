@@ -1,5 +1,6 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var

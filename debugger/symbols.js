@@ -15,8 +15,6 @@ var CamlPrimitive=require("./camlPrimitive.js");
 var Debugcom=require("./debugcom.js");
 
 
-var $$let=$$String;
-
 var StringSet=Set["Make"]([0,$$let[25]]);
 
 var modules=[0,/* [] */0];

@@ -14,6 +14,7 @@ var Misc=require("./misc.js");
 var Path=require("./path.js");
 var Odoc_env=require("./odoc_env.js");
 var Filename=require("./filename.js");
+var Odoc_module=require("./odoc_module.js");
 var Location=require("./location.js");
 var Hashtbl=require("./hashtbl.js");
 var Ident=require("./ident.js");
@@ -33,7 +34,7 @@ var
    {var exit;
     
     if(typeof param==="number")
-     {switch(param){case 0:exit=379;break}}
+     {switch(param){case 0:exit=379;break;default:return /* None */0}}
     else
      {switch(param[0])
        {case 0:return /* Some */[0,Odoc_name["from_ident"](param[1])];
@@ -453,7 +454,7 @@ var
             var exit;
             
             if(typeof match==="number")
-             {switch(match){}}
+             {switch(match){default:exit=337;}}
             else
              {switch(match[0])
                {case 0:
@@ -476,7 +477,7 @@ var
                  
                  var $js;
                  if(typeof match$1==="number")
-                  {switch(match$1){}}
+                  {switch(match$1){default:exit$1=336;}}
                  else
                   {switch(match$1[0])
                     {case 3:
@@ -534,28 +535,28 @@ var
                 Odoc_parameter["desc_from_info_opt"](current_comment_opt),
                 pattern_param);
             
+            var match$1;
             var exit;
             
             switch(parameter$1[0])
              {case 0:
                switch(parameter$1[1][1])
                 {case "*opt*":
-                  var match$1=func_body[1];
+                  var match$2=func_body[1];
                   
                   var exit$1;
                   
-                  switch(match$1[0])
+                  switch(match$2[0])
                    {case 2:
-                     var match$2=match$1[2];
+                     var match$3=match$2[2];
                      
-                     var match$3;
-                     if(match$2)
-                      {var match$4=match$2[1];
+                     if(match$3)
+                      {var match$4=match$3[1];
                        
                        var match$5=match$4[1][1];
                        
                        if(typeof match$5==="number")
-                        {switch(match$5){}}
+                        {switch(match$5){default:exit$1=331;}}
                        else
                         {switch(match$5[0])
                           {case 0:
@@ -570,7 +571,7 @@ var
                                 Odoc_parameter["desc_from_info_opt"]
                                  (current_comment_opt,name)]];
                             
-                            match$3=/* tuple */[0,new_param,match$1[3]];
+                            match$1=/* tuple */[0,new_param,match$2[3]];
                             break;
                            default:exit$1=331;}}
                        }
@@ -580,8 +581,7 @@ var
                     default:exit$1=331;}
                   
                   switch(exit$1)
-                   {case 331:
-                     var match$3=/* tuple */[0,parameter$1,func_body];break
+                   {case 331:match$1=/* tuple */[0,parameter$1,func_body];break
                     }
                   break;
                  default:exit=332;}
@@ -590,11 +590,11 @@ var
               }
             
             switch(exit)
-             {case 332:var match$3=/* tuple */[0,parameter$1,func_body];break}
+             {case 332:match$1=/* tuple */[0,parameter$1,func_body];break}
             
-            var p=match$3[1];
+            var p=match$1[1];
             
-            var match$6=match$3[2][1];
+            var match$6=match$1[2][1];
             
             switch(match$6[0])
              {case 3:
@@ -623,7 +623,7 @@ var
         var exit;
         
         if(typeof match==="number")
-         {switch(match){}}
+         {switch(match){default:exit=323;}}
         else
          {switch(match[0])
            {case 0:
@@ -745,28 +745,28 @@ var
                        Odoc_parameter["desc_from_info_opt"](comment_opt),
                        pattern_param);
                    
+                   var match$2;
                    var exit;
                    
                    switch(parameter[0])
                     {case 0:
                       switch(parameter[1][1])
                        {case "*opt*":
-                         var match$2=body[1];
+                         var match$3=body[1];
                          
                          var exit$1;
                          
-                         switch(match$2[0])
+                         switch(match$3[0])
                           {case 2:
-                            var match$3=match$2[2];
+                            var match$4=match$3[2];
                             
-                            var match$4;
-                            if(match$3)
-                             {var match$5=match$3[1];
+                            if(match$4)
+                             {var match$5=match$4[1];
                               
                               var match$6=match$5[1][1];
                               
                               if(typeof match$6==="number")
-                               {switch(match$6){}}
+                               {switch(match$6){default:exit$1=303;}}
                               else
                                {switch(match$6[0])
                                  {case 0:
@@ -780,7 +780,7 @@ var
                                        Odoc_env["subst_type"](env,match$5[2][4]),
                                        Odoc_parameter["desc_from_info_opt"](comment_opt,name)]];
                                    
-                                   match$4=/* tuple */[0,new_param$1,match$2[3]];
+                                   match$2=/* tuple */[0,new_param$1,match$3[3]];
                                    break;
                                   default:exit$1=303;}}
                               }
@@ -790,7 +790,7 @@ var
                            default:exit$1=303;}
                          
                          switch(exit$1)
-                          {case 303:var match$4=/* tuple */[0,parameter,body];break}
+                          {case 303:match$2=/* tuple */[0,parameter,body];break}
                          break;
                         default:exit=304;}
                       break;
@@ -798,16 +798,16 @@ var
                      }
                    
                    switch(exit)
-                    {case 304:var match$4=/* tuple */[0,parameter,body];break}
+                    {case 304:match$2=/* tuple */[0,parameter,body];break}
                    
                    return /* :: */[0,
-                           match$4[1],
+                           match$2[1],
                            tt_analyse_method_expression
                             (env,
                              current_method_name,
                              comment_opt,
                              [/* Some */0,/* false */0],
-                             match$4[2])]}
+                             match$2[2])]}
                  else
                   {return tt_analyse_method_expression
                            (env,
@@ -902,9 +902,10 @@ var
                  
                  var label=match$2[1][1];
                  
+                 var virt;
                  switch(match$2[3][0])
-                  {case 0:var virt=/* true */1;break;
-                   case 1:var virt=/* false */0;break
+                  {case 0:virt=/* true */1;break;
+                   case 1:virt=/* false */0;break
                    }
                  
                  var
@@ -987,15 +988,16 @@ var
                     
                     var match$6=met_type[1];
                     
+                    var real_type;
                     var exit$1;
                     
                     if(typeof match$6==="number")
-                     {switch(match$6){}}
+                     {switch(match$6){default:exit$1=283;}}
                     else
                      {switch(match$6[0])
-                       {case 1:var real_type=match$6[3];break;default:exit$1=283;}}
+                       {case 1:real_type=match$6[3];break;default:exit$1=283;}}
                     
-                    switch(exit$1){case 283:var real_type=met_type;break}
+                    switch(exit$1){case 283:real_type=met_type;break}
                     
                     var
                      code$1=
@@ -1050,16 +1052,16 @@ var
                     
                     var match$8=exp[4][1];
                     
+                    var real_type$1;
                     var exit$2;
                     
                     if(typeof match$8==="number")
-                     {switch(match$8){}}
+                     {switch(match$8){default:exit$2=291;}}
                     else
                      {switch(match$8[0])
-                       {case 1:var real_type$1=match$8[3];break;
-                        default:exit$2=291;}}
+                       {case 1:real_type$1=match$8[3];break;default:exit$2=291;}}
                     
-                    switch(exit$2){case 291:var real_type$1=exp[4];break}
+                    switch(exit$2){case 291:real_type$1=exp[4];break}
                     
                     var
                      code$2=
@@ -1151,21 +1153,23 @@ var
         
         switch(match[0])
          {case 0:
+           var name;
            switch(match$1[0])
-            {case 0:var name=Odoc_name["from_path"](match$1[1]);break;
-             default:var name=Odoc_name["from_longident"](match[1][1]);}
+            {case 0:name=Odoc_name["from_path"](match$1[1]);break;
+             default:name=Odoc_name["from_longident"](match[1][1]);}
            
            var match$2=tt_class_exp[3];
            
+           var params;
            var exit$1;
            
            switch(match$2[0])
-            {case 0:var params=match$2[2];break;
+            {case 0:params=match$2[2];break;
              case 1:exit$1=241;break;
              case 2:exit$1=241;break
              }
            
-           switch(exit$1){case 241:var params=/* [] */0;break}
+           switch(exit$1){case 241:params=/* [] */0;break}
            
            return /* tuple */[0,
                    /* [] */0,
@@ -1179,11 +1183,12 @@ var
             {case 1:
               var match$3=tt_class_exp[3];
               
+              var tt_class_sig;
               var exit$2;
               
               switch(match$3[0])
                {case 0:exit$2=246;break;
-                case 1:var tt_class_sig=match$3[1];break;
+                case 1:tt_class_sig=match$3[1];break;
                 case 2:exit$2=246;break
                 }
               
@@ -1220,14 +1225,14 @@ var
               
               var match$5=pat[1];
               
+              var match$6;
               var exit$3;
               
               if(typeof match$5==="number")
-               {switch(match$5){}}
+               {switch(match$5){default:exit$3=253;}}
               else
                {switch(match$5[0])
                  {case 0:
-                   var match$6;
                    if
                     (CamlPrimitive["caml_string_equal"]
                       (Odoc_name["from_ident"](match$5[1]),"*opt*"))
@@ -1245,7 +1250,7 @@ var
                           var match$10=match$9[1][1];
                           
                           if(typeof match$10==="number")
-                           {switch(match$10){}}
+                           {switch(match$10){default:exit$4=251;}}
                           else
                            {switch(match$10[0])
                              {case 0:
@@ -1287,7 +1292,7 @@ var
                    tt_param_info_from_pattern
                     (env,Odoc_parameter["desc_from_info_opt"](comment_opt),pat);
                  
-                 var match$6=/* tuple */[0,new_param$1,tt_class_expr2];
+                 match$6=/* tuple */[0,new_param$1,tt_class_expr2];
                  break
                 }
               
@@ -1312,19 +1317,17 @@ var
             {case 3:
               var match$12=match$1[1][1];
               
+              var applied_name;
               switch(match$12[0])
-               {case 0:
-                 var applied_name=Odoc_name["from_path"](match$12[1]);break;
+               {case 0:applied_name=Odoc_name["from_path"](match$12[1]);break;
                 default:
                  var match$13=match[1][1];
                  
                  switch(match$13[0])
                   {case 0:
-                    var
-                     applied_name=
-                      Odoc_name["from_longident"](match$13[1][1]);
+                    applied_name=Odoc_name["from_longident"](match$13[1][1]);
                     break;
-                   default:var applied_name=Odoc_messages["object_end"];}
+                   default:applied_name=Odoc_messages["object_end"];}
                  }
               
               var
@@ -1585,108 +1588,104 @@ var
        {var
          pred=
           function(ele)
-           {switch(ele[0])
+           {var f;
+            switch(ele[0])
              {case 0:
                var m=ele[1];
                
-               var
-                f=
-                 function(param)
-                  {switch(param[0])
-                    {case 3:
-                      var n1=Odoc_name["simple"](m[1]);
-                      
-                      var n2=Ident["name"](param[1]);
-                      
-                      var match=CamlPrimitive["caml_string_equal"](n1,n2);
-                      
-                      return match!==0
-                              ?(filter_module_with_module_type_constraint(m,param[2][1]),
-                                /* true */1)
-                              :/* false */0;
-                     default:return /* false */0}
-                   };
+               f=
+               function(param)
+                {switch(param[0])
+                  {case 3:
+                    var n1=Odoc_name["simple"](m[1]);
+                    
+                    var n2=Ident["name"](param[1]);
+                    
+                    var match=CamlPrimitive["caml_string_equal"](n1,n2);
+                    
+                    return match!==0
+                            ?(filter_module_with_module_type_constraint(m,param[2][1]),
+                              /* true */1)
+                            :/* false */0;
+                   default:return /* false */0}
+                 };
                break;
               case 1:
                var mt=ele[1];
                
-               var
-                f=
-                 function(param)
-                  {var exit;
-                   
-                   switch(param[0])
-                    {case 4:
-                      var match=param[2][1];
-                      
-                      if(match)
-                       {var n1=Odoc_name["simple"](mt[1]);
-                        
-                        var n2=Ident["name"](param[1]);
-                        
-                        var match$1=CamlPrimitive["caml_string_equal"](n1,n2);
-                        
-                        return match$1!==0
-                                ?(filter_module_type_with_module_type_constraint
-                                   (mt,match[1]),
-                                  /* true */1)
-                                :/* false */0}
-                      else
-                       {exit=202;}
-                      break;
-                     default:exit=202;}
-                   
-                   switch(exit){case 202:return /* false */0}
-                   };
-               break;
-              case 2:var f=function(param){return /* true */1};break;
-              case 3:
-               var c=ele[1];
-               
-               var
-                f=
-                 function(param)
-                  {switch(param[0])
-                    {case 5:
-                      var n1=Odoc_name["simple"](c[1]);
+               f=
+               function(param)
+                {var exit;
+                 
+                 switch(param[0])
+                  {case 4:
+                    var match=param[2][1];
+                    
+                    if(match)
+                     {var n1=Odoc_name["simple"](mt[1]);
                       
                       var n2=Ident["name"](param[1]);
                       
-                      return CamlPrimitive["caml_string_equal"](n1,n2);
-                     default:return /* false */0}
-                   };
+                      var match$1=CamlPrimitive["caml_string_equal"](n1,n2);
+                      
+                      return match$1!==0
+                              ?(filter_module_type_with_module_type_constraint
+                                 (mt,match[1]),
+                                /* true */1)
+                              :/* false */0}
+                    else
+                     {exit=202;}
+                    break;
+                   default:exit=202;}
+                 
+                 switch(exit){case 202:return /* false */0}
+                 };
+               break;
+              case 2:f=function(param){return /* true */1};break;
+              case 3:
+               var c=ele[1];
+               
+               f=
+               function(param)
+                {switch(param[0])
+                  {case 5:
+                    var n1=Odoc_name["simple"](c[1]);
+                    
+                    var n2=Ident["name"](param[1]);
+                    
+                    return CamlPrimitive["caml_string_equal"](n1,n2);
+                   default:return /* false */0}
+                 };
                break;
               case 4:
                var ct=ele[1];
                
-               var
-                f=
-                 function(param)
-                  {switch(param[0])
-                    {case 6:
-                      var n1=Odoc_name["simple"](ct[1]);
-                      
-                      var n2=Ident["name"](param[1]);
-                      
-                      return CamlPrimitive["caml_string_equal"](n1,n2);
-                     default:return /* false */0}
-                   };
+               f=
+               function(param)
+                {switch(param[0])
+                  {case 6:
+                    var n1=Odoc_name["simple"](ct[1]);
+                    
+                    var n2=Ident["name"](param[1]);
+                    
+                    return CamlPrimitive["caml_string_equal"](n1,n2);
+                   default:return /* false */0}
+                 };
                break;
               case 5:
                var v=ele[1];
                
-               var
-                f=
-                 function(param)
-                  {switch(param[0])
-                    {case 0:
-                      var n1=Odoc_name["simple"](v[1]);
-                      
-                      var n2=Ident["name"](param[1]);
-                      
-                      return CamlPrimitive["caml_string_equal"](n1,n2);
-                     default:return /* false */0}
-                   };
+               f=
+               function(param)
+                {switch(param[0])
+                  {case 0:
+                    var n1=Odoc_name["simple"](v[1]);
+                    
+                    var n2=Ident["name"](param[1]);
+                    
+                    return CamlPrimitive["caml_string_equal"](n1,n2);
+                   default:return /* false */0}
+                 };
                break;
               case 6:
                var te=ele[1];
@@ -1697,45 +1696,42 @@ var
                   (te[5],lsig);
                
                te[5]=l$1;
-               var
-                f=
-                 l$1!==/* [] */0
-                  ?function(param){return /* true */1}
-                  :function(param){return /* false */0};
+               f=
+               l$1!==/* [] */0
+                ?function(param){return /* true */1}
+                :function(param){return /* false */0};
                break;
               case 7:
                var e=ele[1];
                
-               var
-                f=
-                 function(param)
-                  {switch(param[0])
-                    {case 2:
-                      var n1=Odoc_name["simple"](e[1]);
-                      
-                      var n2=Ident["name"](param[1]);
-                      
-                      return CamlPrimitive["caml_string_equal"](n1,n2);
-                     default:return /* false */0}
-                   };
+               f=
+               function(param)
+                {switch(param[0])
+                  {case 2:
+                    var n1=Odoc_name["simple"](e[1]);
+                    
+                    var n2=Ident["name"](param[1]);
+                    
+                    return CamlPrimitive["caml_string_equal"](n1,n2);
+                   default:return /* false */0}
+                 };
                break;
               case 8:
                var t=ele[1];
                
-               var
-                f=
-                 function(param)
-                  {switch(param[0])
-                    {case 1:
-                      var n1=Odoc_name["simple"](t[1]);
-                      
-                      var n2=Ident["name"](param[1]);
-                      
-                      return CamlPrimitive["caml_string_equal"](n1,n2);
-                     default:return /* false */0}
-                   };
+               f=
+               function(param)
+                {switch(param[0])
+                  {case 1:
+                    var n1=Odoc_name["simple"](t[1]);
+                    
+                    var n2=Ident["name"](param[1]);
+                    
+                    return CamlPrimitive["caml_string_equal"](n1,n2);
+                   default:return /* false */0}
+                 };
                break;
-              case 9:var f=function(param){return /* true */1};break
+              case 9:f=function(param){return /* true */1};break
               }
             
             return List["exists"](f,lsig)};
@@ -1848,7 +1844,8 @@ var
               {var exit$1;
                
                if(typeof param==="number")
-                {switch(param){case 0:exit$1=32;break}}
+                {switch(param)
+                  {case 0:exit$1=32;break;default:return /* None */0}}
                else
                 {switch(param[0])
                   {case 0:return /* Some */[0,param[1]];
@@ -2177,40 +2174,39 @@ var
                  
                  var match$3=tt_ext[4];
                  
+                 var new_xt;
                  switch(match$3[0])
                   {case 0:
-                    var
-                     new_xt=
-                      /* record */[0,
-                       complete_name$1,
-                       List["map"]
-                        (function(ctyp)
-                          {return Odoc_env["subst_type"](new_env$1,ctyp[2])},
-                         match$3[1]),
-                       Misc["may_map"]
-                        (function(ctyp)
-                          {return Odoc_env["subst_type"](new_env$1,ctyp[2])},
-                         match$3[2]),
-                       new_te,
-                       /* None */0,
-                       /* record */[0,/* Some */[0,tt_ext[5]],/* None */0],
-                       /* None */0];
+                    new_xt=
+                    /* record */[0,
+                     complete_name$1,
+                     List["map"]
+                      (function(ctyp)
+                        {return Odoc_env["subst_type"](new_env$1,ctyp[2])},
+                       match$3[1]),
+                     Misc["may_map"]
+                      (function(ctyp)
+                        {return Odoc_env["subst_type"](new_env$1,ctyp[2])},
+                       match$3[2]),
+                     new_te,
+                     /* None */0,
+                     /* record */[0,/* Some */[0,tt_ext[5]],/* None */0],
+                     /* None */0];
                     break;
                    case 1:
-                    var
-                     new_xt=
+                    new_xt=
+                    /* record */[0,
+                     complete_name$1,
+                     /* [] */0,
+                     /* None */0,
+                     new_te,
+                     /* Some */[0,
                       /* record */[0,
-                       complete_name$1,
-                       /* [] */0,
-                       /* None */0,
-                       new_te,
-                       /* Some */[0,
-                        /* record */[0,
-                         Odoc_env["full_extension_constructor_name"]
-                          (env,Odoc_name["from_path"](match$3[1])),
-                         /* None */0]],
-                       /* record */[0,/* Some */[0,tt_ext[5]],/* None */0],
-                       /* None */0];
+                       Odoc_env["full_extension_constructor_name"]
+                        (env,Odoc_name["from_path"](match$3[1])),
+                       /* None */0]],
+                     /* record */[0,/* Some */[0,tt_ext[5]],/* None */0],
+                     /* None */0];
                     break
                    }
                  
@@ -2260,46 +2256,45 @@ var
            
            var match$4=tt_ext[4];
            
+           var new_ext;
            switch(match$4[0])
             {case 0:
               var loc_start$1=loc[1][4];
               
               var loc_end$1=loc[2][4];
               
-              var
-               new_ext=
-                /* record */[0,
-                 complete_name$1,
-                 comment_opt,
-                 List["map"]
-                  (function(ctyp)
-                    {return Odoc_env["subst_type"](new_env$2,ctyp[2])},
-                   match$4[1]),
-                 Misc["may_map"]
-                  (function(ctyp)
-                    {return Odoc_env["subst_type"](new_env$2,ctyp[2])},
-                   match$4[2]),
-                 /* None */0,
-                 /* record */[0,/* Some */[0,loc],/* None */0],
-                 Odoc_global["keep_code"][1]
-                  ?/* Some */[0,get_string_of_file(loc_start$1,loc_end$1)]
-                  :/* None */0];
+              new_ext=
+              /* record */[0,
+               complete_name$1,
+               comment_opt,
+               List["map"]
+                (function(ctyp)
+                  {return Odoc_env["subst_type"](new_env$2,ctyp[2])},
+                 match$4[1]),
+               Misc["may_map"]
+                (function(ctyp)
+                  {return Odoc_env["subst_type"](new_env$2,ctyp[2])},
+                 match$4[2]),
+               /* None */0,
+               /* record */[0,/* Some */[0,loc],/* None */0],
+               Odoc_global["keep_code"][1]
+                ?/* Some */[0,get_string_of_file(loc_start$1,loc_end$1)]
+                :/* None */0];
               break;
              case 1:
-              var
-               new_ext=
+              new_ext=
+              /* record */[0,
+               complete_name$1,
+               comment_opt,
+               /* [] */0,
+               /* None */0,
+               /* Some */[0,
                 /* record */[0,
-                 complete_name$1,
-                 comment_opt,
-                 /* [] */0,
-                 /* None */0,
-                 /* Some */[0,
-                  /* record */[0,
-                   Odoc_env["full_extension_constructor_name"]
-                    (env,Odoc_name["from_path"](match$4[1])),
-                   /* None */0]],
-                 /* record */[0,/* Some */[0,loc],/* None */0],
-                 /* None */0];
+                 Odoc_env["full_extension_constructor_name"]
+                  (env,Odoc_name["from_path"](match$4[1])),
+                 /* None */0]],
+               /* record */[0,/* Some */[0,loc],/* None */0],
+               /* None */0];
               break
              }
            
@@ -2349,17 +2344,17 @@ var
              
              var match$6=new_module[2];
              
+             var new_env2;
              switch(match$6[0])
               {case 1:
-                var
-                 new_env2=
-                  Odoc_env["add_signature"]
-                   (new_env$3,
-                    new_module[1],
-                    /* Some */[0,Odoc_name["simple"](new_module[1])],
-                    match$6[1]);
+                new_env2=
+                Odoc_env["add_signature"]
+                 (new_env$3,
+                  new_module[1],
+                  /* Some */[0,Odoc_name["simple"](new_module[1])],
+                  match$6[1]);
                 break;
-               default:var new_env2=new_env$3;}
+               default:new_env2=new_env$3;}
              
              return /* tuple */[0,
                      0,
@@ -2518,9 +2513,9 @@ var
            
            var match$8=tt_module_type[3];
            
+           var match$9;
            var exit$1;
            
-           var match$9;
            if(modtype)
             {if(match$8)
               {var mty_type=match$8[1];
@@ -2539,8 +2534,7 @@ var
             {exit$1=118;}
            
            switch(exit$1)
-            {case 118:var match$9=[/* tuple */0,/* None */0,/* None */0];break
-             }
+            {case 118:match$9=[/* tuple */0,/* None */0,/* None */0];break}
            
            var sig_mtype=match$9[2];
            
@@ -2557,9 +2551,9 @@ var
            
            var new_env$5=Odoc_env["add_module_type"](env,mt[1]);
            
+           var new_env2$1;
            var exit$2;
            
-           var new_env2$1;
            if(sig_mtype)
             {var match$10=sig_mtype[1];
              
@@ -2577,7 +2571,7 @@ var
            else
             {exit$2=114;}
            
-           switch(exit$2){case 114:var new_env2$1=new_env$5;break}
+           switch(exit$2){case 114:new_env2$1=new_env$5;break}
            
            return /* tuple */[0,
                    0,
@@ -2802,6 +2796,7 @@ var
         
         var match=p_module_expr[1];
         
+        var m_code_intf;
         switch(match[0])
          {case 4:
            var pmodule_type=match[2];
@@ -2810,11 +2805,9 @@ var
            
            var loc_end=pmodule_type[2][2][4];
            
-           var
-            m_code_intf=
-             /* Some */[0,get_string_of_file(loc_start,loc_end)];
+           m_code_intf=/* Some */[0,get_string_of_file(loc_start,loc_end)];
            break;
-          default:var m_code_intf=/* None */0;}
+          default:m_code_intf=/* None */0;}
         
         var
          m_base=
@@ -2836,16 +2829,21 @@ var
         var match$2=tt_module_expr[1];
         
         var exit;
+        var path;
+        var p_module_expr1;
+        var p_module_expr2;
+        var tt_module_expr1;
+        var tt_module_expr2;
         
         switch(match$1[0])
          {case 0:
            switch(match$2[0])
-            {case 0:var path=match$2[1];exit=182;break;
+            {case 0:path=match$2[1];exit=182;break;
              case 4:
               var match$3=match$2[1][1];
               
               switch(match$3[0])
-               {case 0:var path=match$3[1];exit=182;break;default:exit=184;}
+               {case 0:path=match$3[1];exit=182;break;default:exit=184;}
               break;
              default:exit=184;}
            break;
@@ -2931,9 +2929,9 @@ var
               
               var mp_name=Odoc_name["from_ident"](match$2[1]);
               
+              var mp_kind;
               var exit$1;
               
-              var mp_kind;
               if(pmodule_type$1)
                {if(mtyp)
                  {mp_kind=
@@ -2951,9 +2949,7 @@ var
                {exit$1=158;}
               
               switch(exit$1)
-               {case 158:
-                 var mp_kind=[/* Module_type_struct */0,/* [] */0];break
-                }
+               {case 158:mp_kind=[/* Module_type_struct */0,/* [] */0];break}
               
               var
                param=
@@ -2988,19 +2984,19 @@ var
              default:exit=184;}
            break;
           case 3:
-           var p_module_expr2=match$1[2];
+           var p_module_expr2$1=match$1[2];
            
-           var p_module_expr1=match$1[1];
+           var p_module_expr1$1=match$1[1];
            
            switch(match$2[0])
             {case 3:
-              var p_module_expr1$1=p_module_expr1;
+              p_module_expr1=p_module_expr1$1;
               
-              var p_module_expr2$1=p_module_expr2;
+              p_module_expr2=p_module_expr2$1;
               
-              var tt_module_expr1=match$2[1];
+              tt_module_expr1=match$2[1];
               
-              var tt_module_expr2=match$2[2];
+              tt_module_expr2=match$2[2];
               
               exit=183;
               
@@ -3010,13 +3006,13 @@ var
               
               switch(match$5[0])
                {case 3:
-                 var p_module_expr1$1=p_module_expr1;
+                 p_module_expr1=p_module_expr1$1;
                  
-                 var p_module_expr2$1=p_module_expr2;
+                 p_module_expr2=p_module_expr2$1;
                  
-                 var tt_module_expr1=match$5[1];
+                 tt_module_expr1=match$5[1];
                  
-                 var tt_module_expr2=match$5[2];
+                 tt_module_expr2=match$5[2];
                  
                  exit=183;
                  
@@ -3087,14 +3083,14 @@ var
                    "(val ...%s"],
                   s);
               
+              var name;
               switch(tt_modtype$2[0])
                {case 0:
-                 var
-                  name=
-                   Odoc_env["full_module_type_name"]
-                    (env,Odoc_name["from_path"](tt_modtype$2[1]));
+                 name=
+                 Odoc_env["full_module_type_name"]
+                  (env,Odoc_name["from_path"](tt_modtype$2[1]));
                  break;
-                default:var name="";}
+                default:name="";}
               
               var alias=/* record */[0,name,/* None */0];
               
@@ -3131,7 +3127,7 @@ var
                current_module_name,
                module_name,
                /* None */0,
-               p_module_expr1$1,
+               p_module_expr1,
                tt_module_expr1);
            
            var
@@ -3141,7 +3137,7 @@ var
                current_module_name,
                module_name,
                /* None */0,
-               p_module_expr2$1,
+               p_module_expr2,
                tt_module_expr2);
            
            var newrecord$6=/* unknown */"duprecord regular 11";

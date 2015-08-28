@@ -32,35 +32,33 @@ var
 
 var match=Sys["os_type"];
 
+var match$1;
 var exit;
 
 switch(match)
  {case "Cygwin":exit=70;break;
   case "MacOS":
-   var
-    match$1=
-     /* tuple */[0,
-      function(prim){return CamlPrimitive["caml_gr_open_graph"](prim)},
-      function(prim){return CamlPrimitive["caml_gr_close_graph"](prim)}];
+   match$1=
+   /* tuple */[0,
+    function(prim){return CamlPrimitive["caml_gr_open_graph"](prim)},
+    function(prim){return CamlPrimitive["caml_gr_close_graph"](prim)}];
    break;
   case "Unix":exit=70;break;
   case "Win32":
-   var
-    match$1=
-     /* tuple */[0,
-      function(prim){return CamlPrimitive["caml_gr_open_graph"](prim)},
-      function(prim){return CamlPrimitive["caml_gr_close_graph"](prim)}];
+   match$1=
+   /* tuple */[0,
+    function(prim){return CamlPrimitive["caml_gr_open_graph"](prim)},
+    function(prim){return CamlPrimitive["caml_gr_close_graph"](prim)}];
    break;
   default:exit=71;}
 
 switch(exit)
  {case 71:
-   var
-    match$1=
-     Pervasives["invalid_arg"]
-      (Pervasives["^"]("Graphics: unknown OS type: ",Sys["os_type"]));
+   match$1=
+   Pervasives["invalid_arg"]
+    (Pervasives["^"]("Graphics: unknown OS type: ",Sys["os_type"]));
    break;
-  case 70:var match$1=/* tuple */[0,unix_open_graph,unix_close_graph];break
+  case 70:match$1=/* tuple */[0,unix_open_graph,unix_close_graph];break
   }
 
 var close_graph=match$1[2];

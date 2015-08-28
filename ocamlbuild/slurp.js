@@ -136,6 +136,7 @@ var
             {Hashtbl["add"](visited,key,/* true */1);
              var match$1=st[1];
              
+             var res;
              switch(match$1)
               {case 0:
                 var match$2=My_std["sys_readdir"](absfn);
@@ -144,34 +145,30 @@ var
                  {case 0:
                    var names=match$2[1];
                    
-                   var
-                    res=
-                     /* Some */[0,
-                      /* Dir */[0,
-                       path,
-                       name,
-                       [250,st],
-                       /* () */0,
-                       [246,function(param){return scandir(fn,names)}]]];
+                   res=
+                   /* Some */[0,
+                    /* Dir */[0,
+                     path,
+                     name,
+                     [250,st],
+                     /* () */0,
+                     [246,function(param){return scandir(fn,names)}]]];
                    break;
-                  case 1:var res=/* Some */[0,/* Error */[2,match$2[1]]];break
+                  case 1:res=/* Some */[0,/* Error */[2,match$2[1]]];break
                   }
                 break;
                case 1:
-                var
-                 res=
-                  /* Some */[0,/* File */[1,path,name,[250,st],/* () */0]];
+                res=/* Some */[0,/* File */[1,path,name,[250,st],/* () */0]];
                 break;
                case 2:
                 var fn$prime=My_unix["readlink"](absfn);
                 
-                var
-                 res=
-                  My_std["sys_file_exists"](abs(fn$prime))
-                   ?do_entry(/* false */0,path,name)
-                   :/* Some */[0,/* File */[1,path,name,[250,st],/* () */0]];
+                res=
+                My_std["sys_file_exists"](abs(fn$prime))
+                 ?do_entry(/* false */0,path,name)
+                 :/* Some */[0,/* File */[1,path,name,[250,st],/* () */0]];
                 break;
-               case 3:var res=/* None */0;break
+               case 3:res=/* None */0;break
                }
              
              Hashtbl["replace"](visited,key,/* false */0);

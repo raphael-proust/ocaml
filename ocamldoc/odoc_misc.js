@@ -187,7 +187,10 @@ var
        {var exit;
         
         if(typeof t_ele==="number")
-         {switch(t_ele){case 0:return "\n";case 1:return ""}}
+         {switch(t_ele)
+           {case 0:return "\n";
+            case 1:return "";
+            default:return string_of_text(t_ele[1])}}
         else
          {switch(t_ele[0])
            {case 0:exit=82;break;
@@ -340,20 +343,18 @@ var
     
     var see_ref=param[1];
     
+    var t_ref;
     switch(see_ref[0])
-     {case 0:
-       var t_ref=/* :: */[0,/* Link */[15,see_ref[1],t],/* [] */0];break;
+     {case 0:t_ref=/* :: */[0,/* Link */[15,see_ref[1],t],/* [] */0];break;
       case 1:
-       var
-        t_ref=
-         /* :: */[0,/* Code */[1,see_ref[1]],/* :: */[0,[/* Raw */0," "],t]];
+       t_ref=
+       /* :: */[0,/* Code */[1,see_ref[1]],/* :: */[0,[/* Raw */0," "],t]];
        break;
       case 2:
-       var
-        t_ref=
-         /* :: */[0,
-          /* Italic */[5,/* :: */[0,/* Raw */[0,see_ref[1]],/* [] */0]],
-          /* :: */[0,[/* Raw */0," "],t]];
+       t_ref=
+       /* :: */[0,
+        /* Italic */[5,/* :: */[0,/* Raw */[0,see_ref[1]],/* [] */0]],
+        /* :: */[0,[/* Raw */0," "],t]];
        break
       }
     
@@ -396,9 +397,7 @@ var
 var
  string_of_info=
   function(i)
-   {var M=Odoc_types;
-    
-    var match=i[7];
+   {var match=i[7];
     
     var match$1=i[1];
     
@@ -488,8 +487,8 @@ var
         if(typeof t_ele==="number")
          {switch(t_ele)
            {case 0:return [/* :: */0,/* Newline */0,/* [] */0];
-            case 1:return /* [] */0
-            }}
+            case 1:return /* [] */0;
+            default:return /* :: */[0,t_ele,/* [] */0]}}
         else
          {switch(t_ele[0])
            {case 4:
@@ -573,9 +572,13 @@ var
      iter_ele=
       function(ele)
        {var exit;
+        var t$1;
         
         if(typeof ele==="number")
-         {switch(ele){case 0:exit=53;break;case 1:exit=53;break}}
+         {switch(ele)
+           {case 0:exit=53;break;
+            case 1:exit=53;break;
+            default:return iter_text(ele[1])}}
         else
          {switch(ele[0])
            {case 0:exit=50;break;
@@ -589,7 +592,7 @@ var
                     /* :: */[0,/* tuple */[0,ele[1],ele[2],ele[3]],l[1]],
                     0;
             case 14:exit=53;break;
-            case 15:var t$1=ele[2];exit=52;break;
+            case 15:t$1=ele[2];exit=52;break;
             case 16:exit=50;break;
             case 17:exit=56;break;
             case 18:exit=56;break;
@@ -601,7 +604,7 @@ var
         switch(exit)
          {case 53:return /* () */0;
           case 55:return List["iter"](iter_text,ele[1]);
-          case 56:var t$1=ele[1];exit=52;break;
+          case 56:t$1=ele[1];exit=52;break;
           case 50:return /* () */0;
           case 52:return iter_text(t$1)
           }
@@ -718,8 +721,8 @@ var
          return [/* tuple */0,
                  /* true */1,
                  [/* Raw */0,""],
-                 [/* Some */0,/* Newline */0]]
-        }}
+                 [/* Some */0,/* Newline */0]];
+        default:exit=39;}}
     else
      {switch(text_ele[0])
        {case 0:
@@ -924,7 +927,7 @@ var
        {var exit;
         
         if(typeof t==="number")
-         {switch(t){}}
+         {switch(t){default:exit=1;}}
         else
          {switch(t[0])
            {case 3:

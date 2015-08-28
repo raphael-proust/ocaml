@@ -801,18 +801,18 @@ var
    (name,
     tags,
     $staropt$star,
-    $staropt$star,
+    $staropt$star$1,
     prod,
     dep,
     stamp,
-    $staropt$star,
+    $staropt$star$2,
     doc,
     code)
-   {var prods=$staropt$star$1?$staropt$star$1[1]:/* [] */0;
+   {var prods=$staropt$star?$staropt$star[1]:/* [] */0;
     
-    var deps=$staropt$star$2?$staropt$star$2[1]:/* [] */0;
+    var deps=$staropt$star$1?$staropt$star$1[1]:/* [] */0;
     
-    var insert=$staropt$star?$staropt$star[1]:/* bottom */-445061397;
+    var insert=$staropt$star$2?$staropt$star$2[1]:/* bottom */-445061397;
     
     var
      match$1=

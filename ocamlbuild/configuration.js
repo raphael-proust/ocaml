@@ -11,6 +11,7 @@ var Tags=require("./tags.js");
 var Hashtbl=require("./hashtbl.js");
 var Log=require("./log.js");
 var Glob=require("./glob.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var

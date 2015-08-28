@@ -135,17 +135,22 @@ var
 var
  execute=
   function
-   ($staropt$star,$staropt$star,$staropt$star,$staropt$star,exit,commands)
-   {var max_jobs=$staropt$star$1?$staropt$star$1[1]:Pervasives["max_int"];
+   ($staropt$star,
+    $staropt$star$1,
+    $staropt$star$2,
+    $staropt$star$3,
+    exit,
+    commands)
+   {var max_jobs=$staropt$star?$staropt$star[1]:Pervasives["max_int"];
     
-    var ticker=$staropt$star$2?$staropt$star$2[1]:function(prim){return prim};
+    var ticker=$staropt$star$1?$staropt$star$1[1]:function(prim){return prim};
     
-    var period=$staropt$star$3?$staropt$star$3[1]:0.1;
+    var period=$staropt$star$2?$staropt$star$2[1]:0.1;
     
     var
      display=
-      $staropt$star
-       ?$staropt$star[1]
+      $staropt$star$3
+       ?$staropt$star$3[1]
        :function(f){return f(Pervasives["stdout"])};
     
     var batch_id=[0,0];
@@ -273,8 +278,8 @@ var
     
     var
      terminate=
-      function($staropt$star,job)
-       {var $$continue=$staropt$star?$staropt$star[1]:/* true */1;
+      function($staropt$star$4,job)
+       {var $$continue=$staropt$star$4?$staropt$star$4[1]:/* true */1;
         
         return !job[9]
                 ?(job[9]=
@@ -295,8 +300,8 @@ var
     
     var
      do_read=
-      function($staropt$star,fd,job)
-       {var loop=$staropt$star?$staropt$star[1]:/* false */0;
+      function($staropt$star$4,fd,job)
+       {var loop=$staropt$star$4?$staropt$star$4[1]:/* false */0;
         
         try
          {var

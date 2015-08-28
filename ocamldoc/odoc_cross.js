@@ -3,6 +3,7 @@
 var Odoc_name=require("./odoc_name.js");
 var $$String=require("./string.js");
 var Odoc_global=require("./odoc_global.js");
+var Odoc_type=require("./odoc_type.js");
 var CamlinternalOO=require("./camlinternalOO.js");
 var Pervasives=require("./pervasives.js");
 var List=require("./list.js");
@@ -1436,7 +1437,9 @@ var
   function(parent_name,module_list,t_ele)
    {if(typeof t_ele==="number")
      {switch(t_ele)
-       {case 0:return /* Newline */0;case 1:return /* Index_list */1}}
+       {case 0:return /* Newline */0;
+        case 1:return /* Index_list */1;
+        default:return t_ele}}
     else
      {switch(t_ele[0])
        {case 4:
@@ -1591,68 +1594,63 @@ var
                if(match$1)
                 {var ele=match$1[1];
                  
+                 var match$2;
                  switch(ele[0])
                   {case 0:
-                    var match$2=/* tuple */[0,ele[1][1],/* RK_module */0];break;
+                    match$2=/* tuple */[0,ele[1][1],/* RK_module */0];break;
                    case 1:
-                    var match$2=/* tuple */[0,ele[1][1],/* RK_module_type */1];
+                    match$2=/* tuple */[0,ele[1][1],/* RK_module_type */1];
                     break;
                    case 2:
-                    var match$2=/* tuple */[0,ele[1][1],/* RK_class */2];break;
+                    match$2=/* tuple */[0,ele[1][1],/* RK_class */2];break;
                    case 3:
-                    var match$2=/* tuple */[0,ele[1][1],/* RK_class_type */3];
-                    break;
+                    match$2=/* tuple */[0,ele[1][1],/* RK_class_type */3];break;
                    case 4:
-                    var match$2=/* tuple */[0,ele[1][1],/* RK_value */4];break;
+                    match$2=/* tuple */[0,ele[1][1],/* RK_value */4];break;
                    case 5:
-                    var match$2=/* tuple */[0,ele[1][1],/* RK_type */5];break;
+                    match$2=/* tuple */[0,ele[1][1],/* RK_type */5];break;
                    case 6:
-                    var match$2=/* tuple */[0,ele[1][1],/* RK_extension */6];
-                    break;
+                    match$2=/* tuple */[0,ele[1][1],/* RK_extension */6];break;
                    case 7:
-                    var match$2=/* tuple */[0,ele[1][1],/* RK_exception */7];
-                    break;
+                    match$2=/* tuple */[0,ele[1][1],/* RK_exception */7];break;
                    case 8:
-                    var match$2=/* tuple */[0,ele[1][1][1],/* RK_attribute */8];
+                    match$2=/* tuple */[0,ele[1][1][1],/* RK_attribute */8];
                     break;
                    case 9:
-                    var match$2=/* tuple */[0,ele[1][1][1],/* RK_method */9];
-                    break;
+                    match$2=/* tuple */[0,ele[1][1][1],/* RK_method */9];break;
                    case 10:
                     throw [0,
                            CamlPrimitive["caml_global_data"]["Assert_failure"],
                            [0,"odoc_cross.ml",747,52]];
                    case 11:
-                    var
-                     match$2=
-                      /* tuple */[0,
-                       Printf["sprintf"]
-                        ([/* Format */0,
-                          [/* String */2,
-                           /* No_padding */0,
-                           [/* Char_literal */12,
-                            46,
-                            [/* String */2,/* No_padding */0,/* End_of_format */0]]],
-                          "%s.%s"],
-                         ele[1][1],
-                         ele[2][1]),
-                       /* RK_recfield */10];
+                    match$2=
+                    /* tuple */[0,
+                     Printf["sprintf"]
+                      ([/* Format */0,
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* Char_literal */12,
+                          46,
+                          [/* String */2,/* No_padding */0,/* End_of_format */0]]],
+                        "%s.%s"],
+                       ele[1][1],
+                       ele[2][1]),
+                     /* RK_recfield */10];
                     break;
                    case 12:
-                    var
-                     match$2=
-                      /* tuple */[0,
-                       Printf["sprintf"]
-                        ([/* Format */0,
-                          [/* String */2,
-                           /* No_padding */0,
-                           [/* Char_literal */12,
-                            46,
-                            [/* String */2,/* No_padding */0,/* End_of_format */0]]],
-                          "%s.%s"],
-                         ele[1][1],
-                         ele[2][1]),
-                       /* RK_const */11];
+                    match$2=
+                    /* tuple */[0,
+                     Printf["sprintf"]
+                      ([/* Format */0,
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* Char_literal */12,
+                          46,
+                          [/* String */2,/* No_padding */0,/* End_of_format */0]]],
+                        "%s.%s"],
+                       ele[1][1],
+                       ele[2][1]),
+                     /* RK_const */11];
                     break
                    }
                  

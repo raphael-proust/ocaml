@@ -1,6 +1,7 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
 var Sys=require("./sys.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var interrupted=[0,/* false */0];

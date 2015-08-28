@@ -20,8 +20,6 @@ var Glob=require("./glob.js");
 var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var $$let=Pathname;
-
 var Resources=My_std["Set"][1]([0,$$let[2],$$let[10]]);
 
 var print=Pathname["print"];

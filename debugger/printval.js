@@ -135,7 +135,7 @@ var
        {var exit;
         
         if(typeof param==="number")
-         {switch(param){}}
+         {switch(param){default:exit=2;}}
         else
          {switch(param[0])
            {case 0:return Printtyp["longident"](ppf,param[1]);

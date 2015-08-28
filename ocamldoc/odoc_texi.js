@@ -821,9 +821,9 @@ var
                     /* :: */[0,",",/* :: */[0,0,[/* :: */0,"}",/* [] */0]]]]])},
        texi_of_Ref,
        function(self$neg1,name,kind)
-        {var exit;
+        {var xname;
+         var exit;
          
-         var xname;
          if(kind)
           {var match=kind[1];
            
@@ -869,7 +869,7 @@ var
          else
           {exit=92;}
          
-         switch(exit){case 92:var xname="";break}
+         switch(exit){case 92:xname="";break}
          
          if(CamlPrimitive["caml_string_equal"](xname,""))
           {/* unknown */"(sendself self-1/1434 escape/1308 name/1435)";}
@@ -1154,7 +1154,8 @@ var
                      {var exit;
                       
                       if(typeof txt==="number")
-                       {switch(txt){case 0:return [/* Raw */0,"\n"]}}
+                       {switch(txt)
+                         {case 0:return [/* Raw */0,"\n"];default:exit=88;}}
                       else
                        {switch(txt[0])
                          {case 0:
@@ -1182,7 +1183,7 @@ var
                      {var exit;
                       
                       if(typeof txt==="number")
-                       {switch(txt){}}
+                       {switch(txt){default:exit=85;}}
                       else
                        {switch(txt[0])
                          {case 0:
@@ -1203,7 +1204,7 @@ var
             {var match=t[1];
              
              if(typeof match==="number")
-              {switch(match){}}
+              {switch(match){default:exit=84;}}
              else
               {switch(match[0])
                 {case 0:
@@ -1878,9 +1879,10 @@ var
             {var match=inh[2];
              
              if(match)
-              {switch(match[1][0])
-                {case 0:var kind=[/* Some */0,/* RK_class */2];break;
-                 case 1:var kind=[/* Some */0,/* RK_class_type */3];break
+              {var kind;
+               switch(match[1][0])
+                {case 0:kind=[/* Some */0,/* RK_class */2];break;
+                 case 1:kind=[/* Some */0,/* RK_class_type */3];break
                  }
                
                var match$1=inh[3];
@@ -2564,12 +2566,13 @@ var
            return Pervasives["close_out"](chanout)}
          catch(exn)
           {var exit;
+           var s;
            
            if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
-            {var s=exn[2];exit=2;}
+            {s=exn[2];exit=2;}
            else
             {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
-              {var s=exn[2];exit=2;}
+              {s=exn[2];exit=2;}
              else
               {throw exn}
              }

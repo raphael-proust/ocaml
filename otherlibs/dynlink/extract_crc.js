@@ -5,6 +5,7 @@ var Dynlink=require("./dynlink.js");
 var Pervasives=require("./pervasives.js");
 var Arg=require("./arg.js");
 var Printf=require("./printf.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var load_path=[0,/* [] */0];
@@ -51,7 +52,7 @@ var
           var exit;
           
           if(typeof match==="number")
-           {switch(match){}}
+           {switch(match){default:exit=5;}}
           else
            {switch(match[0])
              {case 5:

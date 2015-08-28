@@ -357,7 +357,7 @@ var
              var exit;
              
              if(typeof match==="number")
-              {switch(match){}}
+              {switch(match){default:exit=26;}}
              else
               {switch(match[0])
                 {case 1:
@@ -565,10 +565,10 @@ var
         else
          {var match=add_dir(dir,t[1]);
           
+          var a;
           switch(match[0])
-           {case 0:var a=/* Constant */[0,match[1]];break;
-            case 1:
-             var a=/* Pattern */[1,fast_pattern_of_pattern(match[1])];break
+           {case 0:a=/* Constant */[0,match[1]];break;
+            case 1:a=/* Pattern */[1,fast_pattern_of_pattern(match[1])];break
             }
           
           return continuation(/* Atom */[3,a])}

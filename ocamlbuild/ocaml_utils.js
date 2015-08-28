@@ -236,12 +236,12 @@ var
 
 var
  ocaml_lib=
-  function($staropt$star,$staropt$star,$staropt$star,dir,tag_name,libpath)
-   {var extern=$staropt$star$1?$staropt$star$1[1]:/* false */0;
+  function($staropt$star,$staropt$star$1,$staropt$star$2,dir,tag_name,libpath)
+   {var extern=$staropt$star?$staropt$star[1]:/* false */0;
     
-    var $$byte=$staropt$star$2?$staropt$star$2[1]:/* true */1;
+    var $$byte=$staropt$star$1?$staropt$star$1[1]:/* true */1;
     
-    var $$native=$staropt$star?$staropt$star[1]:/* true */1;
+    var $$native=$staropt$star$2?$staropt$star$2[1]:/* true */1;
     
     var
      add_dir=

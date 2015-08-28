@@ -349,7 +349,8 @@ var
        {var exit;
         
         if(typeof param==="number")
-         {switch(param){case 2:return opt_passive[1]=/* true */1,0}}
+         {switch(param)
+           {case 2:return opt_passive[1]=/* true */1,0;default:exit=95;}}
         else
          {switch(param[0])
            {case 1:return opt_socktype[1]=/* Some */[0,param[1]],0;

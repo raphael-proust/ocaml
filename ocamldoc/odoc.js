@@ -11,9 +11,9 @@ var Filename=require("./filename.js");
 var Odoc_config=require("./odoc_config.js");
 var $$Array=require("./array.js");
 var Odoc_gen=require("./odoc_gen.js");
+var Odoc_messages=require("./odoc_messages.js");
 var Sys=require("./sys.js");
 var CamlPrimitive=require("./camlPrimitive.js");
-var Odoc_messages=require("./odoc_messages.js");
 
 
 
@@ -128,6 +128,7 @@ var
       return Dynlink["loadfile"](real_file)}
     catch(exn)
      {var exit;
+      var s;
       
       if(exn[1]===Dynlink["Error"])
        {Pervasives["prerr_endline"]
@@ -141,10 +142,10 @@ var
           return Pervasives["exit"](1)}
         else
          {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
-           {var s=exn[2];exit=9;}
+           {s=exn[2];exit=9;}
           else
            {if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
-             {var s=exn[2];exit=9;}
+             {s=exn[2];exit=9;}
             else
              {throw exn}
             }

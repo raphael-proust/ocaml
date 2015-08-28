@@ -163,7 +163,7 @@ var
              {var match$1=exn$1[2];
               
               if(typeof match$1==="number")
-               {switch(match$1){}}
+               {switch(match$1){default:exit=32;}}
               else
                {switch(match$1[0])
                  {case 1:
@@ -282,7 +282,7 @@ var
    {var exit;
     
     if(typeof a==="number")
-     {switch(a){}}
+     {switch(a){default:exit=17;}}
     else
      {switch(a[0])
        {case 1:switch(a[1]){case "":return l;default:exit=17;}break;

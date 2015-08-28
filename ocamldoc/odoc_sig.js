@@ -15,6 +15,7 @@ var Misc=require("./misc.js");
 var Odoc_merge=require("./odoc_merge.js");
 var Odoc_env=require("./odoc_env.js");
 var Filename=require("./filename.js");
+var Odoc_module=require("./odoc_module.js");
 var Odoc_misc=require("./odoc_misc.js");
 var Location=require("./location.js");
 var Hashtbl=require("./hashtbl.js");
@@ -248,7 +249,7 @@ var
                var exit;
                
                if(typeof match$2==="number")
-                {switch(match$2){}}
+                {switch(match$2){default:exit=291;}}
                else
                 {switch(match$2[0])
                   {case 4:
@@ -412,7 +413,7 @@ var
         var exit;
         
         if(typeof match==="number")
-         {switch(match){}}
+         {switch(match){default:exit=279;}}
         else
          {switch(match[0])
            {case 4:
@@ -511,12 +512,13 @@ var
        {return List["fold_right"]
                 (function(constraint_,acc)
                   {var exit;
+                   var s;
                    
                    switch(constraint_[0])
                     {case 0:exit=264;break;
                      case 1:exit=264;break;
-                     case 2:var s=constraint_[1][1];exit=265;break;
-                     case 3:var s=constraint_[1];exit=265;break
+                     case 2:s=constraint_[1][1];exit=265;break;
+                     case 3:s=constraint_[1];exit=265;break
                      }
                    
                    switch(exit)
@@ -689,18 +691,18 @@ var
                  
                  var match$3=class_type[1];
                  
+                 var inh;
                  var exit;
                  
                  switch(match$3[0])
                   {case 0:
                     var name=Odoc_name["from_longident"](match$3[1][1]);
                     
-                    var
-                     inh=
-                      /* record */[0,
-                       Odoc_env["full_class_or_class_type_name"](env,name),
-                       /* None */0,
-                       text_opt];
+                    inh=
+                    /* record */[0,
+                     Odoc_env["full_class_or_class_type_name"](env,name),
+                     /* None */0,
+                     text_opt];
                     break;
                    case 1:exit=232;break;
                    case 2:exit=232;break;
@@ -712,12 +714,11 @@ var
                  
                  switch(exit)
                   {case 232:
-                    var
-                     inh=
-                      /* record */[0,
-                       Odoc_messages["object_end"],
-                       /* None */0,
-                       text_opt];
+                    inh=
+                    /* record */[0,
+                     Odoc_messages["object_end"],
+                     /* None */0,
+                     text_opt];
                     break
                    }
                  
@@ -1327,17 +1328,17 @@ var
            
            var match$9=new_module[2];
            
+           var new_env2;
            switch(match$9[0])
             {case 1:
-              var
-               new_env2=
-                Odoc_env["add_signature"]
-                 (new_env$3,
-                  new_module[1],
-                  /* Some */[0,Odoc_name["simple"](new_module[1])],
-                  match$9[1]);
+              new_env2=
+              Odoc_env["add_signature"]
+               (new_env$3,
+                new_module[1],
+                /* Some */[0,Odoc_name["simple"](new_module[1])],
+                match$9[1]);
               break;
-             default:var new_env2=new_env$3;}
+             default:new_env2=new_env$3;}
            
            return /* tuple */[0,
                    match$8[1],
@@ -1545,9 +1546,9 @@ var
            mt[2]=merge_infos(mt[2],match$12[2]);
            var new_env$5=Odoc_env["add_module_type"](env,mt[1]);
            
+           var new_env2$1;
            var exit$1;
            
-           var new_env2$1;
            if(sig_mtype)
             {var match$13=sig_mtype[1];
              
@@ -1565,7 +1566,7 @@ var
            else
             {exit$1=102;}
            
-           switch(exit$1){case 102:var new_env2$1=new_env$5;break}
+           switch(exit$1){case 102:new_env2$1=new_env$5;break}
            
            return /* tuple */[0,
                    match$12[1],
@@ -1865,9 +1866,10 @@ var
         
         switch(match[0])
          {case 0:
+           var name;
            switch(sig_module_type[0])
-            {case 0:var name=Odoc_name["from_path"](sig_module_type[1]);break;
-             default:var name=Odoc_name["from_longident"](match[1][1]);}
+            {case 0:name=Odoc_name["from_path"](sig_module_type[1]);break;
+             default:name=Odoc_name["from_longident"](match[1][1]);}
            
            return /* Module_type_alias */[2,
                    /* record */[0,
@@ -1913,9 +1915,9 @@ var
             {case 2:
               var param_module_type=sig_module_type[2];
               
+              var mp_kind;
               var exit;
               
-              var mp_kind;
               if(pmodule_type2)
                {if(param_module_type)
                  {mp_kind=
@@ -1933,9 +1935,7 @@ var
                {exit=160;}
               
               switch(exit)
-               {case 160:
-                 var mp_kind=[/* Module_type_struct */0,/* [] */0];break
-                }
+               {case 160:mp_kind=[/* Module_type_struct */0,/* [] */0];break}
               
               var
                param=
@@ -1997,10 +1997,10 @@ var
                   CamlPrimitive["caml_global_data"]["Assert_failure"],
                   [0,"odoc_sig.ml",1296,38]];
           case 6:
+           var name$1;
            switch(sig_module_type[0])
-            {case 3:
-              var name$1=Odoc_name["from_path"](sig_module_type[1]);break;
-             default:var name$1=Odoc_name["from_longident"](match[1][1]);}
+            {case 3:name$1=Odoc_name["from_path"](sig_module_type[1]);break;
+             default:name$1=Odoc_name["from_longident"](match[1][1]);}
            
            return /* Module_type_alias */[2,
                    /* record */[0,
@@ -2064,9 +2064,9 @@ var
               
               var mp_type_code=get_string_of_file(loc_start,loc_end);
               
+              var mp_kind;
               var exit;
               
-              var mp_kind;
               if(pmodule_type2)
                {if(param_module_type)
                  {mp_kind=
@@ -2084,9 +2084,7 @@ var
                {exit=184;}
               
               switch(exit)
-               {case 184:
-                 var mp_kind=[/* Module_type_struct */0,/* [] */0];break
-                }
+               {case 184:mp_kind=[/* Module_type_struct */0,/* [] */0];break}
               
               var
                param=

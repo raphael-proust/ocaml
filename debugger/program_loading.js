@@ -12,6 +12,7 @@ var Buffer=require("./buffer.js");
 var Parameters=require("./parameters.js");
 var Debugger_config=require("./debugger_config.js");
 var Input_handling=require("./input_handling.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 var Sys=require("./sys.js");
 
 

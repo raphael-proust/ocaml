@@ -338,7 +338,7 @@ var
                      {var match$2=text[1];
                       
                       if(typeof match$2==="number")
-                       {switch(match$2){}}
+                       {switch(match$2){default:exit=12;}}
                       else
                        {switch(match$2[0])
                          {case 1:

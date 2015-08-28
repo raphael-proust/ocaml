@@ -274,23 +274,21 @@ var
           
           var see_ref=param[1];
           
+          var t_ref;
           switch(see_ref[0])
            {case 0:
-             var t_ref=/* :: */[0,/* Link */[15,see_ref[1],t],/* [] */0];
-             break;
+             t_ref=/* :: */[0,/* Link */[15,see_ref[1],t],/* [] */0];break;
             case 1:
-             var
-              t_ref=
-               /* :: */[0,
-                /* Code */[1,see_ref[1]],
-                /* :: */[0,[/* Raw */0," "],t]];
+             t_ref=
+             /* :: */[0,
+              /* Code */[1,see_ref[1]],
+              /* :: */[0,[/* Raw */0," "],t]];
              break;
             case 2:
-             var
-              t_ref=
-               /* :: */[0,
-                /* Italic */[5,/* :: */[0,/* Raw */[0,see_ref[1]],/* [] */0]],
-                /* :: */[0,[/* Raw */0," "],t]];
+             t_ref=
+             /* :: */[0,
+              /* Italic */[5,/* :: */[0,/* Raw */[0,see_ref[1]],/* [] */0]],
+              /* :: */[0,[/* Raw */0," "],t]];
              break
             }
           
@@ -367,8 +365,6 @@ var
           
           if(info_opt)
            {var info$1=info_opt[1];
-            
-            var M=Odoc_info;
             
             var match=info$1[7];
             
@@ -633,7 +629,12 @@ var
         {var exit;
          
          if(typeof txt==="number")
-          {switch(txt){case 0:return bs(b,"\n.sp\n");case 1:exit=91;break}}
+          {switch(txt)
+            {case 0:return bs(b,"\n.sp\n");
+             case 1:exit=91;break;
+             default:
+              /* unknown */"(sendself self-2/1431 man_of_text2/1361 b/1432 (field 0 txt/1433))";
+              }}
          else
           {switch(txt[0])
             {case 0:exit=92;break;
@@ -1388,9 +1389,9 @@ var
            bs(b,Pervasives["^"]('"',Pervasives["^"](match?match[1]:"",'"\n')));
            var match$1=cl[2];
            
+           var $$abstract;
            var exit;
            
-           var $$abstract;
            if(match$1)
             {var match$2=match$1[1][1];
              
@@ -1408,7 +1409,7 @@ var
            else
             {exit=51;}
            
-           switch(exit){case 51:var $$abstract="no description";break}
+           switch(exit){case 51:$$abstract="no description";break}
            
            bs(b,".SH NAME\n");
            bs
@@ -1490,9 +1491,9 @@ var
            bs(b,Pervasives["^"]('"',Pervasives["^"](match?match[1]:"",'"\n')));
            var match$1=ct[2];
            
+           var $$abstract;
            var exit;
            
-           var $$abstract;
            if(match$1)
             {var match$2=match$1[1][1];
              
@@ -1510,7 +1511,7 @@ var
            else
             {exit=43;}
            
-           switch(exit){case 43:var $$abstract="no description";break}
+           switch(exit){case 43:$$abstract="no description";break}
            
            bs(b,".SH NAME\n");
            bs
@@ -1643,9 +1644,9 @@ var
            bs(b,Pervasives["^"]('"',Pervasives["^"](match?match[1]:"",'"\n')));
            var match$1=mt[2];
            
+           var $$abstract;
            var exit;
            
-           var $$abstract;
            if(match$1)
             {var match$2=match$1[1][1];
              
@@ -1663,7 +1664,7 @@ var
            else
             {exit=35;}
            
-           switch(exit){case 35:var $$abstract="no description";break}
+           switch(exit){case 35:$$abstract="no description";break}
            
            bs(b,".SH NAME\n");
            bs
@@ -1790,9 +1791,9 @@ var
            bs(b,Pervasives["^"]('"',Pervasives["^"](match?match[1]:"",'"\n')));
            var match$1=m[3];
            
+           var $$abstract;
            var exit;
            
-           var $$abstract;
            if(match$1)
             {var match$2=match$1[1][1];
              
@@ -1810,7 +1811,7 @@ var
            else
             {exit=27;}
            
-           switch(exit){case 27:var $$abstract="no description";break}
+           switch(exit){case 27:$$abstract="no description";break}
            
            bs(b,".SH NAME\n");
            bs

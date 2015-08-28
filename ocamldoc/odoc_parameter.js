@@ -3,6 +3,7 @@
 var $$String=require("./string.js");
 var Pervasives=require("./pervasives.js");
 var List=require("./list.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var

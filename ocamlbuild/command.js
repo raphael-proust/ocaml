@@ -476,10 +476,10 @@ var
 
 var
  execute_many=
-  function($staropt$star,$staropt$star,cmds)
-   {var quiet=$staropt$star$1?$staropt$star$1[1]:/* false */0;
+  function($staropt$star,$staropt$star$1,cmds)
+   {var quiet=$staropt$star?$staropt$star[1]:/* false */0;
     
-    var pretend=$staropt$star?$staropt$star[1]:/* false */0;
+    var pretend=$staropt$star$1?$staropt$star$1[1]:/* false */0;
     
     add_parallel_stat$1(My_std["List"][5](cmds));
     var
@@ -599,7 +599,7 @@ var
        {var exit;
         
         if(typeof x==="number")
-         {switch(x){}}
+         {switch(x){default:exit=19;}}
         else
          {switch(x[0])
            {case 0:return My_std["List"][14](spec,x[1]);
@@ -637,7 +637,7 @@ var
        {var exit;
         
         if(typeof param==="number")
-         {switch(param){}}
+         {switch(param){default:exit=14;}}
         else
          {switch(param[0])
            {case 0:return My_std["List"][20](spec,param[1]);
@@ -671,7 +671,7 @@ var
      $$self=
       function(x,acc)
        {if(typeof x==="number")
-         {switch(x){case 0:return acc}}
+         {switch(x){case 0:return acc;default:return /* :: */[0,x,acc]}}
         else
          {switch(x[0])
            {case 0:return My_std["List"][20]($$self,x[1],acc);

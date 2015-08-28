@@ -8,6 +8,7 @@ var Predef=require("./predef.js");
 var Printf=require("./printf.js");
 var Misc=require("./misc.js");
 var Path=require("./path.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 
@@ -74,17 +75,14 @@ var
            
            var match=item[2][1];
            
+           var env2;
            switch(match[0])
             {case 1:
-              var
-               env2=
-                add_signature
-                 (env,
-                  qualify(ident$3),
-                  /* Some */[0,rel_name(ident$3)],
-                  match[1]);
+              env2=
+              add_signature
+               (env,qualify(ident$3),/* Some */[0,rel_name(ident$3)],match[1]);
               break;
-             default:var env2=env;}
+             default:env2=env;}
            
            var newrecord$3=/* unknown */"duprecord regular 7";
            
@@ -381,7 +379,7 @@ var
           var exit;
           
           if(typeof match==="number")
-           {switch(match){}}
+           {switch(match){default:exit=14;}}
           else
            {switch(match[0])
              {case 3:

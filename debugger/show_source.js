@@ -8,6 +8,7 @@ var Primitives=require("./primitives.js");
 var Parameters=require("./parameters.js");
 var Debugger_config=require("./debugger_config.js");
 var Source=require("./source.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var

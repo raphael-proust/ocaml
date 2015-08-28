@@ -9,6 +9,7 @@ var Shell=require("./shell.js");
 var My_std=require("./my_std.js");
 var My_unix=require("./my_unix.js");
 var Hashtbl=require("./hashtbl.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var digests=Hashtbl["create"](/* None */0,103);

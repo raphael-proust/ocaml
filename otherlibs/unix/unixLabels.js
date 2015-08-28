@@ -4,323 +4,321 @@ var Unix=require("./unix.js");
 
 
 
-var include=Unix;
+var Unix_error=Unix["Unix_error"];
 
-var Unix_error=include[1];
+var error_message=Unix["error_message"];
 
-var error_message=include[2];
+var handle_unix_error=Unix["handle_unix_error"];
 
-var handle_unix_error=include[3];
+var environment=Unix["environment"];
 
-var environment=include[4];
+var getenv=Unix["getenv"];
 
-var getenv=include[5];
+var putenv=Unix["putenv"];
 
-var putenv=include[6];
+var execv=Unix["execv"];
 
-var execv=include[7];
+var execve=Unix["execve"];
 
-var execve=include[8];
+var execvp=Unix["execvp"];
 
-var execvp=include[9];
+var execvpe=Unix["execvpe"];
 
-var execvpe=include[10];
+var fork=Unix["fork"];
 
-var fork=include[11];
+var wait=Unix["wait"];
 
-var wait=include[12];
+var waitpid=Unix["waitpid"];
 
-var waitpid=include[13];
+var system=Unix["system"];
 
-var system=include[14];
+var getpid=Unix["getpid"];
 
-var getpid=include[15];
+var getppid=Unix["getppid"];
 
-var getppid=include[16];
+var nice=Unix["nice"];
 
-var nice=include[17];
+var stdin=Unix["stdin"];
 
-var stdin=include[18];
+var stdout=Unix["stdout"];
 
-var stdout=include[19];
+var stderr=Unix["stderr"];
 
-var stderr=include[20];
+var openfile=Unix["openfile"];
 
-var openfile=include[21];
+var close=Unix["close"];
 
-var close=include[22];
+var read=Unix["read"];
 
-var read=include[23];
+var write=Unix["write"];
 
-var write=include[24];
+var single_write=Unix["single_write"];
 
-var single_write=include[25];
+var write_substring=Unix["write_substring"];
 
-var write_substring=include[26];
+var single_write_substring=Unix["single_write_substring"];
 
-var single_write_substring=include[27];
+var in_channel_of_descr=Unix["in_channel_of_descr"];
 
-var in_channel_of_descr=include[28];
+var out_channel_of_descr=Unix["out_channel_of_descr"];
 
-var out_channel_of_descr=include[29];
+var descr_of_in_channel=Unix["descr_of_in_channel"];
 
-var descr_of_in_channel=include[30];
+var descr_of_out_channel=Unix["descr_of_out_channel"];
 
-var descr_of_out_channel=include[31];
+var lseek=Unix["lseek"];
 
-var lseek=include[32];
+var truncate=Unix["truncate"];
 
-var truncate=include[33];
+var ftruncate=Unix["ftruncate"];
 
-var ftruncate=include[34];
+var stat=Unix["stat"];
 
-var stat=include[35];
+var lstat=Unix["lstat"];
 
-var lstat=include[36];
+var fstat=Unix["fstat"];
 
-var fstat=include[37];
+var isatty=Unix["isatty"];
 
-var isatty=include[38];
+var unlink=Unix["unlink"];
 
-var unlink=include[40];
+var rename=Unix["rename"];
 
-var rename=include[41];
+var link=Unix["link"];
 
-var link=include[42];
+var chmod=Unix["chmod"];
 
-var chmod=include[43];
+var fchmod=Unix["fchmod"];
 
-var fchmod=include[44];
+var chown=Unix["chown"];
 
-var chown=include[45];
+var fchown=Unix["fchown"];
 
-var fchown=include[46];
+var umask=Unix["umask"];
 
-var umask=include[47];
+var access=Unix["access"];
 
-var access=include[48];
+var dup=Unix["dup"];
 
-var dup=include[49];
+var dup2=Unix["dup2"];
 
-var dup2=include[50];
+var set_nonblock=Unix["set_nonblock"];
 
-var set_nonblock=include[51];
+var clear_nonblock=Unix["clear_nonblock"];
 
-var clear_nonblock=include[52];
+var set_close_on_exec=Unix["set_close_on_exec"];
 
-var set_close_on_exec=include[53];
+var clear_close_on_exec=Unix["clear_close_on_exec"];
 
-var clear_close_on_exec=include[54];
+var mkdir=Unix["mkdir"];
 
-var mkdir=include[55];
+var rmdir=Unix["rmdir"];
 
-var rmdir=include[56];
+var chdir=Unix["chdir"];
 
-var chdir=include[57];
+var getcwd=Unix["getcwd"];
 
-var getcwd=include[58];
+var chroot=Unix["chroot"];
 
-var chroot=include[59];
+var opendir=Unix["opendir"];
 
-var opendir=include[60];
+var readdir=Unix["readdir"];
 
-var readdir=include[61];
+var rewinddir=Unix["rewinddir"];
 
-var rewinddir=include[62];
+var closedir=Unix["closedir"];
 
-var closedir=include[63];
+var pipe=Unix["pipe"];
 
-var pipe=include[64];
+var mkfifo=Unix["mkfifo"];
 
-var mkfifo=include[65];
+var create_process=Unix["create_process"];
 
-var create_process=include[66];
+var create_process_env=Unix["create_process_env"];
 
-var create_process_env=include[67];
+var open_process_in=Unix["open_process_in"];
 
-var open_process_in=include[68];
+var open_process_out=Unix["open_process_out"];
 
-var open_process_out=include[69];
+var open_process=Unix["open_process"];
 
-var open_process=include[70];
+var open_process_full=Unix["open_process_full"];
 
-var open_process_full=include[71];
+var close_process_in=Unix["close_process_in"];
 
-var close_process_in=include[72];
+var close_process_out=Unix["close_process_out"];
 
-var close_process_out=include[73];
+var close_process=Unix["close_process"];
 
-var close_process=include[74];
+var close_process_full=Unix["close_process_full"];
 
-var close_process_full=include[75];
+var symlink=Unix["symlink"];
 
-var symlink=include[76];
+var readlink=Unix["readlink"];
 
-var readlink=include[77];
+var select=Unix["select"];
 
-var select=include[78];
+var lockf=Unix["lockf"];
 
-var lockf=include[79];
+var kill=Unix["kill"];
 
-var kill=include[80];
+var sigprocmask=Unix["sigprocmask"];
 
-var sigprocmask=include[81];
+var sigpending=Unix["sigpending"];
 
-var sigpending=include[82];
+var sigsuspend=Unix["sigsuspend"];
 
-var sigsuspend=include[83];
+var pause=Unix["pause"];
 
-var pause=include[84];
+var time=Unix["time"];
 
-var time=include[85];
+var gettimeofday=Unix["gettimeofday"];
 
-var gettimeofday=include[86];
+var gmtime=Unix["gmtime"];
 
-var gmtime=include[87];
+var localtime=Unix["localtime"];
 
-var localtime=include[88];
+var mktime=Unix["mktime"];
 
-var mktime=include[89];
+var alarm=Unix["alarm"];
 
-var alarm=include[90];
+var sleep=Unix["sleep"];
 
-var sleep=include[91];
+var times=Unix["times"];
 
-var times=include[92];
+var utimes=Unix["utimes"];
 
-var utimes=include[93];
+var getitimer=Unix["getitimer"];
 
-var getitimer=include[94];
+var setitimer=Unix["setitimer"];
 
-var setitimer=include[95];
+var getuid=Unix["getuid"];
 
-var getuid=include[96];
+var geteuid=Unix["geteuid"];
 
-var geteuid=include[97];
+var setuid=Unix["setuid"];
 
-var setuid=include[98];
+var getgid=Unix["getgid"];
 
-var getgid=include[99];
+var getegid=Unix["getegid"];
 
-var getegid=include[100];
+var setgid=Unix["setgid"];
 
-var setgid=include[101];
+var getgroups=Unix["getgroups"];
 
-var getgroups=include[102];
+var setgroups=Unix["setgroups"];
 
-var setgroups=include[103];
+var initgroups=Unix["initgroups"];
 
-var initgroups=include[104];
+var getlogin=Unix["getlogin"];
 
-var getlogin=include[105];
+var getpwnam=Unix["getpwnam"];
 
-var getpwnam=include[106];
+var getgrnam=Unix["getgrnam"];
 
-var getgrnam=include[107];
+var getpwuid=Unix["getpwuid"];
 
-var getpwuid=include[108];
+var getgrgid=Unix["getgrgid"];
 
-var getgrgid=include[109];
+var inet_addr_of_string=Unix["inet_addr_of_string"];
 
-var inet_addr_of_string=include[110];
+var string_of_inet_addr=Unix["string_of_inet_addr"];
 
-var string_of_inet_addr=include[111];
+var inet_addr_any=Unix["inet_addr_any"];
 
-var inet_addr_any=include[112];
+var inet_addr_loopback=Unix["inet_addr_loopback"];
 
-var inet_addr_loopback=include[113];
+var inet6_addr_any=Unix["inet6_addr_any"];
 
-var inet6_addr_any=include[114];
+var inet6_addr_loopback=Unix["inet6_addr_loopback"];
 
-var inet6_addr_loopback=include[115];
+var socket=Unix["socket"];
 
-var socket=include[116];
+var domain_of_sockaddr=Unix["domain_of_sockaddr"];
 
-var domain_of_sockaddr=include[117];
+var socketpair=Unix["socketpair"];
 
-var socketpair=include[118];
+var accept=Unix["accept"];
 
-var accept=include[119];
+var bind=Unix["bind"];
 
-var bind=include[120];
+var connect=Unix["connect"];
 
-var connect=include[121];
+var listen=Unix["listen"];
 
-var listen=include[122];
+var shutdown=Unix["shutdown"];
 
-var shutdown=include[123];
+var getsockname=Unix["getsockname"];
 
-var getsockname=include[124];
+var getpeername=Unix["getpeername"];
 
-var getpeername=include[125];
+var recv=Unix["recv"];
 
-var recv=include[126];
+var recvfrom=Unix["recvfrom"];
 
-var recvfrom=include[127];
+var send=Unix["send"];
 
-var send=include[128];
+var send_substring=Unix["send_substring"];
 
-var send_substring=include[129];
+var sendto=Unix["sendto"];
 
-var sendto=include[130];
+var sendto_substring=Unix["sendto_substring"];
 
-var sendto_substring=include[131];
+var getsockopt=Unix["getsockopt"];
 
-var getsockopt=include[132];
+var setsockopt=Unix["setsockopt"];
 
-var setsockopt=include[133];
+var getsockopt_int=Unix["getsockopt_int"];
 
-var getsockopt_int=include[134];
+var setsockopt_int=Unix["setsockopt_int"];
 
-var setsockopt_int=include[135];
+var getsockopt_optint=Unix["getsockopt_optint"];
 
-var getsockopt_optint=include[136];
+var setsockopt_optint=Unix["setsockopt_optint"];
 
-var setsockopt_optint=include[137];
+var getsockopt_float=Unix["getsockopt_float"];
 
-var getsockopt_float=include[138];
+var setsockopt_float=Unix["setsockopt_float"];
 
-var setsockopt_float=include[139];
+var getsockopt_error=Unix["getsockopt_error"];
 
-var getsockopt_error=include[140];
+var open_connection=Unix["open_connection"];
 
-var open_connection=include[141];
+var shutdown_connection=Unix["shutdown_connection"];
 
-var shutdown_connection=include[142];
+var establish_server=Unix["establish_server"];
 
-var establish_server=include[143];
+var gethostname=Unix["gethostname"];
 
-var gethostname=include[144];
+var gethostbyname=Unix["gethostbyname"];
 
-var gethostbyname=include[145];
+var gethostbyaddr=Unix["gethostbyaddr"];
 
-var gethostbyaddr=include[146];
+var getprotobyname=Unix["getprotobyname"];
 
-var getprotobyname=include[147];
+var getprotobynumber=Unix["getprotobynumber"];
 
-var getprotobynumber=include[148];
+var getservbyname=Unix["getservbyname"];
 
-var getservbyname=include[149];
+var getservbyport=Unix["getservbyport"];
 
-var getservbyport=include[150];
+var getaddrinfo=Unix["getaddrinfo"];
 
-var getaddrinfo=include[151];
+var getnameinfo=Unix["getnameinfo"];
 
-var getnameinfo=include[152];
+var tcgetattr=Unix["tcgetattr"];
 
-var tcgetattr=include[153];
+var tcsetattr=Unix["tcsetattr"];
 
-var tcsetattr=include[154];
+var tcsendbreak=Unix["tcsendbreak"];
 
-var tcsendbreak=include[155];
+var tcdrain=Unix["tcdrain"];
 
-var tcdrain=include[156];
+var tcflush=Unix["tcflush"];
 
-var tcflush=include[157];
+var tcflow=Unix["tcflow"];
 
-var tcflow=include[158];
-
-var setsid=include[159];
+var setsid=Unix["setsid"];
 
 module["exports"]=
 {"Unix_error":Unix_error,

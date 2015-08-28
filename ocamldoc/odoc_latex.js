@@ -482,9 +482,9 @@ var
          for(var i=0;i<=len-1;i++)
           {var c=name["charCodeAt"](i);
            
+           var match;
            var exit;
            
-           var match;
            if(c>=96)
             {var switcher=-124+c;
              
@@ -572,9 +572,8 @@ var
            
            switch(exit)
             {case 106:
-              var
-               match=
-                /* tuple */[0,$$String["make"](1,c),$$String["make"](1,c)];
+              match=
+              /* tuple */[0,$$String["make"](1,c),$$String["make"](1,c)];
               break
              }
            
@@ -1521,6 +1520,7 @@ var
          
          var match$6=t[4];
          
+         var defs;
          if(typeof match$6==="number")
           {switch(match$6)
             {case 0:
@@ -1528,7 +1528,6 @@ var
               
               var exit$2;
               
-              var defs;
               if(match$7)
                {var match$8=match$7[1];
                 
@@ -1579,9 +1578,9 @@ var
               else
                {exit$2=73;}
               
-              switch(exit$2){case 73:var defs=/* [] */0;break}
+              switch(exit$2){case 73:defs=/* [] */0;break}
               break;
-             case 1:var defs=/* [] */0;break
+             case 1:defs=/* [] */0;break
              }}
          else
           {switch(match$6[0])
@@ -1666,7 +1665,7 @@ var
                              entry_comment(constr[4]))},
                   match$6[1]);
               
-              var defs=List["flatten"](constructors);
+              defs=List["flatten"](constructors);
               break;
              case 1:
               var
@@ -1706,11 +1705,10 @@ var
                              entry_comment(r[4]))},
                   match$6[1]);
               
-              var
-               defs=
-                Pervasives["@"]
-                 (List["flatten"](fields$1),
-                  [/* :: */0,[/* CodePre */2,"}"],/* [] */0]);
+              defs=
+              Pervasives["@"]
+               (List["flatten"](fields$1),
+                [/* :: */0,[/* CodePre */2,"}"],/* [] */0]);
               break
              }}
          
@@ -1726,7 +1724,7 @@ var
                
                if(param[2])
                 {if(typeof e==="number")
-                  {switch(e){}}
+                  {switch(e){default:exit$3=68;}}
                  else
                   {switch(e[0])
                     {case 2:
@@ -1735,7 +1733,7 @@ var
                       var match$10=match$9[1];
                       
                       if(typeof match$10==="number")
-                       {switch(match$10){}}
+                       {switch(match$10){default:exit$3=68;}}
                       else
                        {switch(match$10[0])
                          {case 2:
@@ -1963,7 +1961,7 @@ var
                
                if(param[2])
                 {if(typeof e==="number")
-                  {switch(e){}}
+                  {switch(e){default:exit=56;}}
                  else
                   {switch(e[0])
                     {case 2:
@@ -1972,7 +1970,7 @@ var
                       var match$2=match$1[1];
                       
                       if(typeof match$2==="number")
-                       {switch(match$2){}}
+                       {switch(match$2){default:exit=56;}}
                       else
                        {switch(match$2[0])
                          {case 2:
@@ -2579,7 +2577,7 @@ var
             if(t)
              {var $js=t[1];
               if(typeof $js==="number")
-               {switch($js){}}
+               {switch($js){default:exit=28;}}
               else
                {switch($js[0])
                  {case 13:
@@ -2655,7 +2653,8 @@ var
             {var match=inh[2];
              
              if(match)
-              {switch(match[1][0])
+              {var label$1;
+               switch(match[1][0])
                 {case 0:
                   /* unknown */"(sendself self-3/1993 class_label/1912 0a (field 0 inh/1997))";
                   
@@ -2866,12 +2865,13 @@ var
                  return Pervasives["close_out"](chanout)}
                catch(exn)
                 {var exit;
+                 var s;
                  
                  if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
-                  {var s=exn[2];exit=7;}
+                  {s=exn[2];exit=7;}
                  else
                   {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
-                    {var s=exn[2];exit=7;}
+                    {s=exn[2];exit=7;}
                    else
                     {throw exn}
                    }
@@ -2914,12 +2914,13 @@ var
            return Pervasives["close_out"](chanout)}
          catch(exn)
           {var exit;
+           var s;
            
            if(exn[1]===CamlPrimitive["caml_global_data"]["Failure"])
-            {var s=exn[2];exit=2;}
+            {s=exn[2];exit=2;}
            else
             {if(exn[1]===CamlPrimitive["caml_global_data"]["Sys_error"])
-              {var s=exn[2];exit=2;}
+              {s=exn[2];exit=2;}
              else
               {throw exn}
              }

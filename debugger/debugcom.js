@@ -6,8 +6,8 @@ var Primitives=require("./primitives.js");
 var Misc=require("./misc.js");
 var Int64ops=require("./int64ops.js");
 var Input_handling=require("./input_handling.js");
-var Sys=require("./sys.js");
 var CamlPrimitive=require("./camlPrimitive.js");
+var Sys=require("./sys.js");
 
 
 var conn=[0,Primitives["std_io"]];
@@ -59,11 +59,11 @@ var
               {Input_handling["main_loop"](/* () */0);
                var match=Pervasives["input_char"](conn[1][1]);
                
+               var summary;
                var exit;
                
                var switcher=-98+match;
                
-               var summary;
                if(22<switcher>>>0)
                 {exit=50;}
                else
@@ -95,9 +95,7 @@ var
                  }
                
                switch(exit)
-                {case 50:
-                  var summary=Misc["fatal_error"]("Debugcom.do_go");break
-                 }
+                {case 50:summary=Misc["fatal_error"]("Debugcom.do_go");break}
                
                var event_counter=Pervasives["input_binary_int"](conn[1][1]);
                

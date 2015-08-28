@@ -6,6 +6,7 @@ var Filename=require("./filename.js");
 var Debugger_config=require("./debugger_config.js");
 var Hashtbl=require("./hashtbl.js");
 var Config=require("./config.js");
+var CamlPrimitive=require("./camlPrimitive.js");
 
 
 var program_loaded=/* false */0;
