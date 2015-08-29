@@ -1,6 +1,22 @@
 [@@@warning "-a"]
 include
   struct
+    module Lambda_util :
+      sig
+        val string_of_lambda : Lambda.lambda -> string
+        val string_of_primitive : Lambda.primitive -> string
+      end =
+      struct
+        let string_of_fmt (f : Format.formatter -> 'a -> unit) v =
+          let buf = Buffer.create 37 in
+          let fmt = Format.formatter_of_buffer buf in
+          let () = f fmt v; Format.pp_print_flush fmt () in
+          Buffer.contents buf
+        let string_of_lambda = string_of_fmt Printlambda.lambda
+        let string_of_primitive = string_of_fmt Printlambda.primitive
+        [@@@ocaml.text
+          " It can be useful for common sub expression elimination ? \n    if two lambdas are not equal, it should return false, other wise, \n    it might return true , this is only used as a way of optimizaton\n\n    Use case :\n    1. switch case -- common fall through\n "]
+      end 
     module Vlq64 : sig val encode_l : Buffer.t -> int list -> unit end =
       struct
         let code =
@@ -46,6 +62,38 @@ include
           aux 0 []
         let _ = decode_pos
       end 
+    module Jstring :
+      sig
+        val split_on_chars : string -> on:char list -> string list[@@ocaml.doc
+                                                                    "\n   {[ \n   split_on_chars \"gshogh hgsohg ghso    ghos\" ~on:[' '];; \n   ]}\n   {[\n   [\"gshogh\"; \"hgsohg\"; \"ghso\"; \"\"; \"\"; \"\"; \"ghos\"]\n   ]}\n"]
+      end =
+      struct
+        let rec char_list_mem l (c : char) =
+          match l with
+          | [] -> false
+          | hd::tl -> (hd = c) || (char_list_mem tl c)
+        let split_gen str ~on  =
+          let is_delim =
+            match on with
+            | `char c' -> (fun c  -> c = c')
+            | `char_list l -> (fun c  -> char_list_mem l c) in
+          let len = String.length str in
+          let rec loop acc last_pos pos =
+            if pos = (-1)
+            then (StringLabels.sub str ~pos:0 ~len:last_pos) :: acc
+            else
+              if is_delim (str.[pos])
+              then
+                (let pos1 = pos + 1 in
+                 let sub_str =
+                   StringLabels.sub str ~pos:pos1 ~len:(last_pos - pos1) in
+                 loop (sub_str :: acc) pos (pos - 1))
+              else loop acc last_pos (pos - 1) in
+          loop [] len (len - 1)
+        let split str ~on  = split_gen str ~on:(`char on)
+        let split_on_chars str ~on:chars  =
+          split_gen str ~on:(`char_list chars)
+      end 
     module Util :
       sig
         val string_of_fmt : (Format.formatter -> 'a -> unit) -> 'a -> string
@@ -56,6 +104,54 @@ include
           let fmt = Format.formatter_of_buffer buf in
           let () = f fmt v; Format.pp_print_flush fmt () in
           Buffer.contents buf
+      end 
+    module Js_pp_util : sig val string_of_number : float -> string end =
+      struct
+        let string_of_number v =
+          if v = infinity
+          then "Infinity"
+          else
+            if v = neg_infinity
+            then "-Infinity"
+            else
+              if v <> v
+              then "NaN"
+              else
+                (let vint = int_of_float v in
+                 if (float_of_int vint) = v
+                 then
+                   let rec div n i =
+                     if (n <> 0) && ((n mod 10) = 0)
+                     then div (n / 10) (succ i)
+                     else
+                       if i > 2
+                       then Printf.sprintf "%de%d" n i
+                       else string_of_int vint in
+                   div vint 0
+                 else
+                   (let s1 = Printf.sprintf "%.12g" v in
+                    if v = (float_of_string s1)
+                    then s1
+                    else
+                      (let s2 = Printf.sprintf "%.15g" v in
+                       if v = (float_of_string s2)
+                       then s2
+                       else Printf.sprintf "%.18g" v)))
+      end 
+    module Jlist :
+      sig
+        val filter_map : ('a -> 'b option) -> 'a list -> 'b list
+        val init : int -> (int -> 'a) -> 'a list
+      end =
+      struct
+        let rec filter_map (f : 'a -> 'b option) xs =
+          match xs with
+          | [] -> []
+          | y::ys ->
+              (match f y with
+               | None  -> filter_map f ys
+               | Some z -> z :: (filter_map f ys))
+        let init n f = Array.to_list (Array.init n f)
       end 
     module Pp :
       sig
@@ -272,6 +368,19 @@ include
           }
         let set_compact st v = st.compact <- v
         let set_needed_space_function st f = st.needed_space <- Some f
+      end 
+    module Jident :
+      sig
+        val is_js : Ident.t -> bool
+        val create_js : string -> Ident.t
+        val create : string -> Ident.t
+      end =
+      struct
+        let js_flag = 8
+        let is_js (i : Ident.t) = (i.flags land js_flag) <> 0
+        let create_js (name : string) =
+          ({ name; flags = js_flag; stamp = 0 } : Ident.t)
+        let create = Ident.create
       end 
     module Optimizer :
       sig val simplify_lets : Ident.t list -> Lambda.lambda -> Lambda.lambda
@@ -531,110 +640,6 @@ include
                  if (count_var v) > 0 then simplif l else lambda_unit in
            simplif lam)
       end 
-    module Lambda_util :
-      sig
-        val string_of_lambda : Lambda.lambda -> string
-        val string_of_primitive : Lambda.primitive -> string
-      end =
-      struct
-        let string_of_fmt (f : Format.formatter -> 'a -> unit) v =
-          let buf = Buffer.create 37 in
-          let fmt = Format.formatter_of_buffer buf in
-          let () = f fmt v; Format.pp_print_flush fmt () in
-          Buffer.contents buf
-        let string_of_lambda = string_of_fmt Printlambda.lambda
-        let string_of_primitive = string_of_fmt Printlambda.primitive
-      end 
-    module Jstring :
-      sig val split_on_chars : string -> on:char list -> string list end =
-      struct
-        let rec char_list_mem l (c : char) =
-          match l with
-          | [] -> false
-          | hd::tl -> (hd = c) || (char_list_mem tl c)
-        let split_gen str ~on  =
-          let is_delim =
-            match on with
-            | `char c' -> (fun c  -> c = c')
-            | `char_list l -> (fun c  -> char_list_mem l c) in
-          let len = String.length str in
-          let rec loop acc last_pos pos =
-            if pos = (-1)
-            then (StringLabels.sub str ~pos:0 ~len:last_pos) :: acc
-            else
-              if is_delim (str.[pos])
-              then
-                (let pos1 = pos + 1 in
-                 let sub_str =
-                   StringLabels.sub str ~pos:pos1 ~len:(last_pos - pos1) in
-                 loop (sub_str :: acc) pos (pos - 1))
-              else loop acc last_pos (pos - 1) in
-          loop [] len (len - 1)
-        let split str ~on  = split_gen str ~on:(`char on)
-        let split_on_chars str ~on:chars  =
-          split_gen str ~on:(`char_list chars)
-      end 
-    module Js_pp_util : sig val string_of_number : float -> string end =
-      struct
-        let string_of_number v =
-          if v = infinity
-          then "Infinity"
-          else
-            if v = neg_infinity
-            then "-Infinity"
-            else
-              if v <> v
-              then "NaN"
-              else
-                (let vint = int_of_float v in
-                 if (float_of_int vint) = v
-                 then
-                   let rec div n i =
-                     if (n <> 0) && ((n mod 10) = 0)
-                     then div (n / 10) (succ i)
-                     else
-                       if i > 2
-                       then Printf.sprintf "%de%d" n i
-                       else string_of_int vint in
-                   div vint 0
-                 else
-                   (let s1 = Printf.sprintf "%.12g" v in
-                    if v = (float_of_string s1)
-                    then s1
-                    else
-                      (let s2 = Printf.sprintf "%.15g" v in
-                       if v = (float_of_string s2)
-                       then s2
-                       else Printf.sprintf "%.18g" v)))
-      end 
-    module Jlist :
-      sig
-        val filter_map : ('a -> 'b option) -> 'a list -> 'b list
-        val init : int -> (int -> 'a) -> 'a list
-      end =
-      struct
-        let rec filter_map (f : 'a -> 'b option) xs =
-          match xs with
-          | [] -> []
-          | y::ys ->
-              (match f y with
-               | None  -> filter_map f ys
-               | Some z -> z :: (filter_map f ys))
-        let init n f = Array.to_list (Array.init n f)
-      end 
-    module Jident :
-      sig
-        val is_js : Ident.t -> bool
-        val create_js : string -> Ident.t
-        val create : string -> Ident.t
-      end =
-      struct
-        let js_flag = 8
-        let is_js (i : Ident.t) = (i.flags land js_flag) <> 0
-        let create_js (name : string) =
-          ({ name; flags = js_flag; stamp = 0 } : Ident.t)
-        let create = Ident.create
-      end 
     module J :
       sig
         type loc =
@@ -759,7 +764,8 @@ include
           | Right of 'right
         and variable_declaration = (ident* (expression* location) option)
         and case_clause = (expression* block)
-        and block = statement list
+        and block = statement list[@@ocaml.doc
+                                    " TODO: For efficency: block should not be a list, it should be able to \n    be concatenated in both ways "]
       end =
       struct
         type loc =
@@ -884,14 +890,22 @@ include
           | Right of 'right
         and variable_declaration = (ident* (expression* location) option)
         and case_clause = (expression* block)
-        and block = statement list
+        and block = statement list[@@ocaml.doc
+                                    " TODO: For efficency: block should not be a list, it should be able to \n    be concatenated in both ways "]
       end 
     module B64 :
       sig
-        val default_alphabet : string
-        val uri_safe_alphabet : string
-        val decode : ?alphabet:string -> string -> string
+        [@@@ocaml.text
+          " Base64 is a group of similar binary-to-text encoding schemes that represent\n    binary data in an ASCII string format by translating it into a radix-64\n    representation.  It is specified in RFC 4648. "]
+        val default_alphabet : string[@@ocaml.doc
+                                       " A 64-character string specifying the regular Base64 alphabet. "]
+        val uri_safe_alphabet : string[@@ocaml.doc
+                                        " A 64-character string specifying the URI- and filename-safe Base64\n    alphabet. "]
+        val decode : ?alphabet:string -> string -> string[@@ocaml.doc
+                                                           " [decode s] decodes the string [s] that is encoded in base64 format.\n    Will leave trailing NULLs on the string, padding it out to a multiple\n    of 3 characters.  "]
         val encode : ?pad:bool -> ?alphabet:string -> string -> string
+        [@@ocaml.doc
+          " [encode s] encodes the string [s] into base64. If [pad] is false,\n    no trailing padding is added. "]
       end =
       struct
         let default_alphabet =
@@ -965,13 +979,20 @@ include
     module Alpha_pass :
       sig
         type function_arities =
-          | Approximate of bool* int list* bool
+          | Approximate of bool* int list*
+          bool[@ocaml.doc
+                " when the first argument is true, it is for sure \n      approximation sound but not complete "]
           | NA
+        [@@@ocaml.text
+          " The first argument is a function application\n    First we need know the arity of [fn] : int list \n    If we return a lambda back, we still need mark some information about such lambda, \n    unless we guarantee that the returned lambda is wel-formed\n    {[\n    (if x > 3 then (fun x -> x + 3 )\n    else (fun x -> x - 3)) (3) \n    ]}\n "]
         type arities_tbl = (Ident.t,function_arities ref) Hashtbl.t
         type alias_tbl = (Ident.t,Ident.t) Hashtbl.t
-        type meta = {
+        type meta =
+          {
           alias_tbl: alias_tbl;
-          arities_tbl: arities_tbl;}
+          arities_tbl:
+            arities_tbl[@ocaml.doc
+                         " we don't need count arities for all identifiers, for identifiers\n        for sure it's not a function, there is no need to count them\n     "];}
         val pp_arities_tbl :
           Format.formatter ->
             (Ident.t,function_arities ref) Hashtbl.t -> unit
@@ -980,10 +1001,15 @@ include
             Lambda.lambda -> (Lambda.lambda* Ident.t list* meta)
       end =
       struct
+        [@@@ocaml.text
+          " lambda pass for alpha conversion \n    and alias\n    we need think about the order of the pass, might be the alias pass can be done \n    in the  beginning, when we do alpha conversion, we can instrument the table \n "]
         type function_arities =
-          | Approximate of bool* int list* bool
+          | Approximate of bool* int list*
+          bool[@ocaml.doc
+                " when the first argument is true, it is for sure \n      approximation sound but not complete "]
           | NA
-        let pp = Format.fprintf
+        let pp = Format.fprintf[@@ocaml.doc
+                                 " The first argument is a function application\n    First we need know the arity of [fn] : int list \n    If we return a lambda back, we still need mark some information about such lambda, \n    unless we guarantee that the returned lambda is wel-formed\n    {[\n    (if x > 3 then (fun x -> x + 3 )\n    else (fun x -> x - 3)) (3) \n    ]}\n "]
         let pp_arities (fmt : Format.formatter) (x : function_arities) =
           match x with
           | NA  -> pp fmt "?"
@@ -1006,9 +1032,12 @@ include
                      (!v)) arities_tbl ()
         type arities_tbl = (Ident.t,function_arities ref) Hashtbl.t
         type alias_tbl = (Ident.t,Ident.t) Hashtbl.t
-        type meta = {
+        type meta =
+          {
           alias_tbl: alias_tbl;
-          arities_tbl: arities_tbl;}
+          arities_tbl:
+            arities_tbl[@ocaml.doc
+                         " we don't need count arities for all identifiers, for identifiers\n        for sure it's not a function, there is no need to count them\n     "];}
         let merge (n : int) (x : function_arities) =
           match x with
           | NA  -> Approximate (false, [n], false)
@@ -1073,7 +1102,8 @@ include
            | Levent (l,event) -> NA
            | Lifused (v,l) -> NA
            | Lwhile _|Lfor _|Lassign _ -> Approximate (true, [], false) : 
-          function_arities)
+          function_arities)[@@ocaml.doc
+                             " we need record all aliases -- since not all aliases are eliminated, \n    mostly are toplevel bindings\n    We will keep iterating such environment\n"]
         and all_lambdas tbl (xs : Lambda.lambda list) =
           match xs with
           | y::ys ->
@@ -1174,7 +1204,8 @@ include
              | Lsend (_,m,o,ll,_) -> List.iter count (m :: o :: ll)
              | Levent (l,_evnt) -> count l
              | Lifused (v,l) -> count l in
-           count lam; meta : meta)
+           count lam; meta : meta)[@@ocaml.doc
+                                    " here alias inference is not for substitution, it is for analyze which module is \n    actually a global module or an exception, so it can be relaxed a bit\n    (without relying on strict analysis)\n "]
         let simplify_alias export_idents (lam : Lambda.lambda) =
           (let { alias_tbl = tbl } as meta =
              count_alias_globals export_idents lam in
@@ -1248,11 +1279,13 @@ include
              | Levent (l,event) -> Levent ((simpl l), event)
              | Lifused (v,l) -> Lifused (v, (simpl l)) in
            ((simpl lam), (!required_modules), meta) : (Lambda.lambda* Ident.t
-                                                        list* meta))
+                                                        list* meta))[@@ocaml.doc
+                                                                    " \n    we should guarantee that all global aliases *would be removed*, it will not be aliased \n    So the only remaining place for globals is either just  Pgetglobal in functor application or \n    `Lprim (Pfield( i ), [Pgetglobal])`\n"]
       end 
     module J_helper :
       sig
-        val prim : string
+        val prim : string[@@ocaml.doc
+                           " The [CamlPrimtivie] primitives are from this module, in the future,\n    we might split into several small modules\n"]
         module Exp :
         sig
           type t = J.expression
@@ -1282,12 +1315,17 @@ include
           val false_ : t
           val unknown_lambda : ?comment:string -> Lambda.lambda -> t
           val unknown_primitive : ?comment:string -> Lambda.primitive -> t
-          val unit : ?comment:string -> unit -> t
+          val unit : ?comment:string -> unit -> t[@@ocaml.doc
+                                                   " [unit] in ocaml will be compiled into [0]  in js"]
           val js_var : ?comment:string -> string -> t
           val undefined : ?comment:string -> unit -> t
-          val math : ?comment:string -> string -> t
-          val prim : ?comment:string -> string -> t
-          val global : ?comment:string -> string -> t
+          val math : ?comment:string -> string -> t[@@ocaml.doc
+                                                     " [math \"abs\"] --> Math[\"abs\"] "]
+          [@@ocaml.doc " [prim \"xx\"] ->  CamlPrimtivie[\"xx\"] "]
+          val prim : ?comment:string -> string -> t[@@ocaml.doc
+                                                     " [prim \"xx\"] ->  CamlPrimtivie[\"xx\"] "]
+          val global : ?comment:string -> string -> t[@@ocaml.doc
+                                                       " [global \"xx\"] -> CamlPrimtivie[\"caml_global_data\"][\"xx\"]\n      this name is subject to change, don't use it externally\n   "]
           val inc : ?comment:string -> t -> t
           val dec : ?comment:string -> t -> t
           val null : ?comment:string -> unit -> t
@@ -1342,11 +1380,14 @@ include
           val unknown_lambda :
             ?comment:string -> ?loc:J.location -> Lambda.lambda -> t
           val return_unit : ?comment:string -> ?loc:J.location -> unit -> t
+          [@@ocaml.doc
+            " for ocaml function which returns unit \n      it will be compiled into [return 0] in js "]
           val break :
             ?comment:string -> ?label:J.label -> ?loc:J.location -> unit -> t
         end
       end =
       struct
+        [@@@ocaml.text " A module help construct js ast "]
         let prim = "CamlPrimitive"
         module Exp =
           struct
@@ -1417,12 +1458,14 @@ include
               match e with
               | { expression_desc = ENum i;_} ->
                   { e with expression_desc = (ENum (i +. 1.)) }
-              | _ -> bin ?comment Plus e (int 1)
+              | _ -> bin ?comment Plus e (int 1)[@@ocaml.doc
+                                                  " handle comment "]
             let inc ?comment  (e : t) =
               match e with
               | { expression_desc = ENum i;_} ->
                   { e with expression_desc = (ENum (i +. 1.)) }
-              | _ -> bin ?comment Plus e (int 1)
+              | _ -> bin ?comment Plus e (int 1)[@@ocaml.doc
+                                                  " handle comment "]
             let dec ?comment  (e : t) =
               match e with
               | { expression_desc = ENum i;_} ->
@@ -1707,22 +1750,23 @@ include
                       loop i (i + 1)))) in
            loop (-1) 0; Buffer.contents buf)
         let json t =
-          `O
-            [("version", (`Float (float_of_int t.version)));
-            ("file", (`String (t.file)));
-            ("sourceRoot",
-              (`String
-                 ((match t.sourceroot with | None  -> "" | Some s -> s))));
-            ("names", (`A (List.map (fun s  -> `String s) t.names)));
-            ("mappings", (`String (string_of_mapping t.mappings)));
-            ("sources", (`A (List.map (fun s  -> `String s) t.sources)));
-            ("sourcesContent",
-              (`A
-                 ((match t.sources_content with
-                   | None  -> []
-                   | Some l ->
-                       List.map
-                         (function | None  -> `Null | Some s -> `String s) l))))]
+          (`O
+             [("version", (`Float (float_of_int t.version)));
+             ("file", (`String (t.file)));
+             ("sourceRoot",
+               (`String
+                  ((match t.sourceroot with | None  -> "" | Some s -> s))));
+             ("names", (`A (List.map (fun s  -> `String s) t.names)));
+             ("mappings", (`String (string_of_mapping t.mappings)));
+             ("sources", (`A (List.map (fun s  -> `String s) t.sources)));
+             ("sourcesContent",
+               (`A
+                  ((match t.sources_content with
+                    | None  -> []
+                    | Some l ->
+                        List.map
+                          (function | None  -> `Null | Some s -> `String s) l))))] : 
+          Json.t)
       end 
     module Pp_js :
       sig
@@ -1816,6 +1860,7 @@ include
           Array.init 256 (fun i  -> String.make 1 (Char.chr i))
         let array_conv =
           Array.init 16 (fun i  -> String.make 1 ("0123456789abcdef".[i]))
+        [@@@ocaml.text " purely functional environment "]
         module SMap = Map.Make(String)
         module IMap =
           Map.Make(struct
@@ -1972,7 +2017,8 @@ include
                               Buffer.add_char buffer c
                           | _ -> Buffer.add_string buffer "$unknown")
                        done;
-                       Buffer.contents buffer)))
+                       Buffer.contents buffer)))[@@ocaml.doc
+                                                  " TODO:\n    check name conflicts with javascript conventions\n "]
         module SSet = Set.Make(String)
         let gen_symbs =
           SSet.of_list ["param"; "prim"; "match"; "include"; "let"; "*opt*"]
@@ -2072,7 +2118,7 @@ include
                   (Pp.string f "\\x";
                    Pp.string f (Array.unsafe_get array_conv (c lsr 4));
                    Pp.string f (Array.unsafe_get array_conv (c land 15)))
-              | '\128'..'\255' when not utf ->
+              | '\128'..'ÿ' when not utf ->
                   let c = Char.code c in
                   (Pp.string f "\\x";
                    Pp.string f (Array.unsafe_get array_conv (c lsr 4));
@@ -2970,7 +3016,9 @@ include
           | EffectCall
           | Declare of J.ident
           | NeedValue
-          | Assign of J.ident
+          | Assign of
+          J.ident[@ocaml.doc
+                   " when use [Assign], var is not needed, since it's already declared \n      make sure all [Assigs] are declared first, otherwise you are creating global variables\n   "]
         val make_output :
           ?value:J.expression -> ?finished:bool -> J.block -> output
         val gen : ?name:string -> unit -> Ident.t
@@ -2981,9 +3029,11 @@ include
         val is_pure : Lambda.lambda -> bool
         module Ops : sig val (++) : output -> output -> output end
         val dump_output : output -> out_channel -> unit
-        val pp_output : output -> Pp.t -> unit
+        val pp_output : output -> Pp.t -> unit[@@ocaml.doc
+                                                " \n    - not should_return, has name\n      assign the value \n    - should_return, has name\n      impossible\n    - not should_return, no name\n      when prue ignoe\n      otherwise make  expression statement\n    - should_return, no name\n      return it \n "]
         val handle_name_tail :
-          st -> bool -> Lambda.lambda -> J.expression -> output
+          st -> bool -> Lambda.lambda -> J.expression -> output[@@ocaml.doc
+                                                                 " \n    - not should_return, has name\n      assign the value \n    - should_return, has name\n      impossible\n    - not should_return, no name\n      when prue ignoe\n      otherwise make  expression statement\n    - should_return, no name\n      return it \n "]
         val handle_block_return :
           st -> bool -> Lambda.lambda -> J.block -> J.expression -> output
         val concat : output list -> output
@@ -2995,7 +3045,9 @@ include
           {
           block: J.block;
           value: J.expression option;
-          finished: bool;}
+          finished:
+            bool[@ocaml.doc
+                  " \n            When [finished] is true the block is already terminated, value does not make sense\n            default is false, false is  an conservative approach \n         "];}
         type st =
           | EffectCall
           | Declare of J.ident
@@ -3117,11 +3169,50 @@ include
           let cxt = let open Pp_js in program cxt p block in
           ignore (Pp_js.program cxt p [statement_of_opt_expr exp])
       end 
+    module Compile_defs :
+      sig
+        type jbl_label = int
+        module HandlerMap : (Map.S with type  key =  jbl_label)
+        type value = {
+          exit_id: Ident.t;
+          args: Ident.t list;}
+        [@@@ocaml.text
+          " delegate to the callee to generate expression \n      Invariant: [output] should return a trailing expression\n   "]
+        type cxt =
+          {
+          st: Gen_util.st;
+          should_return: bool;
+          jmp_table: value HandlerMap.t;
+          env: Env.t;}
+        val empty_handler_map : value HandlerMap.t
+      end =
+      struct
+        type jbl_label = int
+        module HandlerMap =
+          Map.Make(struct
+                     type t = jbl_label
+                     let compare x y = compare (x : t) y
+                   end)
+        type value = {
+          exit_id: Ident.t;
+          args: Ident.t list;}
+        [@@@ocaml.text
+          " delegate to the callee to generate expression \n      Invariant: [output] should return a trailing expression\n   "]
+        type cxt =
+          {
+          st: Gen_util.st;
+          should_return: bool;
+          jmp_table: value HandlerMap.t;
+          env: Env.t;}
+        let empty_handler_map = HandlerMap.empty
+      end 
     module Compile_of_env :
       sig
         type key =
           | GetGlobal of Ident.t* int* Env.t
-          | QueryGlobal of Ident.t* Env.t* bool
+          | QueryGlobal of Ident.t* Env.t*
+          bool[@ocaml.doc
+                " we need register which global variable is an dependency "]
           | CamlPrimitive of Primitive.description* J.expression list
         val get_exp : key -> J.expression
         val required_modules : Ident.t list -> J.block
@@ -3138,7 +3229,8 @@ include
           | Include
           | BuiltIn
         let cached_tbl: (Ident.t,env_value) Hashtbl.t = Hashtbl.create 31
-        let reset () = Hashtbl.clear cached_tbl
+        let reset () = Hashtbl.clear cached_tbl[@@ocaml.doc
+                                                 " For each compilation we need reset to make it re-entrant "]
         let add_built_in_module name =
           Hashtbl.replace cached_tbl (Ident.create_persistent name) BuiltIn
         let add_include name =
@@ -3155,10 +3247,12 @@ include
           (pos : int) =
           let ident =
             name_of_signature_item @@ (List.nth serializable_sigs pos) in
-          ident.name
+          ident.name[@@ocaml.doc " Used in [Pgetglobal] "]
         type key =
           | GetGlobal of Ident.t* int* Env.t
-          | QueryGlobal of Ident.t* Env.t* bool
+          | QueryGlobal of Ident.t* Env.t*
+          bool[@ocaml.doc
+                " we need register which global variable is an dependency "]
           | CamlPrimitive of Primitive.description* J.expression list
         let query (prim : Primitive.description) args =
           (let module X = struct exception NA end in
@@ -3366,7 +3460,8 @@ include
                        E.int ~comment:"allocation_policy" 0]
                  | _ -> raise X.NA in
                Some v
-             with | X.NA  -> None : J.expression option)
+             with | X.NA  -> None : J.expression option)[@@ocaml.doc
+                                                          " \nThere are two things we need consider:\n1.  For some primitives we can replace caml-primitive with js primitives directly\n2.  For some standard library functions, we prefer to replace with javascript primitives\n    For example [Pervasives[\"^\"] -> ^]\n    We can collect all mli files in OCaml and replace it with an efficient javascript runtime\n"]
         let filter_serializable_signatures
           (signature : Types.signature_item list) =
           (List.filter
@@ -3424,7 +3519,8 @@ include
                 | None  ->
                     (add_built_in_module J_helper.prim;
                      E.call (E.prim prim.prim_name) args)
-                | Some x -> x) : J.expression)
+                | Some x -> x) : J.expression)[@@ocaml.doc
+                                                " Given an module name and position, find its corresponding name  "]
         let string_of_value_description id =
           Util.string_of_fmt (Printtyp.value_description id)
         let rec dump_summary fmt (x : Env.summary) =
@@ -3459,39 +3555,6 @@ include
                  then None
                  else Some (S.variable id ~loc_exp:(require id))) extras in
           referred @ forced
-      end 
-    module Compile_defs :
-      sig
-        type jbl_label = int
-        module HandlerMap : (Map.S with type  key =  jbl_label)
-        type value = {
-          exit_id: Ident.t;
-          args: Ident.t list;}
-        type cxt =
-          {
-          st: Gen_util.st;
-          should_return: bool;
-          jmp_table: value HandlerMap.t;
-          env: Env.t;}
-        val empty_handler_map : value HandlerMap.t
-      end =
-      struct
-        type jbl_label = int
-        module HandlerMap =
-          Map.Make(struct
-                     type t = jbl_label
-                     let compare x y = compare (x : t) y
-                   end)
-        type value = {
-          exit_id: Ident.t;
-          args: Ident.t list;}
-        type cxt =
-          {
-          st: Gen_util.st;
-          should_return: bool;
-          jmp_table: value HandlerMap.t;
-          env: Env.t;}
-        let empty_handler_map = HandlerMap.empty
       end 
     module Compile_primitive :
       sig
@@ -3756,10 +3819,12 @@ include
                  (List.map (fun x  -> compile_const x) xs))
            | Const_float_array ars ->
                E.arr (List.map (fun x  -> E.float (float_of_string x)) ars)
-           | Const_immstring s -> E.str s : J.expression)
+           | Const_immstring s -> E.str s : J.expression)[@@ocaml.doc
+                                                           " TODO: check "]
       end 
     module Compile_lambda :
       sig
+        [@@@ocaml.text " Main entry "]
         val compile :
           ?filename:string ->
             Env.t -> Types.signature -> Lambda.lambda -> Gen_util.output
@@ -3781,7 +3846,10 @@ include
            | Lstaticcatch (l,(code,bindings),handler) ->
                flat_catches ((code, handler, bindings) :: acc) l
            | _ -> (acc, x) : ((int* Lambda.lambda* Ident.t list) list*
-                               Lambda.lambda))
+                               Lambda.lambda))[@@ocaml.doc
+                                                " assume outer is [Lstaticcatch] "]
+        [@@@ocaml.text
+          " TODO:\n    for expression generation, \n    name, should_return  is not needed,\n    only jmp_table and env needed\n "]
         let rec compile_lambda
           (({ st; should_return; jmp_table; env } as cxt) : Compile_defs.cxt)
           (lam : Lambda.lambda) =
@@ -4272,6 +4340,8 @@ include
                       ~value:(E.unit ()))
            | Levent (lam,_lam_event) -> compile_lambda cxt lam
            | Lifused (_,lam) -> compile_lambda cxt lam : Gen_util.output)
+          [@@ocaml.text
+            " TODO:\n    for expression generation, \n    name, should_return  is not needed,\n    only jmp_table and env needed\n "]
         type group =
           | Single of (Lambda.let_kind* Ident.t* Lambda.lambda)
           | Recursive of (Ident.t* Lambda.lambda) list
@@ -4369,7 +4439,8 @@ include
                            [Gen_util.exports exports expressions]) in
                     js
                 | _ -> raise Not_a_module)
-           | _ -> raise Not_a_module : Gen_util.output)
+           | _ -> raise Not_a_module : Gen_util.output)[@@ocaml.doc
+                                                         " Actually simplify_lets is kind of global optimization since it requires you to know whether \n    it's used or not \n"]
         let lambda_as_module raw env (sigs : Types.signature) filename
           (lam : Lambda.lambda) =
           let out = open_out ((Filename.chop_extension filename) ^ ".js") in
