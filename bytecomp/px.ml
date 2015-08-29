@@ -965,9 +965,8 @@ include
     module Alpha_pass :
       sig
         type function_arities =
-          | Approximate of bool* int list
+          | Approximate of bool* int list* bool
           | NA
-          | Any
         type arities_tbl = (Ident.t,function_arities ref) Hashtbl.t
         type alias_tbl = (Ident.t,Ident.t) Hashtbl.t
         type meta = {
@@ -982,21 +981,20 @@ include
       end =
       struct
         type function_arities =
-          | Approximate of bool* int list
+          | Approximate of bool* int list* bool
           | NA
-          | Any
         let pp = Format.fprintf
         let pp_arities (fmt : Format.formatter) (x : function_arities) =
           match x with
-          | Any  -> pp fmt "*"
           | NA  -> pp fmt "?"
-          | Approximate (b,ls) ->
+          | Approximate (b,ls,tail) ->
               (pp fmt "@[";
                if not b then pp fmt "~";
                pp fmt "[";
                Format.pp_print_list
                  ~pp_sep:(fun fmt  -> fun ()  -> pp fmt ",")
                  Format.pp_print_int fmt ls;
+               if tail then pp fmt "@ *";
                pp fmt "]@]")
         let pp_arities_tbl (fmt : Format.formatter)
           (arities_tbl : (Ident.t,function_arities ref) Hashtbl.t) =
@@ -1013,39 +1011,41 @@ include
           arities_tbl: arities_tbl;}
         let merge (n : int) (x : function_arities) =
           match x with
-          | Any  -> Approximate (false, [n])
-          | NA  -> Approximate (false, [n])
-          | Approximate (b,xs) -> Approximate (b, (n :: xs))
+          | NA  -> Approximate (false, [n], false)
+          | Approximate (b,xs,tail) -> Approximate (b, (n :: xs), tail)
         let rec get_arity (tbl : (Ident.t,function_arities ref) Hashtbl.t)
           (lam : Lambda.lambda) =
           (match lam with
-           | Lconst _ -> Approximate (true, [])
+           | Lconst _ -> Approximate (true, [], false)
            | Lvar v -> (try !(Hashtbl.find tbl v) with | Not_found  -> NA)
            | Llet (_,_,_,l) -> get_arity tbl l
            | Lprim (Pfield _,_) -> NA
-           | Lprim (Praise _,_) -> Any
-           | Lprim (Pccall _,_) -> Approximate (false, [])
-           | Lprim _ -> Approximate (true, [])
+           | Lprim (Praise _,_) -> Approximate (true, [], true)
+           | Lprim (Pccall _,_) -> Approximate (false, [], false)
+           | Lprim _ -> Approximate (true, [], false)
            | Lletrec (_,body) -> get_arity tbl body
            | Lapply (app,args,_info) ->
                let fn = get_arity tbl app in
                (match fn with
-                | Any  -> Any
                 | NA  -> NA
-                | Approximate (b,xs) ->
+                | Approximate (b,xs,tail) ->
                     let rec take (xs : int list) arg_length =
                       match xs with
                       | x::xs ->
                           if arg_length = x
-                          then Approximate (b, xs)
+                          then Approximate (b, xs, tail)
                           else
                             if arg_length > x
                             then take xs (arg_length - x)
-                            else Approximate (b, ((x - arg_length) :: xs))
+                            else
+                              Approximate (b, ((x - arg_length) :: xs), tail)
                       | [] ->
-                          if b
-                          then failwith (Lambda_util.string_of_lambda lam)
-                          else NA in
+                          if tail
+                          then Approximate (b, [], tail)
+                          else
+                            if not b
+                            then NA
+                            else failwith (Lambda_util.string_of_lambda lam) in
                     take xs (List.length args))
            | Lfunction (kind,params,l) ->
                let n = List.length params in merge n (get_arity tbl l)
@@ -1072,7 +1072,8 @@ include
            | Lsend (u,m,o,ll,v) -> NA
            | Levent (l,event) -> NA
            | Lifused (v,l) -> NA
-           | Lwhile _|Lfor _|Lassign _ -> Approximate (true, []) : function_arities)
+           | Lwhile _|Lfor _|Lassign _ -> Approximate (true, [], false) : 
+          function_arities)
         and all_lambdas tbl (xs : Lambda.lambda list) =
           match xs with
           | y::ys ->
@@ -1081,21 +1082,24 @@ include
                 (fun exist  ->
                    fun (v : Lambda.lambda)  ->
                      match exist with
-                     | Any  -> get_arity tbl v
                      | NA  -> NA
-                     | Approximate (b,xs) ->
+                     | Approximate (b,xs,tail) ->
                          (match get_arity tbl v with
-                          | Any  -> exist
                           | NA  -> NA
-                          | Approximate (u,ys) ->
+                          | Approximate (u,ys,tail2) ->
                               let rec aux (b,acc) xs ys =
                                 match (xs, ys) with
-                                | ([],[]) -> (b, (List.rev acc))
+                                | ([],[]) ->
+                                    (b, (List.rev acc), (tail && tail2))
+                                | ([],y::ys) when tail ->
+                                    aux (b, (y :: acc)) [] ys
+                                | (x::xs,[]) when tail2 ->
+                                    aux (b, (x :: acc)) [] xs
                                 | (x::xs,y::ys) when x = y ->
-                                    aux (b, (x :: acc)) xs ys
-                                | (_,_) -> (false, (List.rev acc)) in
-                              let (b,acc) = aux ((u && b), []) xs ys in
-                              Approximate (b, acc))) arity ys
+                                    aux (b, (y :: acc)) xs ys
+                                | (_,_) -> (false, (List.rev acc), false) in
+                              let (b,acc,tail3) = aux ((u && b), []) xs ys in
+                              Approximate (b, acc, tail3))) arity ys
           | _ -> assert false
         let count_alias_globals export_idents (lam : Lambda.lambda) =
           (let meta =
