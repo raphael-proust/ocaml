@@ -1,4 +1,4 @@
-[@@@warning "-a"]
+[@@@warning "-40"]
 include
   struct
     module Jident :
@@ -143,6 +143,10 @@ include
           | EObj of property_map
           | EQuote of string
           | ERegexp of string* string option
+        and expression =
+          {
+          expression_desc: expression_desc;
+          comment: string option;}
         and statement_desc =
           | Block of block
           | Variable of variable_declaration list
@@ -166,10 +170,6 @@ include
           | Fn of ident* ident list* block* location
           | Debugger
           | Comment of string
-        and expression =
-          {
-          expression_desc: expression_desc;
-          comment: string option;}
         and statement =
           {
           statement_desc: statement_desc;
