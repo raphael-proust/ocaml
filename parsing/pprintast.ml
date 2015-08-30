@@ -1337,10 +1337,10 @@ class printer  ()= object(self:'self)
     match x.pext_kind with
     | Pext_decl(l, None) ->
         pp f "%s%a%a" x.pext_name.txt
-          self#attributes x.pext_attributes
           (fun f -> function
                  | [] -> ()
                  | l -> pp f "@;of@;%a" (self#list self#core_type1 ~sep:"*@;") l) l
+          self#attributes x.pext_attributes
     | Pext_decl(l, Some r) ->
         pp f "%s%a:@;%a" x.pext_name.txt
           self#attributes x.pext_attributes
