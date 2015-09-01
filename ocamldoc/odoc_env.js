@@ -512,7 +512,9 @@ var
              Odoc_name["to_path"]
               (full_type_name(env,Odoc_name["from_path"](t[1])));
            
-           var new_texp_list=List["map"](subst_type(env),t[2]);
+           var
+            new_texp_list=
+             List["map"](function(param){return subst_type(env,param)},t[2]);
            
            var new_ct=iter(t[3]);
            

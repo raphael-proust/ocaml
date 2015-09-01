@@ -37,7 +37,8 @@ var
      f=
       function(p)
        {return Odoc_parameter["update_parameter_text"]
-                (value_parameter_text_by_name(v),p)};
+                (function(param){return value_parameter_text_by_name(v,param)},
+                 p)};
     
     return List["iter"](f,v[5])};
 

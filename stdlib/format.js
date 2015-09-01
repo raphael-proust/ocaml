@@ -782,8 +782,8 @@ var
   function(state,os)
    {state[17]=Pervasives["output_substring"](os);
     state[18]=function(param){return Pervasives["flush"](os)};
-    state[19]=display_newline(state);
-    return state[20]=display_blanks(state),0};
+    state[19]=function(param){return display_newline(state,param)};
+    return state[20]=function(param){return display_blanks(state,param)},0};
 
 var
  default_pp_mark_open_tag=
@@ -846,8 +846,8 @@ var
       pp_make_formatter
        (output,flush,function(prim){return prim},function(prim){return prim});
     
-    ppf[19]=display_newline(ppf);
-    ppf[20]=display_blanks(ppf);
+    ppf[19]=function(param){return display_newline(ppf,param)};
+    ppf[20]=function(param){return display_blanks(ppf,param)};
     return ppf};
 
 var
@@ -889,111 +889,160 @@ var
     Buffer["reset"](buf);
     return s};
 
-var open_hbox=pp_open_hbox(std_formatter);
+var open_hbox=function(param){return pp_open_hbox(std_formatter,param)};
 
-var open_vbox=pp_open_vbox(std_formatter);
+var open_vbox=function(param){return pp_open_vbox(std_formatter,param)};
 
-var open_hvbox=pp_open_hvbox(std_formatter);
+var open_hvbox=function(param){return pp_open_hvbox(std_formatter,param)};
 
-var open_hovbox=pp_open_hovbox(std_formatter);
+var open_hovbox=function(param){return pp_open_hovbox(std_formatter,param)};
 
-var open_box=pp_open_box(std_formatter);
+var open_box=function(param){return pp_open_box(std_formatter,param)};
 
-var close_box=pp_close_box(std_formatter);
+var close_box=function(param){return pp_close_box(std_formatter,param)};
 
-var open_tag=pp_open_tag(std_formatter);
+var open_tag=function(param){return pp_open_tag(std_formatter,param)};
 
-var close_tag=pp_close_tag(std_formatter);
+var close_tag=function(param){return pp_close_tag(std_formatter,param)};
 
-var print_as=pp_print_as(std_formatter);
+var
+ print_as=
+  function(param,param$1){return pp_print_as(std_formatter,param,param$1)};
 
-var print_string=pp_print_string(std_formatter);
+var print_string=function(param){return pp_print_string(std_formatter,param)};
 
-var print_int=pp_print_int(std_formatter);
+var print_int=function(param){return pp_print_int(std_formatter,param)};
 
-var print_float=pp_print_float(std_formatter);
+var print_float=function(param){return pp_print_float(std_formatter,param)};
 
-var print_char=pp_print_char(std_formatter);
+var print_char=function(param){return pp_print_char(std_formatter,param)};
 
-var print_bool=pp_print_bool(std_formatter);
+var print_bool=function(param){return pp_print_bool(std_formatter,param)};
 
-var print_break=pp_print_break(std_formatter);
+var
+ print_break=
+  function(param,param$1){return pp_print_break(std_formatter,param,param$1)};
 
-var print_cut=pp_print_cut(std_formatter);
+var print_cut=function(param){return pp_print_cut(std_formatter,param)};
 
-var print_space=pp_print_space(std_formatter);
+var print_space=function(param){return pp_print_space(std_formatter,param)};
 
-var force_newline=pp_force_newline(std_formatter);
+var
+ force_newline=
+  function(param){return pp_force_newline(std_formatter,param)};
 
-var print_flush=pp_print_flush(std_formatter);
+var print_flush=function(param){return pp_print_flush(std_formatter,param)};
 
-var print_newline=pp_print_newline(std_formatter);
+var
+ print_newline=
+  function(param){return pp_print_newline(std_formatter,param)};
 
-var print_if_newline=pp_print_if_newline(std_formatter);
+var
+ print_if_newline=
+  function(param){return pp_print_if_newline(std_formatter,param)};
 
-var open_tbox=pp_open_tbox(std_formatter);
+var open_tbox=function(param){return pp_open_tbox(std_formatter,param)};
 
-var close_tbox=pp_close_tbox(std_formatter);
+var close_tbox=function(param){return pp_close_tbox(std_formatter,param)};
 
-var print_tbreak=pp_print_tbreak(std_formatter);
+var
+ print_tbreak=
+  function(param,param$1){return pp_print_tbreak(std_formatter,param,param$1)};
 
-var set_tab=pp_set_tab(std_formatter);
+var set_tab=function(param){return pp_set_tab(std_formatter,param)};
 
-var print_tab=pp_print_tab(std_formatter);
+var print_tab=function(param){return pp_print_tab(std_formatter,param)};
 
-var set_margin=pp_set_margin(std_formatter);
+var set_margin=function(param){return pp_set_margin(std_formatter,param)};
 
-var get_margin=pp_get_margin(std_formatter);
+var get_margin=function(param){return pp_get_margin(std_formatter,param)};
 
-var set_max_indent=pp_set_max_indent(std_formatter);
+var
+ set_max_indent=
+  function(param){return pp_set_max_indent(std_formatter,param)};
 
-var get_max_indent=pp_get_max_indent(std_formatter);
+var
+ get_max_indent=
+  function(param){return pp_get_max_indent(std_formatter,param)};
 
-var set_max_boxes=pp_set_max_boxes(std_formatter);
+var
+ set_max_boxes=
+  function(param){return pp_set_max_boxes(std_formatter,param)};
 
-var get_max_boxes=pp_get_max_boxes(std_formatter);
+var
+ get_max_boxes=
+  function(param){return pp_get_max_boxes(std_formatter,param)};
 
-var over_max_boxes=pp_over_max_boxes(std_formatter);
+var
+ over_max_boxes=
+  function(param){return pp_over_max_boxes(std_formatter,param)};
 
-var set_ellipsis_text=pp_set_ellipsis_text(std_formatter);
+var
+ set_ellipsis_text=
+  function(param){return pp_set_ellipsis_text(std_formatter,param)};
 
-var get_ellipsis_text=pp_get_ellipsis_text(std_formatter);
+var
+ get_ellipsis_text=
+  function(param){return pp_get_ellipsis_text(std_formatter,param)};
 
-var set_formatter_out_channel=pp_set_formatter_out_channel(std_formatter);
+var
+ set_formatter_out_channel=
+  function(param){return pp_set_formatter_out_channel(std_formatter,param)};
 
-var set_formatter_out_functions=pp_set_formatter_out_functions(std_formatter);
+var
+ set_formatter_out_functions=
+  function(param){return pp_set_formatter_out_functions(std_formatter,param)};
 
-var get_formatter_out_functions=pp_get_formatter_out_functions(std_formatter);
+var
+ get_formatter_out_functions=
+  function(param){return pp_get_formatter_out_functions(std_formatter,param)};
 
 var
  set_formatter_output_functions=
-  pp_set_formatter_output_functions(std_formatter);
+  function(param,param$1)
+   {return pp_set_formatter_output_functions(std_formatter,param,param$1)};
 
 var
  get_formatter_output_functions=
-  pp_get_formatter_output_functions(std_formatter);
+  function(param)
+   {return pp_get_formatter_output_functions(std_formatter,param)};
 
 var
  set_all_formatter_output_functions=
-  pp_set_all_formatter_output_functions(std_formatter);
+  function(param,param$1,param$2,param$3)
+   {return pp_set_all_formatter_output_functions
+            (std_formatter,param,param$1,param$2,param$3)};
 
 var
  get_all_formatter_output_functions=
-  pp_get_all_formatter_output_functions(std_formatter);
+  function(param)
+   {return pp_get_all_formatter_output_functions(std_formatter,param)};
 
-var set_formatter_tag_functions=pp_set_formatter_tag_functions(std_formatter);
+var
+ set_formatter_tag_functions=
+  function(param){return pp_set_formatter_tag_functions(std_formatter,param)};
 
-var get_formatter_tag_functions=pp_get_formatter_tag_functions(std_formatter);
+var
+ get_formatter_tag_functions=
+  function(param){return pp_get_formatter_tag_functions(std_formatter,param)};
 
-var set_print_tags=pp_set_print_tags(std_formatter);
+var
+ set_print_tags=
+  function(param){return pp_set_print_tags(std_formatter,param)};
 
-var get_print_tags=pp_get_print_tags(std_formatter);
+var
+ get_print_tags=
+  function(param){return pp_get_print_tags(std_formatter,param)};
 
-var set_mark_tags=pp_set_mark_tags(std_formatter);
+var
+ set_mark_tags=
+  function(param){return pp_set_mark_tags(std_formatter,param)};
 
-var get_mark_tags=pp_get_mark_tags(std_formatter);
+var
+ get_mark_tags=
+  function(param){return pp_get_mark_tags(std_formatter,param)};
 
-var set_tags=pp_set_tags(std_formatter);
+var set_tags=function(param){return pp_set_tags(std_formatter,param)};
 
 var
  compute_tag=

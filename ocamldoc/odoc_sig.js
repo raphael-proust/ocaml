@@ -58,7 +58,7 @@ var
   function(signat)
    {var t=Hashtbl["create"](/* None */0,13);
     
-    List["iter"](add_to_hash(t),signat);
+    List["iter"](function(param){return add_to_hash(t,param)},signat);
     return t};
 
 var

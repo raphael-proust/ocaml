@@ -2435,7 +2435,7 @@ var
                           m[1],
                           html_file)};
              
-             print_concat(b,"\n",print_one,module_list);
+             print_concat(b,"\n",print_one)(module_list);
              /* unknown */"(sendself self-4/2008 html_sections_links/1877 b/2011 comments/2016)";
              
              bs(b,"<title>");
@@ -3241,7 +3241,7 @@ var
              
              return bs(b,"\n</tr>")};
          
-         print_concat(b,"\n",print_one,te[5]);
+         print_concat(b,"\n",print_one)(te[5]);
          bs(b,"</table>\n");
          bs(b,"\n");
          /* unknown */"(sendself self-4/2248 html_of_info/2246 0a 0a b/2249 (field 0 te/2251))";
@@ -3439,7 +3439,7 @@ var
                   print_field_comment(f[3]);
                   return bs(b,"\n</tr>")};
               
-              print_concat(b,"\n",print_one,match$4[1]),
+              print_concat(b,"\n",print_one)(match$4[1]),
               bs(b,"</table>\n>\n"),
               bs(b," ");
               break
@@ -3541,7 +3541,7 @@ var
                   
                   return bs(b,"\n</tr>")};
               
-              print_concat(b,"\n",print_one$1,match$5[1]),bs(b,"</table>\n");
+              print_concat(b,"\n",print_one$1)(match$5[1]),bs(b,"</table>\n");
               break;
              case 1:
               bs(b,"= ");
@@ -3604,7 +3604,7 @@ var
                   
                   return bs(b,"\n</tr>")};
               
-              print_concat(b,"\n",print_one$2,match$5[1]),
+              print_concat(b,"\n",print_one$2)(match$5[1]),
               bs(b,"</table>\n}\n");
               break
              }}
@@ -3763,7 +3763,7 @@ var
                   {return /* () */0}
                  };
              
-             return print_concat(b,"<br>\n",print_one,l2)}
+             return print_concat(b,"<br>\n",print_one)(l2)}
            else
             {var match=Odoc_info["Parameter"][4](p,l[1]);
              

@@ -1,11 +1,12 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
+var $$String=require("./string.js");
 var List=require("./list.js");
 var Format=require("./format.js");
 var Set=require("./set.js");
 
 
-var include=Set["Make"]([0,$$let[25]]);
+var include=Set["Make"]([0,$$String["compare"]]);
 
 var empty=include[1];
 

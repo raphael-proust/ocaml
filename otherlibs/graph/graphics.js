@@ -158,7 +158,11 @@ var
      {return 0}
     };
 
-var match$2=/* tuple */[0,dodraw(/* true */1),dodraw(/* false */0)];
+var
+ match$2=
+  /* tuple */[0,
+   function(param){return dodraw(/* true */1,param)},
+   function(param){return dodraw(/* false */0,param)}];
 
 var draw_poly_line=match$2[2];
 

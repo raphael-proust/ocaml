@@ -130,7 +130,7 @@ var
     
     return create(/* From_string */0,next)};
 
-var from_function=create(/* From_function */1);
+var from_function=function(param){return create(/* From_function */1,param)};
 
 var file_buffer_size=[0,1024];
 
@@ -175,7 +175,9 @@ var
     
     return create(iname,next)};
 
-var from_ic_close_at_end=from_ic(scan_close_at_end);
+var
+ from_ic_close_at_end=
+  function(param,param$1){return from_ic(scan_close_at_end,param,param$1)};
 
 var
  stdin=
@@ -627,13 +629,19 @@ var
  is_binary_digit=
   function(param){return 1<-48+param>>>0?/* false */0:/* true */1};
 
-var scan_binary_int=scan_digits_plus("binary",is_binary_digit);
+var
+ scan_binary_int=
+  function(param,param$1)
+   {return scan_digits_plus("binary",is_binary_digit,param,param$1)};
 
 var
  is_octal_digit=
   function(param){return 7<-48+param>>>0?/* false */0:/* true */1};
 
-var scan_octal_int=scan_digits_plus("octal",is_octal_digit);
+var
+ scan_octal_int=
+  function(param,param$1)
+   {return scan_digits_plus("octal",is_octal_digit,param,param$1)};
 
 var
  is_hexa_digit=
@@ -650,7 +658,10 @@ var
     switch(exit){case 192:return /* false */0;case 191:return /* true */1}
     };
 
-var scan_hexadecimal_int=scan_digits_plus("hexadecimal",is_hexa_digit);
+var
+ scan_hexadecimal_int=
+  function(param,param$1)
+   {return scan_digits_plus("hexadecimal",is_hexa_digit,param,param$1)};
 
 var
  scan_sign=
@@ -1029,9 +1040,13 @@ var
       return Scanning[15](ib)?bad_end_of_input(message):c}
     };
 
-var check_next_char_for_char=check_next_char("a Char");
+var
+ check_next_char_for_char=
+  function(param,param$1){return check_next_char("a Char",param,param$1)};
 
-var check_next_char_for_string=check_next_char("a String");
+var
+ check_next_char_for_string=
+  function(param,param$1){return check_next_char("a String",param,param$1)};
 
 var
  scan_backslash_char=
@@ -1612,7 +1627,13 @@ var
            function(width,param,ib){return scan_int_conv(c$2,width,ib)};
          
          return pad_prec_scanf
-                 (ib,fmt[4],readers,fmt[2],fmt[3],scan$5,token_int(c$2));
+                 (ib,
+                  fmt[4],
+                  readers,
+                  fmt[2],
+                  fmt[3],
+                  scan$5,
+                  function(param){return token_int(c$2,param)});
         case 5:
          var c$3=CamlinternalFormat["char_of_iconv"](fmt[1]);
          
@@ -1621,7 +1642,13 @@ var
            function(width,param,ib){return scan_int_conv(c$3,width,ib)};
          
          return pad_prec_scanf
-                 (ib,fmt[4],readers,fmt[2],fmt[3],scan$6,token_int32(c$3));
+                 (ib,
+                  fmt[4],
+                  readers,
+                  fmt[2],
+                  fmt[3],
+                  scan$6,
+                  function(param){return token_int32(c$3,param)});
         case 6:
          var c$4=CamlinternalFormat["char_of_iconv"](fmt[1]);
          
@@ -1630,7 +1657,13 @@ var
            function(width,param,ib){return scan_int_conv(c$4,width,ib)};
          
          return pad_prec_scanf
-                 (ib,fmt[4],readers,fmt[2],fmt[3],scan$7,token_nativeint(c$4));
+                 (ib,
+                  fmt[4],
+                  readers,
+                  fmt[2],
+                  fmt[3],
+                  scan$7,
+                  function(param){return token_nativeint(c$4,param)});
         case 7:
          var c$5=CamlinternalFormat["char_of_iconv"](fmt[1]);
          
@@ -1639,7 +1672,13 @@ var
            function(width,param,ib){return scan_int_conv(c$5,width,ib)};
          
          return pad_prec_scanf
-                 (ib,fmt[4],readers,fmt[2],fmt[3],scan$8,token_int64(c$5));
+                 (ib,
+                  fmt[4],
+                  readers,
+                  fmt[2],
+                  fmt[3],
+                  scan$8,
+                  function(param){return token_int64(c$5,param)});
         case 8:
          return fmt[1]>=15
                  ?pad_prec_scanf
@@ -1663,7 +1702,7 @@ var
                  ?make_scanf(ib,fmt[1],readers)
                  :bad_input("end of input not found");
         case 11:
-         $$String["iter"](check_char(ib),fmt[1]);
+         $$String["iter"](function(param){return check_char(ib,param)},fmt[1]);
          return make_scanf(ib,fmt[2],readers);
         case 12:check_char(ib,fmt[1]);return make_scanf(ib,fmt[2],readers);
         case 13:
@@ -1727,7 +1766,7 @@ var
          return Pervasives["invalid_arg"]('scanf: bad conversion "%t"');
         case 17:
          $$String["iter"]
-          (check_char(ib),
+          (function(param){return check_char(ib,param)},
            CamlinternalFormat["string_of_formatting_lit"](fmt[1]));
          return make_scanf(ib,fmt[2],readers);
         case 18:
@@ -2001,13 +2040,13 @@ var
  unescaped=
   function(s)
    {return sscanf
-            (Pervasives["^"]('"',Pervasives["^"](s,'"')),
-             [/* Format */0,
-              [/* Caml_string */3,
-               /* No_padding */0,
-               [/* Flush */10,/* End_of_format */0]],
-              "%S%!"],
-             function(x){return x})};
+             (Pervasives["^"]('"',Pervasives["^"](s,'"')),
+              [/* Format */0,
+               [/* Caml_string */3,
+                /* No_padding */0,
+                [/* Flush */10,/* End_of_format */0]],
+               "%S%!"])
+            (function(x){return x})};
 
 module["exports"]=
 {"Scanning":

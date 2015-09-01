@@ -287,7 +287,7 @@ var
      {return List["rev"](acc)}
     };
 
-var module_subparts=iter(/* [] */0);
+var module_subparts=function(param){return iter(/* [] */0,param)};
 
 var
  indices=
@@ -2288,7 +2288,7 @@ var
            }
          
          List["iter"]
-          (puts_nl(chan),
+          (function(param){return puts_nl(chan,param)},
            List["flatten"]
             (/* :: */[0,
               /* :: */[0,
@@ -2395,7 +2395,7 @@ var
              List["map"](indices,self$neg2[indices_to_build+1]);
            
            List["iter"]
-            (puts_nl(chan),
+            (function(param){return puts_nl(chan,param)},
              List["flatten"]
               (List["map"]
                 (function(param)

@@ -213,8 +213,11 @@ var
     Ocamlbuild_pack["My_unix"][13][3]=run_and_open;
     Ocamlbuild_pack["My_unix"][13][7]=at_exit_once;
     Ocamlbuild_pack["My_unix"][13][2]=is_link;
-    Ocamlbuild_pack["My_unix"][13][10]=mkstat(Unix["stat"]);
-    return Ocamlbuild_pack["My_unix"][13][11]=mkstat(Unix["lstat"]),0};
+    Ocamlbuild_pack["My_unix"][13][10]=
+    function(param$1){return mkstat(Unix["stat"],param$1)};
+    return Ocamlbuild_pack["My_unix"][13][11]=
+           function(param$1){return mkstat(Unix["lstat"],param$1)},
+           0};
 
 module["exports"]={"setup":setup};
 

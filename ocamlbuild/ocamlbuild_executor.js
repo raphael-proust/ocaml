@@ -485,7 +485,10 @@ var
     var
      terminate_all_jobs=
       function(param)
-       {return JS[13](terminate([/* Some */0,/* false */0]),jobs[1])};
+       {return JS[13]
+                (function(param$1)
+                  {return terminate([/* Some */0,/* false */0],param$1)},
+                 jobs[1])};
     
     var
      loop=

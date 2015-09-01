@@ -543,19 +543,18 @@ var
          catch(exn)
           {bexpr=
            error
-            (source,
-             lexbuf,
-             [/* Format */0,
-              [/* String_literal */11,
-               "Invalid globbing pattern ",
-               [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
-              "Invalid globbing pattern %S"],
-             k,
-             Printexc["to_string"](exn));
+             (source,
+              lexbuf,
+              [/* Format */0,
+               [/* String_literal */11,
+                "Invalid globbing pattern ",
+                [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
+               "Invalid globbing pattern %S"])
+            (k,Printexc["to_string"](exn));
            }
          
-         sublex(count_lines(lexbuf),s1);
-         sublex(count_lines(lexbuf),s2);
+         sublex(function(param){return count_lines(lexbuf,param)},s1);
+         sublex(function(param){return count_lines(lexbuf,param)},s2);
          var v1=conf_value(empty,source,lexbuf);
          
          var v2=conf_values(v1,source,lexbuf);
@@ -649,8 +648,8 @@ var
          
          var s2=Lexing["sub_lexeme"](lexbuf,lexbuf[10][1]+1,lexbuf[6]);
          
-         sublex(count_lines(lexbuf),s1);
-         sublex(count_lines(lexbuf),s2);
+         sublex(function(param){return count_lines(lexbuf,param)},s1);
+         sublex(function(param){return count_lines(lexbuf,param)},s2);
          return conf_values(conf_value(x,source,lexbuf),source,lexbuf);
         case 1:Lexing["new_line"](lexbuf);return x;
         case 2:return x;
@@ -715,27 +714,26 @@ var
                    path_scheme(patt_allowed,source,lexbuf)]}
          else
           {return error
-                   (source,
-                    lexbuf,
-                    [/* Format */0,
-                     [/* String_literal */11,
-                      "Patterns are not allowed in this pathname (",
-                      [/* Char_literal */12,
-                       37,
+                    (source,
+                     lexbuf,
+                     [/* Format */0,
+                      [/* String_literal */11,
+                       "Patterns are not allowed in this pathname (",
                        [/* Char_literal */12,
-                        40,
-                        [/* String */2,
-                         /* No_padding */0,
-                         [/* Char_literal */12,
-                          58,
-                          [/* String */2,
-                           /* No_padding */0,
-                           [/* String_literal */11,
-                            ") only in ~prod)",
-                            /* End_of_format */0]]]]]]],
-                     "Patterns are not allowed in this pathname (%%(%s:%s) only in ~prod)"],
-                    $$var$1,
-                    patt)}
+                        37,
+                        [/* Char_literal */12,
+                         40,
+                         [/* String */2,
+                          /* No_padding */0,
+                          [/* Char_literal */12,
+                           58,
+                           [/* String */2,
+                            /* No_padding */0,
+                            [/* String_literal */11,
+                             ") only in ~prod)",
+                             /* End_of_format */0]]]]]]],
+                      "Patterns are not allowed in this pathname (%%(%s:%s) only in ~prod)"])
+                   ($$var$1,patt)}
          break;
         case 3:
          return /* :: */[0,

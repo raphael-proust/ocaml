@@ -101,7 +101,9 @@ var
 
 var
  compute_trans_closure=
-  function(graph){return List["iter"](node_trans_closure(graph),graph)};
+  function(graph)
+   {return List["iter"]
+            (function(param){return node_trans_closure(graph,param)},graph)};
 
 var
  prune_node=
@@ -139,7 +141,7 @@ var
  kernel=
   function(graph)
    {compute_trans_closure(graph);
-    List["iter"](prune_node(graph),graph);
+    List["iter"](function(param){return prune_node(graph,param)},graph);
     return graph};
 
 var

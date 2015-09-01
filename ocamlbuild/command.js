@@ -145,8 +145,9 @@ var
   function(call_with_tags,call_with_target,resolve_virtuals,spec)
    {var
      $$self=
-      string_of_command_spec_with_calls
-       (call_with_tags,call_with_target,resolve_virtuals);
+      function(param)
+       {return string_of_command_spec_with_calls
+                (call_with_tags,call_with_target,resolve_virtuals,param)};
     
     var b=Buffer["create"](256);
     
@@ -240,7 +241,8 @@ var
      s=
       string_of_command_spec_with_calls
        (union_rtags,
-        function(prim,prim$1){return prim[1]=prim$1,0}(rtarget),
+        function(param)
+         {return function(prim,prim$1){return prim[1]=prim$1,0}(rtarget,param)},
         /* true */1,
         spec);
     
@@ -500,7 +502,10 @@ var
     if(cmds===/* [] */0)
      {return /* None */0}
     else
-     {var konts=My_std["List"][16](flatten_commands(quiet,pretend),cmds);
+     {var
+       konts=
+        My_std["List"][16]
+         (function(param){return flatten_commands(quiet,pretend,param)},cmds);
       
       if(pretend)
        {My_std["List"][14]
@@ -708,7 +713,7 @@ var
 var
  digest=
   function(x)
-   {var xs=cmd(x,/* [] */0);
+   {var xs=cmd(x)(/* [] */0);
     
     var exit;
     

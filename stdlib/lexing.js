@@ -80,7 +80,9 @@ var
  from_function=
   function(f)
    {return /* record */[0,
-            lex_refill(f,CamlPrimitive["caml_create_string"](512)),
+            function(param)
+             {return lex_refill
+                      (f,CamlPrimitive["caml_create_string"](512),param)},
             CamlPrimitive["caml_create_string"](1024),
             0,
             0,

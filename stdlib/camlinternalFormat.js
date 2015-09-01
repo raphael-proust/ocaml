@@ -3164,12 +3164,12 @@ var
        invalid_box=
         function(param)
          {return failwith_message
-                  ([/* Format */0,
-                    [/* String_literal */11,
-                     "invalid box description ",
-                     [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
-                    "invalid box description %S"],
-                   str)};
+                   ([/* Format */0,
+                     [/* String_literal */11,
+                      "invalid box description ",
+                      [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]],
+                     "invalid box description %S"])
+                  (str)};
       
       var
        parse_spaces=
@@ -3334,24 +3334,22 @@ var
      invalid_format_message=
       function(str_ind,msg)
        {return failwith_message
-                ([/* Format */0,
-                  [/* String_literal */11,
-                   "invalid format ",
-                   [/* Caml_string */3,
-                    /* No_padding */0,
-                    [/* String_literal */11,
-                     ": at character number ",
-                     [/* Int */4,
-                      /* Int_d */0,
-                      /* No_padding */0,
-                      /* No_precision */0,
-                      [/* String_literal */11,
-                       ", ",
-                       [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]],
-                  "invalid format %S: at character number %d, %s"],
-                 str,
-                 str_ind,
-                 msg)};
+                 ([/* Format */0,
+                   [/* String_literal */11,
+                    "invalid format ",
+                    [/* Caml_string */3,
+                     /* No_padding */0,
+                     [/* String_literal */11,
+                      ": at character number ",
+                      [/* Int */4,
+                       /* Int_d */0,
+                       /* No_padding */0,
+                       /* No_precision */0,
+                       [/* String_literal */11,
+                        ", ",
+                        [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]],
+                   "invalid format %S: at character number %d, %s"])
+                (str,str_ind,msg)};
     
     var
      unexpected_end_of_format=
@@ -3368,56 +3366,50 @@ var
      invalid_format_without=
       function(str_ind,c,s)
        {return failwith_message
-                ([/* Format */0,
-                  [/* String_literal */11,
-                   "invalid format ",
-                   [/* Caml_string */3,
-                    /* No_padding */0,
-                    [/* String_literal */11,
-                     ": at character number ",
-                     [/* Int */4,
-                      /* Int_d */0,
-                      /* No_padding */0,
-                      /* No_precision */0,
-                      [/* String_literal */11,
-                       ", '",
-                       [/* Char */0,
-                        [/* String_literal */11,
-                         "' without ",
-                         [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]]]],
-                  "invalid format %S: at character number %d, '%c' without %s"],
-                 str,
-                 str_ind,
-                 c,
-                 s)};
+                 ([/* Format */0,
+                   [/* String_literal */11,
+                    "invalid format ",
+                    [/* Caml_string */3,
+                     /* No_padding */0,
+                     [/* String_literal */11,
+                      ": at character number ",
+                      [/* Int */4,
+                       /* Int_d */0,
+                       /* No_padding */0,
+                       /* No_precision */0,
+                       [/* String_literal */11,
+                        ", '",
+                        [/* Char */0,
+                         [/* String_literal */11,
+                          "' without ",
+                          [/* String */2,/* No_padding */0,/* End_of_format */0]]]]]]]],
+                   "invalid format %S: at character number %d, '%c' without %s"])
+                (str,str_ind,c,s)};
     
     var
      expected_character=
       function(str_ind,expected,read)
        {return failwith_message
-                ([/* Format */0,
-                  [/* String_literal */11,
-                   "invalid format ",
-                   [/* Caml_string */3,
-                    /* No_padding */0,
-                    [/* String_literal */11,
-                     ": at character number ",
-                     [/* Int */4,
-                      /* Int_d */0,
-                      /* No_padding */0,
-                      /* No_precision */0,
-                      [/* String_literal */11,
-                       ", ",
-                       [/* String */2,
-                        /* No_padding */0,
-                        [/* String_literal */11,
-                         " expected, read ",
-                         [/* Caml_char */1,/* End_of_format */0]]]]]]]],
-                  "invalid format %S: at character number %d, %s expected, read %C"],
-                 str,
-                 str_ind,
-                 expected,
-                 read)};
+                 ([/* Format */0,
+                   [/* String_literal */11,
+                    "invalid format ",
+                    [/* Caml_string */3,
+                     /* No_padding */0,
+                     [/* String_literal */11,
+                      ": at character number ",
+                      [/* Int */4,
+                       /* Int_d */0,
+                       /* No_padding */0,
+                       /* No_precision */0,
+                       [/* String_literal */11,
+                        ", ",
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* String_literal */11,
+                          " expected, read ",
+                          [/* Caml_char */1,/* End_of_format */0]]]]]]]],
+                   "invalid format %S: at character number %d, %s expected, read %C"])
+                (str,str_ind,expected,read)};
     
     var
      parse=
@@ -3479,24 +3471,22 @@ var
           function(str_ind,flag)
            {if(flag[1]&&!legacy_behavior$1)
              {failwith_message
-               ([/* Format */0,
-                 [/* String_literal */11,
-                  "invalid format ",
-                  [/* Caml_string */3,
-                   /* No_padding */0,
-                   [/* String_literal */11,
-                    ": at character number ",
-                    [/* Int */4,
-                     /* Int_d */0,
-                     /* No_padding */0,
-                     /* No_precision */0,
-                     [/* String_literal */11,
-                      ", duplicate flag ",
-                      [/* Caml_char */1,/* End_of_format */0]]]]]],
-                 "invalid format %S: at character number %d, duplicate flag %C"],
-                str,
-                str_ind,
-                str["charCodeAt"](str_ind))}
+                ([/* Format */0,
+                  [/* String_literal */11,
+                   "invalid format ",
+                   [/* Caml_string */3,
+                    /* No_padding */0,
+                    [/* String_literal */11,
+                     ": at character number ",
+                     [/* Int */4,
+                      /* Int_d */0,
+                      /* No_padding */0,
+                      /* No_precision */0,
+                      [/* String_literal */11,
+                       ", duplicate flag ",
+                       [/* Caml_char */1,/* End_of_format */0]]]]]],
+                  "invalid format %S: at character number %d, duplicate flag %C"])
+               (str,str_ind,str["charCodeAt"](str_ind))}
             
             return flag[1]=/* true */1,0};
         
@@ -4354,31 +4344,29 @@ var
           case 69:
            fmt_result=
            failwith_message
-            ([/* Format */0,
-              [/* String_literal */11,
-               "invalid format ",
-               [/* Caml_string */3,
-                /* No_padding */0,
-                [/* String_literal */11,
-                 ": at character number ",
-                 [/* Int */4,
-                  /* Int_d */0,
-                  /* No_padding */0,
-                  /* No_precision */0,
-                  [/* String_literal */11,
-                   ", flag ",
-                   [/* Caml_char */1,
-                    [/* String_literal */11,
-                     " is only allowed after the '",
-                     [/* Char_literal */12,
-                      37,
-                      [/* String_literal */11,
-                       "', before padding and precision",
-                       /* End_of_format */0]]]]]]]]],
-              "invalid format %S: at character number %d, flag %C is only allowed after the '%%', before padding and precision"],
-             str,
-             pct_ind,
-             symb);
+             ([/* Format */0,
+               [/* String_literal */11,
+                "invalid format ",
+                [/* Caml_string */3,
+                 /* No_padding */0,
+                 [/* String_literal */11,
+                  ": at character number ",
+                  [/* Int */4,
+                   /* Int_d */0,
+                   /* No_padding */0,
+                   /* No_precision */0,
+                   [/* String_literal */11,
+                    ", flag ",
+                    [/* Caml_char */1,
+                     [/* String_literal */11,
+                      " is only allowed after the '",
+                      [/* Char_literal */12,
+                       37,
+                       [/* String_literal */11,
+                        "', before padding and precision",
+                        /* End_of_format */0]]]]]]]]],
+               "invalid format %S: at character number %d, flag %C is only allowed after the '%%', before padding and precision"])
+            (str,pct_ind,symb);
            break;
           case 63:
            if(symb>=108)
@@ -4507,26 +4495,24 @@ var
           case 62:
            fmt_result=
            failwith_message
-            ([/* Format */0,
-              [/* String_literal */11,
-               "invalid format ",
-               [/* Caml_string */3,
-                /* No_padding */0,
-                [/* String_literal */11,
-                 ": at character number ",
-                 [/* Int */4,
-                  /* Int_d */0,
-                  /* No_padding */0,
-                  /* No_precision */0,
-                  [/* String_literal */11,
-                   ', invalid conversion "',
-                   [/* Char_literal */12,
-                    37,
-                    [/* Char */0,[/* Char_literal */12,34,/* End_of_format */0]]]]]]]],
-              'invalid format %S: at character number %d, invalid conversion "%%%c"'],
-             str,
-             str_ind-1,
-             symb);
+             ([/* Format */0,
+               [/* String_literal */11,
+                "invalid format ",
+                [/* Caml_string */3,
+                 /* No_padding */0,
+                 [/* String_literal */11,
+                  ": at character number ",
+                  [/* Int */4,
+                   /* Int_d */0,
+                   /* No_padding */0,
+                   /* No_precision */0,
+                   [/* String_literal */11,
+                    ', invalid conversion "',
+                    [/* Char_literal */12,
+                     37,
+                     [/* Char */0,[/* Char_literal */12,34,/* End_of_format */0]]]]]]]],
+               'invalid format %S: at character number %d, invalid conversion "%%%c"'])
+            (str,str_ind-1,symb);
            break
           }
         
@@ -4968,31 +4954,30 @@ var
          fail_single_percent=
           function(str_ind)
            {return failwith_message
-                    ([/* Format */0,
-                      [/* String_literal */11,
-                       "invalid format ",
-                       [/* Caml_string */3,
-                        /* No_padding */0,
-                        [/* String_literal */11,
-                         ": '",
-                         [/* Char_literal */12,
-                          37,
-                          [/* String_literal */11,
-                           "' alone is not accepted in character sets, use ",
-                           [/* Char_literal */12,
-                            37,
+                     ([/* Format */0,
+                       [/* String_literal */11,
+                        "invalid format ",
+                        [/* Caml_string */3,
+                         /* No_padding */0,
+                         [/* String_literal */11,
+                          ": '",
+                          [/* Char_literal */12,
+                           37,
+                           [/* String_literal */11,
+                            "' alone is not accepted in character sets, use ",
                             [/* Char_literal */12,
                              37,
-                             [/* String_literal */11,
-                              " instead at position ",
-                              [/* Int */4,
-                               /* Int_d */0,
-                               /* No_padding */0,
-                               /* No_precision */0,
-                               [/* Char_literal */12,46,/* End_of_format */0]]]]]]]]]],
-                      "invalid format %S: '%%' alone is not accepted in character sets, use %%%% instead at position %d."],
-                     str,
-                     str_ind)};
+                             [/* Char_literal */12,
+                              37,
+                              [/* String_literal */11,
+                               " instead at position ",
+                               [/* Int */4,
+                                /* Int_d */0,
+                                /* No_padding */0,
+                                /* No_precision */0,
+                                [/* Char_literal */12,46,/* End_of_format */0]]]]]]]]]],
+                       "invalid format %S: '%%' alone is not accepted in character sets, use %%%% instead at position %d."])
+                    (str,str_ind)};
         
         var
          parse_char_set_start=
@@ -5135,28 +5120,26 @@ var
           
           return new_acc>Sys["max_string_length"]
                   ?failwith_message
-                    ([/* Format */0,
-                      [/* String_literal */11,
-                       "invalid format ",
-                       [/* Caml_string */3,
-                        /* No_padding */0,
-                        [/* String_literal */11,
-                         ": integer ",
-                         [/* Int */4,
-                          /* Int_d */0,
-                          /* No_padding */0,
-                          /* No_precision */0,
-                          [/* String_literal */11,
-                           " is greater than the limit ",
-                           [/* Int */4,
-                            /* Int_d */0,
-                            /* No_padding */0,
-                            /* No_precision */0,
-                            /* End_of_format */0]]]]]],
-                      "invalid format %S: integer %d is greater than the limit %d"],
-                     str,
-                     new_acc,
-                     Sys["max_string_length"])
+                     ([/* Format */0,
+                       [/* String_literal */11,
+                        "invalid format ",
+                        [/* Caml_string */3,
+                         /* No_padding */0,
+                         [/* String_literal */11,
+                          ": integer ",
+                          [/* Int */4,
+                           /* Int_d */0,
+                           /* No_padding */0,
+                           /* No_precision */0,
+                           [/* String_literal */11,
+                            " is greater than the limit ",
+                            [/* Int */4,
+                             /* Int_d */0,
+                             /* No_padding */0,
+                             /* No_precision */0,
+                             /* End_of_format */0]]]]]],
+                       "invalid format %S: integer %d is greater than the limit %d"])
+                    (str,new_acc,Sys["max_string_length"])
                   :parse_positive(str_ind+1,end_ind,new_acc)}
         };
     
@@ -5220,27 +5203,25 @@ var
       function(str_ind,end_ind,c)
        {if(str_ind===end_ind)
          {failwith_message
-           ([/* Format */0,
-             [/* String_literal */11,
-              "invalid format ",
-              [/* Caml_string */3,
-               /* No_padding */0,
-               [/* String_literal */11,
-                ': unclosed sub-format, expected "',
-                [/* Char_literal */12,
-                 37,
-                 [/* Char */0,
-                  [/* String_literal */11,
-                   '" at character number ',
-                   [/* Int */4,
-                    /* Int_d */0,
-                    /* No_padding */0,
-                    /* No_precision */0,
-                    /* End_of_format */0]]]]]]],
-             'invalid format %S: unclosed sub-format, expected "%%%c" at character number %d'],
-            str,
-            c,
-            end_ind)}
+            ([/* Format */0,
+              [/* String_literal */11,
+               "invalid format ",
+               [/* Caml_string */3,
+                /* No_padding */0,
+                [/* String_literal */11,
+                 ': unclosed sub-format, expected "',
+                 [/* Char_literal */12,
+                  37,
+                  [/* Char */0,
+                   [/* String_literal */11,
+                    '" at character number ',
+                    [/* Int */4,
+                     /* Int_d */0,
+                     /* No_padding */0,
+                     /* No_precision */0,
+                     /* End_of_format */0]]]]]]],
+              'invalid format %S: unclosed sub-format, expected "%%%c" at character number %d'])
+           (str,c,end_ind)}
         
         var match=str["charCodeAt"](str_ind);
         
@@ -5688,33 +5669,29 @@ var
        {var subfmt=$$String["sub"](str,pct_ind,str_ind-pct_ind);
         
         return failwith_message
-                ([/* Format */0,
-                  [/* String_literal */11,
-                   "invalid format ",
-                   [/* Caml_string */3,
-                    /* No_padding */0,
-                    [/* String_literal */11,
-                     ": at character number ",
-                     [/* Int */4,
-                      /* Int_d */0,
-                      /* No_padding */0,
-                      /* No_precision */0,
-                      [/* String_literal */11,
-                       ", ",
-                       [/* String */2,
-                        /* No_padding */0,
-                        [/* String_literal */11,
-                         " is incompatible with '",
-                         [/* Char */0,
-                          [/* String_literal */11,
-                           "' in sub-format ",
-                           [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]]]]]]]]]],
-                  "invalid format %S: at character number %d, %s is incompatible with '%c' in sub-format %S"],
-                 str,
-                 pct_ind,
-                 option,
-                 symb,
-                 subfmt)};
+                 ([/* Format */0,
+                   [/* String_literal */11,
+                    "invalid format ",
+                    [/* Caml_string */3,
+                     /* No_padding */0,
+                     [/* String_literal */11,
+                      ": at character number ",
+                      [/* Int */4,
+                       /* Int_d */0,
+                       /* No_padding */0,
+                       /* No_precision */0,
+                       [/* String_literal */11,
+                        ", ",
+                        [/* String */2,
+                         /* No_padding */0,
+                         [/* String_literal */11,
+                          " is incompatible with '",
+                          [/* Char */0,
+                           [/* String_literal */11,
+                            "' in sub-format ",
+                            [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]]]]]]]]]],
+                   "invalid format %S: at character number %d, %s is incompatible with '%c' in sub-format %S"])
+                (str,pct_ind,option,symb,subfmt)};
     
     return parse(0,str["length"])};
 
@@ -5728,17 +5705,16 @@ var
     catch(exn)
      {if(exn===Type_mismatch)
        {return failwith_message
-                ([/* Format */0,
-                  [/* String_literal */11,
-                   "bad input: format type mismatch between ",
-                   [/* Caml_string */3,
-                    /* No_padding */0,
-                    [/* String_literal */11,
-                     " and ",
-                     [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]]]],
-                  "bad input: format type mismatch between %S and %S"],
-                 str,
-                 string_of_fmtty(fmtty))}
+                 ([/* Format */0,
+                   [/* String_literal */11,
+                    "bad input: format type mismatch between ",
+                    [/* Caml_string */3,
+                     /* No_padding */0,
+                     [/* String_literal */11,
+                      " and ",
+                      [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]]]],
+                   "bad input: format type mismatch between %S and %S"])
+                (str,string_of_fmtty(fmtty))}
       else
        {throw exn}
       }
@@ -5754,17 +5730,16 @@ var
     catch(exn)
      {if(exn===Type_mismatch)
        {return failwith_message
-                ([/* Format */0,
-                  [/* String_literal */11,
-                   "bad input: format type mismatch between ",
-                   [/* Caml_string */3,
-                    /* No_padding */0,
-                    [/* String_literal */11,
-                     " and ",
-                     [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]]]],
-                  "bad input: format type mismatch between %S and %S"],
-                 str,
-                 param[2])}
+                 ([/* Format */0,
+                   [/* String_literal */11,
+                    "bad input: format type mismatch between ",
+                    [/* Caml_string */3,
+                     /* No_padding */0,
+                     [/* String_literal */11,
+                      " and ",
+                      [/* Caml_string */3,/* No_padding */0,/* End_of_format */0]]]],
+                   "bad input: format type mismatch between %S and %S"])
+                (str,param[2])}
       else
        {throw exn}
       }

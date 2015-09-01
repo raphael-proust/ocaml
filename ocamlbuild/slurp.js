@@ -38,7 +38,8 @@ var
                    [246,
                     function(param)
                      {return My_std["List"][16]
-                              (filter(predicate),My_std["!*"](entries))}]]
+                              (function(param$1){return filter(predicate,param$1)},
+                               My_std["!*"](entries))}]]
                  :/* Nothing */0;
         case 1:return predicate(f[1],f[2],f[4])?f:/* Nothing */0;
         case 2:return f
@@ -440,7 +441,9 @@ var
                   entry[2],
                   print_attr,
                   entry[4],
-                  My_std["List"][1](print(print_attr)),
+                  My_std["List"][1]
+                   (function(param,param$1)
+                     {return print(print_attr,param,param$1)}),
                   My_std["!*"](entry[5]));
         case 1:
          return Format["fprintf"]
@@ -503,7 +506,10 @@ var
                  (entry[1],
                   entry[2],
                   entry[4],
-                  My_std["List"][20](fold(f),My_std["!*"](entry[5]),acc));
+                  My_std["List"][20]
+                   (function(param,param$1){return fold(f,param,param$1)},
+                    My_std["!*"](entry[5]),
+                    acc));
         case 1:return f(entry[1],entry[2],entry[4],acc);
         case 2:exit=4;break
         }}

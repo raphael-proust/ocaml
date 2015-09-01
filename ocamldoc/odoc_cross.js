@@ -736,7 +736,9 @@ var
         switch(k[0])
          {case 0:
            return List["fold_left"]
-                   (associate_in_module_element(module_list,m[1]),
+                   (function(param$2,param$3)
+                     {return associate_in_module_element
+                              (module_list,m[1],param$2,param$3)},
                     /* tuple */[0,acc_b,acc_inc,acc_names],
                     k[1]);
           case 1:
@@ -873,7 +875,9 @@ var
         switch(k[0])
          {case 0:
            return List["fold_left"]
-                   (associate_in_module_element(module_list,mt[1]),
+                   (function(param$2,param$3)
+                     {return associate_in_module_element
+                              (module_list,mt[1],param$2,param$3)},
                     /* tuple */[0,acc_b,acc_inc,acc_names],
                     k[1]);
           case 1:
@@ -1463,11 +1467,15 @@ var
         case 10:
          return /* List */[10,
                  List["map"]
-                  (assoc_comments_text(parent_name,module_list),t_ele[1])];
+                  (function(param)
+                    {return assoc_comments_text(parent_name,module_list,param)},
+                   t_ele[1])];
         case 11:
          return /* Enum */[11,
                  List["map"]
-                  (assoc_comments_text(parent_name,module_list),t_ele[1])];
+                  (function(param)
+                    {return assoc_comments_text(parent_name,module_list,param)},
+                   t_ele[1])];
         case 12:
          return /* Block */[12,
                  assoc_comments_text(parent_name,module_list,t_ele[1])];
@@ -1734,12 +1742,18 @@ var
  assoc_comments_text=
   function(parent_name,module_list,text)
    {return List["map"]
-            (assoc_comments_text_elements(parent_name,module_list),text)};
+            (function(param)
+              {return assoc_comments_text_elements
+                       (parent_name,module_list,param)},
+             text)};
 
 var
  assoc_comments_info=
   function(parent_name,module_list,i)
-   {var ft=assoc_comments_text(parent_name,module_list);
+   {var
+     ft=
+      function(param)
+       {return assoc_comments_text(parent_name,module_list,param)};
     
     return /* record */[0,
             ao(ft,i[1]),
@@ -1821,7 +1835,10 @@ var
      {case 0:
        return /* Module_struct */[0,
                List["map"]
-                (assoc_comments_module_element(parent_name,module_list),mk[1])];
+                (function(param)
+                  {return assoc_comments_module_element
+                           (parent_name,module_list,param)},
+                 mk[1])];
       case 1:exit=8;break;
       case 2:exit=8;break;
       case 3:
@@ -1852,7 +1869,9 @@ var
      {case 0:
        return /* Module_type_struct */[0,
                List["map"]
-                (assoc_comments_module_element(parent_name,module_list),
+                (function(param)
+                  {return assoc_comments_module_element
+                           (parent_name,module_list,param)},
                  mtk[1])];
       case 1:
        return /* Module_type_functor */[1,
@@ -1883,13 +1902,19 @@ var
             {return /* record */[0,
                      ic[1],
                      ic[2],
-                     ao(assoc_comments_text(parent_name,module_list),ic[3])]},
+                     ao
+                      (function(param)
+                        {return assoc_comments_text(parent_name,module_list,param)},
+                       ic[3])]},
            ck[1]);
        
        return /* Class_structure */[0,
                inher2,
                List["map"]
-                (assoc_comments_class_element(parent_name,module_list),ck[2])];
+                (function(param)
+                  {return assoc_comments_class_element
+                           (parent_name,module_list,param)},
+                 ck[2])];
       case 1:exit=12;break;
       case 2:exit=12;break;
       case 3:
@@ -1913,13 +1938,19 @@ var
             {return /* record */[0,
                      ic[1],
                      ic[2],
-                     ao(assoc_comments_text(parent_name,module_list),ic[3])]},
+                     ao
+                      (function(param)
+                        {return assoc_comments_text(parent_name,module_list,param)},
+                       ic[3])]},
            ctk[1]);
        
        return /* Class_signature */[0,
                inher2,
                List["map"]
-                (assoc_comments_class_element(parent_name,module_list),ctk[2])];
+                (function(param)
+                  {return assoc_comments_class_element
+                           (parent_name,module_list,param)},
+                 ctk[2])];
       case 1:return ctk
       }
     };
@@ -1927,21 +1958,34 @@ var
 var
  assoc_comments_module=
   function(module_list,m)
-   {m[3]=ao(assoc_comments_info(m[1],module_list),m[3]);
+   {m[3]=
+    ao
+     (function(param){return assoc_comments_info(m[1],module_list,param)},
+      m[3]);
     m[6]=assoc_comments_module_kind(m[1],module_list,m[6]);
     return m};
 
 var
  assoc_comments_module_type=
   function(module_list,mt)
-   {mt[2]=ao(assoc_comments_info(mt[1],module_list),mt[2]);
-    mt[6]=ao(assoc_comments_module_type_kind(mt[1],module_list),mt[6]);
+   {mt[2]=
+    ao
+     (function(param){return assoc_comments_info(mt[1],module_list,param)},
+      mt[2]);
+    mt[6]=
+    ao
+     (function(param)
+       {return assoc_comments_module_type_kind(mt[1],module_list,param)},
+      mt[6]);
     return mt};
 
 var
  assoc_comments_class=
   function(module_list,c)
-   {c[2]=ao(assoc_comments_info(c[1],module_list),c[2]);
+   {c[2]=
+    ao
+     (function(param){return assoc_comments_info(c[1],module_list,param)},
+      c[2]);
     c[6]=assoc_comments_class_kind(c[1],module_list,c[6]);
     assoc_comments_parameter_list(c[1],module_list,c[7]);
     return c};
@@ -1949,7 +1993,10 @@ var
 var
  assoc_comments_class_type=
   function(module_list,ct)
-   {ct[2]=ao(assoc_comments_info(ct[1],module_list),ct[2]);
+   {ct[2]=
+    ao
+     (function(param){return assoc_comments_info(ct[1],module_list,param)},
+      ct[2]);
     ct[6]=assoc_comments_class_type_kind(ct[1],module_list,ct[6]);
     return ct};
 
@@ -1960,24 +2007,38 @@ var
      {case 0:
        var sn=p[1];
        
-       return sn[3]=ao(assoc_comments_text(parent_name,module_list),sn[3]),0;
+       return sn[3]=
+              ao
+               (function(param)
+                 {return assoc_comments_text(parent_name,module_list,param)},
+                sn[3]),
+              0;
       case 1:
        return List["iter"]
-               (assoc_comments_parameter(parent_name,module_list),p[1])
+               (function(param)
+                 {return assoc_comments_parameter
+                          (parent_name,module_list,param)},
+                p[1])
       }
     };
 
 var
  assoc_comments_parameter_list=
   function(parent_name,module_list,pl)
-   {return List["iter"](assoc_comments_parameter(parent_name,module_list),pl)};
+   {return List["iter"]
+            (function(param)
+              {return assoc_comments_parameter(parent_name,module_list,param)},
+             pl)};
 
 var
  assoc_comments_value=
   function(module_list,v)
    {var parent=Odoc_name["father"](v[1]);
     
-    v[2]=ao(assoc_comments_info(parent,module_list),v[2]);
+    v[2]=
+    ao
+     (function(param){return assoc_comments_info(parent,module_list,param)},
+      v[2]);
     assoc_comments_parameter_list(parent,module_list,v[5]);
     return v};
 
@@ -1986,13 +2047,25 @@ var
   function(module_list,x)
    {var parent=Odoc_name["father"](x[1]);
     
-    return x[7]=ao(assoc_comments_info(parent,module_list),x[7]),0};
+    return x[7]=
+           ao
+            (function(param)
+              {return assoc_comments_info(parent,module_list,param)},
+             x[7]),
+           0};
 
 var
  assoc_comments_type_extension=
   function(parent_name,module_list,te)
-   {te[1]=ao(assoc_comments_info(parent_name,module_list),te[1]);
-    List["iter"](assoc_comments_extension_constructor(module_list),te[5]);
+   {te[1]=
+    ao
+     (function(param)
+       {return assoc_comments_info(parent_name,module_list,param)},
+      te[1]);
+    List["iter"]
+     (function(param)
+       {return assoc_comments_extension_constructor(module_list,param)},
+      te[5]);
     return te};
 
 var
@@ -2000,7 +2073,10 @@ var
   function(module_list,e)
    {var parent=Odoc_name["father"](e[1]);
     
-    e[2]=ao(assoc_comments_info(parent,module_list),e[2]);
+    e[2]=
+    ao
+     (function(param){return assoc_comments_info(parent,module_list,param)},
+      e[2]);
     return e};
 
 var
@@ -2008,7 +2084,10 @@ var
   function(module_list,t)
    {var parent=Odoc_name["father"](t[1]);
     
-    t[2]=ao(assoc_comments_info(parent,module_list),t[2]);
+    t[2]=
+    ao
+     (function(param){return assoc_comments_info(parent,module_list,param)},
+      t[2]);
     var match=t[4];
     
     var exit;
@@ -2020,13 +2099,23 @@ var
        {case 0:
          List["iter"]
           (function(vc)
-            {return vc[4]=ao(assoc_comments_info(parent,module_list),vc[4]),0},
+            {return vc[4]=
+                    ao
+                     (function(param)
+                       {return assoc_comments_info(parent,module_list,param)},
+                      vc[4]),
+                    0},
            match[1]);
          break;
         case 1:
          List["iter"]
           (function(rf)
-            {return rf[4]=ao(assoc_comments_info(parent,module_list),rf[4]),0},
+            {return rf[4]=
+                    ao
+                     (function(param)
+                       {return assoc_comments_info(parent,module_list,param)},
+                      rf[4]),
+                    0},
            match[1]);
          break
         }}
@@ -2053,7 +2142,9 @@ var
 var
  associate_type_of_elements_in_comments=
   function(module_list)
-   {return List["map"](assoc_comments_module(module_list),module_list)};
+   {return List["map"]
+            (function(param){return assoc_comments_module(module_list,param)},
+             module_list)};
 
 var
  associate=
@@ -2081,7 +2172,8 @@ var
        {var
          match=
           List["fold_left"]
-           (associate_in_module(module_list),
+           (function(param,param$1)
+             {return associate_in_module(module_list,param,param$1)},
             [/* tuple */0,/* false */0,/* [] */0,/* [] */0],
             incomplete_modules);
         

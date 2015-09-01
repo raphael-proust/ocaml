@@ -1,5 +1,6 @@
 // Generated CODE, PLEASE EDIT WITH CARE 
 
+var $$String=require("./string.js");
 var Pervasives=require("./pervasives.js");
 var List=require("./list.js");
 var Events=require("./events.js");
@@ -15,7 +16,7 @@ var CamlPrimitive=require("./camlPrimitive.js");
 var Debugcom=require("./debugcom.js");
 
 
-var StringSet=Set["Make"]([0,$$let[25]]);
+var StringSet=Set["Make"]([0,$$String["compare"]]);
 
 var modules=[0,/* [] */0];
 
@@ -95,7 +96,7 @@ var
       
       var evl=Pervasives["input_value"](ic);
       
-      List["iter"](relocate_event(orig),evl);
+      List["iter"](function(param){return relocate_event(orig,param)},evl);
       eventlists=/* :: */[0,evl,eventlists];
       
       dirs=

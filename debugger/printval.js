@@ -122,7 +122,14 @@ var
   function(max_depth,env,obj,ppf,ty)
    {var
      t=
-      Printer[6](max_printer_steps[1],max_depth,check_depth(ppf),env,obj,ty);
+      Printer[6]
+       (max_printer_steps[1],
+        max_depth,
+        function(param,param$1,param$2)
+         {return check_depth(ppf,param,param$1,param$2)},
+        env,
+        obj,
+        ty);
     
     return Oprint["out_value"][1](ppf,t)};
 
@@ -205,7 +212,8 @@ var
              exp,
              Printtyp["type_expr"],
              ty,
-             print_value(max_depth,env,obj),
+             function(param,param$1)
+              {return print_value(max_depth,env,obj,param,param$1)},
              ty)};
 
 module["exports"]=

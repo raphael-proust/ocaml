@@ -184,7 +184,7 @@ var
        {if(l)
          {var
            match=
-            cut(Int64ops["--"](Int64ops["--"](t0,t),Int64ops["_1"]),l);
+            cut(Int64ops["--"](Int64ops["--"](t0,t),Int64ops["_1"]))(l);
           
           var l$1=cut2_t0(Int64ops["++"](t,t),match[2]);
           
@@ -193,7 +193,7 @@ var
          {return /* [] */0}
         };
     
-    var match=cut(Int64ops["--"](t0,Int64ops["_1"]),l);
+    var match=cut(Int64ops["--"](t0,Int64ops["_1"]))(l);
     
     return /* :: */[0,match[1],cut2_t0(t,match[2])]};
 
@@ -225,7 +225,7 @@ var
  chk_merge=
   function(param)
    {return param
-            ?chk_merge2(chk_merge(param[2]),param[1])
+            ?chk_merge2(chk_merge(param[2]))(param[1])
             :[/* tuple */0,/* [] */0,/* [] */0]};
 
 var
@@ -257,7 +257,7 @@ var
 var
  clean_checkpoints=
   function(time,checkpoint_count)
-   {var match=cut(time,Checkpoints["checkpoints"][1]);
+   {var match=cut(time)(Checkpoints["checkpoints"][1]);
     
     var
      match$1=

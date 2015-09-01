@@ -112,9 +112,14 @@ var
                       /* End_of_format */0]]]],
                   "@]@,:}@]"])};
     
-    var print_smap_list=print_smap(Tools["pp_l"]);
+    var
+     print_smap_list=
+      function(param,param$1){return print_smap(Tools["pp_l"],param,param$1)};
     
-    var print_smap_set=print_smap(Resource["Resources"][29]);
+    var
+     print_smap_set=
+      function(param,param$1)
+       {return print_smap(Resource["Resources"][29],param,param$1)};
     
     var print_lazy=function(pp,f,l){return pp(f,My_std["!*"](l))};
     
@@ -218,30 +223,30 @@ var
            :/* :: */[0,caml_obj_ext,/* :: */[0,caml_lib_ext,/* [] */0]];
         
         mydprintf
-         ([/* Format */0,
-           [/* String_literal */11,
-            "caml_transitive_closure",
-            [/* Formatting_lit */17,
-             [/* Break */0,"@ ",1,0],
-             [/* String_literal */11,
-              "~caml_obj_ext:",
-              [/* Caml_string */3,
-               /* No_padding */0,
-               [/* Formatting_lit */17,
-                [/* Break */0,"@ ",1,0],
-                [/* String_literal */11,
-                 "~pack_mode:",
-                 [/* Bool */9,
-                  [/* Formatting_lit */17,
-                   [/* Break */0,"@ ",1,0],
-                   [/* String_literal */11,
-                    "~used_libraries:",
-                    [/* Alpha */15,
-                     [/* Formatting_lit */17,
-                      [/* Break */0,"@ ",1,0],
-                      [/* Alpha */15,/* End_of_format */0]]]]]]]]]]]],
-           "caml_transitive_closure@ ~caml_obj_ext:%S@ ~pack_mode:%b@ ~used_libraries:%a@ %a"],
-          caml_obj_ext,
+          ([/* Format */0,
+            [/* String_literal */11,
+             "caml_transitive_closure",
+             [/* Formatting_lit */17,
+              [/* Break */0,"@ ",1,0],
+              [/* String_literal */11,
+               "~caml_obj_ext:",
+               [/* Caml_string */3,
+                /* No_padding */0,
+                [/* Formatting_lit */17,
+                 [/* Break */0,"@ ",1,0],
+                 [/* String_literal */11,
+                  "~pack_mode:",
+                  [/* Bool */9,
+                   [/* Formatting_lit */17,
+                    [/* Break */0,"@ ",1,0],
+                    [/* String_literal */11,
+                     "~used_libraries:",
+                     [/* Alpha */15,
+                      [/* Formatting_lit */17,
+                       [/* Break */0,"@ ",1,0],
+                       [/* Alpha */15,/* End_of_format */0]]]]]]]]]]]],
+            "caml_transitive_closure@ ~caml_obj_ext:%S@ ~pack_mode:%b@ ~used_libraries:%a@ %a"])
+         (caml_obj_ext,
           pack_mode,
           Tools["pp_l"],
           used_libraries,
@@ -254,15 +259,14 @@ var
             Resource["Resources"][1]);
         
         mydprintf
-         ([/* Format */0,
-           [/* String_literal */11,
-            "packages:",
-            [/* Formatting_lit */17,
-             [/* Break */0,"@ ",1,0],
-             [/* Alpha */15,/* End_of_format */0]]],
-           "packages:@ %a"],
-          Resource["Resources"][29],
-          packages);
+          ([/* Format */0,
+            [/* String_literal */11,
+             "packages:",
+             [/* Formatting_lit */17,
+              [/* Break */0,"@ ",1,0],
+              [/* Alpha */15,/* End_of_format */0]]],
+            "packages:@ %a"])
+         (Resource["Resources"][29],packages);
         var
          caml_obj_ext_of_cmi=
           function(x)
@@ -309,27 +313,25 @@ var
             SMap[1]);
         
         mydprintf
-         ([/* Format */0,
-           [/* String_literal */11,
-            "dependency_map:",
-            [/* Formatting_lit */17,
-             [/* Break */0,"@ ",1,0],
-             [/* Alpha */15,/* End_of_format */0]]],
-           "dependency_map:@ %a"],
-          Utils[7],
-          dependency_map);
+          ([/* Format */0,
+            [/* String_literal */11,
+             "dependency_map:",
+             [/* Formatting_lit */17,
+              [/* Break */0,"@ ",1,0],
+              [/* Alpha */15,/* End_of_format */0]]],
+            "dependency_map:@ %a"])
+         (Utils[7],dependency_map);
         var used_files=Utils[10](fns,dependency_map);
         
         mydprintf
-         ([/* Format */0,
-           [/* String_literal */11,
-            "used_files:",
-            [/* Formatting_lit */17,
-             [/* Break */0,"@ ",1,0],
-             [/* Alpha */15,/* End_of_format */0]]],
-           "used_files:@ %a"],
-          Resource["Resources"][29],
-          used_files);
+          ([/* Format */0,
+            [/* String_literal */11,
+             "used_files:",
+             [/* Formatting_lit */17,
+              [/* Break */0,"@ ",1,0],
+              [/* Alpha */15,/* End_of_format */0]]],
+            "used_files:@ %a"])
+         (Resource["Resources"][29],used_files);
         var
          open_packages=
           Resource["Resources"][14]
@@ -342,15 +344,14 @@ var
             /* [] */0);
         
         mydprintf
-         ([/* Format */0,
-           [/* String_literal */11,
-            "open_packages:",
-            [/* Formatting_lit */17,
-             [/* Break */0,"@ ",1,0],
-             [/* Alpha */15,/* End_of_format */0]]],
-           "open_packages:@ %a"],
-          Tools["pp_l"],
-          open_packages);
+          ([/* Format */0,
+            [/* String_literal */11,
+             "open_packages:",
+             [/* Formatting_lit */17,
+              [/* Break */0,"@ ",1,0],
+              [/* Alpha */15,/* End_of_format */0]]],
+            "open_packages:@ %a"])
+         (Tools["pp_l"],open_packages);
         var
          index_filter=
           function(ext,list,x)
@@ -361,23 +362,28 @@ var
          lib_index=
           [246,
            function(param)
-            {return Utils[11](I[2],index_filter(caml_lib_ext,used_libraries))}];
+            {return Utils[11]
+                     (I[2],
+                      function(param$1)
+                       {return index_filter(caml_lib_ext,used_libraries,param$1)})}];
         
         mydprintf
-         ([/* Format */0,
-           [/* String_literal */11,
-            "lib_index:",
-            [/* Formatting_lit */17,
-             [/* Break */0,"@ ",1,0],
-             [/* Alpha */15,/* End_of_format */0]]],
-           "lib_index:@ %a"],
-          Utils[8](Utils[6]),
-          lib_index);
+          ([/* Format */0,
+            [/* String_literal */11,
+             "lib_index:",
+             [/* Formatting_lit */17,
+              [/* Break */0,"@ ",1,0],
+              [/* Alpha */15,/* End_of_format */0]]],
+            "lib_index:@ %a"])
+         (Utils[8](Utils[6]),lib_index);
         var
          package_index=
           [246,
            function(param)
-            {return Utils[11](I[3],index_filter(caml_obj_ext,open_packages))}];
+            {return Utils[11]
+                     (I[3],
+                      function(param$1)
+                       {return index_filter(caml_obj_ext,open_packages,param$1)})}];
         
         var
          resolve_packages=
@@ -467,20 +473,21 @@ var
            function(param)
             {return SMap[11]
                      (function(k)
-                       {return Resource["Resources"][14](convert_dependency(k))},
+                       {return Resource["Resources"][14]
+                                (function(param$1,param$2)
+                                  {return convert_dependency(k,param$1,param$2)})},
                       dependency_map,
                       Utils[2])}];
         
         mydprintf
-         ([/* Format */0,
-           [/* String_literal */11,
-            "dependencies:",
-            [/* Formatting_lit */17,
-             [/* Break */0,"@ ",1,0],
-             [/* Alpha */15,/* End_of_format */0]]],
-           "dependencies:@ %a"],
-          Utils[8](Utils[7]),
-          dependencies);
+          ([/* Format */0,
+            [/* String_literal */11,
+             "dependencies:",
+             [/* Formatting_lit */17,
+              [/* Break */0,"@ ",1,0],
+              [/* Alpha */15,/* End_of_format */0]]],
+            "dependencies:@ %a"])
+         (Utils[8](Utils[7]),dependencies);
         var
          dependencies_of=
           function(x)
@@ -574,22 +581,19 @@ var
         
         My_std["List"][14](aux,fns);
         mydprintf
-         ([/* Format */0,
-           [/* String_literal */11,
-            "caml_transitive_closure:",
-            [/* Formatting_lit */17,
-             [/* Break */0,"@ ",1,0],
-             [/* Alpha */15,
-              [/* String_literal */11,
-               " ->",
-               [/* Formatting_lit */17,
-                [/* Break */0,"@ ",1,0],
-                [/* Alpha */15,/* End_of_format */0]]]]]],
-           "caml_transitive_closure:@ %a ->@ %a"],
-          Tools["pp_l"],
-          fns,
-          Tools["pp_l"],
-          needed_in_order[1]);
+          ([/* Format */0,
+            [/* String_literal */11,
+             "caml_transitive_closure:",
+             [/* Formatting_lit */17,
+              [/* Break */0,"@ ",1,0],
+              [/* Alpha */15,
+               [/* String_literal */11,
+                " ->",
+                [/* Formatting_lit */17,
+                 [/* Break */0,"@ ",1,0],
+                 [/* Alpha */15,/* End_of_format */0]]]]]],
+            "caml_transitive_closure:@ %a ->@ %a"])
+         (Tools["pp_l"],fns,Tools["pp_l"],needed_in_order[1]);
         return My_std["List"][9](needed_in_order[1])};
     
     return [0,SMap,0,Utils,caml_transitive_closure]};

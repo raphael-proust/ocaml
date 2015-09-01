@@ -230,7 +230,9 @@ var
                     explanations=
                      My_std["List"][12]
                       (My_std["List"][16]
-                        (check_rule(My_std["!*"](entries)),law[2]));
+                        (function(param$1)
+                          {return check_rule(My_std["!*"](entries),param$1)},
+                         law[2]));
                    
                    return explanations
                            ?(penalties[1]=

@@ -259,7 +259,8 @@ var
             prods,
             stamp,
             rule[5],
-            function(env){return rule[6](finder(env))}]};
+            function(env)
+             {return rule[6](function(param){return finder(env,param)})}]};
 
 var Can_produce=CamlPrimitive["caml_set_oo_id"]([248,"Rule.Can_produce",0]);
 
@@ -454,7 +455,7 @@ var
     
     var action=r[6](function(x){return x},builder$1);
     
-    build_deps_of_tags_on_cmd(builder$1,action[2]);
+    build_deps_of_tags_on_cmd(builder$1)(action[2]);
     var dyndeps$1=dyndeps[1];
     
     var
@@ -1012,15 +1013,17 @@ var
     My_std["List"][14]
      (function(rule)
        {return pp
-                ([/* Format */0,
-                  [/* Alpha */15,
-                   [/* Formatting_lit */17,
-                    /* Force_newline */3,
+                 ([/* Format */0,
+                   [/* Alpha */15,
                     [/* Formatting_lit */17,
                      /* Force_newline */3,
-                     /* End_of_format */0]]],
-                  "%a@\n@\n"],
-                 pretty_print(Resource["print_pattern"]),
+                     [/* Formatting_lit */17,
+                      /* Force_newline */3,
+                      /* End_of_format */0]]],
+                   "%a@\n@\n"])
+                (function(param$1,param$2)
+                  {return pretty_print
+                           (Resource["print_pattern"],param$1,param$2)},
                  rule)},
       rules$1);
     return pp

@@ -72,9 +72,8 @@ var
 var
  dprintf=
   function(log_level,fmt)
-   {return raw_dprintf
-            (log_level,
-             Pervasives["^^"]
+   {return raw_dprintf(log_level)
+            (Pervasives["^^"]
               ([/* Format */0,
                 [/* Formatting_gen */18,
                  [/* Open_box */1,

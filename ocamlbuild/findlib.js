@@ -104,53 +104,51 @@ var
          {var
            match=
             run_and_parse
-             (Lexers["ocamlfind_query"](Const["Source"][4]),
-              [/* Format */0,
-               [/* String */2,
-                /* No_padding */0,
-                [/* String_literal */11,
-                 " query -l -predicates byte ",
-                 [/* String */2,/* No_padding */0,/* End_of_format */0]]],
-               "%s query -l -predicates byte %s"],
-              ocamlfind,
-              name);
+              (Lexers["ocamlfind_query"](Const["Source"][4]),
+               [/* Format */0,
+                [/* String */2,
+                 /* No_padding */0,
+                 [/* String_literal */11,
+                  " query -l -predicates byte ",
+                  [/* String */2,/* No_padding */0,/* End_of_format */0]]],
+                "%s query -l -predicates byte %s"])
+             (ocamlfind,name);
           
           var n=match[1];
           
           var
            a_native=
             run_and_parse
-             (Lexers["trim_blanks"](Const["Source"][4]),
-              [/* Format */0,
-               [/* String */2,
-                /* No_padding */0,
-                [/* String_literal */11,
-                 " query -a-format -predicates native ",
-                 [/* String */2,/* No_padding */0,/* End_of_format */0]]],
-               "%s query -a-format -predicates native %s"],
-              ocamlfind,
-              name);
+              (Lexers["trim_blanks"](Const["Source"][4]),
+               [/* Format */0,
+                [/* String */2,
+                 /* No_padding */0,
+                 [/* String_literal */11,
+                  " query -a-format -predicates native ",
+                  [/* String */2,/* No_padding */0,/* End_of_format */0]]],
+                "%s query -a-format -predicates native %s"])
+             (ocamlfind,name);
           
           var
            deps=
             run_and_parse
-             (Lexers["blank_sep_strings"](Const["Source"][4]),
-              [/* Format */0,
-               [/* String */2,
-                /* No_padding */0,
-                [/* String_literal */11,
-                 " query -r -p-format ",
-                 [/* String */2,/* No_padding */0,/* End_of_format */0]]],
-               "%s query -r -p-format %s"],
-              ocamlfind,
-              name);
+              (Lexers["blank_sep_strings"](Const["Source"][4]),
+               [/* Format */0,
+                [/* String */2,
+                 /* No_padding */0,
+                 [/* String_literal */11,
+                  " query -r -p-format ",
+                  [/* String */2,/* No_padding */0,/* End_of_format */0]]],
+                "%s query -r -p-format %s"])
+             (ocamlfind,name);
           
           var
            deps$1=
             My_std["List"][33]
-             (function(prim,prim$1)
-                {return CamlPrimitive["caml_notequal"](prim,prim$1)}
-               (n),
+             (function(param)
+               {return function(prim,prim$1)
+                         {return CamlPrimitive["caml_notequal"](prim,prim$1)}
+                        (n,param)},
               deps);
           
           var deps$2;
@@ -251,12 +249,12 @@ var
              My_std["&"]
               (split_nl,
                run_and_read
-                ([/* Format */0,
-                  [/* String */2,
-                   /* No_padding */0,
-                   [/* String_literal */11," list",/* End_of_format */0]],
-                  "%s list"],
-                 ocamlfind)))};
+                 ([/* Format */0,
+                   [/* String */2,
+                    /* No_padding */0,
+                    [/* String_literal */11," list",/* End_of_format */0]],
+                   "%s list"])
+                (ocamlfind)))};
 
 var
  topological_closure=
@@ -349,9 +347,13 @@ var
     
     return /* S */[0,My_std["List"][9](flags$3)]};
 
-var link_flags_byte=link_flags(function(x){return x[4]});
+var
+ link_flags_byte=
+  function(param){return link_flags(function(x){return x[4]},param)};
 
-var link_flags_native=link_flags(function(x){return x[5]});
+var
+ link_flags_native=
+  function(param){return link_flags(function(x){return x[5]},param)};
 
 module["exports"]=
 {"Findlib_error":Findlib_error,

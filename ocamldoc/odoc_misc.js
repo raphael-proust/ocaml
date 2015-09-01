@@ -256,9 +256,8 @@ var
                      ("^{",Pervasives["^"](string_of_text(t_ele[1]),"}"));
             case 19:
              return string_of_text
-                     (list_concat
-                       ([/* Raw */0,", "],
-                        List["map"](function(s){return /* Code */[1,s]},t_ele[1])));
+                     (list_concat([/* Raw */0,", "])
+                       (List["map"](function(s){return /* Code */[1,s]},t_ele[1])));
             case 20:return string_of_text(t_ele[2]);
             case 21:return "";
             default:return string_of_text(t_ele[1])}}
@@ -536,9 +535,8 @@ var
                      /* Subscript */[18,text_no_title_no_list(t_ele[1])],
                      /* [] */0];
             case 19:
-             return list_concat
-                     ([/* Raw */0,", "],
-                      List["map"]
+             return list_concat([/* Raw */0,", "])
+                     (List["map"]
                        (function(s)
                          {return /* Ref */[16,
                                   s,

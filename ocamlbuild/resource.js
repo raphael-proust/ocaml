@@ -20,7 +20,7 @@ var Glob=require("./glob.js");
 var CamlPrimitive=require("./camlPrimitive.js");
 
 
-var Resources=My_std["Set"][1]([0,$$let[2],$$let[10]]);
+var Resources=My_std["Set"][1]([0,Pathname["compare"],Pathname["print"]]);
 
 var print=Pathname["print"];
 
@@ -587,7 +587,8 @@ var dependencies=function(r){return get(r)[3]};
 var
  fold_dependencies=
   function(f)
-   {return fold_cache(function(k,v){return Resources[14](f(k),v[3])})};
+   {return function(param)
+     {return fold_cache(function(k,v){return Resources[14](f(k),v[3])},param)}};
 
 var
  add_dependency=

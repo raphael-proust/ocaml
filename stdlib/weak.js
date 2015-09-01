@@ -77,7 +77,10 @@ var
                       :fold_bucket(i+1,b,accu)}
             };
         
-        return $$Array["fold_right"](fold_bucket(0),t[1],init)};
+        return $$Array["fold_right"]
+                (function(param,param$1){return fold_bucket(0,param,param$1)},
+                 t[1],
+                 init)};
     
     var
      iter=
@@ -93,7 +96,8 @@ var
               return match?(f(match[1]),iter_bucket(i+1,b)):iter_bucket(i+1,b)}
             };
         
-        return $$Array["iter"](iter_bucket(0),t[1])};
+        return $$Array["iter"]
+                (function(param){return iter_bucket(0,param)},t[1])};
     
     var
      iter_weak=
@@ -111,7 +115,9 @@ var
                       :iter_bucket(i+1,j,b)}
             };
         
-        return $$Array["iteri"](iter_bucket(0),t[1])};
+        return $$Array["iteri"]
+                (function(param,param$1){return iter_bucket(0,param,param$1)},
+                 t[1])};
     
     var
      count_bucket=
@@ -123,7 +129,11 @@ var
     
     var
      count=
-      function(t){return $$Array["fold_right"](count_bucket(0),t[1],0)};
+      function(t)
+       {return $$Array["fold_right"]
+                (function(param,param$1){return count_bucket(0,param,param$1)},
+                 t[1],
+                 0)};
     
     var
      next_sz=

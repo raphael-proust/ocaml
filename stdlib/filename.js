@@ -122,11 +122,15 @@ catch(exn)
    {throw exn}
   }
 
-var quote=generic_quote("'\\''");
+var quote=function(param){return generic_quote("'\\''",param)};
 
-var basename=generic_basename(is_dir_sep,current_dir_name);
+var
+ basename=
+  function(param){return generic_basename(is_dir_sep,current_dir_name,param)};
 
-var dirname=generic_dirname(is_dir_sep,current_dir_name);
+var
+ dirname=
+  function(param){return generic_dirname(is_dir_sep,current_dir_name,param)};
 
 var
  Unix=
@@ -323,9 +327,15 @@ var temp_dir_name$2=Unix[8];
 
 var quote$2=Unix[9];
 
-var basename$2=generic_basename(is_dir_sep$2,current_dir_name$2);
+var
+ basename$2=
+  function(param)
+   {return generic_basename(is_dir_sep$2,current_dir_name$2,param)};
 
-var dirname$2=generic_dirname(is_dir_sep$2,current_dir_name$2);
+var
+ dirname$2=
+  function(param)
+   {return generic_dirname(is_dir_sep$2,current_dir_name$2,param)};
 
 var
  Cygwin=

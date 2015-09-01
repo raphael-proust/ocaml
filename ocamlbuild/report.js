@@ -28,7 +28,9 @@ var
          Resource["print"],
          bt[1]);
        return /* false */0;
-      case 1:return My_std["List"][26](analyze(f),bt[1]);
+      case 1:
+       return My_std["List"][26]
+               (function(param){return analyze(f,param)},bt[1]);
       case 2:
        var r=bt[1];
        
@@ -109,7 +111,8 @@ var
                  "Failed to build all of these:",
                  /* End_of_format */0]]]],
              "@\n- @[<v2>Failed to build all of these:"]);
-          My_std["List"][14](print_backtrace(f),backtraces);
+          My_std["List"][14]
+           (function(param$1){return print_backtrace(f,param$1)},backtraces);
           return Format["fprintf"]
                   (f,
                    [/* Format */0,

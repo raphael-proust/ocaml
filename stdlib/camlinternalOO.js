@@ -140,7 +140,9 @@ var
 
 var
  get_method_labels=
-  function(table,names){return $$Array["map"](get_method_label(table),names)};
+  function(table,names)
+   {return $$Array["map"]
+            (function(param){return get_method_label(table,param)},names)};
 
 var
  set_method=
@@ -174,9 +176,15 @@ var
     
     var concr_meths$1=to_list(concr_meths);
     
-    var virt_meth_labs=List["map"](get_method_label(table),virt_meths$1);
+    var
+     virt_meth_labs=
+      List["map"]
+       (function(param){return get_method_label(table,param)},virt_meths$1);
     
-    var concr_meth_labs=List["map"](get_method_label(table),concr_meths$1);
+    var
+     concr_meth_labs=
+      List["map"]
+       (function(param){return get_method_label(table,param)},concr_meths$1);
     
     table[5]=
     /* :: */[0,
@@ -308,7 +316,9 @@ var
 
 var
  get_variables=
-  function(table,names){return $$Array["map"](get_variable(table),names)};
+  function(table,names)
+   {return $$Array["map"]
+            (function(param){return get_variable(table,param)},names)};
 
 var
  add_initializer=
@@ -354,7 +364,9 @@ var
             (/* :: */[0,
               [/* array */0,init],
               /* :: */[0,
-               $$Array["map"](get_variable(cla),to_array(vals)),
+               $$Array["map"]
+                (function(param$1){return get_variable(cla,param$1)},
+                 to_array(vals)),
                /* :: */[0,
                 $$Array["map"]
                  (function(nm)

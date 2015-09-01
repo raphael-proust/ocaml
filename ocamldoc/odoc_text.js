@@ -112,7 +112,10 @@ var
 
 var p=Printf["bprintf"];
 
-var p_text=function(b,t){return List["iter"](p_text_element(b),t)};
+var
+ p_text=
+  function(b,t)
+   {return List["iter"](function(param){return p_text_element(b,param)},t)};
 
 var
  p_list=

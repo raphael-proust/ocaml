@@ -428,9 +428,10 @@ var
             var
              l$1=
               List["filter"]
-               (function(prim,prim$1)
-                  {return CamlPrimitive["caml_notequal"](prim,prim$1)}
-                 (""),
+               (function(param)
+                 {return function(prim,prim$1)
+                           {return CamlPrimitive["caml_notequal"](prim,prim$1)}
+                          ("",param)},
                 l);
             
             return Buffer["add_string"](b,$$String["concat"]("\n.sp\n",l$1))}

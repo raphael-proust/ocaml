@@ -78,9 +78,14 @@ var
               "%s %S, line%a, character%a:@."],
              $$String["capitalize"](param[1]),
              file(start),
-             print(line(start)===line(end_)),
+             function(param$1,param$2)
+              {return print(line(start)===line(end_),param$1,param$2)},
              /* tuple */[0,line(start),line(end_)],
-             print(line(start)===line(end_)&&$$char(start)===$$char(end_)),
+             function(param$1,param$2)
+              {return print
+                       (line(start)===line(end_)&&$$char(start)===$$char(end_),
+                        param$1,
+                        param$2)},
              /* tuple */[0,$$char(start),$$char(end_)])};
 
 var

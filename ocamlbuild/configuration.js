@@ -95,7 +95,9 @@ var
  apply_configs=
   function(s)
    {return My_std["List"][20]
-            (apply_config(s),configs$1(/* () */0),Tags["empty"])};
+            (function(param,param$1){return apply_config(s,param,param$1)},
+             configs$1(/* () */0),
+             Tags["empty"])};
 
 var
  tags_of_filename=

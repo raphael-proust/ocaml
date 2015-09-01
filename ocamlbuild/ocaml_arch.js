@@ -110,7 +110,7 @@ var
                      [/* Break */0,"@ ",1,0],
                      [/* Alpha */15,[/* Alpha */15,/* End_of_format */0]]],
                     "@ %a%a"],
-                   print(print_info),
+                   function(param$1){return print(print_info,param$1)},
                    param[1],
                    print_contents,
                    param[2])
@@ -273,7 +273,11 @@ var
      {case 0:exit=17;break;case 1:exit=17;break;case 2:return f(param[2])}
     
     switch(exit)
-     {case 17:f(param[2]);return My_std["List"][14](iter_info(f),param[3])}
+     {case 17:
+       f(param[2]);
+       return My_std["List"][14]
+               (function(param$1){return iter_info(f,param$1)},param[3])
+      }
     };
 
 var
@@ -285,7 +289,12 @@ var
      {case 0:exit=15;break;case 1:exit=15;break;case 2:return f(arch[2],acc)}
     
     switch(exit)
-     {case 15:return My_std["List"][20](fold_info(f),arch[3],f(arch[2],acc))}
+     {case 15:
+       return My_std["List"][20]
+               (function(param,param$1){return fold_info(f,param,param$1)},
+                arch[3],
+                f(arch[2],acc))
+      }
     };
 
 var $$let=My_std["String"];
@@ -407,9 +416,12 @@ var
                            /* Close_box */0,
                            /* End_of_format */0]]]]]]]]]]]]],
               "@[<2>@[<2>include_dirs_table:@ %a@];@ @[<2>for_pack_table: %a@]@]"],
-             print_table(My_std["List"][1](My_std["String"][1])),
+             function(param$1,param$2)
+              {return print_table
+                       (My_std["List"][1](My_std["String"][1]),param$1,param$2)},
              param[1],
-             print_table(My_std["String"][1]),
+             function(param$1,param$2)
+              {return print_table(My_std["String"][1],param$1,param$2)},
              param[2])};
 
 var

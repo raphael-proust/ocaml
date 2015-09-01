@@ -348,7 +348,7 @@ var set=function(r,param){return r[1]=/* true */1,0};
 
 var unset=function(r,param){return r[1]=/* false */0,0};
 
-var _absname=set(Location["absname"]);
+var _absname=function(param){return set(Location["absname"],param)};
 
 var
  _I=
@@ -379,17 +379,21 @@ var
 
 var _intf_suffix=function(s){return Config["interface_suffix"][1]=s,0};
 
-var _labels=unset(Clflags["classic"]);
+var _labels=function(param){return unset(Clflags["classic"],param)};
 
-var _no_alias_deps=set(Clflags["transparent_modules"]);
+var
+ _no_alias_deps=
+  function(param){return set(Clflags["transparent_modules"],param)};
 
-var _no_app_funct=unset(Clflags["applicative_functors"]);
+var
+ _no_app_funct=
+  function(param){return unset(Clflags["applicative_functors"],param)};
 
-var _noassert=set(Clflags["noassert"]);
+var _noassert=function(param){return set(Clflags["noassert"],param)};
 
-var _nolabels=set(Clflags["classic"]);
+var _nolabels=function(param){return set(Clflags["classic"],param)};
 
-var _nostdlib=set(Clflags["no_std_include"]);
+var _nostdlib=function(param){return set(Clflags["no_std_include"],param)};
 
 var
  _open=
@@ -405,21 +409,27 @@ var
   function(s)
    {return Clflags["all_ppx"][1]=/* :: */[0,s,Clflags["all_ppx"][1]],0};
 
-var _principal=set(Clflags["principal"]);
+var _principal=function(param){return set(Clflags["principal"],param)};
 
-var _rectypes=set(Clflags["recursive_types"]);
+var _rectypes=function(param){return set(Clflags["recursive_types"],param)};
 
-var _safe_string=unset(Clflags["unsafe_string"]);
+var
+ _safe_string=
+  function(param){return unset(Clflags["unsafe_string"],param)};
 
-var _short_paths=unset(Clflags["real_paths"]);
+var _short_paths=function(param){return unset(Clflags["real_paths"],param)};
 
-var _strict_sequence=set(Clflags["strict_sequence"]);
+var
+ _strict_sequence=
+  function(param){return set(Clflags["strict_sequence"],param)};
 
-var _strict_formats=set(Clflags["strict_formats"]);
+var
+ _strict_formats=
+  function(param){return set(Clflags["strict_formats"],param)};
 
-var _thread=set(Clflags["use_threads"]);
+var _thread=function(param){return set(Clflags["use_threads"],param)};
 
-var _vmthread=set(Clflags["use_vmthreads"]);
+var _vmthread=function(param){return set(Clflags["use_vmthreads"],param)};
 
 var
  _unsafe=
@@ -428,7 +438,9 @@ var
            CamlPrimitive["caml_global_data"]["Assert_failure"],
            [0,"odoc_args.ml",216,19]]};
 
-var _unsafe_string=set(Clflags["unsafe_string"]);
+var
+ _unsafe_string=
+  function(param){return set(Clflags["unsafe_string"],param)};
 
 var
  _v=
@@ -457,21 +469,21 @@ var
 
 var _where=Compenv["print_standard_library"];
 
-var _verbose=set(Clflags["verbose"]);
+var _verbose=function(param){return set(Clflags["verbose"],param)};
 
-var _nopervasives=set(Clflags["nopervasives"]);
+var _nopervasives=function(param){return set(Clflags["nopervasives"],param)};
 
-var _dsource=set(Clflags["dump_source"]);
+var _dsource=function(param){return set(Clflags["dump_source"],param)};
 
-var _dparsetree=set(Clflags["dump_parsetree"]);
+var _dparsetree=function(param){return set(Clflags["dump_parsetree"],param)};
 
-var _dtypedtree=set(Clflags["dump_typedtree"]);
+var _dtypedtree=function(param){return set(Clflags["dump_typedtree"],param)};
 
-var _drawlambda=set(Clflags["dump_rawlambda"]);
+var _drawlambda=function(param){return set(Clflags["dump_rawlambda"],param)};
 
-var _dlambda=set(Clflags["dump_lambda"]);
+var _dlambda=function(param){return set(Clflags["dump_lambda"],param)};
 
-var _dinstr=set(Clflags["dump_instr"]);
+var _dinstr=function(param){return set(Clflags["dump_instr"],param)};
 
 var
  Options=
@@ -833,8 +845,9 @@ var
                                                      /* tuple */[0,
                                                       "-info-section",
                                                       /* String */[4,
-                                                       function(prim,prim$1){return prim[1]=prim$1,0}
-                                                        (Odoc_texi["info_section"])],
+                                                       function(param)
+                                                        {return function(prim,prim$1){return prim[1]=prim$1,0}
+                                                                 (Odoc_texi["info_section"],param)}],
                                                       Odoc_messages["info_section"]],
                                                      /* :: */[0,
                                                       /* tuple */[0,

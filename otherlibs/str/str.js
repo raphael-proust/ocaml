@@ -1078,12 +1078,14 @@ var
 var
  global_replace=
   function(expr,repl,text)
-   {return global_substitute(expr,replace_matched(repl),text)};
+   {return global_substitute
+            (expr,function(param){return replace_matched(repl,param)},text)};
 
 var
  replace_first=
   function(expr,repl,text)
-   {return substitute_first(expr,replace_matched(repl),text)};
+   {return substitute_first
+            (expr,function(param){return replace_matched(repl,param)},text)};
 
 var
  opt_search_forward_progress=

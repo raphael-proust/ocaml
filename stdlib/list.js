@@ -313,7 +313,7 @@ var
          {return rev(accu)}
         };
     
-    return find$1(/* [] */0)};
+    return function(param){return find$1(/* [] */0,param)}};
 
 var filter=find_all;
 

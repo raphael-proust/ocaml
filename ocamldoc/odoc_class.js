@@ -199,7 +199,9 @@ var
      f=
       function(p)
        {return Odoc_parameter["update_parameter_text"]
-                (class_parameter_text_by_name(cl),p)};
+                (function(param)
+                  {return class_parameter_text_by_name(cl,param)},
+                 p)};
     
     return List["iter"](f,cl[7])};
 

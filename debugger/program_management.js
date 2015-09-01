@@ -46,11 +46,14 @@ var
      {var pid$prime=Pervasives["input_binary_int"](io_chan[1]);
       
       Time_travel["new_checkpoint"](pid$prime,io_chan);
-      Input_handling["add_file"](io_chan,control_connection(pid$prime));
+      Input_handling["add_file"]
+       (io_chan,function(param){return control_connection(pid$prime,param)});
       return $$continue(/* () */0)}
     else
      {return Time_travel["set_file_descriptor"](pid,io_chan)
-              ?Input_handling["add_file"](io_chan,control_connection(pid))
+              ?Input_handling["add_file"]
+                (io_chan,
+                 function(param){return control_connection(pid,param)})
               :0}
     };
 
@@ -77,7 +80,8 @@ var
         Program_loading["connection"][1]=
         Primitives["io_channel_of_descr"](sock);
         Input_handling["add_file"]
-         (Program_loading["connection"][1],accept_connection($$continue));
+         (Program_loading["connection"][1],
+          function(param){return accept_connection($$continue,param)});
         return Program_loading["connection_opened"][1]=/* true */1,0}
       catch(x){Unix["close"](sock);throw x}
       }

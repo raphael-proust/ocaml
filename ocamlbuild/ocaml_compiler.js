@@ -66,9 +66,15 @@ var
                   [/* A */1,"-o"],
                   /* :: */[0,/* Px */[3,out],/* [] */0]]]]]]]]};
 
-var ocamlc_link_lib=ocamlc_link([/* A */1,"-a"]);
+var
+ ocamlc_link_lib=
+  function(param,param$1,param$2)
+   {return ocamlc_link([/* A */1,"-a"],param,param$1,param$2)};
 
-var ocamlc_link_prog=ocamlc_link(/* N */0);
+var
+ ocamlc_link_prog=
+  function(param,param$1,param$2)
+   {return ocamlc_link(/* N */0,param,param$1,param$2)};
 
 var
  ocamlmklib=
@@ -106,8 +112,9 @@ var
  byte_lib_linker=
   function(tags)
    {return Tags["mem"]("ocamlmklib",tags)
-            ?ocamlmklib(tags)
-            :ocamlc_link_lib(tags)};
+            ?function(param,param$1){return ocamlmklib(tags,param,param$1)}
+            :function(param,param$1)
+              {return ocamlc_link_lib(tags,param,param$1)}};
 
 var
  byte_lib_linker_tags=
@@ -181,11 +188,20 @@ var
                    [/* A */1,"-o"],
                    /* :: */[0,/* Px */[3,out],/* [] */0]]]]]]]]]};
 
-var ocamlopt_link_lib=ocamlopt_link([/* A */1,"-a"]);
+var
+ ocamlopt_link_lib=
+  function(param,param$1,param$2)
+   {return ocamlopt_link([/* A */1,"-a"],param,param$1,param$2)};
 
-var ocamlopt_link_shared_lib=ocamlopt_link([/* A */1,"-shared"]);
+var
+ ocamlopt_link_shared_lib=
+  function(param,param$1,param$2)
+   {return ocamlopt_link([/* A */1,"-shared"],param,param$1,param$2)};
 
-var ocamlopt_link_prog=ocamlopt_link(/* N */0);
+var
+ ocamlopt_link_prog=
+  function(param,param$1,param$2)
+   {return ocamlopt_link(/* N */0,param,param$1,param$2)};
 
 var
  ocamlopt_p=
@@ -254,12 +270,15 @@ var
  native_lib_linker=
   function(tags)
    {return Tags["mem"]("ocamlmklib",tags)
-            ?ocamlmklib(tags)
-            :ocamlopt_link_lib(tags)};
+            ?function(param,param$1){return ocamlmklib(tags,param,param$1)}
+            :function(param,param$1)
+              {return ocamlopt_link_lib(tags,param,param$1)}};
 
 var
  native_shared_lib_linker=
-  function(tags){return ocamlopt_link_shared_lib(tags)};
+  function(tags)
+   {return function(param,param$1)
+     {return ocamlopt_link_shared_lib(tags,param,param$1)}};
 
 var
  native_lib_linker_tags=
@@ -888,7 +907,18 @@ var
 
 var
  byte_link_gen=
-  link_gen("cmo","cma","cma",[/* :: */0,"cmo",[/* :: */0,"cmi",/* [] */0]]);
+  function(param,param$1,param$2,param$3,param$4,param$5)
+   {return link_gen
+            ("cmo",
+             "cma",
+             "cma",
+             [/* :: */0,"cmo",[/* :: */0,"cmi",/* [] */0]],
+             param,
+             param$1,
+             param$2,
+             param$3,
+             param$4,
+             param$5)};
 
 var
  byte_link=
@@ -932,8 +962,18 @@ var byte_library_link=byte_link_gen(byte_lib_linker,byte_lib_linker_tags);
 
 var
  byte_debug_link_gen=
-  link_gen
-   ("d.cmo","d.cma","d.cma",[/* :: */0,"d.cmo",[/* :: */0,"cmi",/* [] */0]]);
+  function(param,param$1,param$2,param$3,param$4,param$5)
+   {return link_gen
+            ("d.cmo",
+             "d.cma",
+             "d.cma",
+             [/* :: */0,"d.cmo",[/* :: */0,"cmi",/* [] */0]],
+             param,
+             param$1,
+             param$2,
+             param$3,
+             param$4,
+             param$5)};
 
 var
  byte_debug_link=
@@ -959,19 +999,24 @@ var
 var
  native_link_gen=
   function(linker)
-   {return link_gen
-            ("cmx",
-             "cmxa",
-             Options["ext_lib"][1],
-             /* :: */[0,Options["ext_obj"][1],[/* :: */0,"cmi",/* [] */0]],
-             linker)};
+   {return function(param,param$1,param$2,param$3,param$4)
+     {return link_gen
+              ("cmx",
+               "cmxa",
+               Options["ext_lib"][1],
+               /* :: */[0,Options["ext_obj"][1],[/* :: */0,"cmi",/* [] */0]],
+               linker,
+               param,
+               param$1,
+               param$2,
+               param$3,
+               param$4)}};
 
 var
  native_link=
   function(x)
-   {return native_link_gen
-            (ocamlopt_link_prog,
-             function(tags)
+   {return native_link_gen(ocamlopt_link_prog)
+            (function(tags)
               {return Tags["Operators"][1]
                        (Tags["Operators"][1]
                          (Tags["Operators"][1]
@@ -983,9 +1028,8 @@ var
 var
  native_output_obj=
   function(x)
-   {return native_link_gen
-            (ocamlopt_link_prog,
-             function(tags)
+   {return native_link_gen(ocamlopt_link_prog)
+            (function(tags)
               {return Tags["Operators"][1]
                        (Tags["Operators"][1]
                          (Tags["Operators"][1]
@@ -997,9 +1041,8 @@ var
 var
  native_output_shared=
   function(x)
-   {return native_link_gen
-            (ocamlopt_link_prog,
-             function(tags)
+   {return native_link_gen(ocamlopt_link_prog)
+            (function(tags)
               {return Tags["Operators"][1]
                        (Tags["Operators"][1]
                          (Tags["Operators"][1]
@@ -1013,26 +1056,31 @@ var
 var
  native_library_link=
   function(x)
-   {return native_link_gen(native_lib_linker,native_lib_linker_tags,x)};
+   {return native_link_gen(native_lib_linker)(native_lib_linker_tags,x)};
 
 var
  native_profile_link_gen=
   function(linker)
-   {return link_gen
-            ("p.cmx",
-             "p.cmxa",
-             Pathname["Operators"][2]("p",Options["ext_lib"][1]),
-             /* :: */[0,
-              Pathname["Operators"][2]("p",Options["ext_obj"][1]),
-              [/* :: */0,"cmi",/* [] */0]],
-             linker)};
+   {return function(param,param$1,param$2,param$3,param$4)
+     {return link_gen
+              ("p.cmx",
+               "p.cmxa",
+               Pathname["Operators"][2]("p",Options["ext_lib"][1]),
+               /* :: */[0,
+                Pathname["Operators"][2]("p",Options["ext_obj"][1]),
+                [/* :: */0,"cmi",/* [] */0]],
+               linker,
+               param,
+               param$1,
+               param$2,
+               param$3,
+               param$4)}};
 
 var
  native_profile_link=
   function(x)
-   {return native_profile_link_gen
-            (ocamlopt_link_prog,
-             function(tags)
+   {return native_profile_link_gen(ocamlopt_link_prog)
+            (function(tags)
               {return Tags["Operators"][1]
                        (Tags["Operators"][1]
                          (Tags["Operators"][1]
@@ -1046,9 +1094,8 @@ var
 var
  native_profile_library_link=
   function(x)
-   {return native_profile_link_gen
-            (native_lib_linker,
-             function(tags)
+   {return native_profile_link_gen(native_lib_linker)
+            (function(tags)
               {return Tags["Operators"][1]
                        (native_lib_linker_tags(tags),"profile")},
              x)};
@@ -1164,9 +1211,57 @@ var
     
     return linker(tags,deps$3,cmX$1)};
 
-var link_modules=link_units(library_index);
+var
+ link_modules=
+  function
+   (param,
+    param$1,
+    param$2,
+    param$3,
+    param$4,
+    param$5,
+    param$6,
+    param$7,
+    param$8,
+    param$9)
+   {return link_units
+            (library_index,
+             param,
+             param$1,
+             param$2,
+             param$3,
+             param$4,
+             param$5,
+             param$6,
+             param$7,
+             param$8,
+             param$9)};
 
-var pack_modules=link_units(package_index);
+var
+ pack_modules=
+  function
+   (param,
+    param$1,
+    param$2,
+    param$3,
+    param$4,
+    param$5,
+    param$6,
+    param$7,
+    param$8,
+    param$9)
+   {return link_units
+            (package_index,
+             param,
+             param$1,
+             param$2,
+             param$3,
+             param$4,
+             param$5,
+             param$6,
+             param$7,
+             param$8,
+             param$9)};
 
 var
  link_from_file=
@@ -1179,171 +1274,247 @@ var
 
 var
  byte_library_link_modules=
-  link_modules
-   ([/* :: */0,[/* tuple */0,"cmo",/* [] */0],/* [] */0],
-    "cmo",
-    "cma",
-    "cma",
-    byte_lib_linker,
-    byte_lib_linker_tags);
+  function(param,param$1,param$2,param$3)
+   {return link_modules
+            ([/* :: */0,[/* tuple */0,"cmo",/* [] */0],/* [] */0],
+             "cmo",
+             "cma",
+             "cma",
+             byte_lib_linker,
+             byte_lib_linker_tags,
+             param,
+             param$1,
+             param$2,
+             param$3)};
 
-var byte_library_link_mllib=link_from_file(byte_library_link_modules);
+var
+ byte_library_link_mllib=
+  function(param,param$1,param$2,param$3)
+   {return link_from_file
+            (byte_library_link_modules,param,param$1,param$2,param$3)};
 
 var
  byte_toplevel_link_modules=
-  link_modules
-   ([/* :: */0,[/* tuple */0,"cmo",/* [] */0],/* [] */0],
-    "cmo",
-    "cma",
-    "cma",
-    ocamlmktop,
-    function(tags)
-     {return Tags["Operators"][1]
-              (Tags["Operators"][1]
-                (Tags["Operators"][1]
-                  (Tags["Operators"][1](tags,"ocaml"),"link"),
-                 "byte"),
-               "toplevel")});
+  function(param,param$1,param$2,param$3)
+   {return link_modules
+            ([/* :: */0,[/* tuple */0,"cmo",/* [] */0],/* [] */0],
+             "cmo",
+             "cma",
+             "cma",
+             ocamlmktop,
+             function(tags)
+              {return Tags["Operators"][1]
+                       (Tags["Operators"][1]
+                         (Tags["Operators"][1]
+                           (Tags["Operators"][1](tags,"ocaml"),"link"),
+                          "byte"),
+                        "toplevel")},
+             param,
+             param$1,
+             param$2,
+             param$3)};
 
-var byte_toplevel_link_mltop=link_from_file(byte_toplevel_link_modules);
+var
+ byte_toplevel_link_mltop=
+  function(param,param$1,param$2,param$3)
+   {return link_from_file
+            (byte_toplevel_link_modules,param,param$1,param$2,param$3)};
 
 var
  byte_debug_library_link_modules=
-  link_modules
-   ([/* :: */0,[/* tuple */0,"d.cmo",/* [] */0],/* [] */0],
-    "d.cmo",
-    "d.cma",
-    "d.cma",
-    byte_lib_linker,
-    function(tags)
-     {return Tags["Operators"][1](byte_lib_linker_tags(tags),"debug")});
+  function(param,param$1,param$2,param$3)
+   {return link_modules
+            ([/* :: */0,[/* tuple */0,"d.cmo",/* [] */0],/* [] */0],
+             "d.cmo",
+             "d.cma",
+             "d.cma",
+             byte_lib_linker,
+             function(tags)
+              {return Tags["Operators"][1](byte_lib_linker_tags(tags),"debug")},
+             param,
+             param$1,
+             param$2,
+             param$3)};
 
 var
  byte_debug_library_link_mllib=
-  link_from_file(byte_debug_library_link_modules);
+  function(param,param$1,param$2,param$3)
+   {return link_from_file
+            (byte_debug_library_link_modules,param,param$1,param$2,param$3)};
 
 var
  byte_pack_modules=
-  pack_modules
-   ([/* :: */0,
-     [/* tuple */0,"cmo",[/* :: */0,"cmi",/* [] */0]],
-     [/* :: */0,[/* tuple */0,"cmi",/* [] */0],/* [] */0]],
-    "cmo",
-    "cma",
-    "cma",
-    ocamlc_p,
-    function(tags)
-     {return Tags["Operators"][1]
-              (Tags["Operators"][1](Tags["Operators"][1](tags,"ocaml"),"pack"),
-               "byte")});
-
-var byte_pack_mlpack=link_from_file(byte_pack_modules);
-
-var
- byte_debug_pack_modules=
-  pack_modules
-   ([/* :: */0,
-     [/* tuple */0,"d.cmo",[/* :: */0,"cmi",/* [] */0]],
-     [/* :: */0,[/* tuple */0,"cmi",/* [] */0],/* [] */0]],
-    "d.cmo",
-    "d.cma",
-    "d.cma",
-    ocamlc_p,
-    function(tags)
-     {return Tags["Operators"][1]
-              (Tags["Operators"][1]
-                (Tags["Operators"][1]
-                  (Tags["Operators"][1](tags,"ocaml"),"pack"),
-                 "byte"),
-               "debug")});
-
-var byte_debug_pack_mlpack=link_from_file(byte_debug_pack_modules);
-
-var
- native_pack_modules=
-  function(x)
+  function(param,param$1,param$2,param$3)
    {return pack_modules
-            (/* :: */[0,
-              /* tuple */[0,
-               "cmx",
-               /* :: */[0,"cmi",/* :: */[0,Options["ext_obj"][1],/* [] */0]]],
+            ([/* :: */0,
+              [/* tuple */0,"cmo",[/* :: */0,"cmi",/* [] */0]],
               [/* :: */0,[/* tuple */0,"cmi",/* [] */0],/* [] */0]],
-             "cmx",
-             "cmxa",
-             Options["ext_lib"][1],
-             ocamlopt_p,
+             "cmo",
+             "cma",
+             "cma",
+             ocamlc_p,
              function(tags)
               {return Tags["Operators"][1]
                        (Tags["Operators"][1]
                          (Tags["Operators"][1](tags,"ocaml"),"pack"),
-                        "native")},
-             x)};
-
-var native_pack_mlpack=link_from_file(native_pack_modules);
+                        "byte")},
+             param,
+             param$1,
+             param$2,
+             param$3)};
 
 var
- native_profile_pack_modules=
-  function(x)
+ byte_pack_mlpack=
+  function(param,param$1,param$2,param$3)
+   {return link_from_file(byte_pack_modules,param,param$1,param$2,param$3)};
+
+var
+ byte_debug_pack_modules=
+  function(param,param$1,param$2,param$3)
    {return pack_modules
-            (/* :: */[0,
-              /* tuple */[0,
-               "p.cmx",
-               /* :: */[0,
-                "cmi",
-                /* :: */[0,
-                 Pathname["Operators"][2]("p",Options["ext_obj"][1]),
-                 /* [] */0]]],
+            ([/* :: */0,
+              [/* tuple */0,"d.cmo",[/* :: */0,"cmi",/* [] */0]],
               [/* :: */0,[/* tuple */0,"cmi",/* [] */0],/* [] */0]],
-             "p.cmx",
-             "p.cmxa",
-             Pathname["Operators"][2]("p",Options["ext_lib"][1]),
-             ocamlopt_p,
+             "d.cmo",
+             "d.cma",
+             "d.cma",
+             ocamlc_p,
              function(tags)
               {return Tags["Operators"][1]
                        (Tags["Operators"][1]
                          (Tags["Operators"][1]
                            (Tags["Operators"][1](tags,"ocaml"),"pack"),
-                          "native"),
-                        "profile")},
-             x)};
+                          "byte"),
+                        "debug")},
+             param,
+             param$1,
+             param$2,
+             param$3)};
 
-var native_profile_pack_mlpack=link_from_file(native_profile_pack_modules);
+var
+ byte_debug_pack_mlpack=
+  function(param,param$1,param$2,param$3)
+   {return link_from_file
+            (byte_debug_pack_modules,param,param$1,param$2,param$3)};
+
+var
+ native_pack_modules=
+  function(x)
+   {return function(param,param$1,param$2)
+     {return pack_modules
+              (/* :: */[0,
+                /* tuple */[0,
+                 "cmx",
+                 /* :: */[0,"cmi",/* :: */[0,Options["ext_obj"][1],/* [] */0]]],
+                [/* :: */0,[/* tuple */0,"cmi",/* [] */0],/* [] */0]],
+               "cmx",
+               "cmxa",
+               Options["ext_lib"][1],
+               ocamlopt_p,
+               function(tags)
+                {return Tags["Operators"][1]
+                         (Tags["Operators"][1]
+                           (Tags["Operators"][1](tags,"ocaml"),"pack"),
+                          "native")},
+               x,
+               param,
+               param$1,
+               param$2)}};
+
+var
+ native_pack_mlpack=
+  function(param,param$1,param$2,param$3)
+   {return link_from_file(native_pack_modules,param,param$1,param$2,param$3)};
+
+var
+ native_profile_pack_modules=
+  function(x)
+   {return function(param,param$1,param$2)
+     {return pack_modules
+              (/* :: */[0,
+                /* tuple */[0,
+                 "p.cmx",
+                 /* :: */[0,
+                  "cmi",
+                  /* :: */[0,
+                   Pathname["Operators"][2]("p",Options["ext_obj"][1]),
+                   /* [] */0]]],
+                [/* :: */0,[/* tuple */0,"cmi",/* [] */0],/* [] */0]],
+               "p.cmx",
+               "p.cmxa",
+               Pathname["Operators"][2]("p",Options["ext_lib"][1]),
+               ocamlopt_p,
+               function(tags)
+                {return Tags["Operators"][1]
+                         (Tags["Operators"][1]
+                           (Tags["Operators"][1]
+                             (Tags["Operators"][1](tags,"ocaml"),"pack"),
+                            "native"),
+                          "profile")},
+               x,
+               param,
+               param$1,
+               param$2)}};
+
+var
+ native_profile_pack_mlpack=
+  function(param,param$1,param$2,param$3)
+   {return link_from_file
+            (native_profile_pack_modules,param,param$1,param$2,param$3)};
 
 var
  native_library_link_modules=
   function(x)
-   {return link_modules
-            (/* :: */[0,
-              /* tuple */[0,"cmx",/* :: */[0,Options["ext_obj"][1],/* [] */0]],
-              /* [] */0],
-             "cmx",
-             "cmxa",
-             Options["ext_lib"][1],
-             native_lib_linker,
-             native_lib_linker_tags,
-             x)};
+   {return function(param,param$1,param$2)
+     {return link_modules
+              (/* :: */[0,
+                /* tuple */[0,
+                 "cmx",
+                 /* :: */[0,Options["ext_obj"][1],/* [] */0]],
+                /* [] */0],
+               "cmx",
+               "cmxa",
+               Options["ext_lib"][1],
+               native_lib_linker,
+               native_lib_linker_tags,
+               x,
+               param,
+               param$1,
+               param$2)}};
 
 var
  native_shared_library_link_modules=
   function(x)
-   {return link_modules
-            (/* :: */[0,
-              /* tuple */[0,"cmx",/* :: */[0,Options["ext_obj"][1],/* [] */0]],
-              /* [] */0],
-             "cmx",
-             "cmxa",
-             Options["ext_lib"][1],
-             native_shared_lib_linker,
-             function(tags)
-              {return Tags["Operators"][1]
-                       (native_lib_linker_tags(tags),"shared")},
-             x)};
+   {return function(param,param$1,param$2)
+     {return link_modules
+              (/* :: */[0,
+                /* tuple */[0,
+                 "cmx",
+                 /* :: */[0,Options["ext_obj"][1],/* [] */0]],
+                /* [] */0],
+               "cmx",
+               "cmxa",
+               Options["ext_lib"][1],
+               native_shared_lib_linker,
+               function(tags)
+                {return Tags["Operators"][1]
+                         (native_lib_linker_tags(tags),"shared")},
+               x,
+               param,
+               param$1,
+               param$2)}};
 
-var native_library_link_mllib=link_from_file(native_library_link_modules);
+var
+ native_library_link_mllib=
+  function(param,param$1,param$2,param$3)
+   {return link_from_file
+            (native_library_link_modules,param,param$1,param$2,param$3)};
 
 var
  native_shared_library_link_mldylib=
-  link_from_file(native_shared_library_link_modules);
+  function(param,param$1,param$2,param$3)
+   {return link_from_file
+            (native_shared_library_link_modules,param,param$1,param$2,param$3)};
 
 var
  native_shared_library_tags=
@@ -1365,57 +1536,84 @@ var
   function($staropt$star,x)
    {var tags=$staropt$star?$staropt$star[1]:/* [] */0;
     
-    return link_one_gen
-            (native_shared_lib_linker,native_shared_library_tags(tags),x)};
+    return function(param,param$1,param$2)
+     {return link_one_gen
+              (native_shared_lib_linker,
+               function(param$3)
+                {return native_shared_library_tags(tags,param$3)},
+               x,
+               param,
+               param$1,
+               param$2)}};
 
 var
  native_profile_library_link_modules=
   function(x)
-   {return link_modules
-            (/* :: */[0,
-              /* tuple */[0,
+   {return function(param,param$1,param$2)
+     {return link_modules
+              (/* :: */[0,
+                /* tuple */[0,
+                 "p.cmx",
+                 /* :: */[0,
+                  Pathname["Operators"][2]("p",Options["ext_obj"][1]),
+                  /* [] */0]],
+                /* [] */0],
                "p.cmx",
-               /* :: */[0,
-                Pathname["Operators"][2]("p",Options["ext_obj"][1]),
-                /* [] */0]],
-              /* [] */0],
-             "p.cmx",
-             "p.cmxa",
-             Pathname["Operators"][2]("p",Options["ext_lib"][1]),
-             native_lib_linker,
-             function(tags)
-              {return Tags["Operators"][1]
-                       (native_lib_linker_tags(tags),"profile")},
-             x)};
+               "p.cmxa",
+               Pathname["Operators"][2]("p",Options["ext_lib"][1]),
+               native_lib_linker,
+               function(tags)
+                {return Tags["Operators"][1]
+                         (native_lib_linker_tags(tags),"profile")},
+               x,
+               param,
+               param$1,
+               param$2)}};
 
 var
  native_profile_shared_library_link_modules=
   function(x)
-   {return link_modules
-            (/* :: */[0,
-              /* tuple */[0,
+   {return function(param,param$1,param$2)
+     {return link_modules
+              (/* :: */[0,
+                /* tuple */[0,
+                 "p.cmx",
+                 /* :: */[0,
+                  Pathname["Operators"][2]("p",Options["ext_obj"][1]),
+                  /* [] */0]],
+                /* [] */0],
                "p.cmx",
-               /* :: */[0,
-                Pathname["Operators"][2]("p",Options["ext_obj"][1]),
-                /* [] */0]],
-              /* [] */0],
-             "p.cmx",
-             "p.cmxa",
-             Pathname["Operators"][2]("p",Options["ext_lib"][1]),
-             native_shared_lib_linker,
-             function(tags)
-              {return Tags["Operators"][1]
-                       (Tags["Operators"][1](native_lib_linker_tags(tags),"shared"),
-                        "profile")},
-             x)};
+               "p.cmxa",
+               Pathname["Operators"][2]("p",Options["ext_lib"][1]),
+               native_shared_lib_linker,
+               function(tags)
+                {return Tags["Operators"][1]
+                         (Tags["Operators"][1](native_lib_linker_tags(tags),"shared"),
+                          "profile")},
+               x,
+               param,
+               param$1,
+               param$2)}};
 
 var
  native_profile_library_link_mllib=
-  link_from_file(native_profile_library_link_modules);
+  function(param,param$1,param$2,param$3)
+   {return link_from_file
+            (native_profile_library_link_modules,
+             param,
+             param$1,
+             param$2,
+             param$3)};
 
 var
  native_profile_shared_library_link_mldylib=
-  link_from_file(native_profile_shared_library_link_modules);
+  function(param,param$1,param$2,param$3)
+   {return link_from_file
+            (native_profile_shared_library_link_modules,
+             param,
+             param$1,
+             param$2,
+             param$3)};
 
 module["exports"]=
 {"forpack_flags":forpack_flags,

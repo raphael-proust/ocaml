@@ -1382,7 +1382,7 @@ var
          if(l)
           {if(l[2])
             {ps(fmt,"(");
-             print_concat(fmt,", ",print_one,t[3]);
+             print_concat(fmt,", ",print_one)(t[3]);
              return ps(fmt,")")}
            else
             {var match=l[1];
@@ -1799,12 +1799,12 @@ var
           {if(l[2])
             {ps(fmt2,"("),
              print_concat
-              (fmt2,
-               ", ",
-               function(p)
-                {/* unknown */"(sendself self-3/1782 normal_type/1726 mod_name/1783 p/1791)";
-                 return ps(fmt2,0)},
-               l),
+               (fmt2,
+                ", ",
+                function(p)
+                 {/* unknown */"(sendself self-3/1782 normal_type/1726 mod_name/1783 p/1791)";
+                  return ps(fmt2,0)})
+              (l),
              ps(fmt2,") ")}
            else
             {/* unknown */"(sendself self-3/1782 normal_type/1726 mod_name/1783 (field 0 l/1790))";

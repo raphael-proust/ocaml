@@ -644,7 +644,9 @@ var
     
     var parse_s=function(param){return atomizer(parse_s1)};
     
-    var parse_t=function(x){return atomizer(parse_t1(x))};
+    var
+     parse_t=
+      function(x){return atomizer(function(param){return parse_t1(x,param)})};
     
     var x=parse_s(/* () */0);
     

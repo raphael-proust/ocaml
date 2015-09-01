@@ -258,9 +258,10 @@ var
   function(proc,args)
    {return do_exec
             (function(param)
-              {return function(prim,prim$1,prim$2)
-                        {return CamlPrimitive["unix_execvpe"](prim,prim$1,prim$2)}
-                       (proc,args)})};
+              {return function(param$1)
+                {return function(prim,prim$1,prim$2)
+                          {return CamlPrimitive["unix_execvpe"](prim,prim$1,prim$2)}
+                         (proc,args,param$1)}})};
 
 var
  wait_pid=
@@ -886,7 +887,7 @@ var
     else
      {try
        {perform_redirections(new_stdin,new_stdout,new_stderr);
-        return execvpe(cmd,args,env)}
+        return execvpe(cmd,args)(env)}
       catch(exn$2){return Pervasives["exit"](127)}
       }
     };

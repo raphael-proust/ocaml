@@ -334,7 +334,7 @@ var
      field_doc_str=
       function(param)
        {return param
-                ?P[4]
+                ?Printf["sprintf"]
                   ([/* Format */0,
                     [/* String_literal */11,
                      "(* ",
@@ -376,7 +376,7 @@ var
          break;
         case 1:
          manifest_str=
-         P[4]
+         Printf["sprintf"]
           ([/* Format */0,
             [/* String_literal */11,
              "= ",
@@ -393,7 +393,7 @@ var
             ("\n",
              List["map"]
               (function(field)
-                {return P[4]
+                {return Printf["sprintf"]
                          ([/* Format */0,
                            [/* String_literal */11,
                             "   ",
@@ -427,7 +427,7 @@ var
      {switch(match$2[0])
        {case 0:
          type_kind_str=
-         P[4]
+         Printf["sprintf"]
           ([/* Format */0,
             [/* Char_literal */12,
              61,
@@ -449,7 +449,7 @@ var
                  var
                   comment=
                    match$3
-                    ?P[4]
+                    ?Printf["sprintf"]
                       ([/* Format */0,
                         [/* String_literal */11,
                          "(* ",
@@ -476,7 +476,7 @@ var
                  
                  var match$5=cons[3];
                  
-                 return P[4]
+                 return Printf["sprintf"]
                          ([/* Format */0,
                            [/* String_literal */11,
                             "  | ",
@@ -489,7 +489,7 @@ var
                           cons[1],
                           match$4
                            ?match$5
-                             ?P[4]
+                             ?Printf["sprintf"]
                                ([/* Format */0,
                                  [/* String_literal */11,
                                   " : ",
@@ -511,7 +511,7 @@ var
          break;
         case 1:
          type_kind_str=
-         P[4]
+         Printf["sprintf"]
           ([/* Format */0,
             [/* String_literal */11,
              "= ",
@@ -528,7 +528,7 @@ var
             ("\n",
              List["map"]
               (function(field)
-                {return P[4]
+                {return Printf["sprintf"]
                          ([/* Format */0,
                            [/* String_literal */11,
                             "   ",
@@ -554,7 +554,7 @@ var
     
     var match$3=t[2];
     
-    return P[4]
+    return Printf["sprintf"]
             ([/* Format */0,
               [/* String_literal */11,
                "type ",

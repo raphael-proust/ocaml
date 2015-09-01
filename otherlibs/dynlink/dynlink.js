@@ -477,7 +477,10 @@ var
              {throw exn$1}
             }
           
-          List["iter"](load_compunit(ic,file_name,file_digest),lib[1])}
+          List["iter"]
+           (function(param)
+             {return load_compunit(ic,file_name,file_digest,param)},
+            lib[1])}
         else
          {throw [0,$$Error,/* Not_a_bytecode_file */[0,file_name]]}
         }

@@ -90,7 +90,8 @@ var
 
 var
  all_matching_instructions=
-  matching_elements(instruction_list,function(i){return i[1]});
+  function(param)
+   {return matching_elements(instruction_list,function(i){return i[1]},param)};
 
 var
  matching_instructions=
@@ -103,9 +104,13 @@ var
 
 var
  matching_variables=
-  matching_elements(variable_list,function(v){return v[1]});
+  function(param)
+   {return matching_elements(variable_list,function(v){return v[1]},param)};
 
-var matching_infos=matching_elements(info_list,function(i){return i[1]});
+var
+ matching_infos=
+  function(param)
+   {return matching_elements(info_list,function(i){return i[1]},param)};
 
 var
  find_ident=
@@ -1069,7 +1074,10 @@ var
       }
     
     return List["iter"]
-            (print_expr(depth,Frames["selected_event"][1],env,ppf),exprs)};
+            (function(param)
+              {return print_expr
+                       (depth,Frames["selected_event"][1],env,ppf,param)},
+             exprs)};
 
 var
  instr_print=
@@ -1139,34 +1147,45 @@ var
 
 var
  instr_set=
-  find_variable
-   (function(param,ppf,lexbuf){return param[2][1](lexbuf)},
-    function(ppf){return error("Argument required.")});
+  function(param,param$1)
+   {return find_variable
+            (function(param$2,ppf,lexbuf){return param$2[2][1](lexbuf)},
+             function(ppf){return error("Argument required.")},
+             param,
+             param$1)};
 
 var
  instr_show=
-  find_variable
-   (function(param,ppf,lexbuf){eol(lexbuf);return param[2][2](ppf)},
-    function(ppf)
-     {return List["iter"]
-              (function(param)
-                {Format["fprintf"]
-                  (ppf,
-                   [/* Format */0,
-                    [/* String */2,
-                     /* No_padding */0,
-                     [/* String_literal */11,": ",/* End_of_format */0]],
-                    "%s: "],
-                   param[1]);
-                 return param[2][2](ppf)},
-               variable_list[1])});
+  function(param,param$1)
+   {return find_variable
+            (function(param$2,ppf,lexbuf)
+              {eol(lexbuf);return param$2[2][2](ppf)},
+             function(ppf)
+              {return List["iter"]
+                       (function(param$2)
+                         {Format["fprintf"]
+                           (ppf,
+                            [/* Format */0,
+                             [/* String */2,
+                              /* No_padding */0,
+                              [/* String_literal */11,": ",/* End_of_format */0]],
+                             "%s: "],
+                            param$2[1]);
+                          return param$2[2][2](ppf)},
+                        variable_list[1])},
+             param,
+             param$1)};
 
 var
  instr_info=
-  find_info
-   (function(i,ppf,lexbuf){return i[2](lexbuf)},
-    function(ppf)
-     {return error('"info" must be followed by the name of an info command.')});
+  function(param,param$1)
+   {return find_info
+            (function(i,ppf,lexbuf){return i[2](lexbuf)},
+             function(ppf)
+              {return error
+                       ('"info" must be followed by the name of an info command.')},
+             param,
+             param$1)};
 
 var
  instr_break=
@@ -1449,10 +1468,12 @@ var
              "Backtrace:@."]);
           if(number===0)
            {return Frames["do_backtrace"]
-                    (print_frame(0,Pervasives["max_int"]))}
+                    (function(param)
+                      {return print_frame(0,Pervasives["max_int"],param)})}
           else
            {if(number>0)
-             {return Frames["do_backtrace"](print_frame(0,number))}
+             {return Frames["do_backtrace"]
+                      (function(param){return print_frame(0,number,param)})}
             else
              {var num_frames=Frames["stack_depth"](/* () */0);
               
@@ -1467,7 +1488,9 @@ var
                             /* End_of_format */0]],
                           "(Encountered a function with no debugging information)@."])
                       :Frames["do_backtrace"]
-                        (print_frame(num_frames+number,Pervasives["max_int"]))}
+                        (function(param)
+                          {return print_frame
+                                   (num_frames+number,Pervasives["max_int"],param)})}
             }
           }
         }
@@ -1769,16 +1792,20 @@ var
  loading_mode_variable=
   function(ppf)
    {return /* tuple */[0,
-            find_ident
-             ("loading mode",
-              matching_elements
-               ([0,Program_loading["loading_modes"]],
-                function(prim){return prim[1]}),
-              function(param,ppf,lexbuf)
-               {eol(lexbuf);
-                return Program_loading["set_launching_function"](param[2])},
-              function(ppf){return error("Syntax error.")},
-              ppf),
+            function(param)
+             {return find_ident
+                      ("loading mode",
+                       function(param$1)
+                        {return matching_elements
+                                 ([0,Program_loading["loading_modes"]],
+                                  function(prim){return prim[1]},
+                                  param$1)},
+                       function(param$1,ppf,lexbuf)
+                        {eol(lexbuf);
+                         return Program_loading["set_launching_function"](param$1[2])},
+                       function(ppf){return error("Syntax error.")},
+                       ppf,
+                       param)},
             function(ppf)
              {var
                find=
@@ -2008,7 +2035,7 @@ var
                    /* End_of_format */0]],
                  "Num    Address  Where@."]),
               List["iter"]
-               (info_one_breakpoint(ppf),
+               (function(param){return info_one_breakpoint(ppf,param)},
                 List["rev"](Breakpoints["breakpoints"][1])))};
 
 var
@@ -2482,21 +2509,24 @@ var
                 /* [] */0]]]]]]]]]]]];
     return info_list[1]=
            /* :: */[0,
-            /* record */[0,"modules",info_modules(ppf),"list opened modules."],
+            /* record */[0,
+             "modules",
+             function(param){return info_modules(ppf,param)},
+             "list opened modules."],
             /* :: */[0,
              /* record */[0,
               "checkpoints",
-              info_checkpoints(ppf),
+              function(param){return info_checkpoints(ppf,param)},
               "list checkpoints."],
              /* :: */[0,
               /* record */[0,
                "breakpoints",
-               info_breakpoints(ppf),
+               function(param){return info_breakpoints(ppf,param)},
                "list breakpoints."],
               /* :: */[0,
                /* record */[0,
                 "events",
-                info_events(ppf),
+                function(param){return info_events(ppf,param)},
                 "list events in MODULE (default is current module)."],
                /* [] */0]]]],
            0};

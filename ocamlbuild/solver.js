@@ -104,9 +104,13 @@ var
                      
                      try
                       {My_std["List"][14]
-                        (force_self(depth+1,on_the_go),Rule["deps_of_rule"](r));
+                        (function(param){return force_self(depth+1,on_the_go,param)},
+                         Rule["deps_of_rule"](r));
                        try
-                        {return Rule["call"](self_firsts(depth+1,on_the_go),r)}
+                        {return Rule["call"]
+                                 (function(param)
+                                   {return self_firsts(depth+1,on_the_go,param)},
+                                  r)}
                        catch(exn)
                         {if(exn===Rule["Failed"])
                           {throw [0,Failed,/* Leaf */[0,target]]}
@@ -187,7 +191,11 @@ var
 var
  self_firsts=
   function(depth,on_the_go,rss)
-   {var results=My_std["List"][16](self_first(depth,on_the_go,/* [] */0),rss);
+   {var
+     results=
+      My_std["List"][16]
+       (function(param){return self_first(depth,on_the_go,/* [] */0,param)},
+        rss);
     
     var
      match=
@@ -260,7 +268,7 @@ var
   function(depth,on_the_go,x)
    {$$self(depth,on_the_go,x);return Resource["Cache"][9](x)};
 
-var solve=force_self(0,/* [] */0);
+var solve=function(param){return force_self(0,/* [] */0,param)};
 
 var
  solve_target=

@@ -52,7 +52,9 @@ var
         }}
     else
      {switch(shape[0])
-       {case 0:return $$Array["map"](init_mod(loc),shape[1]);
+       {case 0:
+         return $$Array["map"]
+                 (function(param){return init_mod(loc,param)},shape[1]);
         case 1:return shape[1]
         }}
     };

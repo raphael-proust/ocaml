@@ -142,7 +142,8 @@ var
         [/* Char_literal */12,10,/* End_of_format */0]],
        "%s\n"],
       errmsg);
-    return List["iter"](print_spec(buf),add_help(speclist))};
+    return List["iter"]
+            (function(param){return print_spec(buf,param)},add_help(speclist))};
 
 var
  usage_string=
@@ -641,7 +642,8 @@ var
     
     var len$1=Pervasives["min"](len,limit);
     
-    return List["map"](add_padding(len$1),completed)};
+    return List["map"]
+            (function(param){return add_padding(len$1,param)},completed)};
 
 module["exports"]=
 {"parse":parse,

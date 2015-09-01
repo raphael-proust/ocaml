@@ -339,7 +339,8 @@ var
       dt,
       ds[10],
       ds[11],
-      print_shortened_pathname(ds[14]),
+      function(param,param$1)
+       {return print_shortened_pathname(ds[14],param,param$1)},
       ds[4],
       ds[5]?cached:uncached,
       Bytes["to_string"](ds[12]),
