@@ -1590,6 +1590,8 @@ include
           "location";
           "window";
           "document";
+			 "top";
+			 "content";
           "eval";
           "navigator";
           "self";
